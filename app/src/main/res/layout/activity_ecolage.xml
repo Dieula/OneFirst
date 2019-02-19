@@ -13,8 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        app:tabSelectedTextColor="@color/colorPrimaryDark"
+        app:tabTextColor="#26000000"
+        app:tabIndicatorColor="@color/colorPrimaryDark"/>
 
     <!-- View pager to swipe views -->
     <android.support.v4.view.ViewPager

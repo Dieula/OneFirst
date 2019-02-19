@@ -8,7 +8,7 @@ import android.os.Bundle;
 import oneclick.yonclick.Adapter.Pager;
 import oneclick.yonclick.R;
 
-public class EcolageActivity extends AppCompatActivity implements TabLayout.BaseOnTabSelectedListener {
+public class EcolageActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     //This is our tablayout
     private TabLayout tabLayout;
@@ -20,6 +20,9 @@ public class EcolageActivity extends AppCompatActivity implements TabLayout.Base
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecolage);
+
+        /* //Initializing the tablayout
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);*/
 
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -46,6 +49,7 @@ public class EcolageActivity extends AppCompatActivity implements TabLayout.Base
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
 
     }
 

@@ -3,6 +3,8 @@ package oneclick.yonclick.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import oneclick.yonclick.R;
+
 public class PaiementConfirmationActivity extends AppCompatActivity {
 
     @Override
