@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Authentification.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="121dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="191dp"
+                    android:text="@string/se_connecter"
+                    android:textSize="21sp"
+                    android:textColor="#76c156"
+                    android:fontFamily=" SFProDisplay-Bold" />
+
+
+
+                <EditText
+                    android:id="@+id/etUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="30dp"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:hint="Nom d'utilisateur"
+                    android:inputType="textPersonName"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage,UnknownIdInLayout"
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
+
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:background="@drawable/myeditext"
+                    android:hint="Mot de passe"
+                    android:inputType="textPersonName"
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextFields"
+                    android:importantForAutofill="no" tools:targetApi="o" />
+
+                <TextView
+                    android:id="@+id/tvOublie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/mot_de_passe_oubli"
+                    android:gravity="end"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Bold"
+                    android:layout_marginEnd="32dp"/>
+
+
+                <Button
+                    android:id="@+id/Iv_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="54dp"
+                    android:text="@string/login"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:textColor="#fff"
+                    android:background="@drawable/btninscription"
+                    android:onClick="onLogButton"
+                    tools:ignore="OnClick,RtlHardcoded"
+                    tools:targetApi="lollipop" />
+
+
+                <TextView
+                    android:id="@+id/tvCompte"
+                    android:layout_width="222dp"
+                    android:layout_height="13dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center"
+                    android:fontFamily="SFProDisplay-Bold"
+                    android:text="Vous n'avez pas de compte ? S'INSCRIRE"
+                    android:textSize="10sp"
+                    android:onClick="onLogButton"
+                    tools:ignore="HardcodedText,OnClick,RtlHardcoded,SmallSp" tools:targetApi="lollipop"/>
+
+
+            </LinearLayout>
+
+        <!--    <LinearLayout
+                android:id="@+id/loginPanel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="@dimen/pad_margin_20dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/btnLoginFacebook"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="-20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight=".5"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp"
+                    app:com_facebook_login_text="@string/facebook_cap"
+                    app:com_facebook_logout_text="@string/sign_out" />
+
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/btnLoginGPlus"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight=".5"
+                    android:background="?attr/selectableItemBackground"
+                    app:buttonSize="wide" />
+
+            </LinearLayout>
+-->
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

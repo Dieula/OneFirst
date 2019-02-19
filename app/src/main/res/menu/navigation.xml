@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/maga"
+        android:id="@+id/nav_slideshow"
+        android:title="Magasins" />
+    <item
+        android:icon="@drawable/resto"
+        android:id="@+id/nav_restaurant"
+        android:title="Restaurants" />
+    <item
+        android:icon="@drawable/abon"
+        android:id="@+id/nav_gallery"
+        android:title="Abonnements" />
+
+    <item
+        android:icon="@drawable/eco"
+        android:id="@+id/nav_cadeaux"
+        android:title="Ecolage" />
+
+</menu>

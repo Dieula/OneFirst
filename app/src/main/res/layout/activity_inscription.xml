@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Authentification.InscriptionActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+
+                android:id="@+id/tvCompte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="172dp"
+                    android:layout_height="26dp"
+                    android:text="@string/creer_un_compte"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:textColor="#76c156"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="156dp"
+                    android:layout_marginTop="82dp"
+                    android:textSize="22sp"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                tools:ignore="UselessParent">
+
+                <EditText
+                    android:id="@+id/etNomUser"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:hint="@string/nom_d_utilisateur"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp"
+                    android:autofillHints="" tools:targetApi="o"/>
+
+                <EditText
+                    android:id="@+id/etUserPhone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/telephone"
+                    android:layout_below="@+id/etNomUser"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="phone"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:importantForAutofill="no" tools:targetApi="o"/>
+
+
+                <EditText
+                    android:id="@+id/etEmailUser"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:padding="10dp"
+                    android:hint="@string/email"
+                    android:layout_below="@+id/etUserPhone"
+                    android:textSize="12sp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:autofillHints="" tools:targetApi="o"/>
+
+                <EditText
+                    android:id="@+id/etPass"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:hint="@string/mot_de_passe"
+                    android:layout_below="@+id/etEmailUser"
+                    android:inputType="textPassword"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:importantForAutofill="no" tools:targetApi="o"/>
+
+
+                <Button
+                    android:id="@+id/btnInscription"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:onClick="LogButton"
+                    android:layout_below="@+id/etPass"
+                    android:text="@string/s_inscrire"
+                    android:textColor="#fff"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btninscription"
+                    android:layout_marginBottom="20dp"
+                    tools:ignore="OnClick,RtlHardcoded" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="25dp">
+
+                <TextView
+                    android:id="@+id/DejaCompte"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:text="vous avez deja un compte ? Se cconnecter"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium" tools:targetApi="lollipop"/>
+
+
+             <!--   <LinearLayout
+                    android:id="@+id/loginPanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/DejaCompte"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="@dimen/pad_margin_20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    &lt;!&ndash; <com.facebook.login.widget.LoginButton
+                         android:id="@+id/btnLoginFacebook"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:paddingLeft="-20dp"
+                         android:layout_gravity="center_vertical"
+                         android:layout_marginRight="10dp"
+                         android:layout_weight=".5"
+                         android:paddingBottom="12dp"
+                         android:paddingTop="12dp"
+                         app:com_facebook_login_text="@string/facebook_cap"
+                         app:com_facebook_logout_text="@string/sign_out" />
+ &ndash;&gt;
+
+                    <com.google.android.gms.common.SignInButton
+                        android:id="@+id/btnLoginGPlus"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight=".5"
+                        android:background="?attr/selectableItemBackground"
+                        app:buttonSize="wide" />
+
+                </LinearLayout>
+-->
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>

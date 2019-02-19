@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Authentification.CompletezInscriptionActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="85dp">
+
+                <TextView
+                    android:id="@+id/tvSlogan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Veuillez ajouter les informations suivantes
+pour compléter votre compte"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"/>
+
+                <RelativeLayout
+                    android:layout_below="@+id/tvSlogan"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivProfil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="90dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="148dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="146dp"
+                        android:src="@drawable/iconlogo" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ajouter une photo"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_below="@+id/ivProfil"/>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_below="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="32dp">
+
+                <EditText
+                    android:id="@+id/etNomCmplet"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:hint="Nom"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp"
+                    android:autofillHints="" tools:targetApi="o"/>
+
+                <EditText
+                    android:id="@+id/etUserPrenom"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:hint="Prénom"
+                    android:layout_below="@+id/etNomCmplet"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textPersonName"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:importantForAutofill="no" tools:targetApi="o"/>
+
+
+                <EditText
+                    android:id="@+id/etAdresseUser"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:padding="10dp"
+                    android:hint="Adresse"
+                    android:layout_below="@+id/etUserPrenom"
+                    android:textSize="12sp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textPersonName"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:autofillHints="" tools:targetApi="o"/>
+
+                <EditText
+                    android:id="@+id/edCin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:ems="10"
+                    android:maxLength="16"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:hint="CIN/NIF"
+                    android:layout_below="@+id/etAdresseUser"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:importantForAutofill="no" tools:targetApi="o"/>
+
+                <RelativeLayout
+                    android:id="@+id/lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/edCin"
+                    android:background="@drawable/bg_card_cvc_edit_text">
+
+                    <Spinner
+                        android:id="@+id/SpiSex"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="5dp">
+
+                    </Spinner>
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/Iv_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/login"
+                    android:layout_below="@+id/lay"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:textColor="#fff"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/btninscription"
+                    tools:ignore="RtlHardcoded" tools:targetApi="lollipop" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+</RelativeLayout>
+
