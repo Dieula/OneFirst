@@ -1,4 +1,4 @@
-package oneclick.yonclick;
+package oneclick.yonclick.activity;
 ;
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import oneclick.yonclick.Fragment.AbonnementFragment;
 import oneclick.yonclick.Fragment.EcolageFragment;
 import oneclick.yonclick.Fragment.MagasinsFragment;
 import oneclick.yonclick.Fragment.RestaurantFragment;
+import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.BaseActivity;
 

@@ -59,7 +59,7 @@
     <dimen name="window_msg_padding">10dp</dimen>
 
     <!--Card view-->
-    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
     <dimen name="card_elevation">1dp</dimen>
 
     <!-- homepage items-->

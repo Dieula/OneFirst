@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DetailsCreditCardActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Entrez les informations sur la carte"
+                android:textSize="@dimen/height_width_15dp"
+                tools:ignore="HardcodedText,SpUsage" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp">
+
+                <EditText
+                    android:id="@+id/NomCarte"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="@dimen/height_width_15dp"
+                    android:hint="Nom figurant sur la carte"
+                    android:inputType="textPersonName"
+                    tools:ignore="HardcodedText" />
+
+
+                <EditText
+                    android:id="@+id/cardNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="-0.25dp"
+                    android:layout_below="@+id/NomCarte"
+                    android:textSize="@dimen/height_width_15dp"
+                    android:hint="Numero de la carte"
+                    android:inputType="phone"
+                    tools:ignore="LabelFor,NegativeMargin" />
+
+
+                <EditText
+                    android:id="@+id/cardDateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="180dp"
+                    android:layout_below="@+id/cardNumberEditText"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/height_width_15dp"
+                    android:hint="MM/YY"
+                    android:inputType="phone"
+                    android:maxLength="5"
+                    android:paddingRight="20dp"
+                    tools:ignore="LabelFor,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry" />
+
+
+                <EditText
+                    android:id="@+id/cardCVCEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="165dp"
+                    android:layout_below="@+id/cardNumberEditText"
+                    android:layout_weight="1"
+                    android:hint="CVC"
+                    android:textSize="@dimen/height_width_15dp"
+                    android:inputType="number"
+                    tools:ignore="LabelFor,ObsoleteLayoutParam,RtlHardcoded" />
+
+
+                <CheckBox
+                    android:id="@+id/check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/cardDateEditText"
+                    android:text="Sauvegardez la carte?"/>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/check"
+                    android:layout_marginTop="20dp">
+
+
+                    <Button
+                        android:id="@+id/btnAnnuler"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/btnValider"
+                        android:background="@drawable/details"
+                        android:hint="Annuler"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:textSize="20dp"
+                        tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+                    <Button
+                        android:id="@+id/btnValider"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/mobile"
+                        android:onClick="onLogButton"
+                        android:hint="Payer"
+                        android:textColorHint="#FFF"
+                        android:textSize="20dp"
+                        tools:ignore="HardcodedText,OnClick,RtlHardcoded,SpUsage" />
+
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

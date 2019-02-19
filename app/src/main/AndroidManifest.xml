@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,25 @@
         <activity android:name=".activity.ScreenLoginActivity" />
         <activity android:name=".Authentification.LoginActivity" />
         <activity android:name=".Authentification.InscriptionActivity" />
-        <activity android:name=".Authentification.CompletezInscriptionActivity"></activity>
+        <activity android:name=".Authentification.CompletezInscriptionActivity" />
+        <activity android:name=".activity.AbonnementFormActivity" />
+
+        <activity android:name=".activity.EcolageActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.CartActivity" />
+        <activity android:name=".activity.DetailsProduitActivity" />
+        <activity android:name=".activity.PlatDetailsActivity" />
+        <activity android:name=".activity.PlatActivity" />
+        <activity android:name=".activity.MobilePaiementActivity" />
+        <activity android:name=".activity.PaiementConfirmationActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.DetailsCreditCardActivity"></activity>
     </application>
 
 </manifest>

@@ -1,19 +1,11 @@
 package oneclick.yonclick.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import oneclick.yonclick.Fragment.AbonnementFragment;
-import oneclick.yonclick.Fragment.EcolageFragment;
-import oneclick.yonclick.Fragment.MagasinsFragment;
-import oneclick.yonclick.Fragment.RestaurantFragment;
 import oneclick.yonclick.R;
 
 public class BaseActivity  extends AppCompatActivity  {

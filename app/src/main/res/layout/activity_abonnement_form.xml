@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AbonnementFormActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="70dp">
+
+                <EditText
+                    android:id="@+id/NomCarte"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Titulaire"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    tools:ignore="HardcodedText" />
+
+                <EditText
+                    android:id="@+id/edNoCarte"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="No"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:layout_marginTop="5dp"
+                    tools:ignore="HardcodedText"
+                    android:layout_below="@+id/NomCarte"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:id="@+id/edNin"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="110dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Nin"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    tools:ignore="HardcodedText" />
+
+
+
+                <RelativeLayout
+                    android:id="@+id/lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="165dp"
+                    android:background="@drawable/bg_card_cvc_edit_text">
+
+                    <Spinner
+                        android:id="@+id/SpiMOis"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="5dp">
+
+                    </Spinner>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tvLay"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/lay"
+                    android:layout_marginTop="@dimen/pad_margin_5dp"
+                    android:background="@drawable/bg_card_cvc_edit_text">
+
+                    <Spinner
+                        android:id="@+id/SpiType"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="5dp">
+
+                    </Spinner>
+                </RelativeLayout>
+
+
+                <EditText
+                    android:id="@+id/cardNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/tvLay"
+                    android:layout_marginTop="@dimen/pad_margin_5dp"
+                    android:layout_marginBottom="-0.25dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Frais mensuel"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    tools:ignore="LabelFor,NegativeMargin" />
+                <EditText
+                    android:id="@+id/TotalPayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/cardNumberEditText"
+                    android:layout_marginBottom="-0.25dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Montant total"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    tools:ignore="LabelFor,NegativeMargin" />
+
+
+                <Button
+                    android:id="@+id/btnValider"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/TotalPayer"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/button"
+                    android:hint="Payer"
+                    android:textColorHint="#FFF"
+                    android:textSize="20dp"
+                    android:paddingRight="30dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

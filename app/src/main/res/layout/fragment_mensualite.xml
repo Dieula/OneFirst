@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MensualiteFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="100dp">
+
+                <EditText
+                    android:id="@+id/IdEtudiant"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Id etudiant"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    tools:ignore="HardcodedText" />
+
+                <EditText
+                    android:id="@+id/edNom"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Nom etudiant"
+                    android:layout_marginTop="10dp"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    tools:ignore="HardcodedText"
+                    android:layout_below="@+id/IdEtudiant"
+                    android:layout_alignParentStart="true" />
+
+
+                <RelativeLayout
+                    android:id="@+id/lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="120dp"
+                    android:background="@drawable/bg_card_cvc_edit_text">
+
+                    <Spinner
+                        android:id="@+id/SpiClasse"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="5dp">
+
+                    </Spinner>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/layNomMois"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/lay"
+                    android:layout_marginTop="@dimen/pad_margin_10dp"
+                    android:background="@drawable/bg_card_cvc_edit_text">
+
+                    <Spinner
+                        android:id="@+id/NomMois"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="5dp">
+
+                    </Spinner>
+                </RelativeLayout>
+
+
+
+
+                <EditText
+                    android:id="@+id/etVersement"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Frais mensuel"
+                    android:layout_marginTop="250dp"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    tools:ignore="LabelFor,NegativeMargin,UnknownId"
+                    android:layout_below="@+id/relativeLayout"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/cardNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Montant total"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    tools:ignore="LabelFor,NegativeMargin"
+                    android:layout_below="@+id/etVersement"
+                    android:layout_alignParentStart="true" />
+
+                <Button
+                    android:id="@+id/btnValider"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/cardNumberEditText"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/button"
+                    android:hint="Payer"
+                    android:textColorHint="#FFF"
+                    android:textSize="20dp"
+                    android:paddingRight="30dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
