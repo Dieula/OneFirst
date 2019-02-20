@@ -26,6 +26,7 @@ public class Pager extends FragmentStatePagerAdapter {
         switch (position) {
             case 0:
                 EcolageChoiceFragment tab1 = new EcolageChoiceFragment();
+
                 return tab1;
             case 1:
                 MensualiteFragment tab2 = new MensualiteFragment();

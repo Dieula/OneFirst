@@ -1,13 +1,18 @@
 package oneclick.yonclick.Fragment;
 
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import oneclick.yonclick.R;
+import oneclick.yonclick.activity.EcolageActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,14 +27,52 @@ View view;
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.fragment_ecolage, container, false);
 
+        Button btn = view.findViewById(R.id.btnBuyNow);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ShowDialog();
+            }
+        });
 
 
-
-
-         return view;
+        return view;
 
 
 
     }
+
+    private void ShowDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+     //   alertDialog.setTitle("    ------ Choix paiement ------");
+
+       // alertDialog.setMessage("Selectionnez un de ces methodes de paiement!");
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View addLayout = inflater.inflate(R.layout.dialog_paiement,null);
+
+        RelativeLayout btnMensualite = addLayout.findViewById(R.id.CarteCredit);
+        RelativeLayout btnEcolage = addLayout.findViewById(R.id.Natcom);
+
+        alertDialog.setView(addLayout);
+
+        btnEcolage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),EcolageActivity.class));
+            }
+        });
+
+        btnMensualite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),EcolageActivity.class));
+            }
+        });
+
+
+        alertDialog.show();
+    }
+
 
 }

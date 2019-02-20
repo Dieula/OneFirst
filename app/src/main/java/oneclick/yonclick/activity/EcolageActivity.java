@@ -21,9 +21,6 @@ public class EcolageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecolage);
 
-        /* //Initializing the tablayout
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);*/
-
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
@@ -43,8 +40,6 @@ public class EcolageActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        //Adding onTabSelectedListener to swipe views
-      //  tabLayout.setOnTabSelectedListener(this);
 
     }
 

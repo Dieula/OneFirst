@@ -19,15 +19,14 @@ import oneclick.yonclick.R;
 public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomViewHolder> {
 
     private Context mContext;
-    private List<Product> employees;
+    private List<Product> products;
 
 
-    public ProduitAdapter(List<Product> employees)
-    {
-        this.employees = employees;
+
+    public ProduitAdapter( Context mContext,List<Product> employees){
+        this.products = employees;
         this.mContext = mContext;
     }
-
 
 
     @Override
@@ -40,25 +39,66 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
 
     @Override
     public void onBindViewHolder(ProduitAdapter.CustomViewHolder holder, int position) {
-        Product employee = employees.get(position);
-        holder.categoryName.setText(employee.getNom_Produits());
-        holder.price.setText(employee.getPrix());
-       String imgUrl = employee.getImage();
+        Product produit = products.get(position);
+        holder.categoryName.setText(produit.getNom_Produits());
+        holder.price.setText(produit.getPrix());
+       String imgUrl = produit.getImage();
 
        // holder.image.setImageResource(0);
+/*
 
-      /* Glide.with(mContext)
+     if(Integer.valueOf(produit.getImage())==1)
+        {
+            Glide.with(mContext)
+                    .load(imgUrl)
+                    .thumbnail(0.5f)
+                    .placeholder(R.drawable.soulier)
+                    .into(holder.image);
+
+        }
+        else if(Integer.valueOf(produit.getImage())==1)
+        {
+            Glide.with(mContext)
+                    .load(imgUrl)
+                    .thumbnail(0.5f)
+                    .placeholder(R.drawable.souli)
+                    .into(holder.image);
+        }
+       else if(Integer.valueOf(produit.getImage())==2)
+       {
+           Glide.with(mContext)
+                   .load(imgUrl)
+                   .thumbnail(0.5f)
+                   .placeholder(R.drawable.valise)
+                   .into(holder.image);
+       }
+
+       else if(Integer.valueOf(produit.getImage())==3)
+       {
+           Glide.with(mContext)
+                   .load(imgUrl)
+                   .thumbnail(0.5f)
+                   .placeholder(R.drawable.soulier)
+                   .into(holder.image);
+       }
+
+
+        String imageUri = ""+produit.getImage();
+*/
+
+       Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.iconlogo)
-                .into(holder.image);*/
+                .placeholder(R.drawable.valise)
+                .into(holder.image);
+
     }
 
 
 
     @Override
     public int getItemCount() {
-        return employees.size();
+        return products.size();
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {

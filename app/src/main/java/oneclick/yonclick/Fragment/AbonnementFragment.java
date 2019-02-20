@@ -30,6 +30,7 @@ import retrofit2.Callback;
 public class AbonnementFragment extends Fragment {
 
 
+   // List<Abonnement>
 
     private ArrayList<Abonnement> abonnements;
     private ProgressDialog pDialog;
@@ -75,18 +76,21 @@ public class AbonnementFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                    List<Abonnement> abonnements = response.body().getServices_Abonnement();
-                    recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
-                    eAdapter = new AbonnementAdapter(getActivity(),abonnements);
-                    RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
-                    recyclerView.setLayoutManager(eLayoutManager);
-/*
-                    LinearLayoutManager secondManager = new LinearLayoutManager
-                            (getActivity(), LinearLayoutManager.HORIZONTAL, false);
-                    recyclerView.setLayoutManager(secondManager);*/
+                     abonnements = response.body().getServices_Abonnement();
+                     recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+                     eAdapter = new AbonnementAdapter(getActivity(),abonnements);
+                     RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
+                     recyclerView.setLayoutManager(eLayoutManager);
 
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
+                    recyclerView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getActivity(), "New Ativityyyyyyyyyy", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                     Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }

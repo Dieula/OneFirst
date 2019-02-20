@@ -12,11 +12,11 @@
     <item
         android:icon="@drawable/abon"
         android:id="@+id/nav_gallery"
-        android:title="Abonnements" />
+        android:title="Ecolage" />
 
     <item
         android:icon="@drawable/eco"
         android:id="@+id/nav_cadeaux"
-        android:title="Ecolage" />
+        android:title="Abonnements" />
 
 </menu>

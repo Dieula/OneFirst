@@ -4,4 +4,139 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/pad_margin_10dp"
+            android:layout_margin="@dimen/pad_margin_10dp"
+            android:text="Selectionnez un de ces methodes de paiement"/>
+
+        <RelativeLayout
+            android:id="@+id/CarteCredit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/ivAbonnemnt"
+                android:layout_width="@dimen/height_width_50dp"
+                android:layout_height="@dimen/height_width_50dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/iconlogo" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="0dp"
+                android:layout_toEndOf="@+id/ivAbonnemnt"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvAbonnement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:textColor="#000"
+                    android:maxLines="1"
+                    android:text="@string/carte"
+                    android:textSize="@dimen/height_width_15dp" />
+
+                <TextView
+                    android:id="@+id/tvCarte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Paiement par MasterCard ou Visa"
+                    android:textSize="@dimen/pad_margin_10dp" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/height_width_20dp"
+                android:layout_height="@dimen/height_width_70dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Natcom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/ivNatcom"
+                android:layout_width="@dimen/height_width_50dp"
+                android:layout_height="@dimen/height_width_50dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/iconlogo" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="0dp"
+                android:layout_toEndOf="@+id/ivNatcom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvNatcom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:textColor="#000"
+                    android:maxLines="1"
+                    android:text="Natcom"
+                    android:textSize="@dimen/height_width_15dp" />
+
+                <TextView
+                    android:id="@+id/tvDesNatcom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Paiement a partir de votre numero"
+                    android:textSize="@dimen/pad_margin_10dp" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/height_width_20dp"
+                android:layout_height="@dimen/height_width_70dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
 </RelativeLayout>

@@ -41,6 +41,7 @@
 
 
         <Button
+            android:id="@+id/Iv_Payer"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
@@ -49,7 +50,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/mobile"
             android:hint="Payer"
-
+            android:onClick="OnLogButton"
             android:textColorHint="#fff"
             android:textSize="20dp" />
 

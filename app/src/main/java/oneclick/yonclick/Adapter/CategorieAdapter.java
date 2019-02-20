@@ -12,20 +12,20 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.R;
 
 public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.CustomViewHolder> {
 
     private Context mContext;
-    private List<Categorie> employees;
+    private List<Categorie> categories;
 
 
-    public CategorieAdapter( List<Categorie> employees){
-        this.employees = employees;
+    public CategorieAdapter( Context mContext,List<Categorie> employees){
+        this.categories = employees;
+        this.mContext = mContext;
     }
-
-
 
 
     @Override
@@ -38,17 +38,18 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        Categorie employee = employees.get(position);
-        holder.categoryName.setText(employee.getNombrand());
+        Categorie categorie = categories.get(position);
+        holder.categoryName.setText(categorie.getNombrand());
 
-       /* String imgUrl = employee.getImage();
+        String imgUrl = categorie.getImage();
 
-        holder.image.setImageResource(0);*/
+        holder.image.setImageResource(0);
 
-    /*    Glide.with(mContext)
+/*
+       Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.ic_all_products)
+                .placeholder(R.drawable.valise)
                 .into(holder.image);*/
     }
 
@@ -56,7 +57,7 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
 
     @Override
     public int getItemCount() {
-        return employees.size();
+        return categories.size();
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {

@@ -3,6 +3,7 @@ package oneclick.yonclick.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,10 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import oneclick.yonclick.Adapter.CategorieAdapter;
 import oneclick.yonclick.Adapter.ProduitAdapter;
 import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.ModelList.CategorieList;
@@ -29,6 +32,7 @@ import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Uils.AppUtility;
+import oneclick.yonclick.activity.DetailsProduitActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -38,7 +42,7 @@ import retrofit2.Callback;
 public class MagasinsFragment extends Fragment {
 
 
-    private ArrayList<Categorie> employeeList;
+    private ArrayList<Categorie> categories;
     private ProgressDialog pDialog;
     private RecyclerView recyclerView;
     private CategorieAdapter eAdapter;
@@ -103,15 +107,14 @@ public class MagasinsFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                    employeeList = response.body().getEmployee();
+                    List<Categorie> categories = response.body().getEmployee();
                     RelativeLayout lytCategoryList = (RelativeLayout) v.findViewById(R.id.lytCategoryList);
                     recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
                     TextView tvSampleCategoryTitle = (TextView) lytCategoryList.findViewById(R.id.tvListTitle);
                      tvCateorie = (TextView) lytCategoryList.findViewById(R.id.tvSeeAll);
                     RelativeLayout sampleCatParent = (RelativeLayout) lytCategoryList.findViewById(R.id.parentPanel);
-                    eAdapter = new CategorieAdapter(employeeList);
-                   /* RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
-                    recyclerView.setLayoutManager(eLayoutManager);*/
+                    eAdapter = new CategorieAdapter(getActivity(),categories);
+
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -156,12 +159,10 @@ public class MagasinsFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                    productsList = response.body().getEmployee();
+                    List<Product>  productsList = response.body().getEmployee();
                     RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
                     mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.HomeRecyclerview);
-                    mAdapter = new ProduitAdapter(productsList);
-                   /* RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
-                    recyclerView.setLayoutManager(eLayoutManager);*/
+                    mAdapter = new ProduitAdapter(getActivity(),productsList);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -169,6 +170,13 @@ public class MagasinsFragment extends Fragment {
 
                     mRecyclerview.setItemAnimator(new DefaultItemAnimator());
                     mRecyclerview.setAdapter(mAdapter);
+                    mRecyclerview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                           startActivity(new Intent(getActivity(),DetailsProduitActivity.class));
+                            Toast.makeText(getActivity(), "New activity", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }
