@@ -8,7 +8,7 @@ import android.os.Bundle;
 import oneclick.yonclick.Adapter.Pager;
 import oneclick.yonclick.R;
 
-public class EcolageActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class EcolageActivity extends AppCompatActivity {
 
     //This is our tablayout
     private TabLayout tabLayout;
@@ -41,25 +41,12 @@ public class EcolageActivity extends AppCompatActivity implements TabLayout.OnTa
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
 
         //Adding onTabSelectedListener to swipe views
-        tabLayout.setOnTabSelectedListener(this);
+      //  tabLayout.setOnTabSelectedListener(this);
 
     }
 
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        viewPager.setCurrentItem(tab.getPosition());
 
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
 }

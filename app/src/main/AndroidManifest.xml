@@ -30,7 +30,9 @@
         <activity android:name=".Authentification.CompletezInscriptionActivity" />
         <activity android:name=".activity.AbonnementFormActivity" />
 
-        <activity android:name=".activity.EcolageActivity" />
+        <activity android:name=".activity.EcolageActivity" >
+
+        </activity>
 
         <activity android:name=".activity.CartActivity" />
         <activity android:name=".activity.DetailsProduitActivity" />
