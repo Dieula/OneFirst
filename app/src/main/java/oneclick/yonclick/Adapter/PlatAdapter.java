@@ -1,17 +1,22 @@
 package oneclick.yonclick.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.R;
+import oneclick.yonclick.activity.EcolageActivity;
+import oneclick.yonclick.activity.PlatActivity;
+import oneclick.yonclick.activity.PlatDetailsActivity;
 
 public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHolder> {
 
@@ -66,6 +71,21 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHold
             image = (ImageView) view.findViewById(R.id.ivProductImage);
             categoryName = (TextView) view.findViewById(R.id.tvProductName);
             tvProductPrice =(TextView) view.findViewById(R.id.tvProductPrice);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    /*//   Intent intent=new Intent(mContext, PlatActivity.class);
+                    mContext.startActivity(new Intent(mContext,PlatDetailsActivity.class));
+                    Toast.makeText(mContext, "Viewwww", Toast.LENGTH_SHORT).show();*/
+
+                    Intent intent = new Intent(mContext, PlatDetailsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                }
+            });
+
         }
+
     }
 }

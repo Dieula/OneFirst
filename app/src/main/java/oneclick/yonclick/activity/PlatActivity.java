@@ -30,7 +30,7 @@ public class PlatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plat);
 
-        pDialog = new ProgressDialog(getApplicationContext());
+        pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading Data.. Please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);

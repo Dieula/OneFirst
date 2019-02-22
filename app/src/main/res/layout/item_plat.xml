@@ -61,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight=".40"
+                    android:textColor="@color/colorPrimaryDark"
                     android:paddingLeft="5dp"
                     android:paddingRight="3dp"
                     android:text="80"

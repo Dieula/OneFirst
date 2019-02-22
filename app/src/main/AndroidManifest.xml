@@ -14,10 +14,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,31 +31,52 @@
         </activity>
         <activity android:name=".activity.ScreenLoginActivity" />
 
-        <activity android:name=".Authentification.LoginActivity" />
+        <activity android:name=".Authentification.LoginActivity"
+            android:windowSoftInputMode="stateHidden"/>
 
-        <activity android:name=".Authentification.InscriptionActivity" />
+        <activity android:name=".Authentification.InscriptionActivity"
+            android:windowSoftInputMode="stateHidden"/>
 
-        <activity android:name=".Authentification.CompletezInscriptionActivity" />
+        <activity android:name=".Authentification.CompletezInscriptionActivity"
+            android:windowSoftInputMode="stateHidden"/>
 
-        <activity android:name=".activity.AbonnementFormActivity" />
+        <activity android:name=".activity.AbonnementFormActivity"
+            android:windowSoftInputMode="stateHidden"/>
 
         <activity android:name=".activity.EcolageActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
 
         </activity>
 
         <activity android:name=".activity.CartActivity" />
-        <activity android:name=".activity.DetailsProduitActivity" />
-        <activity android:name=".activity.PlatDetailsActivity" >
+        <activity android:name=".activity.DetailsProduitActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".activity.PlatDetailsActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
 
         </activity>
 
-        <activity android:name=".activity.PlatActivity" />
+        <activity android:name=".activity.PlatActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
 
 
-        <activity android:name=".activity.MobilePaiementActivity" />
-        <activity android:name=".activity.PaiementConfirmationActivity" />
-        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.MobilePaiementActivity"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".activity.PaiementConfirmationActivity"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".activity.SearchActivity"
+            android:windowSoftInputMode="stateHidden"/>
 
         <activity android:name=".activity.DetailsCreditCardActivity"
             android:windowSoftInputMode="stateHidden"/>
