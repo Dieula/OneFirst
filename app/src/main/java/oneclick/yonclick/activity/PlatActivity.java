@@ -1,11 +1,20 @@
 package oneclick.yonclick.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -29,6 +38,21 @@ public class PlatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plat);
+
+/*
+
+
+        //Display the Up button home
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar(); // or getActionBar();
+        getSupportActionBar().setTitle("5 Coins"); // set the top title
+        String title = actionBar.getTitle().toString(); // get the title
+        actionBar.hide(); // or even hide the actionbar
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.arrowleft);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+*/
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading Data.. Please wait...");
@@ -59,9 +83,14 @@ public class PlatActivity extends AppCompatActivity {
                      */
                     restaurants = response.body().getPlats();
                     recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-                    eAdapter = new PlatAdapter(getApplicationContext(),restaurants);
+                    eAdapter = new PlatAdapter(getApplicationContext(), restaurants);
+
+                    GridLayoutManager mGridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
+                    recyclerView.setLayoutManager(mGridLayoutManager);
+
+/*
                     RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
-                    recyclerView.setLayoutManager(eLayoutManager);
+                    recyclerView.setLayoutManager(eLayoutManager);*/
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
                 }
@@ -74,6 +103,32 @@ public class PlatActivity extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_actionbar, menu);
 
-}
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.miCompose:
+               // composeMessage();
+                return true;
+            case R.id.miProfile:
+               // showProfileView();
+                return true;
+            case R.id.miSearch:
+               // showProfileView();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

@@ -52,11 +52,11 @@ public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.Cu
 
         holder.image.setImageResource(0);*/
 
-       Glide.with(mContext)
+     /*  Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.canal_sat)
-                .into(holder.image);
+                .placeholder(R.drawable.iconlogo)
+                .into(holder.image);*/
     }
 
 

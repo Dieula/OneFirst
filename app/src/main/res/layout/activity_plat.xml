@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".activity.PlatActivity">
 
-    <include layout="@layout/content_restaurant"/>
+   <!-- <include layout="@layout/toolbar"/>-->
+
+    <include layout="@layout/content_restaurant" />
 
 
 </android.support.constraint.ConstraintLayout>

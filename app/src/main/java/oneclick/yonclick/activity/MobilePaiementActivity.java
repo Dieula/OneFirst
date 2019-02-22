@@ -3,6 +3,7 @@ package oneclick.yonclick.activity;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,20 +23,29 @@ public class MobilePaiementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile_paiement);
 
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        //Display the Up button home
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         TextView button = (TextView) findViewById(R.id.IdEtudiant);
         Iv_Payer = (Button) findViewById(R.id.Iv_Payer);
         tvPayer = (EditText) findViewById(R.id.tvTelephone);
       //  tvPin = (EditText) findViewById(R.id.tvPin);
         progressDialog = new ProgressDialog(MobilePaiementActivity.this);
 
-      /*  Iv_Payer.setOnClickListener(new View.OnClickListener() {
+     Iv_Payer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(NatcomActivity.this, "Transaction Reussie", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Transaction Reussie", Toast.LENGTH_SHORT).show();
             }
         });
 
-*/
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Natcom");
 

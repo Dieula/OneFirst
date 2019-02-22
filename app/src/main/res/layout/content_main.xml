@@ -40,12 +40,12 @@
 
         <include
             android:id="@+id/lytNouveauList"
-            layout="@layout/content_produit" />
+            layout="@layout/content_meilleure" />
 
-
+<!--
         <include
             android:id="@+id/lytMeilleureList"
-            layout="@layout/content_produit" />
+            layout="@layout/content_produit" />-->
 
 
 

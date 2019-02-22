@@ -190,6 +190,62 @@ public class MagasinsFragment extends Fragment {
 
 
 
+
+        //Creating an object of our api interface
+        ApiService nouveau = RetroClient.getApiService();
+
+        /**
+         * Calling JSON
+         */
+        Call<ProduitList> dMyJSON = prod.getProduit();
+
+        /**
+         * Enqueue Callback will be call when get response...
+         */
+
+        dMyJSON.enqueue(new Callback<ProduitList>() {
+            @Override
+            public void onResponse(Call<ProduitList> call, retrofit2.Response<ProduitList> response) {
+
+                //Dismiss Dialog
+                //  pDialog.dismiss();
+
+                if (response.isSuccessful()) {
+                    /**
+                     * Got Successfully
+                     */
+                    List<Product>  productsList = response.body().getEmployee();
+                    RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytNouveauList);
+                    mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.HomeRecyclerview);
+                    mAdapter = new ProduitAdapter(getActivity(),productsList);
+
+                    LinearLayoutManager secondManager = new LinearLayoutManager
+                            (getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                    mRecyclerview.setLayoutManager(secondManager);
+
+                    mRecyclerview.setItemAnimator(new DefaultItemAnimator());
+                    mRecyclerview.setAdapter(mAdapter);
+                    mRecyclerview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(getActivity(),DetailsProduitActivity.class));
+                            Toast.makeText(getActivity(), "New activity", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProduitList> call, Throwable t) {
+                Toast.makeText(getActivity(), "Bad", Toast.LENGTH_SHORT).show();
+                ///  pDialog.dismiss();
+            }
+        });
+
+
+
+
         return v;
 
     }
