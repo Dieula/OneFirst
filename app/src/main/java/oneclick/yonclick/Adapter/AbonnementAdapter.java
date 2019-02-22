@@ -1,12 +1,14 @@
 package oneclick.yonclick.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -15,6 +17,8 @@ import java.util.List;
 import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.R;
+import oneclick.yonclick.activity.AbonnementFormActivity;
+import oneclick.yonclick.activity.DetailsProduitActivity;
 
 public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.CustomViewHolder> {
 
@@ -44,20 +48,15 @@ public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.Cu
 
         String imgUrl = abonnement.getImage();
 
-        Glide.with(mContext)
-                .load(imgUrl)
-                .thumbnail(0.5f)
-                .placeholder(R.drawable.ic_all_products)
-                .into(holder.image);
        /* String imgUrl = employee.getImage();
 
         holder.image.setImageResource(0);*/
 
-    /*    Glide.with(mContext)
+       Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.ic_all_products)
-                .into(holder.image);*/
+                .placeholder(R.drawable.canal_sat)
+                .into(holder.image);
     }
 
 
@@ -75,6 +74,14 @@ public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.Cu
             super(view);
             image = (ImageView) view.findViewById(R.id.ivAbonnemnt);
             categoryName = (TextView) view.findViewById(R.id.tvAbonnement);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //   Intent intent=new Intent(mContext, PlatActivity.class);
+                    mContext.startActivity(new Intent(mContext,AbonnementFormActivity.class));
+                    Toast.makeText(mContext, "Viewwww", Toast.LENGTH_SHORT).show();
+                }
+            });
 
         }
     }

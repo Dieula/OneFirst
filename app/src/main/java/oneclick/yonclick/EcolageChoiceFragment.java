@@ -32,7 +32,7 @@ public class EcolageChoiceFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_choice_ecolage, container, false);
 
-        ShowDialog();
+      //  ShowDialog();
 
 
         return view;

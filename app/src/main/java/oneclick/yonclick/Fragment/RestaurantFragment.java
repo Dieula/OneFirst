@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 import oneclick.yonclick.Adapter.RestaurantAdapter;
 import oneclick.yonclick.ApiService.ApiService;
-import oneclick.yonclick.BaseUrl.RestoClient;
-import oneclick.yonclick.Model.Employe;
+import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.ModelList.RestaurantList;
 import oneclick.yonclick.R;
 import retrofit2.Call;
@@ -28,7 +28,7 @@ import retrofit2.Response;
  */
 public class RestaurantFragment extends Fragment {
 
-    private ArrayList<Employe> employeeList;
+    private ArrayList<Restaurant> restaurants;
     private ProgressDialog pDialog;
     private RecyclerView recyclerView;
     private RestaurantAdapter eAdapter;
@@ -47,7 +47,7 @@ public class RestaurantFragment extends Fragment {
         pDialog.show();
 
         //Creating an object of our api interface
-        ApiService api = RestoClient.getApiService();
+        ApiService api = RetroClient.getApiService();
 
         /**
          * Calling JSON
@@ -67,9 +67,9 @@ public class RestaurantFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                    employeeList = response.body().getEmployee();
+                    restaurants = response.body().getRestaurants();
                     recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-                    eAdapter = new RestaurantAdapter(employeeList);
+                    eAdapter = new RestaurantAdapter(getActivity(),restaurants);
                     RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
                     recyclerView.setLayoutManager(eLayoutManager);
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -86,5 +86,6 @@ public class RestaurantFragment extends Fragment {
 
         return view;
     }
+
 
 }
