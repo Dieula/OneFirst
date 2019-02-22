@@ -215,7 +215,7 @@
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="inscription">Inscription</string>
     <string name="connexion">Connexion</string>
-    <string name="nom_d_utilisateur">Username</string>
+    <string name="nom_d_utilisateur">Nom complet</string>
     <string name="creer_un_compte">Creer un compte</string>
     <string name="mot_de_passe">Mot de passe</string>
     <string name="s_inscrire">S\'inscrire</string>

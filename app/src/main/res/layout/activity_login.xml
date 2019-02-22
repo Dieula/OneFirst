@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".Authentification.LoginActivity">
 
     <ScrollView
@@ -45,8 +46,8 @@
                     android:layout_marginTop="30dp"
                     android:padding="10dp"
                     android:background="@drawable/myeditext"
-                    android:hint="Nom d'utilisateur"
-                    android:inputType="textPersonName"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
                     android:fontFamily="SFProDisplay-Medium"
                     android:textSize="15dp"
                     tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage,UnknownIdInLayout"

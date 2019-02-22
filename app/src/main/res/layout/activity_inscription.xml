@@ -57,20 +57,6 @@
                     android:textSize="12sp"
                     android:autofillHints="" tools:targetApi="o"/>
 
-                <EditText
-                    android:id="@+id/etUserPhone"
-                    android:layout_width="fill_parent"
-                    android:layout_height="60dp"
-                    android:hint="@string/telephone"
-                    android:layout_below="@+id/etNomUser"
-                    android:padding="10dp"
-                    android:background="@drawable/myeditext"
-                    android:inputType="phone"
-                    android:layout_marginTop="10dp"
-                    android:textSize="12sp"
-                    android:fontFamily="SFProDisplay-Medium"
-                    android:importantForAutofill="no" tools:targetApi="o"/>
-
 
                 <EditText
                     android:id="@+id/etEmailUser"
@@ -79,7 +65,7 @@
                     android:ems="10"
                     android:padding="10dp"
                     android:hint="@string/email"
-                    android:layout_below="@+id/etUserPhone"
+                    android:layout_below="@+id/etNomUser"
                     android:textSize="12sp"
                     android:background="@drawable/myeditext"
                     android:inputType="textEmailAddress"
@@ -88,15 +74,31 @@
                     android:fontFamily="SFProDisplay-Medium"
                     android:autofillHints="" tools:targetApi="o"/>
 
+
                 <EditText
                     android:id="@+id/etPass"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/mot_de_passe"
+                    android:layout_below="@+id/etEmailUser"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textPassword"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:importantForAutofill="no" tools:targetApi="o"/>
+
+                <EditText
+                    android:id="@+id/etConfirmPass"
                     android:layout_width="fill_parent"
                     android:layout_height="60dp"
                     android:ems="10"
                     android:padding="10dp"
                     android:background="@drawable/myeditext"
-                    android:hint="@string/mot_de_passe"
-                    android:layout_below="@+id/etEmailUser"
+                    android:hint="@string/confirm_password"
+                    android:layout_below="@+id/etPass"
+                    android:layout_marginTop="10dp"
                     android:inputType="textPassword"
                     android:textSize="12sp"
                     android:fontFamily="SFProDisplay-Medium"
@@ -108,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:onClick="LogButton"
-                    android:layout_below="@+id/etPass"
+                    android:layout_below="@+id/etConfirmPass"
                     android:text="@string/s_inscrire"
                     android:textColor="#fff"
                     android:layout_marginTop="20dp"
