@@ -15,8 +15,7 @@ import java.util.ArrayList;
 
 import oneclick.yonclick.Adapter.RestaurantAdapter;
 import oneclick.yonclick.ApiService.ApiService;
-import oneclick.yonclick.BaseUrl.RestoClient;
-import oneclick.yonclick.Model.Employe;
+import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.ModelList.RestaurantList;
 import oneclick.yonclick.R;
@@ -48,7 +47,7 @@ public class RestaurantFragment extends Fragment {
         pDialog.show();
 
         //Creating an object of our api interface
-        ApiService api = RestoClient.getApiService();
+        ApiService api = RetroClient.getApiService();
 
         /**
          * Calling JSON

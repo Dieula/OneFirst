@@ -49,7 +49,7 @@ public class EcolageFragment extends Fragment {
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.fragment_ecolage, container, false);
 
-        Button btn = view.findViewById(R.id.btnBuyNow);
+        /*Button btn = view.findViewById(R.id.btnBuyNow);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +58,7 @@ public class EcolageFragment extends Fragment {
             }
         });
 
-
+*/
 
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading Data.. Please wait...");

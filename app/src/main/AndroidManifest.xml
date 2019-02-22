@@ -26,9 +26,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ScreenLoginActivity" />
+
         <activity android:name=".Authentification.LoginActivity" />
+
         <activity android:name=".Authentification.InscriptionActivity" />
+
         <activity android:name=".Authentification.CompletezInscriptionActivity" />
+
         <activity android:name=".activity.AbonnementFormActivity" />
 
         <activity android:name=".activity.EcolageActivity"

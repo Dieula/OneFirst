@@ -10,13 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 
 import oneclick.yonclick.Adapter.PlatAdapter;
-import oneclick.yonclick.Adapter.RestaurantAdapter;
 import oneclick.yonclick.ApiService.ApiService;
-import oneclick.yonclick.BaseUrl.RestoClient;
+import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Model.Plat;
-import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.ModelList.PlatList;
-import oneclick.yonclick.ModelList.RestaurantList;
 import oneclick.yonclick.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +37,7 @@ public class PlatActivity extends AppCompatActivity {
         pDialog.show();
 
         //Creating an object of our api interface
-        ApiService api = RestoClient.getApiService();
+        ApiService api = RetroClient.getApiService();
 
         /**
          * Calling JSON
