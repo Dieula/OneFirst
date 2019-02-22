@@ -2,6 +2,8 @@ package oneclick.yonclick.ApiService;
 
 import oneclick.yonclick.ModelList.AbonnementList;
 import oneclick.yonclick.ModelList.CategorieList;
+import oneclick.yonclick.ModelList.EcolageList;
+import oneclick.yonclick.ModelList.PlatList;
 import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.ModelList.RestaurantList;
 import retrofit2.Call;
@@ -21,6 +23,14 @@ public interface ApiService {
     @GET("services/abonnement.php")
     Call<AbonnementList> getAbonnementJSON();
 
-    @GET("retrofit/json_object.json")
+    @GET("services/categories_plats.php")
     Call<RestaurantList> getRestoJSON();
+
+    @GET("services/listeplats.php")
+    Call<PlatList> getPlatJSON();
+
+    @GET("services/liste_all_ecoles.php")
+    Call<EcolageList> getEcolageJSON();
+
+
 }

@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.EcolageFragment">
 
-  <!--  <include layout="@layout/content_restaurant"/>-->
+   <include layout="@layout/content_restaurant"/>
 
+<!--
     <Button
         android:id="@+id/btnBuyNow"
         android:layout_width="match_parent"
@@ -21,5 +22,6 @@
         android:textColorHint="#FFF"
         android:textSize="20dp"
         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
+-->
 
 </RelativeLayout>

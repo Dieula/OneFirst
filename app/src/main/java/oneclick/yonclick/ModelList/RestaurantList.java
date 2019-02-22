@@ -6,17 +6,19 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 import oneclick.yonclick.Model.Employe;
+import oneclick.yonclick.Model.Restaurant;
 
 public class RestaurantList {
-    @SerializedName("employee")
+    @SerializedName("CatPlats")
     @Expose
-    private ArrayList<Employe> employee = null;
+    private ArrayList<Restaurant> restaurants = null;
 
-    public ArrayList<Employe> getEmployee() {
-        return employee;
+    public ArrayList<Restaurant> getRestaurants() {
+        return restaurants;
     }
 
-    public void setEmployee(ArrayList<Employe> employee) {
-        this.employee = employee;
+    public void setRestaurants(ArrayList<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
+
 }
