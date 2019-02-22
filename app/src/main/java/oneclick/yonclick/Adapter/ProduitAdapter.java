@@ -93,7 +93,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.valise)
+                .placeholder(R.drawable.bot)
                 .into(holder.image);
 
     }

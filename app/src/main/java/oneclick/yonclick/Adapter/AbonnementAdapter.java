@@ -48,20 +48,15 @@ public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.Cu
 
         String imgUrl = abonnement.getImage();
 
-        Glide.with(mContext)
-                .load(imgUrl)
-                .thumbnail(0.5f)
-                .placeholder(R.drawable.ic_all_products)
-                .into(holder.image);
        /* String imgUrl = employee.getImage();
 
         holder.image.setImageResource(0);*/
 
-    /*    Glide.with(mContext)
+       Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.ic_all_products)
-                .into(holder.image);*/
+                .placeholder(R.drawable.canal_sat)
+                .into(holder.image);
     }
 
 

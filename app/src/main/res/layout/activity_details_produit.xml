@@ -36,7 +36,8 @@
                     android:layout_marginTop="@dimen/height_width_50dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/robe"/>
+                    android:src="@drawable/bot"
+                    android:scaleType="centerCrop"/>
               <!--  <android.support.v4.view.ViewPager
                     android:id="@+id/vpImageSlider"
                     android:layout_width="wrap_content"

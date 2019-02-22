@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import oneclick.yonclick.Model.Plat;
@@ -47,12 +49,12 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHold
 
         holder.image.setImageResource(0);
 
-/*
+
        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.valise)
-                .into(holder.image);*/
+                .placeholder(R.drawable.plat)
+                .into(holder.image);
     }
 
 
