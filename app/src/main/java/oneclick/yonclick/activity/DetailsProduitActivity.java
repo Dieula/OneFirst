@@ -1,6 +1,7 @@
 package oneclick.yonclick.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,10 +13,16 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
+import oneclick.yonclick.Uils.AppUtility;
+import oneclick.yonclick.dataa.sqlite.CartDBController;
 
 public class DetailsProduitActivity extends AppCompatActivity {
 
+    private int quantityCounter = 1;
+    Context mContext;
+    private Product product = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +45,38 @@ public class DetailsProduitActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Paiement mobile");
 
 
-        Button btnAddToCart = findViewById(R.id.btnAddToCart);
+        final Button btnAddToCart = findViewById(R.id.btnAddToCart);
         Button btnBuyNow = findViewById(R.id.btnBuyNow);
 
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Add to cart list
+                // Add to cart list
+
+                        CartDBController cartController = new CartDBController(mContext);
+                        cartController.open();
+
+                        if (cartController.isAlreadyAddedToCart(product.getID_Produits())) {
+                            AppUtility.showToast(mContext, getString(R.string.already_in_cart));
+                        } else {
+                           // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+
+                            String price;
+                            //price = Integer.valueOf(product.getPrix().toString());
+                            if (product!=null) {
+                                price = product.getPrix();
+                            } else {
+                                price = product.getPrix();
+                            }
+
+                            cartController.insertCartItem(product.getID_Produits(),
+                                    product.getNom_Produits(), product.getImage(),product.getPrix(), quantityCounter);
+                            btnAddToCart.setText(getString(R.string.added_to_cart));
+                            AppUtility.showToast(mContext, getString(R.string.added_to_cart));
+                        }
+                        cartController.close();
+
                 Toast.makeText(DetailsProduitActivity.this, "Ajout reussi", Toast.LENGTH_SHORT).show();
             }
         });

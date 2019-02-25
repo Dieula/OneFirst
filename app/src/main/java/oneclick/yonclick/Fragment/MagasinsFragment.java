@@ -2,7 +2,6 @@ package oneclick.yonclick.Fragment;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,15 +23,16 @@ import java.util.List;
 import oneclick.yonclick.Adapter.CategorieAdapter;
 import oneclick.yonclick.Adapter.ProduitAdapter;
 import oneclick.yonclick.ApiService.ApiService;
-import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.ModelList.CategorieList;
 import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.DetailsProduitActivity;
+import oneclick.yonclick.dataa.constant.AppConstants;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -47,7 +47,7 @@ public class MagasinsFragment extends Fragment {
     private RecyclerView recyclerView;
     private CategorieAdapter eAdapter;
 
-    private TextView  tvCateorie, tvNouveau,tvProduit,
+    private TextView tvCateorie, tvNouveau, tvProduit, tvListAll,
             tvCartCounter, tvNotificationCounter;
     private ImageView imgToolbarCart, imgNotification, ivSearchIcon;
     //2
@@ -58,7 +58,7 @@ public class MagasinsFragment extends Fragment {
     private ProduitAdapter mAdapter;
 
 
-    LinearLayout loadingView,noDataView;
+    LinearLayout loadingView, noDataView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,9 +111,9 @@ public class MagasinsFragment extends Fragment {
                     RelativeLayout lytCategoryList = (RelativeLayout) v.findViewById(R.id.lytCategoryList);
                     recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
                     TextView tvSampleCategoryTitle = (TextView) lytCategoryList.findViewById(R.id.tvListTitle);
-                     tvCateorie = (TextView) lytCategoryList.findViewById(R.id.tvSeeAll);
+                    tvCateorie = (TextView) lytCategoryList.findViewById(R.id.tvSeeAll);
                     RelativeLayout sampleCatParent = (RelativeLayout) lytCategoryList.findViewById(R.id.parentPanel);
-                    eAdapter = new CategorieAdapter(getActivity(),categories);
+                    eAdapter = new CategorieAdapter(getActivity(), categories);
 
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
@@ -159,10 +159,11 @@ public class MagasinsFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                    List<Product>  productsList = response.body().getEmployee();
+                    List<Product> productsList = response.body().getEmployee();
                     RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
+                    tvListAll = (TextView) lytProduitList.findViewById(R.id.tvSeeAll);
                     mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.HomeRecyclerview);
-                    mAdapter = new ProduitAdapter(getActivity(),productsList);
+                    mAdapter = new ProduitAdapter(getActivity(), productsList);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -170,13 +171,7 @@ public class MagasinsFragment extends Fragment {
 
                     mRecyclerview.setItemAnimator(new DefaultItemAnimator());
                     mRecyclerview.setAdapter(mAdapter);
-                    mRecyclerview.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                           startActivity(new Intent(getActivity(),DetailsProduitActivity.class));
-                            Toast.makeText(getActivity(), "New activity", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+
                     Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -188,6 +183,13 @@ public class MagasinsFragment extends Fragment {
             }
         });
 
+     //listener
+    /*    tvListAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.featured_items), AppConstants.TYPE_FEATURED, AppConstants.NO_CATEGORY);
+            }
+        });*/
 
 
 
@@ -214,10 +216,10 @@ public class MagasinsFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                    List<Product>  productsList = response.body().getEmployee();
+                    List<Product> productsList = response.body().getEmployee();
                     RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytNouveauList);
                     mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.HomeRecyclerview);
-                    mAdapter = new ProduitAdapter(getActivity(),productsList);
+                    mAdapter = new ProduitAdapter(getActivity(), productsList);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -225,13 +227,7 @@ public class MagasinsFragment extends Fragment {
 
                     mRecyclerview.setItemAnimator(new DefaultItemAnimator());
                     mRecyclerview.setAdapter(mAdapter);
-                    mRecyclerview.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startActivity(new Intent(getActivity(),DetailsProduitActivity.class));
-                            Toast.makeText(getActivity(), "New activity", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+
                     Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -244,11 +240,10 @@ public class MagasinsFragment extends Fragment {
         });
 
 
-
-
         return v;
 
-    }
+
+}
     private void showEmptyView() {
         if (loadingView != null) {
             loadingView.setVisibility(View.GONE);

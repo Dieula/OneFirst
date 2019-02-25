@@ -1,6 +1,7 @@
 package oneclick.yonclick.activity;
 ;
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,25 +11,37 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import oneclick.yonclick.Fragment.AbonnementFragment;
 import oneclick.yonclick.Fragment.EcolageFragment;
 import oneclick.yonclick.Fragment.MagasinsFragment;
 import oneclick.yonclick.Fragment.RestaurantFragment;
+import oneclick.yonclick.Model.CartItem;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.BaseActivity;
+import oneclick.yonclick.dataa.sqlite.CartDBController;
 
 
 public class MainActivity extends AppCompatActivity {
 
-Context mContext;
+    ImageView imgToolbarCart;
+    TextView tvCartCounter;
+
+    Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // cart counter
+        imgToolbarCart = (ImageView) findViewById(R.id.imgToolbarCart);
+        tvCartCounter = (TextView) findViewById(R.id.tvCartCounter);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
 
@@ -76,6 +89,34 @@ Context mContext;
 
 
 
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadCartCounter();
+
+    }
+
+
+    private void loadCartCounter() {
+        try {
+            CartDBController cartController = new CartDBController(mContext);
+            cartController.open();
+            ArrayList<CartItem> cartList = cartController.getAllCartData();
+            cartController.close();
+
+            if (cartList.isEmpty()) {
+                tvCartCounter.setVisibility(View.GONE);
+            } else {
+                tvCartCounter.setVisibility(View.VISIBLE);
+                tvCartCounter.setText(String.valueOf(cartList.size()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

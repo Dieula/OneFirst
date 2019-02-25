@@ -98,11 +98,12 @@
                 android:paddingTop="10dp"
                 android:weightSum="1.0">
 
-                <ToggleButton
+                <TextView
                     android:id="@+id/tvCount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
+                    android:text="1"
                     android:textColor="@color/rating_text"
                     android:textStyle="bold" />
 

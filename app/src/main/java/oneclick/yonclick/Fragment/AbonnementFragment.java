@@ -18,9 +18,11 @@ import java.util.List;
 import oneclick.yonclick.Adapter.AbonnementAdapter;
 import oneclick.yonclick.ApiService.ApiService;
 import oneclick.yonclick.Model.Abonnement;
+import oneclick.yonclick.Model.CartItem;
 import oneclick.yonclick.ModelList.AbonnementList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.dataa.sqlite.CartDBController;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -52,6 +54,8 @@ public class AbonnementFragment extends Fragment {
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
+
+
 
         //Creating an object of our api interface
         ApiService api = RetroClient.getApiService();
@@ -105,5 +109,31 @@ public class AbonnementFragment extends Fragment {
         return v;
 
     }
+/*
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        loadCartCounter();
+
+    }
+
+
+    private void loadCartCounter() {
+        try {
+            CartDBController cartController = new CartDBController(getActivity());
+            cartController.open();
+            ArrayList<CartItem> cartList = cartController.getAllCartData();
+            cartController.close();
+
+           *//* if (cartList.isEmpty()) {
+                tvCartCounter.setVisibility(View.GONE);
+            } else {
+                tvCartCounter.setVisibility(View.VISIBLE);
+                tvCartCounter.setText(String.valueOf(cartList.size()));
+            }*//*
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 }
