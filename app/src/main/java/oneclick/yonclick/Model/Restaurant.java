@@ -5,30 +5,31 @@ import com.google.gson.annotations.SerializedName;
 
 public class Restaurant {
 
-    @SerializedName("idCategories")
+    @SerializedName("id")
     @Expose
-    private Integer idCategories;
-    @SerializedName("NomCategories")
+    private Integer id;
+    @SerializedName("name_categorie")
     @Expose
-    private String NomCategories;
+    private String name_categorie;
+
     @SerializedName("image")
     @Expose
     private String image;
 
-    public Integer getIdCategories() {
-        return idCategories;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdCategories(Integer idCategories) {
-        this.idCategories = idCategories;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getNomCategories() {
-        return NomCategories;
+    public String getName_categorie() {
+        return name_categorie;
     }
 
-    public void setNomCategories(String nomCategories) {
-        NomCategories = nomCategories;
+    public void setName_categorie(String name_categorie) {
+        this.name_categorie = name_categorie;
     }
 
     public String getImage() {

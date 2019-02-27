@@ -51,6 +51,13 @@ public class InscriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
 
+        //preferences
+        progressDialog = new ProgressDialog(InscriptionActivity.this);
+        sharedPreferences = getSharedPreferences("Register", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+
+        //widget
         buttonS = findViewById(R.id.btnInscription);
 
         etNomUser = (EditText) findViewById(R.id.etNomUser);
@@ -153,9 +160,14 @@ public class InscriptionActivity extends AppCompatActivity {
                 userRequest.setName(etNomUser.getText().toString());
                 userRequest.setEmail(etEmailUser.getText().toString());
                 userRequest.setPassword(password.getText().toString());
-                userRequest.setName(etNomUser.getText().toString());
                 userRequest.setDeviceId(imei);
                 userRequest.setDeviceType("2");
+
+                //save the userinfo
+                editor.putString("nom_client", etNomUser.getText().toString());
+                editor.putString("email_client", etEmailUser.getText().toString());
+                editor.putString("imei", imei);
+                editor.apply();
 
                 call = apiRegister.utilisateur(userRequest);
                 reponse = call.execute();

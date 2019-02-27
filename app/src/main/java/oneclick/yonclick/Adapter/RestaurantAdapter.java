@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import oneclick.yonclick.Model.Ecolage;
@@ -41,18 +43,17 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
     @Override
     public void onBindViewHolder(RestaurantAdapter.CustomViewHolder holder, int position) {
         Restaurant restaurant = restaurants.get(position);
-        holder.restaurantName.setText(restaurant.getNomCategories());
+        holder.restaurantName.setText(restaurant.getName_categorie());
 
         String imgUrl = restaurant.getImage();
 
         holder.image.setImageResource(0);
 
-/*
        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
                 .placeholder(R.drawable.valise)
-                .into(holder.image);*/
+                .into(holder.image);
     }
 
 

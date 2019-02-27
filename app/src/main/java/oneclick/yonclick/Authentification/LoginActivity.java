@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         progressDialog = new ProgressDialog(LoginActivity.this);
-        sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         ivCon.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +134,11 @@ public class LoginActivity extends AppCompatActivity {
                 RequestLogin requestLogin = new RequestLogin();
                 requestLogin.setEmail(email.getText().toString());
                 requestLogin.setPassword(password.getText().toString());
+
+                //save the user info in prference
+                editor.putString("email", email.getText().toString());
+                editor.apply();
+
                 call = apiRegister.user(requestLogin);
                 reponse = call.execute();
                 status = reponse.code();

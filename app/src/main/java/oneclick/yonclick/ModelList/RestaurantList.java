@@ -9,7 +9,8 @@ import oneclick.yonclick.Model.Employe;
 import oneclick.yonclick.Model.Restaurant;
 
 public class RestaurantList {
-    @SerializedName("CatPlats")
+
+    @SerializedName("data")
     @Expose
     private ArrayList<Restaurant> restaurants = null;
 
