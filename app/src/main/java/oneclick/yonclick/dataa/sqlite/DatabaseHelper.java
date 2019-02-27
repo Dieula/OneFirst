@@ -30,27 +30,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_ATTRIBUTE       = "attribute";
 
     // CART table create statement
-    private static final String CREATE_TABLE_CART = "CREATE TABLE "+ TABLE_CART + "("
-            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_PRODUCT_ID + " INTEGER,"
-            + KEY_NAME + " TEXT,"
-            + KEY_IMAGES + " TEXT,"
-            + KEY_PRICE + " REAL,"
-            + KEY_QUANTITY + " INTEGER,"
-            + KEY_ATTRIBUTE + " TEXT,"
-            + KEY_IS_SELECTED + " INTEGER)";
+    private static final String CREATE_TABLE_CART = "CREATE TABLE "+ TABLE_CART +
+            "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_PRODUCT_ID + " INTEGER,"
+                + KEY_NAME + " TEXT,"
+                + KEY_IMAGES + " TEXT,"
+                + KEY_PRICE + " REAL,"
+                + KEY_QUANTITY + " INTEGER,"
+                + KEY_ATTRIBUTE + " TEXT,"
+                + KEY_IS_SELECTED + " INTEGER)";
 
 
     private static DatabaseHelper dbHelper = null;
 
-    public static DatabaseHelper getInstance(Context context) {
+
+    public static DatabaseHelper getInstance(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         if(dbHelper == null) {
-            dbHelper =  new DatabaseHelper(context);
+            dbHelper =  new DatabaseHelper(context,name,factory,version);
         }
         return dbHelper;
     }
 
-    public DatabaseHelper(Context context) {
+  public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

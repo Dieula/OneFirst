@@ -3,6 +3,8 @@ package oneclick.yonclick.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 public class Product {
 
     @SerializedName("ID_Produits")
@@ -23,6 +25,7 @@ public class Product {
     @SerializedName("image")
     @Expose
     private String image;
+
 
     @SerializedName("Id_Institution")
     @Expose

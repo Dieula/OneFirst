@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewAuthentification.RegisterUserActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+
+                android:id="@+id/tvCompte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="172dp"
+                    android:layout_height="26dp"
+                    android:text="@string/creer_un_compte"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:textColor="#76c156"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="156dp"
+                    android:layout_marginTop="82dp"
+                    android:textSize="22sp"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                tools:ignore="UselessParent">
+
+                <EditText
+                    android:id="@+id/etNomUser"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:hint="@string/nom_d_utilisateur"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp"
+                    android:autofillHints="" tools:targetApi="o"/>
+
+
+                <EditText
+                    android:id="@+id/etEmailUser"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:padding="10dp"
+                    android:hint="@string/email"
+                    android:layout_below="@+id/etNomUser"
+                    android:textSize="12sp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:autofillHints="" tools:targetApi="o"/>
+
+
+                <EditText
+                    android:id="@+id/etPass"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/mot_de_passe"
+                    android:layout_below="@+id/etEmailUser"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:inputType="textPassword"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:importantForAutofill="no" tools:targetApi="o"/>
+
+                <EditText
+                    android:id="@+id/etConfirmPass"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:hint="@string/confirm_password"
+                    android:layout_below="@+id/etPass"
+                    android:layout_marginTop="10dp"
+                    android:inputType="textPassword"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:importantForAutofill="no" tools:targetApi="o"/>
+
+
+                <Button
+                    android:id="@+id/btnInscription"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:onClick="LogButton"
+                    android:layout_below="@+id/etConfirmPass"
+                    android:text="@string/s_inscrire"
+                    android:textColor="#fff"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btninscription"
+                    android:layout_marginBottom="20dp"
+                    tools:ignore="OnClick,RtlHardcoded" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="25dp">
+
+                <TextView
+                    android:id="@+id/DejaCompte"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:text="vous avez deja un compte ? Se cconnecter"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Medium" tools:targetApi="lollipop"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>

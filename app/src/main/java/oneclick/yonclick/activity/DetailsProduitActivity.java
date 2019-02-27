@@ -11,24 +11,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
+import oneclick.yonclick.dataa.sqlite.DatabaseHelper;
 
 public class DetailsProduitActivity extends AppCompatActivity {
 
     private int quantityCounter = 1;
     Context mContext;
     private Product product = null;
+    Product produit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_produit);
 
 
+        DatabaseHelper db = new DatabaseHelper(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,6 +41,20 @@ public class DetailsProduitActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+//        produit = (Product) getIntent().getSerializableExtra("ID_Produits");
+
+/*
+        TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
+        NameProduit.setText(produit.getNom_Produits().toString());
+
+        TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
+        DescProduit.setText(produit.getNom_Produits().toString());
+
+        TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
+        tvTextDescription.setText(produit.getNom_Produits().toString());
+
+        TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
+        tvSalesPrice.setText(produit.getNom_Produits().toString());*/
 
         //Call a differents contenu,not the same in details page
         /*sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
@@ -59,7 +78,9 @@ public class DetailsProduitActivity extends AppCompatActivity {
 
                         if (cartController.isAlreadyAddedToCart(product.getID_Produits())) {
                             AppUtility.showToast(mContext, getString(R.string.already_in_cart));
-                        } else {
+                        }
+                         else
+                            {
                            // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
 
                             String price;
