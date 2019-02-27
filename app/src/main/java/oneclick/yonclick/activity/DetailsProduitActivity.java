@@ -1,5 +1,6 @@
 package oneclick.yonclick.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +24,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
     private int quantityCounter = 1;
     Context mContext;
     private Product product = null;
+    private Activity mActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
                 // Add to cart list
                 // Add to cart list
 
-                        CartDBController cartController = new CartDBController(mContext);
+                        CartDBController cartController = new CartDBController(mActivity);
                         cartController.open();
 
                         if (cartController.isAlreadyAddedToCart(product.getID_Produits())) {

@@ -213,8 +213,6 @@ public class CartListActivity extends BaseActivity {
         }
     }
 
-
-
     private void loadUiData() {
         if (!cartList.isEmpty()) {
             cartList.clear();

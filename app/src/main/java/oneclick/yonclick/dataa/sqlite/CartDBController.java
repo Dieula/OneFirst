@@ -1,5 +1,6 @@
 package oneclick.yonclick.dataa.sqlite;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,12 +18,15 @@ public class CartDBController {
     private DatabaseHelper dbHelper;
     private Context mContext;
     private SQLiteDatabase database;
+    private Activity mActivity;
 
     public CartDBController(Context context) {
         mContext = context;
     }
 
-    public CartDBController open() throws SQLException {
+
+    public CartDBController open()
+            throws SQLException {
         dbHelper = new DatabaseHelper(mContext);
         database = dbHelper.getWritableDatabase();
         return this;

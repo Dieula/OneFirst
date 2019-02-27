@@ -19,6 +19,8 @@ import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.DetailsProduitActivity;
 import oneclick.yonclick.activity.PlatDetailsActivity;
+import oneclick.yonclick.dataa.constant.AppConstants;
+import oneclick.yonclick.listener.OnItemClickListener;
 
 public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomViewHolder> {
 
@@ -37,6 +39,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
     public ProduitAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_rectangle, parent, false);
+
 
         return new ProduitAdapter.CustomViewHolder(itemView);
     }
