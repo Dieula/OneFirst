@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewAuthentification.LoginUserActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="121dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="191dp"
+                    android:text="@string/se_connecter"
+                    android:textSize="21sp"
+                    android:textColor="#76c156"
+                    android:fontFamily=" SFProDisplay-Bold" />
+
+
+
+                <EditText
+                    android:id="@+id/etUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="30dp"
+                    android:padding="10dp"
+                    android:background="@drawable/myeditext"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage,UnknownIdInLayout"
+                    android:importantForAutofill="no"
+                    tools:targetApi="o" />
+
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:background="@drawable/myeditext"
+                    android:hint="Mot de passe"
+                    android:inputType="textPersonName"
+                    android:textSize="15dp"
+                    tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextFields"
+                    android:importantForAutofill="no" tools:targetApi="o" />
+
+                <TextView
+                    android:id="@+id/tvOublie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/mot_de_passe_oubli"
+                    android:gravity="end"
+                    android:textSize="12sp"
+                    android:fontFamily="SFProDisplay-Bold"
+                    android:layout_marginEnd="32dp"/>
+
+
+                <Button
+                    android:id="@+id/Iv_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="54dp"
+                    android:text="@string/login"
+                    android:fontFamily="SFProDisplay-Medium"
+                    android:textColor="#fff"
+                    android:background="@drawable/btninscription"
+                    android:onClick="onLogButton"
+                    tools:ignore="OnClick,RtlHardcoded"
+                    tools:targetApi="lollipop" />
+
+
+                <TextView
+                    android:id="@+id/tvCompte"
+                    android:layout_width="222dp"
+                    android:layout_height="13dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center"
+                    android:fontFamily="SFProDisplay-Bold"
+                    android:text="Vous n'avez pas de compte ? S'INSCRIRE"
+                    android:textSize="10sp"
+                    android:onClick="onLogButton"
+                    tools:ignore="HardcodedText,OnClick,RtlHardcoded,SmallSp" tools:targetApi="lollipop"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

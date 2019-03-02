@@ -1,8 +1,12 @@
 package oneclick.yonclick.InterfaceAPI;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -19,6 +23,7 @@ public class RestApi {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(65, TimeUnit.SECONDS)
                 .build();
+
         if (retrofit==null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)

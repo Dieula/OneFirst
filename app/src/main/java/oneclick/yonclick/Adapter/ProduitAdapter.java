@@ -2,6 +2,7 @@ package oneclick.yonclick.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,10 +37,24 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
 
 
     @Override
-    public ProduitAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
+    public ProduitAdapter.CustomViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        final View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_rectangle, parent, false);
 
+<<<<<<< HEAD
+=======
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent acheterDetails = new Intent(mContext,DetailsProduitActivity.class);
+                acheterDetails.putExtra("ID_Produits",viewType);
+                mContext.startActivity(acheterDetails);
+
+                Toast.makeText(mContext, "Viewwww", Toast.LENGTH_SHORT).show();
+            }
+        });
+>>>>>>> refs/remotes/origin/master
 
         return new ProduitAdapter.CustomViewHolder(itemView);
     }
@@ -50,6 +65,8 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
         holder.categoryName.setText(produit.getNom_Produits());
         holder.price.setText(produit.getPrix());
        String imgUrl = produit.getImage();
+
+
 
        // holder.image.setImageResource(0);
 /*
@@ -117,14 +134,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
             image = (ImageView) view.findViewById(R.id.ivProductImage);
             categoryName = (TextView) view.findViewById(R.id.tvProductName);
             price = (TextView) view.findViewById(R.id.price);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //   Intent intent=new Intent(mContext, PlatActivity.class);
-                    mContext.startActivity(new Intent(mContext,DetailsProduitActivity.class));
-                    Toast.makeText(mContext, "Viewwww", Toast.LENGTH_SHORT).show();
-                }
-            });
+
 
         }
     }

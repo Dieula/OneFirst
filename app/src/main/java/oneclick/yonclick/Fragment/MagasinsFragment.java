@@ -2,7 +2,9 @@ package oneclick.yonclick.Fragment;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -57,6 +59,8 @@ public class MagasinsFragment extends Fragment {
     private RecyclerView mRecyclerview;
     private ProduitAdapter mAdapter;
 
+    SharedPreferences sharedPreferences ;
+    SharedPreferences.Editor editor ;
 
     LinearLayout loadingView, noDataView;
 
@@ -65,6 +69,9 @@ public class MagasinsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_magasins, container, false);
+
+        sharedPreferences = getActivity().getSharedPreferences("Register", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
 
         //Tcheck the internet

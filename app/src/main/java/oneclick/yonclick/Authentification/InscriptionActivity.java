@@ -1,12 +1,16 @@
 package oneclick.yonclick.Authentification;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +42,7 @@ public class InscriptionActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     ProgressDialog progressDialog;
 
-    private int codeResponse;
+    private int status;
     private Response<UserResponse> reponse;
 
 
@@ -47,6 +51,13 @@ public class InscriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
 
+        //preferences
+        progressDialog = new ProgressDialog(InscriptionActivity.this);
+        sharedPreferences = getSharedPreferences("Register", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+
+        //widget
         buttonS = findViewById(R.id.btnInscription);
 
         etNomUser = (EditText) findViewById(R.id.etNomUser);
@@ -57,7 +68,7 @@ public class InscriptionActivity extends AppCompatActivity {
         buttonS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),CompletezInscriptionActivity.class));
+               // startActivity(new Intent(getApplicationContext(),CompletezInscriptionActivity.class));
 
                 register();
 
@@ -79,10 +90,11 @@ public class InscriptionActivity extends AppCompatActivity {
     }
 
 
+
     private void register() {
         RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask();
         registerAsyncTask.execute();
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
     }
 
@@ -115,16 +127,17 @@ public class InscriptionActivity extends AppCompatActivity {
         protected void onPreExecute()
         {
             super.onPreExecute();
+
         }
 
         @Override
         protected void onPostExecute(Object o) {
-            if (codeResponse == 200) {
-                Toast.makeText(getApplicationContext(), "Bienvenue sur YONCLICK", Toast.LENGTH_SHORT).show();
+            if (status == 200) {
                 StaticUser.setRegister(reponse.body().getRegister());
+                Toast.makeText(InscriptionActivity.this, "Good"+reponse.message(), Toast.LENGTH_SHORT).show();
 
             } else {
-                Toast.makeText(getApplicationContext(), "Not good", Toast.LENGTH_SHORT).show();
+                Toast.makeText(InscriptionActivity.this, ""+reponse.message(), Toast.LENGTH_SHORT).show();
 
             }
             super.onPostExecute(o);
@@ -137,21 +150,28 @@ public class InscriptionActivity extends AppCompatActivity {
 
             try {
                 apiRegister = RestApi.getApi();
+
+                TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                // get IMEI
+                @SuppressLint("MissingPermission")
+                String imei = tm.getDeviceId();
+
                 UserRequest userRequest = new UserRequest();
                 userRequest.setName(etNomUser.getText().toString());
                 userRequest.setEmail(etEmailUser.getText().toString());
                 userRequest.setPassword(password.getText().toString());
+                userRequest.setDeviceId(imei);
+                userRequest.setDeviceType("2");
 
-
-                String androidId = Settings.Secure.getString(
-                        getContentResolver(), Settings.Secure.ANDROID_ID);
-
-                userRequest.setDeviceType("Sisi");
-                userRequest.setDeviceId(androidId.toString());
+                //save the userinfo
+                editor.putString("nom_client", etNomUser.getText().toString());
+                editor.putString("email_client", etEmailUser.getText().toString());
+                editor.putString("imei", imei);
+                editor.apply();
 
                 call = apiRegister.utilisateur(userRequest);
                 reponse = call.execute();
-                codeResponse = reponse.code();
+                status = reponse.code();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -24,9 +24,15 @@ public class CartDBController {
         mContext = context;
     }
 
+<<<<<<< HEAD
 
     public CartDBController open()
             throws SQLException {
+=======
+    public CartDBController open()
+            throws SQLException {
+
+>>>>>>> refs/remotes/origin/master
         dbHelper = new DatabaseHelper(mContext);
         database = dbHelper.getWritableDatabase();
         return this;
@@ -91,7 +97,8 @@ public class CartDBController {
         return updateStatus;
     }
     public boolean isAlreadyAddedToCart(int productId) {
-        Cursor cursor = database.rawQuery("select "+DatabaseHelper.KEY_PRODUCT_ID+" from " + DatabaseHelper.TABLE_CART + " where " + DatabaseHelper.KEY_PRODUCT_ID + "=" + productId + "", null);
+        Cursor cursor = database.rawQuery("select "+DatabaseHelper.KEY_PRODUCT_ID+" from " + DatabaseHelper.TABLE_CART + " where "
+                + DatabaseHelper.KEY_PRODUCT_ID + "=" + productId + "", null);
         if(cursor!=null && cursor.getCount()>0){
             cursor.close();
             return true;
@@ -100,7 +107,8 @@ public class CartDBController {
         return false;
     }
     public int getItemQuantity(int productId) {
-        Cursor cursor = database.rawQuery("select "+DatabaseHelper.KEY_QUANTITY+" from " + DatabaseHelper.TABLE_CART + " where " + DatabaseHelper.KEY_PRODUCT_ID + "=" + productId + "", null);
+        Cursor cursor = database.rawQuery("select "+DatabaseHelper.KEY_QUANTITY+" from " + DatabaseHelper.TABLE_CART + " where " +
+                DatabaseHelper.KEY_PRODUCT_ID + "=" + productId + "", null);
         if(cursor!=null && cursor.getCount()>0){
             int quantity = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_QUANTITY));
             cursor.close();

@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     ProgressDialog progressDialog;
 
-    private int codeResponse;
+    private int status;
     private Response<ResponseLogin> reponse;
 
     @Override
@@ -57,14 +57,14 @@ public class LoginActivity extends AppCompatActivity {
         ivInsc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+                startActivity(new Intent(getApplicationContext(),InscriptionActivity.class));
             }
         });
 
 
 
         progressDialog = new ProgressDialog(LoginActivity.this);
-        sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         ivCon.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
     public void register(){
         LoginAsyncTask registerAsyncTask = new LoginAsyncTask();
         registerAsyncTask.execute();
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
     }
 
@@ -115,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (codeResponse == 200) {
+            if (status == 200) {
                 Toast.makeText(getApplicationContext(), "Bienvenue sur YONCLICK", Toast.LENGTH_SHORT).show();
                 StaticUser.setRegister(reponse.body().getLogin());
 
@@ -134,9 +134,14 @@ public class LoginActivity extends AppCompatActivity {
                 RequestLogin requestLogin = new RequestLogin();
                 requestLogin.setEmail(email.getText().toString());
                 requestLogin.setPassword(password.getText().toString());
+
+                //save the user info in prference
+                editor.putString("email", email.getText().toString());
+                editor.apply();
+
                 call = apiRegister.user(requestLogin);
                 reponse = call.execute();
-                codeResponse = reponse.code();
+                status = reponse.code();
             } catch (IOException e) {
                 e.printStackTrace();
             }
