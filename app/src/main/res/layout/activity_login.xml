@@ -66,7 +66,7 @@
                     android:fontFamily="SFProDisplay-Medium"
                     android:background="@drawable/myeditext"
                     android:hint="Mot de passe"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:textSize="15dp"
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage,TextFields"
                     android:importantForAutofill="no" tools:targetApi="o" />

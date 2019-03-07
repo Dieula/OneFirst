@@ -45,31 +45,13 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Categorie categorie = categories.get(position);
-        holder.categoryName.setText(categorie.getNombrand());
-
+        holder.categoryName.setText(categorie.getName_departements());
         String imgUrl = categorie.getImage();
-
-        holder.image.setImageResource(0);
-
-        String color="#"+mColors[position];
-
-        for(int c=1;c<mColors.length;c++)
-        {
-
-            holder.cardView.setCardBackgroundColor(Color.parseColor(color));
-
-            if(c==mColors.length)
-            {
-                c=1;
-            }
-        }
-
-/*
-       Glide.with(mContext)
+        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
                 .placeholder(R.drawable.valise)
-                .into(holder.image);*/
+                .into(holder.image);
     }
 
 

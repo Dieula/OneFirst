@@ -18,21 +18,12 @@ public class CartDBController {
     private DatabaseHelper dbHelper;
     private Context mContext;
     private SQLiteDatabase database;
-    private Activity mActivity;
 
     public CartDBController(Context context) {
         mContext = context;
     }
 
-<<<<<<< HEAD
-
-    public CartDBController open()
-            throws SQLException {
-=======
-    public CartDBController open()
-            throws SQLException {
-
->>>>>>> refs/remotes/origin/master
+    public CartDBController open() throws SQLException {
         dbHelper = new DatabaseHelper(mContext);
         database = dbHelper.getWritableDatabase();
         return this;
@@ -41,14 +32,14 @@ public class CartDBController {
         dbHelper.close();
     }
 
-    public long insertCartItem(int productId, String name, String images, String price, int quantity) {
+    public long insertCartItem(int productId, String name, String images, float price, int quantity, String attribute) {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.KEY_PRODUCT_ID, productId);
         contentValue.put(DatabaseHelper.KEY_NAME, name);
         contentValue.put(DatabaseHelper.KEY_IMAGES, images);
         contentValue.put(DatabaseHelper.KEY_PRICE, price);
         contentValue.put(DatabaseHelper.KEY_QUANTITY, quantity);
-
+        contentValue.put(DatabaseHelper.KEY_ATTRIBUTE, attribute);
 
         return database.insert(DatabaseHelper.TABLE_CART, null, contentValue);
     }
@@ -97,8 +88,7 @@ public class CartDBController {
         return updateStatus;
     }
     public boolean isAlreadyAddedToCart(int productId) {
-        Cursor cursor = database.rawQuery("select "+DatabaseHelper.KEY_PRODUCT_ID+" from " + DatabaseHelper.TABLE_CART + " where "
-                + DatabaseHelper.KEY_PRODUCT_ID + "=" + productId + "", null);
+        Cursor cursor = database.rawQuery("select "+DatabaseHelper.KEY_PRODUCT_ID+" from " + DatabaseHelper.TABLE_CART + " where " + DatabaseHelper.KEY_PRODUCT_ID + "=" + productId + "", null);
         if(cursor!=null && cursor.getCount()>0){
             cursor.close();
             return true;
@@ -107,8 +97,7 @@ public class CartDBController {
         return false;
     }
     public int getItemQuantity(int productId) {
-        Cursor cursor = database.rawQuery("select "+DatabaseHelper.KEY_QUANTITY+" from " + DatabaseHelper.TABLE_CART + " where " +
-                DatabaseHelper.KEY_PRODUCT_ID + "=" + productId + "", null);
+        Cursor cursor = database.rawQuery("select "+DatabaseHelper.KEY_QUANTITY+" from " + DatabaseHelper.TABLE_CART + " where " + DatabaseHelper.KEY_PRODUCT_ID + "=" + productId + "", null);
         if(cursor!=null && cursor.getCount()>0){
             int quantity = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_QUANTITY));
             cursor.close();
@@ -138,5 +127,4 @@ public class CartDBController {
 
         }
     }
-
 }

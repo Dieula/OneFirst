@@ -12,15 +12,15 @@ import retrofit2.http.Headers;
 
 public interface ApiService {
 
-    @GET("services/brand.php")
+    @GET("categoryproduct/get")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<CategorieList> getMyJSON();
 
-    @GET("services/listeproduct.php")
+    @GET("product/get")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<ProduitList> getProduit();
 
-    @GET("services/abonnement.php")
+    @GET("abonnement/get")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<AbonnementList> getAbonnementJSON();
 
@@ -28,11 +28,11 @@ public interface ApiService {
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<RestaurantList> getRestoJSON();
 
-    @GET("services/listeplats.php")
+    @GET("food/get")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<PlatList> getPlatJSON();
 
-    @GET("services/liste_all_ecoles.php")
+    @GET("school/get")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<EcolageList> getEcolageJSON();
 

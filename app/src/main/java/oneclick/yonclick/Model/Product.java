@@ -7,17 +7,17 @@ import java.io.Serializable;
 
 public class Product {
 
-    @SerializedName("ID_Produits")
+    @SerializedName("id")
     @Expose
-    private Integer ID_Produits;
+    private Integer id;
 
-    @SerializedName("Nom_Produits")
+    @SerializedName("name_product")
     @Expose
-    private String Nom_Produits;
+    private String name_product;
 
-    @SerializedName("Details_Produits")
+    @SerializedName("details_product")
     @Expose
-    private String Details_Produits;
+    private String details_product;
 
     @SerializedName("prix")
     @Expose
@@ -31,49 +31,48 @@ public class Product {
     @Expose
     private Integer Id_Institution;
 
-
-    public String getImage() {
-        return image;
+    public Integer getId() {
+        return id;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public String getName_product() {
+        return name_product;
+    }
+
+    public String getDetails_product() {
+        return details_product;
     }
 
     public String getPrix() {
         return prix;
     }
 
-    public void setPrix(String prix) {
-        this.prix = prix;
-    }
-
-    public Integer getID_Produits() {
-        return ID_Produits;
-    }
-
-    public void setID_Produits(Integer ID_Produits) {
-        this.ID_Produits = ID_Produits;
-    }
-
-    public String getNom_Produits() {
-        return Nom_Produits;
-    }
-
-    public void setNom_Produits(String nom_Produits) {
-        Nom_Produits = nom_Produits;
-    }
-
-    public String getDetails_Produits() {
-        return Details_Produits;
-    }
-
-    public void setDetails_Produits(String details_Produits) {
-        Details_Produits = details_Produits;
+    public String getImage() {
+        return image;
     }
 
     public Integer getId_Institution() {
         return Id_Institution;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName_product(String name_product) {
+        this.name_product = name_product;
+    }
+
+    public void setDetails_product(String details_product) {
+        this.details_product = details_product;
+    }
+
+    public void setPrix(String prix) {
+        this.prix = prix;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setId_Institution(Integer id_Institution) {

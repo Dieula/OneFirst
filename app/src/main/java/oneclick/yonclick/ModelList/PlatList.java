@@ -10,7 +10,7 @@ import oneclick.yonclick.Model.Plat;
 
 public class PlatList {
 
-    @SerializedName("Plats")
+    @SerializedName("data")
     @Expose
     private ArrayList<Plat> Plats = null;
 

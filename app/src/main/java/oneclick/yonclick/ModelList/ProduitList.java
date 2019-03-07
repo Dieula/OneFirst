@@ -9,7 +9,7 @@ import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Product;
 
 public class ProduitList {
-    @SerializedName("Produits")
+    @SerializedName("data")
     @Expose
     private ArrayList<Product> employee = null;
 

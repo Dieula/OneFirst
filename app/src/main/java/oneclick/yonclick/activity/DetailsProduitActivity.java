@@ -26,12 +26,10 @@ public class DetailsProduitActivity extends AppCompatActivity {
     private int quantityCounter = 1;
     Context mContext;
     private Product product = null;
-<<<<<<< HEAD
     private Activity mActivity;
-=======
     Product produit;
 
->>>>>>> refs/remotes/origin/master
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +75,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Add to cart list
                 // Add to cart list
-
+/*
                         CartDBController cartController = new CartDBController(mActivity);
                         cartController.open();
 
@@ -101,7 +99,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
                             btnAddToCart.setText(getString(R.string.added_to_cart));
                             AppUtility.showToast(mContext, getString(R.string.added_to_cart));
                         }
-                        cartController.close();
+                        cartController.close();*/
 
                 Toast.makeText(DetailsProduitActivity.this, "Ajout reussi", Toast.LENGTH_SHORT).show();
             }

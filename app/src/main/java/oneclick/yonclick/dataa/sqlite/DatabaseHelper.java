@@ -44,14 +44,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static DatabaseHelper dbHelper = null;
-
-
+    public static DatabaseHelper getInstance(Context context) {
+        if(dbHelper == null) {
+            dbHelper =  new DatabaseHelper(context);
+        }
+        return dbHelper;
+    }
+/*
     public static DatabaseHelper getInstance(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         if(dbHelper == null) {
             dbHelper =  new DatabaseHelper(context,name,factory,version);
         }
         return dbHelper;
-    }
+    }*/
 
   public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

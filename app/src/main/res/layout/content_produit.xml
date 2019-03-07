@@ -9,6 +9,12 @@
     android:layout_marginTop="5dp">
 
 
+    <RelativeLayout
+        android:id="@+id/parentPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
         <LinearLayout
             android:id="@+id/lytListHeader"
             android:layout_width="match_parent"
@@ -47,21 +53,14 @@
 
         </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lytListHeader">
-
-
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/HomeRecyclerview"
+            android:id="@+id/homeRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/parentPanel"
+            android:layout_below="@+id/lytListHeader"
             android:nestedScrollingEnabled="false" />
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>

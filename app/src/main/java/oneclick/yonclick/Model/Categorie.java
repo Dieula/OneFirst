@@ -5,30 +5,36 @@ import com.google.gson.annotations.SerializedName;
 
 public class Categorie {
 
-    @SerializedName("idbrand")
+    @SerializedName("id")
     @Expose
-    private Integer idbrand;
-    @SerializedName("Nombrand")
+    private Integer id;
+    @SerializedName("name_departements")
     @Expose
-    private String Nombrand;
+    private String name_departements;
     @SerializedName("image")
     @Expose
     private String image;
 
-    public Integer getIdbrand() {
-        return idbrand;
+    public Categorie(Integer id, String name_departements, String image) {
+        this.id = id;
+        this.name_departements = name_departements;
+        this.image = image;
     }
 
-    public void setIdbrand(Integer idbrand) {
-        this.idbrand = idbrand;
+    public Integer getId() {
+        return id;
     }
 
-    public String getNombrand() {
-        return Nombrand;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setNombrand(String nombrand) {
-        Nombrand = nombrand;
+    public String getName_departements() {
+        return name_departements;
+    }
+
+    public void setName_departements(String name_departements) {
+        this.name_departements = name_departements;
     }
 
     public String getImage() {
