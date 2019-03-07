@@ -36,7 +36,7 @@ public class AbonnementFragment extends Fragment {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-   // List<Abonnement>
+    // List<Abonnement>
 
     private ArrayList<Abonnement> abonnements;
     private ProgressDialog pDialog;
@@ -53,7 +53,6 @@ public class AbonnementFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_abonnement, container, false);
 
 
-
         sharedPreferences = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -62,7 +61,6 @@ public class AbonnementFragment extends Fragment {
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
-
 
 
         //Creating an object of our api interface
@@ -88,15 +86,15 @@ public class AbonnementFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                     abonnements = response.body().getServices_Abonnement();
-                     recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
-                     eAdapter = new AbonnementAdapter(getActivity(),abonnements);
-                     RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
-                     recyclerView.setLayoutManager(eLayoutManager);
+                    abonnements = response.body().getServices_Abonnement();
+                    recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+                    eAdapter = new AbonnementAdapter(getActivity(), abonnements);
+                    RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(eLayoutManager);
 
-                     recyclerView.setItemAnimator(new DefaultItemAnimator());
-                     recyclerView.setAdapter(eAdapter);
-                     recyclerView.setOnClickListener(new View.OnClickListener() {
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(eAdapter);
+                    recyclerView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Toast.makeText(getActivity(), "New Ativityyyyyyyyyy", Toast.LENGTH_SHORT).show();
@@ -117,14 +115,13 @@ public class AbonnementFragment extends Fragment {
         return v;
 
 
-
     }
-/*
+
     @Override
     public void onResume() {
         super.onResume();
 
-        loadCartCounter();
+        //loadCartCounter();
 
     }
 
@@ -132,18 +129,18 @@ public class AbonnementFragment extends Fragment {
     private void loadCartCounter() {
         try {
             CartDBController cartController = new CartDBController(getActivity());
-            cartController.open();
+            cartController.createDB();
             ArrayList<CartItem> cartList = cartController.getAllCartData();
             cartController.close();
 
-           *//* if (cartList.isEmpty()) {
+          /* if (cartList.isEmpty()) {
                 tvCartCounter.setVisibility(View.GONE);
             } else {
                 tvCartCounter.setVisibility(View.VISIBLE);
                 tvCartCounter.setText(String.valueOf(cartList.size()));
-            }*//*
+            }*/
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }

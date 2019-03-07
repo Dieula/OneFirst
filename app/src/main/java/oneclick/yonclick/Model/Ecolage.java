@@ -5,30 +5,30 @@ import com.google.gson.annotations.SerializedName;
 
 public class Ecolage {
 
-    @SerializedName("idEcoles")
+    @SerializedName("id")
     @Expose
-    private Integer idEcoles;
-    @SerializedName("NomEcoles")
+    private Integer id;
+    @SerializedName("nom_etablissements")
     @Expose
-    private String NomEcoles;
+    private String nom_etablissements;
     @SerializedName("image")
     @Expose
     private String image;
 
-    public Integer getIdEcoles() {
-        return idEcoles;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdEcoles(Integer idEcoles) {
-        this.idEcoles = idEcoles;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getNomEcoles() {
-        return NomEcoles;
+    public String getNom_etablissements() {
+        return nom_etablissements;
     }
 
-    public void setNomEcoles(String nomEcoles) {
-        NomEcoles = nomEcoles;
+    public void setNom_etablissements(String nom_etablissements) {
+        this.nom_etablissements = nom_etablissements;
     }
 
     public String getImage() {

@@ -2,10 +2,12 @@ package oneclick.yonclick.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +61,13 @@ public class CartListActivity extends BaseActivity {
         loadCartData();
         loadUiData();
         initLister();
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //Display the Up button home
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void initVariables() {
         mContext = getApplicationContext();
@@ -68,10 +77,10 @@ public class CartListActivity extends BaseActivity {
     private void initView() {
         setContentView(R.layout.activity_cart_list);
 
-      /*  initToolbar();
+        /*initToolbar();
         enableBackButton();
-        setToolbarTitle(getString(R.string.cart_list));
-        initLoader();*/
+        setToolbarTitle(getString(R.string.cart_list));*/
+        initLoader();
 
         rvCartList = (RecyclerView) findViewById(R.id.rvCartList);
         tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
@@ -80,7 +89,7 @@ public class CartListActivity extends BaseActivity {
         checkBoxAll = (CheckBox) findViewById(R.id.checkBoxAll);
         lytSelectionAll = (LinearLayout) findViewById(R.id.lytSelectionAll);
         footerView = (LinearLayout) findViewById(R.id.footerView);
-        btnBuy = (Button) findViewById(R.id.btnBuy);
+       // btnBuy = (Button) findViewById(R.id.btnBuy);
         info_text = (TextView) findViewById(R.id.info_text);
 
         // init RecyclerView
@@ -116,7 +125,7 @@ public class CartListActivity extends BaseActivity {
                 if (isChecked) {
                     try {
                         CartDBController cartController = new CartDBController(mContext);
-                        cartController.open();
+                        cartController.createDB();
                         cartController.updateCartItem(cartList.get(position).productId, AppConstants.VALUE_SELECTED);
                         cartController.close();
                     } catch (Exception e) {
@@ -125,7 +134,7 @@ public class CartListActivity extends BaseActivity {
                 } else {
                     try {
                         CartDBController cartController = new CartDBController(mContext);
-                        cartController.open();
+                        cartController.createDB();
                         cartController.updateCartItem(cartList.get(position).productId, AppConstants.VALUE_NOT_SELECTED);
                         cartController.close();
                     } catch (Exception e) {
@@ -133,6 +142,7 @@ public class CartListActivity extends BaseActivity {
                     }
                 }
                 loadUiData();
+
 
             }
         });
@@ -143,7 +153,7 @@ public class CartListActivity extends BaseActivity {
                 if (isChecked) {
                     try {
                         CartDBController cartController = new CartDBController(mContext);
-                        cartController.open();
+                        cartController.createDB();
                         cartController.updateAllCartItemSelection(AppConstants.VALUE_SELECTED);
                         cartController.close();
                     } catch (Exception e) {
@@ -152,7 +162,7 @@ public class CartListActivity extends BaseActivity {
                 } else {
                     try {
                         CartDBController cartController = new CartDBController(mContext);
-                        cartController.open();
+                        cartController.createDB();
                         cartController.updateAllCartItemSelection(AppConstants.VALUE_NOT_SELECTED);
                         cartController.close();
                     } catch (Exception e) {
@@ -163,11 +173,11 @@ public class CartListActivity extends BaseActivity {
                 cartListAdapter.notifyDataSetChanged();
             }
         });
-        btnBuy.setOnClickListener(new View.OnClickListener() {
+      /*  btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
 
-            } /*{
+            } *//*{
                 if (selectedCounter > 0) {
 
                     // store price into preference
@@ -183,8 +193,8 @@ public class CartListActivity extends BaseActivity {
                 } else {
                     Toast.makeText(mContext, "Select product", Toast.LENGTH_SHORT).show();
                 }
-            }*/
-        });
+            }*//*
+        });*/
     }
 
     private void loadCartData() {
@@ -193,7 +203,7 @@ public class CartListActivity extends BaseActivity {
         }
         try {
             CartDBController cartController = new CartDBController(mContext);
-            cartController.open();
+            cartController.createDB();
             cartList.addAll(cartController.getAllCartData());
             cartController.close();
 
@@ -207,6 +217,7 @@ public class CartListActivity extends BaseActivity {
 
         if(cartList.isEmpty()) {
             showEmptyView();
+            Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
           //  info_text.setText(getString(R.string.empty_cart));
         } else {
             hideLoader();
@@ -221,7 +232,7 @@ public class CartListActivity extends BaseActivity {
         selectedCounter = 0;
         try {
             CartDBController cartController = new CartDBController(mContext);
-            cartController.open();
+            cartController.createDB();
             cartList.addAll(cartController.getAllCartData());
             for (int i = 0; i < cartList.size(); i++) {
                 if (cartList.get(i).isSelected == AppConstants.VALUE_SELECTED) {
@@ -259,7 +270,8 @@ public class CartListActivity extends BaseActivity {
         ArrayList<LineItem> lineItemList = new ArrayList<>();
         for (int i = 0; i < cartList.size(); i++) {
             if (cartList.get(i).isSelected == AppConstants.VALUE_SELECTED) {
-                lineItemList.add(new LineItem(cartList.get(i).name, cartList.get(i).attribute, cartList.get(i).productId, cartList.get(i).quantity));
+                lineItemList.add(new LineItem(cartList.get(i).name, cartList.get(i).attribute,
+                        cartList.get(i).productId, cartList.get(i).quantity));
             }
         }
         return lineItemList;
@@ -267,12 +279,14 @@ public class CartListActivity extends BaseActivity {
 
     private void deleteCartItemDialog(final int productId) {
 
-        DialogUtils.showDialogPrompt(mActivity, null, getString(R.string.delete_cart_item), getString(R.string.dialog_btn_yes), getString(R.string.dialog_btn_no), true, new DialogUtils.DialogActionListener() {
+        DialogUtils.showDialogPrompt(mActivity, null, getString(R.string.delete_cart_item),
+                getString(R.string.dialog_btn_yes), getString(R.string.dialog_btn_no),
+                true, new DialogUtils.DialogActionListener() {
             @Override
             public void onPositiveClick() {
                 try {
                     CartDBController cartController = new CartDBController(mContext);
-                    cartController.open();
+                    cartController.createDB();
                     cartController.deleteCartItemById(productId);
                     cartController.close();
                 } catch (Exception e) {
@@ -285,16 +299,18 @@ public class CartListActivity extends BaseActivity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                // Respond to the action bar's Up/Home button
                 finish();
                 return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        /*    case R.id.miShare:
+                shareInfo();
+                return true;*/
         }
+        return super.onOptionsItemSelected(item);
     }
 }

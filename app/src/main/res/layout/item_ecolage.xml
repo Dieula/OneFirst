@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="150dp"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@android:color/white"
+    android:layout_marginRight="@dimen/height_width_15dp"
+    android:layout_marginLeft="@dimen/height_width_15dp"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation"
     app:cardUseCompatPadding="true">
@@ -19,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/shape_rounded_rect"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@color/imgPlaceholder" />
 
         <RelativeLayout
@@ -45,7 +47,7 @@
                 android:textColor="#000"
                 android:textSize="14sp" />
 
-
+<!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -65,7 +67,7 @@
                     android:text="80"
                     android:textStyle="bold" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
         </RelativeLayout>
 

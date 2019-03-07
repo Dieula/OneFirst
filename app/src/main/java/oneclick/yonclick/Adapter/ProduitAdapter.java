@@ -48,8 +48,8 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
             @Override
             public void onClick(View view) {
 
-                Intent acheterDetails = new Intent(mContext,ProductListActivity.class);
-                acheterDetails.putExtra("ID_Produits",viewType);
+                Intent acheterDetails = new Intent(mContext,DetailsProduitActivity.class);
+                acheterDetails.putExtra("id",viewType);
                 mContext.startActivity(acheterDetails);
 
                 Toast.makeText(mContext, "Viewwww", Toast.LENGTH_SHORT).show();
@@ -64,18 +64,17 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
     public void onBindViewHolder(ProduitAdapter.CustomViewHolder holder, int position) {
         Product produit = products.get(position);
         holder.categoryName.setText(produit.getName_product());
+
         holder.price.setText(produit.getPrix());
-<<<<<<< HEAD
+
         String imgUrl = produit.getImage();
 
-=======
-       String imgUrl = produit.getImage();
-/*  String imgUrl = "http://45.76.247.112/uploads/1/2019-02/culotte_irresistible.jpg";*/
->>>>>>> a38bd53b53dc1a0978a47e4c538fa55531faa20f
+        /*  String imgUrl = "http://45.76.247.112/uploads/1/2019-02/culotte_irresistible.jpg";*/
+
 
 
        // holder.image.setImageResource(0);
-/*
+      /*
 
      if(Integer.valueOf(produit.getImage())==1)
         {

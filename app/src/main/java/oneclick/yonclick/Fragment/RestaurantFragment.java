@@ -44,6 +44,7 @@ import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Helper.HttpParams;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Restaurant;
+import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.ModelList.RestaurantList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.PlatDetailsActivity;
@@ -73,9 +74,9 @@ public class RestaurantFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        if(isNetworkAvailable() == true) {
-            laodCAtegoriePlat();
-        }else {
+        if (isNetworkAvailable() == true) {
+            //laodCAtegoriePlat();
+        } else {
             /*
             new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Infos")
@@ -113,44 +114,95 @@ public class RestaurantFragment extends Fragment {
 
     }
 
-        @Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_restaurant, container, false);
 
-/*
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading Data.. Please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
-        pDialog.show();*/
+        pDialog.show();
 
-            recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        //recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
 
+        //Creating an object of our api interface
+        ApiService api = RetroClient.getApiService();
 
+        /**
+         * Calling JSON
+         */
+        Call<RestaurantList> call = api.getRestoJSON();
+
+
+        /**
+         * Enqueue Callback will be call when get response...
+         */
+
+        call.enqueue(new Callback<RestaurantList>() {
+            @Override
+            public void onResponse(Call<RestaurantList> call, Response<RestaurantList> response) {
+                //Dismiss Dialog
+                pDialog.dismiss();
+
+                if (response.isSuccessful()) {
+
+                    restaurants = response.body().getRestaurants();
+                    recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+                    eAdapter = new RestaurantAdapter(getActivity(), restaurants);
+                    RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(eLayoutManager);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(eAdapter);
+
+                    Toast.makeText(getActivity(), "Good" + response, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestaurantList> call, Throwable t) {
+                pDialog.dismiss();
+                Toast.makeText(getActivity(), "Badddd" + t, Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         return view;
     }
 
+    private boolean isNetworkAvailable() {
 
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+/*
     public static String getIdDev(Activity a) {
 
         TelephonyManager tm = (TelephonyManager) a.getSystemService(Context.TELEPHONY_SERVICE);
         // get IMEI
         @SuppressLint("MissingPermission")
         String imei = tm.getDeviceId();
-        return  imei;
+        return imei;
+
+
+    }*/
+
+}
 /*
 
 
         String androidId = Settings.Secure.getString(
                 a.getContentResolver(), Settings.Secure.ANDROID_ID);
         return  androidId;*/
-    }
 
+/*
     private void laodCAtegoriePlat() {
     //       StaticUser.setRegister(reponse.body().getLogin());
 
@@ -190,10 +242,10 @@ public class RestaurantFragment extends Fragment {
                         Toast.makeText(getActivity(), "Goood"+ response.toString(), Toast.LENGTH_SHORT).show();
                     }
 
-                  /*  aServices.addAll(Services.fromJSONArray(serviceJsonResults));
+                  *//*  aServices.addAll(Services.fromJSONArray(serviceJsonResults));
                     serviceAdapter.notifyDataSetChanged();
                     progress.setVisibility(View.GONE);
-                    Log.d("DEBUG", aServices.toString());*/
+                    Log.d("DEBUG", aServices.toString());*//*
                 }
                 catch (JSONException e)
                 {
@@ -202,7 +254,7 @@ public class RestaurantFragment extends Fragment {
                     Toast.makeText(getActivity(), "Baddd"+ e.toString(), Toast.LENGTH_SHORT).show();
                 }
 
-           /*
+           *//*
                 //Toast.makeText(MainActivity.this, ""+response.toString(), Toast.LENGTH_SHORT).show();
                 JSONArray arrayCat = response;
                 restaurants = Restaurant.fromJSONArray(arrayCat);
@@ -213,9 +265,9 @@ public class RestaurantFragment extends Fragment {
                 RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
                 // Attach the layout manager to the recycler view
                 recyclerView.setLayoutManager(eLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());*/
+                recyclerView.setItemAnimator(new DefaultItemAnimator());*//*
 
-                      /*  //  idProgress.setVisibility(View.GONE);
+                      *//*  //  idProgress.setVisibility(View.GONE);
                         eAdapter.setOnItemClickListener(new RestaurantAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
@@ -225,7 +277,7 @@ public class RestaurantFragment extends Fragment {
                                 startActivity(go);
                                 //Toast.makeText(getApplicationContext(), plat.getTitle() + " was clicked!", Toast.LENGTH_SHORT).show();
                             }
-                        });*/
+                        });*//*
             }
 
             @Override
@@ -253,52 +305,9 @@ public class RestaurantFragment extends Fragment {
 
                     }
 
-                }
+                }*/
 
-     /*   //Creating an object of our api interface
-        ApiService api = RetroClient.getApiService();
-
-        *//**
-         * Calling JSON
-         *//*
-        Call<RestaurantList> call = api.getRestoJSON();
-
-        *//**
-         * Enqueue Callback will be call when get response...
-         *//*
-        call.enqueue(new Callback<RestaurantList>() {
-            @Override
-            public void onResponse(Call<RestaurantList> call, Response<RestaurantList> response) {
-                //Dismiss Dialog
-                pDialog.dismiss();
-
-                if (response.isSuccessful()) {
-                    *//**
-                     * Got Successfully
-                     *//*
-                    restaurants = response.body().getRestaurants();
-                    recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-                    eAdapter = new RestaurantAdapter(getActivity(),restaurants);
-                    RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
-                    recyclerView.setLayoutManager(eLayoutManager);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(eAdapter);
-
-                    Toast.makeText(getActivity(), "Good"+response, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RestaurantList> call, Throwable t)
-            {
-                pDialog.dismiss();
-                Toast.makeText(getActivity(), "Badddd"+t, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        return view;
-    }*/
+     /* */
 
 
 

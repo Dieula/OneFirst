@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import oneclick.yonclick.Model.Categorie;
@@ -41,18 +43,18 @@ public class EcolageAdapter extends RecyclerView.Adapter<EcolageAdapter.CustomVi
     @Override
     public void onBindViewHolder(EcolageAdapter.CustomViewHolder holder, int position) {
         Ecolage ecolage = ecolages.get(position);
-        holder.ecolageName.setText(ecolage.getNomEcoles());
+        holder.ecolageName.setText(ecolage.getNom_etablissements());
 
         String imgUrl = ecolage.getImage();
 
         holder.image.setImageResource(0);
 
-/*
+
        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
                 .placeholder(R.drawable.valise)
-                .into(holder.image);*/
+                .into(holder.image);
     }
 
 
@@ -76,10 +78,7 @@ public class EcolageAdapter extends RecyclerView.Adapter<EcolageAdapter.CustomVi
                     //   Intent intent=new Intent(mContext, PlatActivity.class);
                     mContext.startActivity(new Intent(mContext,EcolageActivity.class));
                     Toast.makeText(mContext, "Viewwww", Toast.LENGTH_SHORT).show();
-/*
-                    Intent intent = new Intent(mContext, EcolageActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    mContext.startActivity(intent);*/
+
                 }
             });
 

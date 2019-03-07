@@ -177,14 +177,6 @@ public class MagasinsFragment extends Fragment {
                     mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.homeRecyclerView);
                     mAdapter = new ProduitAdapter(getActivity(), productsList);
 
-                  /*  // popular list ui
-                    RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
-                    mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.HomeRecyclerview);
-                    TextView textView = (TextView) lytProduitList.findViewById(R.id.tvListTitle);
-                    TextView tvPopularListAll = (TextView) lytProduitList.findViewById(R.id.tvSeeAll);
-                    RelativeLayout popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
-                    mAdapter = new ProduitAdapter(getActivity(), productsList);*/
-
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
                     mRecyclerview.setLayoutManager(secondManager);

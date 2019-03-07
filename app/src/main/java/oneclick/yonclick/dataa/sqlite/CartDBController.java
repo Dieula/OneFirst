@@ -22,24 +22,26 @@ public class CartDBController {
     public CartDBController(Context context) {
         mContext = context;
     }
-
-    public CartDBController open() throws SQLException {
+    public void createDB(){
+        dbHelper = new DatabaseHelper(mContext);
+        database = dbHelper.getWritableDatabase();
+    }
+   /* public CartDBController open() throws SQLException {
         dbHelper = new DatabaseHelper(mContext);
         database = dbHelper.getWritableDatabase();
         return this;
-    }
+    }*/
     public void close() {
         dbHelper.close();
     }
 
-    public long insertCartItem(int productId, String name, String images, float price, int quantity, String attribute) {
+    public long insertCartItem(int productId, String name, String images, String price, int quantity) {
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.KEY_PRODUCT_ID, productId);
         contentValue.put(DatabaseHelper.KEY_NAME, name);
         contentValue.put(DatabaseHelper.KEY_IMAGES, images);
         contentValue.put(DatabaseHelper.KEY_PRICE, price);
         contentValue.put(DatabaseHelper.KEY_QUANTITY, quantity);
-        contentValue.put(DatabaseHelper.KEY_ATTRIBUTE, attribute);
 
         return database.insert(DatabaseHelper.TABLE_CART, null, contentValue);
     }
@@ -127,4 +129,6 @@ public class CartDBController {
 
         }
     }
+
+
 }

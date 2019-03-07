@@ -32,13 +32,8 @@ public interface ApiService {
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<PlatList> getPlatJSON();
 
-<<<<<<< HEAD
-    @GET("services/liste_all_ecoles.php")
-    @Headers({"Content-Type: application/json","apiKey: 8484884774837498","accessToken: 64e72de411826abbc5557fb1b71d451b"})
-=======
     @GET("school/get")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
->>>>>>> a38bd53b53dc1a0978a47e4c538fa55531faa20f
     Call<EcolageList> getEcolageJSON();
 
 

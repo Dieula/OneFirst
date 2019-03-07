@@ -44,7 +44,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        produit = (Product) getIntent().getSerializableExtra("ID_Produits");
+       // produit = (Product) getIntent().getSerializableExtra("id");
 
 /*
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
@@ -73,13 +73,15 @@ public class DetailsProduitActivity extends AppCompatActivity {
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
                 // Add to cart list
                 // Add to cart list
 /*
                         CartDBController cartController = new CartDBController(mActivity);
-                        cartController.open();
+                        cartController.createDB();
 
-                        if (cartController.isAlreadyAddedToCart(product.getID_Produits())) {
+                        if (cartController.isAlreadyAddedToCart(product.getId())) {
                             AppUtility.showToast(mContext, getString(R.string.already_in_cart));
                         }
                          else
@@ -94,8 +96,8 @@ public class DetailsProduitActivity extends AppCompatActivity {
                                 price = product.getPrix();
                             }
 
-                            cartController.insertCartItem(product.getID_Produits(),
-                                    product.getNom_Produits(), product.getImage(),product.getPrix(), quantityCounter);
+
+                            cartController.insertCartItem(product.getId(), product.getName_product(), product.getImage(),product.getImage(), quantityCounter);
                             btnAddToCart.setText(getString(R.string.added_to_cart));
                             AppUtility.showToast(mContext, getString(R.string.added_to_cart));
                         }
