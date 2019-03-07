@@ -2,6 +2,8 @@ package oneclick.yonclick.Fragment;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import oneclick.yonclick.Adapter.AbonnementAdapter;
 import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.Authentification.LoginActivity;
 import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.CartItem;
 import oneclick.yonclick.ModelList.AbonnementList;
@@ -31,7 +34,8 @@ import retrofit2.Callback;
  */
 public class AbonnementFragment extends Fragment {
 
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
    // List<Abonnement>
 
     private ArrayList<Abonnement> abonnements;
@@ -48,6 +52,10 @@ public class AbonnementFragment extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_abonnement, container, false);
 
+
+
+        sharedPreferences = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading Data.. Please wait...");
@@ -86,9 +94,9 @@ public class AbonnementFragment extends Fragment {
                      RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
                      recyclerView.setLayoutManager(eLayoutManager);
 
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(eAdapter);
-                    recyclerView.setOnClickListener(new View.OnClickListener() {
+                     recyclerView.setItemAnimator(new DefaultItemAnimator());
+                     recyclerView.setAdapter(eAdapter);
+                     recyclerView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Toast.makeText(getActivity(), "New Ativityyyyyyyyyy", Toast.LENGTH_SHORT).show();

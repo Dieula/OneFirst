@@ -12,7 +12,7 @@ import retrofit2.http.Headers;
 
 public interface ApiService {
 
-    @GET("services/brand.php")
+    @GET("categoryproduct/get")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<CategorieList> getMyJSON();
 
@@ -33,7 +33,7 @@ public interface ApiService {
     Call<PlatList> getPlatJSON();
 
     @GET("services/liste_all_ecoles.php")
-    @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
+    @Headers({"Content-Type: application/json","apiKey: 8484884774837498","accessToken: 64e72de411826abbc5557fb1b71d451b"})
     Call<EcolageList> getEcolageJSON();
 
 

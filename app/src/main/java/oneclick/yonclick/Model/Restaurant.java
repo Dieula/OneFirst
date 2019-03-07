@@ -3,9 +3,80 @@ package oneclick.yonclick.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Restaurant {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    @SerializedName("id")
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Restaurant implements Serializable {
+
+    String name_categorie ;
+    String image;
+    String id;
+    String accessToken;
+
+
+    public Restaurant(String name_categorie, String image, String id, String accessToken) {
+        this.name_categorie = name_categorie;
+        this.image = image;
+        this.id = id;
+        this.accessToken = accessToken;
+    }
+
+
+    public Restaurant() {
+    }
+
+    public String getName_categorie() {
+        return name_categorie;
+    }
+
+    public void setName_categorie(String name_categorie) {
+        this.name_categorie = name_categorie;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
+    public Restaurant(JSONObject jsonObject) throws JSONException {
+
+        this.id = jsonObject.getString("id");
+        this.name_categorie = jsonObject.getString("name_categorie");
+        this.image = jsonObject.getString("image");
+    }
+
+    public static ArrayList<Restaurant> fromJSONArray(JSONArray array) {
+
+        ArrayList<Restaurant> results = new ArrayList<>();
+
+        for (int x = 0; x < array.length(); x++){
+            try {
+                results.add (new Restaurant(array.getJSONObject(x)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return results;
+    }
+
+
+    /*  @SerializedName("id")
     @Expose
     private Integer id;
     @SerializedName("name_categorie")
@@ -38,5 +109,5 @@ public class Restaurant {
 
     public void setImage(String image) {
         this.image = image;
-    }
+    }*/
 }

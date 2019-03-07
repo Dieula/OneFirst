@@ -1,6 +1,6 @@
 package oneclick.yonclick.Authentification;
 
-class StaticUser {
+public class StaticUser {
     public static String register;
 
     public static void setRegister(String register) {

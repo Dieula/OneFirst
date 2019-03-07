@@ -28,6 +28,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
 
 
 
+
     public ProduitAdapter( Context mContext,List<Product> employees){
         this.products = employees;
         this.mContext = mContext;
@@ -59,7 +60,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
         Product produit = products.get(position);
         holder.categoryName.setText(produit.getNom_Produits());
         holder.price.setText(produit.getPrix());
-       String imgUrl = produit.getImage();
+        String imgUrl = produit.getImage();
 
 
 

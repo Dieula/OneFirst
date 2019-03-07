@@ -167,6 +167,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 editor.putString("nom_client", etNomUser.getText().toString());
                 editor.putString("email_client", etEmailUser.getText().toString());
                 editor.putString("imei", imei);
+                editor.putString("imei", imei);
                 editor.apply();
 
                 call = apiRegister.utilisateur(userRequest);
