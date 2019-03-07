@@ -69,7 +69,7 @@ public class ProductListActivity extends AppCompatActivity {
         initVariable();
         initView();
         loadProductList();
-        initListener();
+        //initListener();
 
     }
 
@@ -90,9 +90,9 @@ public class ProductListActivity extends AppCompatActivity {
     private void initView() {
         setContentView(R.layout.activity_product_list);
 
-        initToolbar();
+    /*    initToolbar();
         enableBackButton();
-        setToolbarTitle(title);
+        setToolbarTitle(title);*/
         //initLoader();
 
         rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
@@ -110,6 +110,7 @@ public class ProductListActivity extends AppCompatActivity {
     }
 
 
+/*
 
     public void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -134,6 +135,7 @@ public class ProductListActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(title);
         }
     }
+*/
 
 
     private void loadProductList() {
@@ -146,7 +148,7 @@ public class ProductListActivity extends AppCompatActivity {
             public void onItemListener(View view, int position) {
                 // invoke product details activity by product id
              ActivityUtils.getInstance().invokeProductDetails(mActivity,
-                        productList.get(position).getID_Produits());
+                        productList.get(position).getId());
             }
         });
 

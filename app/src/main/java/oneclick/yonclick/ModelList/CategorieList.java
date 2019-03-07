@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import oneclick.yonclick.Model.Categorie;
 
 public class CategorieList {
-    @SerializedName("Brandprod")
+    @SerializedName("data")
     @Expose
     private ArrayList<Categorie> employee = null;
 

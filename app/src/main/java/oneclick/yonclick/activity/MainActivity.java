@@ -1,6 +1,8 @@
 package oneclick.yonclick.activity;
 ;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +25,7 @@ import oneclick.yonclick.Fragment.MagasinsFragment;
 import oneclick.yonclick.Fragment.RestaurantFragment;
 import oneclick.yonclick.Model.CartItem;
 import oneclick.yonclick.R;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.BaseActivity;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvCartCounter;
 
     Context mContext;
+    Activity mActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,22 @@ public class MainActivity extends AppCompatActivity {
         // cart counter
         imgToolbarCart = (ImageView) findViewById(R.id.imgToolbarCart);
         tvCartCounter = (TextView) findViewById(R.id.tvCartCounter);
+
+        // toolbar cart action listener
+        imgToolbarCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(),CartListActivity.class));
+
+                /**
+                 * if you don't want to show notification then disable
+                 * disable previous line and use line given bellow
+                 */
+                //ActivityUtils.getInstance().invokeActivity(mActivity, CartListActivity.class, false);
+
+            }
+        });
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
 
@@ -99,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         loadCartCounter();
 
     }
+
 
 
     private void loadCartCounter() {

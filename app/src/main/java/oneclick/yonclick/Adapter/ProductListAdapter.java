@@ -76,7 +76,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         final Product product = dataList.get(position);
 
-        holder.tvProductName.setText(product.getNom_Produits());
+        holder.tvProductName.setText(product.getName_product());
 
         if (!product.getImage().isEmpty()) {
             Glide.with(mContext)

@@ -14,8 +14,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Database Name
     public static final String DATABASE_NAME = "yonclickDB";
 
-    // Table Names
+
     public static final String TABLE_CART = "table_cart";
+
 
     // Common column names
     public static final String KEY_ID              = "id";
@@ -28,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // CART Table - column name
     public static final String KEY_ATTRIBUTE       = "attribute";
+
 
     // CART table create statement
     private static final String CREATE_TABLE_CART = "CREATE TABLE "+ TABLE_CART +
@@ -42,14 +44,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static DatabaseHelper dbHelper = null;
-
-
+    public static DatabaseHelper getInstance(Context context) {
+        if(dbHelper == null) {
+            dbHelper =  new DatabaseHelper(context);
+        }
+        return dbHelper;
+    }
+/*
     public static DatabaseHelper getInstance(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         if(dbHelper == null) {
             dbHelper =  new DatabaseHelper(context,name,factory,version);
         }
         return dbHelper;
-    }
+    }*/
 
   public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -68,10 +75,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // create new tables
         onCreate(db);
     }
-
-
-    public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-    }
-
 }

@@ -10,7 +10,7 @@ import oneclick.yonclick.Model.Ecolage;
 
 public class EcolageList {
 
-    @SerializedName("Ecoles")
+    @SerializedName("data")
     @Expose
     private ArrayList<Ecolage> Ecoles = null;
 

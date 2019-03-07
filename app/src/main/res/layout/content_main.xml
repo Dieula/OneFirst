@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/parentPanel"
     android:layout_height="match_parent">
 
 <ScrollView
@@ -40,7 +41,7 @@
 
         <include
             android:id="@+id/lytNouveauList"
-            layout="@layout/content_meilleure" />
+            layout="@layout/content_produit" />
 
 <!--
         <include

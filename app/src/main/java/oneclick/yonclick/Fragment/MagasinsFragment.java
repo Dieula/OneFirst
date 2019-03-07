@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,17 +51,19 @@ public class MagasinsFragment extends Fragment {
     private CategorieAdapter eAdapter;
 
     private TextView tvCateorie, tvNouveau, tvProduit, tvListAll,
-            tvCartCounter, tvNotificationCounter;
+            tvCartCounter, tvNotificationCounter, textView;
     private ImageView imgToolbarCart, imgNotification, ivSearchIcon;
     //2
+
+    RelativeLayout popularParent;
 
     private ArrayList<Product> productsList;
     private ProgressDialog dialog;
     private RecyclerView mRecyclerview;
     private ProduitAdapter mAdapter;
 
-    SharedPreferences sharedPreferences ;
-    SharedPreferences.Editor editor ;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     LinearLayout loadingView, noDataView;
 
@@ -168,9 +171,19 @@ public class MagasinsFragment extends Fragment {
                      */
                     List<Product> productsList = response.body().getEmployee();
                     RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
+                    textView = (TextView) lytProduitList.findViewById(R.id.tvListTitle);
                     tvListAll = (TextView) lytProduitList.findViewById(R.id.tvSeeAll);
-                    mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.HomeRecyclerview);
+                    popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
+                    mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.homeRecyclerView);
                     mAdapter = new ProduitAdapter(getActivity(), productsList);
+
+                  /*  // popular list ui
+                    RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
+                    mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.HomeRecyclerview);
+                    TextView textView = (TextView) lytProduitList.findViewById(R.id.tvListTitle);
+                    TextView tvPopularListAll = (TextView) lytProduitList.findViewById(R.id.tvSeeAll);
+                    RelativeLayout popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
+                    mAdapter = new ProduitAdapter(getActivity(), productsList);*/
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -190,14 +203,13 @@ public class MagasinsFragment extends Fragment {
             }
         });
 
-     //listener
+        //listener
     /*    tvListAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.featured_items), AppConstants.TYPE_FEATURED, AppConstants.NO_CATEGORY);
             }
         });*/
-
 
 
         //Creating an object of our api interface
@@ -225,7 +237,7 @@ public class MagasinsFragment extends Fragment {
                      */
                     List<Product> productsList = response.body().getEmployee();
                     RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytNouveauList);
-                    mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.HomeRecyclerview);
+                    mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.homeRecyclerView);
                     mAdapter = new ProduitAdapter(getActivity(), productsList);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
@@ -247,10 +259,29 @@ public class MagasinsFragment extends Fragment {
         });
 
 
+    /*// See all listener
+        tvListAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.featured_items),
+                        AppConstants.TYPE_FEATURED, AppConstants.NO_CATEGORY);
+            }
+        });*/
+
+       /* tvRecentListAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().invokeProducts(mActivity, getString(R.string.recent_items), AppConstants.TYPE_RECENT, AppConstants.NO_CATEGORY);
+            }
+        });*/
+
+
+
         return v;
 
 
-}
+    }
+
     private void showEmptyView() {
         if (loadingView != null) {
             loadingView.setVisibility(View.GONE);
@@ -279,5 +310,6 @@ public class MagasinsFragment extends Fragment {
             noDataView.setVisibility(View.GONE);
         }
     }
+
 
 }
