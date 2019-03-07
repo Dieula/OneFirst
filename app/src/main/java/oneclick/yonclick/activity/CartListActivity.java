@@ -207,7 +207,7 @@ public class CartListActivity extends BaseActivity {
 
         if(cartList.isEmpty()) {
             showEmptyView();
-            info_text.setText(getString(R.string.empty_cart));
+          //  info_text.setText(getString(R.string.empty_cart));
         } else {
             hideLoader();
         }
