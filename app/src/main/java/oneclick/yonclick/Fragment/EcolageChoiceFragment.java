@@ -1,4 +1,4 @@
-package oneclick.yonclick;
+package oneclick.yonclick.Fragment;
 
 
 import android.app.AlertDialog;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import oneclick.yonclick.R;
 import oneclick.yonclick.activity.EcolageActivity;
 
 

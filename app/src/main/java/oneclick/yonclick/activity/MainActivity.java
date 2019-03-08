@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadCartCounter() {
         try {
             CartDBController cartController = new CartDBController(mContext);
-            cartController.createDB();
+            //cartController.createDB();
             ArrayList<CartItem> cartList = cartController.getAllCartData();
             cartController.close();
 

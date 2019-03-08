@@ -91,9 +91,9 @@ public class DetailsProduitActivity extends AppCompatActivity {
                // startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
                 // Add to cart list
                 // Add to cart list
-/*
+
                         CartDBController cartController = new CartDBController(mActivity);
-                        cartController.createDB();
+                       // cartController.createDB();
 
                         if (cartController.isAlreadyAddedToCart(product.getId())) {
                             AppUtility.showToast(mContext, getString(R.string.already_in_cart));
@@ -115,7 +115,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
                             btnAddToCart.setText(getString(R.string.added_to_cart));
                             AppUtility.showToast(mContext, getString(R.string.added_to_cart));
                         }
-                        cartController.close();*/
+                        cartController.close();
 
                 Toast.makeText(DetailsProduitActivity.this, "Ajout reussi", Toast.LENGTH_SHORT).show();
             }

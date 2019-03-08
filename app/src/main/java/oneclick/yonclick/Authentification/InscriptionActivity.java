@@ -70,9 +70,8 @@ public class InscriptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                // startActivity(new Intent(getApplicationContext(),CompletezInscriptionActivity.class));
 
-                register();
-
-               /* if (etUserNif.getText().toString() != null )
+                //register();
+              if (etNomUser.getText().toString() != null )
                 {
                     if(validate())
                     {
@@ -83,7 +82,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(InscriptionActivity.this, "Verifier vos champs!", Toast.LENGTH_SHORT).show();
-                }*/
+                }
             }
         });
 
@@ -102,8 +101,9 @@ public class InscriptionActivity extends AppCompatActivity {
 
         boolean valid = true;
         String mName = etNomUser.getText().toString();
-        String mPhone = password.getText().toString();
-        String mNif = etEmailUser.getText().toString();
+        String mPassword = password.getText().toString();
+        String mConfPassword = password.getText().toString();
+        String mEmail = etEmailUser.getText().toString();
 
         //Verify the name
         if (mName.isEmpty() || mName.length() < 3){
@@ -117,7 +117,7 @@ public class InscriptionActivity extends AppCompatActivity {
         }
 
         //Verify the email
-        if (mPhone.isEmpty() || mPhone.isEmpty())
+        if (mEmail.isEmpty() || mEmail.isEmpty())
             etEmailUser.setError("at least 8 characters ");
         return valid;
     }

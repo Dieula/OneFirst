@@ -70,22 +70,21 @@ public class LoginActivity extends AppCompatActivity {
         ivCon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register();
-            }
-          /* if (email.getText().toString() != null )
-                {
-                    if(validate())
+
+                if (email.getText().toString() != null) {
+                    if (validate())
                     {
                         register();
                     }
 
                 }
                 else
-                {
+
+                    {
                     Toast.makeText(LoginActivity.this, "Verifier vos champs!", Toast.LENGTH_SHORT).show();
-                }
-                startActivity(new Intent(getApplicationContext(),InscriptionActivity.class));
-            }*/
+                     }
+              //  startActivity(new Intent(getApplicationContext(), InscriptionActivity.class));
+            }
         });
     }
 
@@ -100,9 +99,24 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validate()
     {
         boolean valid = true;
+        String mName = email.getText().toString();
+        String mPhone = password.getText().toString();
 
 
+        //Verify the name
+        if (mName.isEmpty() || mName.length() < 3){
 
+            email.setError("at least 6 characters");
+            valid = false;
+        }
+        else
+        {
+            email.setError(null);
+        }
+
+        //Verify the email
+        if (mPhone.isEmpty() || mPhone.isEmpty())
+            password.setError("at least 8 characters ");
         return valid;
 
     }

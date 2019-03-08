@@ -63,11 +63,6 @@ public class CartListActivity extends BaseActivity {
         initLister();
 
 
-/*        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        //Display the Up button home
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
     }
     private void initVariables() {
         mContext = getApplicationContext();
@@ -125,7 +120,7 @@ public class CartListActivity extends BaseActivity {
                 if (isChecked) {
                     try {
                         CartDBController cartController = new CartDBController(mContext);
-                        cartController.createDB();
+                        //cartController.createDB();
                         cartController.updateCartItem(cartList.get(position).productId, AppConstants.VALUE_SELECTED);
                         cartController.close();
                     } catch (Exception e) {
@@ -134,7 +129,7 @@ public class CartListActivity extends BaseActivity {
                 } else {
                     try {
                         CartDBController cartController = new CartDBController(mContext);
-                        cartController.createDB();
+                       // cartController.createDB();
                         cartController.updateCartItem(cartList.get(position).productId, AppConstants.VALUE_NOT_SELECTED);
                         cartController.close();
                     } catch (Exception e) {
@@ -153,7 +148,7 @@ public class CartListActivity extends BaseActivity {
                 if (isChecked) {
                     try {
                         CartDBController cartController = new CartDBController(mContext);
-                        cartController.createDB();
+                       // cartController.createDB();
                         cartController.updateAllCartItemSelection(AppConstants.VALUE_SELECTED);
                         cartController.close();
                     } catch (Exception e) {
@@ -162,7 +157,7 @@ public class CartListActivity extends BaseActivity {
                 } else {
                     try {
                         CartDBController cartController = new CartDBController(mContext);
-                        cartController.createDB();
+                      //  cartController.createDB();
                         cartController.updateAllCartItemSelection(AppConstants.VALUE_NOT_SELECTED);
                         cartController.close();
                     } catch (Exception e) {
@@ -203,7 +198,7 @@ public class CartListActivity extends BaseActivity {
         }
         try {
             CartDBController cartController = new CartDBController(mContext);
-            cartController.createDB();
+        //    cartController.createDB();
             cartList.addAll(cartController.getAllCartData());
             cartController.close();
 
@@ -232,7 +227,7 @@ public class CartListActivity extends BaseActivity {
         selectedCounter = 0;
         try {
             CartDBController cartController = new CartDBController(mContext);
-            cartController.createDB();
+           // cartController.createDB();
             cartList.addAll(cartController.getAllCartData());
             for (int i = 0; i < cartList.size(); i++) {
                 if (cartList.get(i).isSelected == AppConstants.VALUE_SELECTED) {
@@ -286,7 +281,7 @@ public class CartListActivity extends BaseActivity {
             public void onPositiveClick() {
                 try {
                     CartDBController cartController = new CartDBController(mContext);
-                    cartController.createDB();
+                  //  cartController.createDB();
                     cartController.deleteCartItemById(productId);
                     cartController.close();
                 } catch (Exception e) {

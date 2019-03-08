@@ -75,49 +75,6 @@
         </RelativeLayout>
 
 
-        <!--     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lay"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="0dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:weightSum="1.0">
-
-
-            <TextView
-                android:id="@+id/tvTotalPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/height_width_20dp"
-                android:layout_weight=".70"
-                android:gravity="center_vertical"
-                android:text="Total :"
-                android:textColor="#000"
-                android:textStyle="bold" />
-
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/footer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/footerView">
-
-
-
-        </RelativeLayout>-->
 
         <LinearLayout
             android:id="@+id/footerView"
@@ -158,41 +115,10 @@
 
         </LinearLayout>
 
-        <!-- <LinearLayout
-            android:id="@+id/footer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="90dp"
-            android:layout_below="@+id/footerView"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:weightSum="1.0">
 
-
-            <Button
-                android:id="@+id/btnBuy"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/mobile"
-                android:hint="Acheter maintenant"
-                android:paddingRight="30dp"
-                android:textColorHint="#FFF"
-                android:textSize="20dp"
-                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
-
-        </LinearLayout>
-
--->
     </RelativeLayout>
-   <!-- <include
+     <include
         layout="@layout/view_common_loader"
         android:background="@color/page_bg_dim" />
--->
+
 </RelativeLayout>

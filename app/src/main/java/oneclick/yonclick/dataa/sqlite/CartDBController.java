@@ -19,13 +19,18 @@ public class CartDBController {
     private Context mContext;
     private SQLiteDatabase database;
 
+
+
     public CartDBController(Context context) {
+
         mContext = context;
-    }
-    public void createDB(){
         dbHelper = new DatabaseHelper(mContext);
         database = dbHelper.getWritableDatabase();
     }
+   /* public void createDB(){
+
+
+    }*/
    /* public CartDBController open() throws SQLException {
         dbHelper = new DatabaseHelper(mContext);
         database = dbHelper.getWritableDatabase();

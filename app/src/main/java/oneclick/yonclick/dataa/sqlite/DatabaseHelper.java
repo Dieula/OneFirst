@@ -9,7 +9,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Logcat tag
     private static final String LOG = DatabaseHelper.class.getName();
     // Database Version
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     // Database Name
     public static final String DATABASE_NAME = "yonclickDB";

@@ -38,10 +38,10 @@ public class MobilePaiementActivity extends AppCompatActivity {
       //  tvPin = (EditText) findViewById(R.id.tvPin);
         progressDialog = new ProgressDialog(MobilePaiementActivity.this);
 
-     Iv_Payer.setOnClickListener(new View.OnClickListener() {
+       Iv_Payer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Transaction Reussie", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Transaction Reussie", Toast.LENGTH_SHORT).show();
             }
         });
 

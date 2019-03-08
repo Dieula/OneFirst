@@ -43,6 +43,7 @@ public class AbonnementFragment extends Fragment {
     private RecyclerView recyclerView;
     private AbonnementAdapter eAdapter;
 
+
     View v;
 
 
@@ -129,7 +130,7 @@ public class AbonnementFragment extends Fragment {
     private void loadCartCounter() {
         try {
             CartDBController cartController = new CartDBController(getActivity());
-            cartController.createDB();
+          //  cartController.createDB();
             ArrayList<CartItem> cartList = cartController.getAllCartData();
             cartController.close();
 

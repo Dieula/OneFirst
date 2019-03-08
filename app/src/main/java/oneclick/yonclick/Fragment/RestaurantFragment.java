@@ -3,9 +3,11 @@ package oneclick.yonclick.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -47,6 +49,7 @@ import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.ModelList.RestaurantList;
 import oneclick.yonclick.R;
+import oneclick.yonclick.activity.MainActivity;
 import oneclick.yonclick.activity.PlatDetailsActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -74,11 +77,13 @@ public class RestaurantFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
+
+        //if the network is available
         if (isNetworkAvailable() == true) {
-            //laodCAtegoriePlat();
+          laodCAtegoriePlat();
         } else {
-            /*
-            new AlertDialog.Builder(MainActivity.this)
+
+            new AlertDialog.Builder(getActivity())
                 .setTitle("Infos")
                 .setMessage("Verifier votre internet.")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -86,9 +91,9 @@ public class RestaurantFragment extends Fragment {
                         // continue with delete
                     }
                 })
-                .setIcon(R.drawable.ic_action_bag)
+                .setIcon(R.drawable.ic_notifications_black_24dp)
                 .show();
-              */
+
 
             new DialogSheet(getContext())
                     .setTitle("Infos")
@@ -114,20 +119,23 @@ public class RestaurantFragment extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_restaurant, container, false);
 
+        return view;
+    }
+
+    private void laodCAtegoriePlat() {
+
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading Data.. Please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
-
-        //recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-
 
         //Creating an object of our api interface
         ApiService api = RetroClient.getApiService();
@@ -169,9 +177,10 @@ public class RestaurantFragment extends Fragment {
             }
         });
 
-
-        return view;
     }
+
+
+    //check the network
 
     private boolean isNetworkAvailable() {
 
@@ -181,133 +190,4 @@ public class RestaurantFragment extends Fragment {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
-
-/*
-    public static String getIdDev(Activity a) {
-
-        TelephonyManager tm = (TelephonyManager) a.getSystemService(Context.TELEPHONY_SERVICE);
-        // get IMEI
-        @SuppressLint("MissingPermission")
-        String imei = tm.getDeviceId();
-        return imei;
-
-
-    }*/
-
 }
-/*
-
-
-        String androidId = Settings.Secure.getString(
-                a.getContentResolver(), Settings.Secure.ANDROID_ID);
-        return  androidId;*/
-
-/*
-    private void laodCAtegoriePlat() {
-    //       StaticUser.setRegister(reponse.body().getLogin());
-
-        String url = "http://45.76.247.112/api/oodcategory/get";
-        // String url = "http://cristalhotelhaiti.com/rebo/api/plat.php";
-    //    AsyncHttpClient client = new AsyncHttpClient();
-
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.addHeader("apiKey", "8484884774837498");
-        client.addHeader("Content-Type", "application/json");
-        client.addHeader("accessToken", "64e72de411826abbc5557fb1b71d451b");
-
-        client.get(url, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-
-                serviceJsonResults = null;
-                try{
-
-                    JSONObject jsonData= response.getJSONObject("data");
-
-                    serviceJsonResults = jsonData.getJSONArray("Category Food");
-
-                    for(int i = 0; i < serviceJsonResults.length(); i++) {
-                        JSONObject childrenData = serviceJsonResults.getJSONObject(i);
-                       // serviceJsonResults = response.getJSONArray("data");
-                        restaurants = Restaurant.fromJSONArray(serviceJsonResults);
-                        eAdapter = new RestaurantAdapter(getActivity(), restaurants);
-
-                        // Attach the adapter to the recyclerview to populate items
-                        recyclerView.setAdapter(eAdapter);
-                        RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
-                        // Attach the layout manager to the recycler view
-                        recyclerView.setLayoutManager(eLayoutManager);
-                        recyclerView.setItemAnimator(new DefaultItemAnimator());
-                        Toast.makeText(getActivity(), "Goood"+ response.toString(), Toast.LENGTH_SHORT).show();
-                    }
-
-                  *//*  aServices.addAll(Services.fromJSONArray(serviceJsonResults));
-                    serviceAdapter.notifyDataSetChanged();
-                    progress.setVisibility(View.GONE);
-                    Log.d("DEBUG", aServices.toString());*//*
-                }
-                catch (JSONException e)
-                {
-
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "Baddd"+ e.toString(), Toast.LENGTH_SHORT).show();
-                }
-
-           *//*
-                //Toast.makeText(MainActivity.this, ""+response.toString(), Toast.LENGTH_SHORT).show();
-                JSONArray arrayCat = response;
-                restaurants = Restaurant.fromJSONArray(arrayCat);
-                eAdapter = new RestaurantAdapter(getActivity(), restaurants);
-
-                // Attach the adapter to the recyclerview to populate items
-                recyclerView.setAdapter(eAdapter);
-                RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
-                // Attach the layout manager to the recycler view
-                recyclerView.setLayoutManager(eLayoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());*//*
-
-                      *//*  //  idProgress.setVisibility(View.GONE);
-                        eAdapter.setOnItemClickListener(new RestaurantAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                Restaurant categorie = restaurants.get(position);
-                                Intent go = new Intent(getActivity(), PlatDetailsActivity.class);
-                                go.putExtra("categorie", categorie);
-                                startActivity(go);
-                                //Toast.makeText(getApplicationContext(), plat.getTitle() + " was clicked!", Toast.LENGTH_SHORT).show();
-                            }
-                        });*//*
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-                Toast.makeText(getActivity(), "Baddd" + errorResponse.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-                    private boolean isNetworkAvailable() {
-
-                        ConnectivityManager connectivityManager
-                                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-                        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-                    }
-
-                    public void fetchTimelineAsync(int page) {
-                        // Send the network request to fetch the updated data
-                        // `client` here is an instance of Android Async HTTP
-                        // getHomeTimeline is an example endpoint.
-                        laodCAtegoriePlat();
-
-                    }
-
-                }*/
-
-     /* */
-
-
-
