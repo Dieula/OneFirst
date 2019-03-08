@@ -1,10 +1,12 @@
 package oneclick.yonclick.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,20 +16,29 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.params.HttpParams;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import oneclick.yonclick.Adapter.ProductListAdapter;
 import oneclick.yonclick.Adapter.ProduitAdapter;
+import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Model.Product;
+import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.Uils.ListTypeShow;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.listener.OnItemClickListener;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class ProductListActivity extends AppCompatActivity {
 
@@ -38,6 +49,12 @@ public class ProductListActivity extends AppCompatActivity {
     private RecyclerView rvProductList;
     private ArrayList<Product> productList;
     private ProductListAdapter mProductListAdapter;
+
+    private ArrayList<Product> productsList;
+    private ProgressDialog dialog;
+    private RecyclerView mRecyclerview;
+    private ProduitAdapter mAdapter;
+
 
     private Toolbar mToolbar;
     protected LayoutManagerType mCurrentLayoutManagerType;
@@ -90,9 +107,6 @@ public class ProductListActivity extends AppCompatActivity {
     private void initView() {
         setContentView(R.layout.activity_product_list);
 
-    /*    initToolbar();
-        enableBackButton();
-        setToolbarTitle(title);*/
         //initLoader();
 
         rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
@@ -109,33 +123,6 @@ public class ProductListActivity extends AppCompatActivity {
 
     }
 
-
-/*
-
-    public void initToolbar() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-    }
-
-    public void enableBackButton() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-    }
-
-    public Toolbar getToolbar() {
-        if (mToolbar == null) {
-            mToolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(mToolbar);
-        }
-        return mToolbar;
-    }
-
-    public void setToolbarTitle(String title) {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(title);
-        }
-    }
-*/
 
 
     private void loadProductList() {
@@ -205,6 +192,53 @@ public class ProductListActivity extends AppCompatActivity {
     }
 
     private void loadProductByCategory(int pageNumber) {
+        //Creating an object of our api interface
+        ApiService prod = RetroClient.getApiService();
+
+        /**
+         * Calling JSON
+         */
+        Call<ProduitList> prodMyJSON = prod.getProduit();
+
+        /**
+         * Enqueue Callback will be call when get response...
+         */
+
+        prodMyJSON.enqueue(new Callback<ProduitList>() {
+            @Override
+            public void onResponse(Call<ProduitList> call, retrofit2.Response<ProduitList> response) {
+
+                //Dismiss Dialog
+                //  pDialog.dismiss();
+
+                if (response.isSuccessful()) {
+                    /**
+                     * Got Successfully
+                     */
+                    List<Product> productsList = response.body().getEmployee();
+
+                    mRecyclerview = (RecyclerView) findViewById(R.id.rvProductList);
+                    mAdapter = new ProduitAdapter(getApplication(), productsList);
+
+                    LinearLayoutManager secondManager = new LinearLayoutManager
+                            (getApplication(), LinearLayoutManager.VERTICAL, false);
+                    mRecyclerview.setLayoutManager(secondManager);
+
+                    mRecyclerview.setItemAnimator(new DefaultItemAnimator());
+                    mRecyclerview.setAdapter(mAdapter);
+
+
+
+                    Toast.makeText(getApplication(), "Good", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProduitList> call, Throwable t) {
+                Toast.makeText(getApplication(), "Bad", Toast.LENGTH_SHORT).show();
+                ///  pDialog.dismiss();
+            }
+        });
 
     }
 

@@ -39,7 +39,7 @@ public class AppConstants {
     public static final int CATEGORY_TEC_PRODUCTS_ID = 21;
 
     // String constants
-    public static final String PRODUCT_ID = "productId";
+    public static final String PRODUCT_ID = "id";
     public static final String CATEGORY_ID = "categoryId";
     public static final String PAGE_TITLE = "pageTitle";
     public static final String PAGE_TYPE = "pageType";
@@ -52,5 +52,9 @@ public class AppConstants {
             TYPE_CATEGORY = 4;
 
     public static final int NO_CATEGORY = -1;
+
+    // Large image view
+    public static final String KEY_IMAGE_URL = "large_image_url";
+    public static final String KEY_PERMISSION = "perm";
 
 }

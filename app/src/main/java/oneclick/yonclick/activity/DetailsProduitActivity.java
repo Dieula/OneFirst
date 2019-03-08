@@ -11,13 +11,16 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
+import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 import oneclick.yonclick.dataa.sqlite.DatabaseHelper;
 
@@ -44,7 +47,18 @@ public class DetailsProduitActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       // produit = (Product) getIntent().getSerializableExtra("id");
+     //  produit = (Product) getIntent().getSerializableExtra("id");
+
+        ImageView ImgProduit = (ImageView) findViewById(R.id.vpImageSlider);
+        ImgProduit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), LargeImageViewActivity.class);
+                intent.putExtra(AppConstants.KEY_IMAGE_URL,"id");
+                startActivity(intent);
+            }
+        });
+
 
 /*
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
@@ -74,7 +88,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
+               // startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
                 // Add to cart list
                 // Add to cart list
 /*

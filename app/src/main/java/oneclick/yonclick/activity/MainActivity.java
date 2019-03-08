@@ -108,8 +108,9 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.nav_slideshow);
 
 
-
     }
+
+
 
 
     @Override

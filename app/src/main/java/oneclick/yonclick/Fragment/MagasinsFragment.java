@@ -10,9 +10,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -35,7 +38,9 @@ import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.DetailsProduitActivity;
+import oneclick.yonclick.activity.ProductListActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
+import oneclick.yonclick.listener.OnItemClickListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -53,6 +58,8 @@ public class MagasinsFragment extends Fragment {
     private TextView tvCateorie, tvNouveau, tvProduit, tvListAll,
             tvCartCounter, tvNotificationCounter, textView;
     private ImageView imgToolbarCart, imgNotification, ivSearchIcon;
+
+    private EditText edtSearchProduct;
     //2
 
     RelativeLayout popularParent;
@@ -76,6 +83,13 @@ public class MagasinsFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("Register", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+
+        // cart counter
+        imgToolbarCart = (ImageView) v.findViewById(R.id.imgToolbarCart);
+        imgNotification = (ImageView) v.findViewById(R.id.imgNotification);
+        ivSearchIcon = (ImageView) v.findViewById(R.id.ivSearchIcon);
+        tvCartCounter = (TextView) v.findViewById(R.id.tvCartCounter);
+        edtSearchProduct = (EditText) v.findViewById(R.id.edtSearchProduct);
 
         //Tcheck the internet
         loadingView = (LinearLayout) v.findViewById(R.id.loadingView);
@@ -132,6 +146,7 @@ public class MagasinsFragment extends Fragment {
 
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
+
                 }
             }
 
@@ -267,7 +282,34 @@ public class MagasinsFragment extends Fragment {
             }
         });*/
 
+        // search icon at home action listener
+        ivSearchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtSearchProduct.getText().toString().isEmpty()) {
+                    AppUtility.showToast(getActivity(), getString(R.string.type_something));
+                } else {
+                    ActivityUtils.getInstance().invokeSearchActivity(getActivity(), edtSearchProduct.getText().toString());
+                }
+            }
+        });
 
+
+        edtSearchProduct.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                    if (edtSearchProduct.getText().toString().isEmpty()) {
+                        AppUtility.showToast(getActivity(), getString(R.string.type_something));
+                    } else {
+                        ActivityUtils.getInstance().invokeSearchActivity(getActivity(), edtSearchProduct.getText().toString());
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
 
         return v;
 

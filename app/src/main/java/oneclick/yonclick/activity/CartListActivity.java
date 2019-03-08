@@ -63,11 +63,11 @@ public class CartListActivity extends BaseActivity {
         initLister();
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+/*        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //Display the Up button home
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
     }
     private void initVariables() {
         mContext = getApplicationContext();
@@ -77,9 +77,9 @@ public class CartListActivity extends BaseActivity {
     private void initView() {
         setContentView(R.layout.activity_cart_list);
 
-        /*initToolbar();
+        initToolbar();
         enableBackButton();
-        setToolbarTitle(getString(R.string.cart_list));*/
+        setToolbarTitle(getString(R.string.cart_list));
         initLoader();
 
         rvCartList = (RecyclerView) findViewById(R.id.rvCartList);
@@ -217,8 +217,8 @@ public class CartListActivity extends BaseActivity {
 
         if(cartList.isEmpty()) {
             showEmptyView();
-            Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
-          //  info_text.setText(getString(R.string.empty_cart));
+          //  Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
+          info_text.setText(getString(R.string.empty_cart));
         } else {
             hideLoader();
         }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import java.util.ArrayList;
 
 import oneclick.yonclick.activity.DetailsProduitActivity;
+import oneclick.yonclick.activity.LargeImageViewActivity;
 import oneclick.yonclick.activity.ProductListActivity;
 import oneclick.yonclick.activity.SearchActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
@@ -37,18 +38,21 @@ public class ActivityUtils {
         activity.startActivity(intent);
     }
 
- /*   public void invokeImage(Activity activity, String imageUrl) {
-        Intent intent = new Intent(activity, LargeImageViewActivity.class);
-        intent.putExtra(AppConstants.KEY_IMAGE_URL, imageUrl);
-        activity.startActivity(intent);
-    }
-*/
     public void invokeProductDetails(Activity activity, int productId) {
         Intent intent = new Intent(activity, DetailsProduitActivity.class);
         intent.putExtra(AppConstants.PRODUCT_ID, productId);
         activity.startActivity(intent);
     }
-
+    public void invokeSearchActivity(Activity activity, String searchKey) {
+        Intent intent = new Intent(activity, SearchActivity.class);
+        intent.putExtra(AppConstants.SEARCH_KEY, searchKey);
+        activity.startActivity(intent);
+    }
+    public void invokeImage(Activity activity, String imageUrl) {
+        Intent intent = new Intent(activity, LargeImageViewActivity.class);
+        intent.putExtra(AppConstants.KEY_IMAGE_URL, imageUrl);
+        activity.startActivity(intent);
+    }
 /*
     public void invokeAddressActivity(Activity activity, ArrayList<LineItem> arrayList, boolean editOnly, boolean shouldFinish) {
         Intent intent = new Intent(activity, MyAddressActivity.class);
@@ -82,11 +86,7 @@ public class ActivityUtils {
         activity.startActivity(intent);
     }
 
-    public void invokeSearchActivity(Activity activity, String searchKey) {
-        Intent intent = new Intent(activity, SearchActivity.class);
-        intent.putExtra(AppConstants.SEARCH_KEY, searchKey);
-        activity.startActivity(intent);
-    }
+
 
     public void invokeOrder(Activity activity, String orderId) {
         Intent intent = new Intent(activity, OrderConfirmationPage.class);

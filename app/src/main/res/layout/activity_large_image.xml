@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <oneclick.yonclick.Uils.TouchImageView
+    <oneclick.yonclick.View.TouchImageView
         android:id="@+id/largeImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

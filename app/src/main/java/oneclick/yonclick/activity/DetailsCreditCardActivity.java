@@ -207,7 +207,7 @@ public class DetailsCreditCardActivity extends AppCompatActivity {
         /*sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         serv = (Services) getIntent().getSerializableExtra("services");*/
-        getSupportActionBar().setTitle("Details Plat");
+        getSupportActionBar().setTitle("Carte de Credit");
     }
 
     @Override
