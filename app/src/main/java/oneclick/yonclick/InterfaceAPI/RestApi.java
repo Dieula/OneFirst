@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestApi {
     public static final String BASE_URL="http://45.76.247.112/api/";
-
+    public static final String BASE_URL_Image="http://45.76.247.112/";
     private static Retrofit retrofit = null;
     private static ApiEndPointInterface apiService;
 

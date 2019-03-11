@@ -18,6 +18,8 @@ import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.R;
 
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+
 public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.CustomViewHolder> {
 
     private Context mContext;
@@ -46,7 +48,7 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Categorie categorie = categories.get(position);
         holder.categoryName.setText(categorie.getName_departements());
-        String imgUrl = categorie.getImage();
+        String imgUrl = BASE_URL_Image+categorie.getImage();
         Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)

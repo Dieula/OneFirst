@@ -24,6 +24,9 @@ import oneclick.yonclick.activity.ProductListActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.listener.OnItemClickListener;
 
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL;
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+
 public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomViewHolder> {
 
     private Context mContext;
@@ -67,9 +70,9 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
 
         holder.price.setText(produit.getPrix());
 
-        String imgUrl = produit.getImage();
+       // String imgUrl = produit.getImage();
 
-        /*  String imgUrl = "http://45.76.247.112/uploads/1/2019-02/culotte_irresistible.jpg";*/
+          String imgUrl = BASE_URL_Image+produit.getImage();
 
 
 
@@ -118,7 +121,8 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.bot)
+                .error(R.drawable.bot)
+                .placeholder(R.drawable.nutv)
                 .into(holder.image);
 
     }
