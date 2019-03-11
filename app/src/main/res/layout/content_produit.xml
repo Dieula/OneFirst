@@ -4,16 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    android:layout_marginLeft="12dp"
-    android:layout_marginRight="12dp"
+    android:layout_marginLeft="@dimen/height_width_15dp"
+    android:layout_marginRight="@dimen/height_width_15dp"
     android:layout_marginTop="5dp">
 
 
     <RelativeLayout
         android:id="@+id/parentPanel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/lytListHeader"
@@ -43,7 +42,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="5dp"
                 android:layout_weight=".20"
                 android:gravity="right"
                 android:text="@string/see_all"
@@ -57,6 +55,7 @@
             android:id="@+id/homeRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/pad_margin_5dp"
             android:layout_below="@+id/lytListHeader"
             android:nestedScrollingEnabled="false" />
 

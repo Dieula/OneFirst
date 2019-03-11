@@ -31,13 +31,20 @@ public class DetailsProduitActivity extends AppCompatActivity {
     private Product product = null;
     private Activity mActivity;
     Product produit;
-
+    String viewType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_produit);
 
+
+        //get the current intent
+        Intent intent = getIntent();
+
+        //get the attached extras from the intent
+       //we should use the same key as we used to attach the data.
+       // viewType = intent.getStringExtra("id");
 
         DatabaseHelper db = new DatabaseHelper(this);
 
@@ -47,7 +54,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-     //  produit = (Product) getIntent().getSerializableExtra("id");
+        //produit = (Product) getIntent().getSerializableExtra("id");
 
         ImageView ImgProduit = (ImageView) findViewById(R.id.vpImageSlider);
         ImgProduit.setOnClickListener(new View.OnClickListener() {
@@ -60,18 +67,19 @@ public class DetailsProduitActivity extends AppCompatActivity {
         });
 
 
-/*
+      /*
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
-        NameProduit.setText(produit.getNom_Produits().toString());
+        NameProduit.setText(produit.getName_product().toString());
 
         TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
-        DescProduit.setText(produit.getNom_Produits().toString());
+        DescProduit.setText(produit.getDetails_product());
 
         TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
-        tvTextDescription.setText(produit.getNom_Produits().toString());
+        tvTextDescription.setText(produit.getDetails_product().toString());
 
         TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
-        tvSalesPrice.setText(produit.getNom_Produits().toString());*/
+        tvSalesPrice.setText(produit.getPrix().toString());*/
+
 
         //Call a differents contenu,not the same in details page
         /*sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);

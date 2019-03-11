@@ -70,9 +70,9 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
 
         holder.price.setText(produit.getPrix());
 
-       // String imgUrl = produit.getImage();
+     // String imgUrl = produit.getImage();
 
-          String imgUrl = BASE_URL_Image+produit.getImage();
+    String imgUrl = BASE_URL_Image+produit.getImage();
 
 
 

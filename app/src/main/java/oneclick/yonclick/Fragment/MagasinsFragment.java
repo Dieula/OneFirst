@@ -187,7 +187,7 @@ public class MagasinsFragment extends Fragment {
                     List<Product> productsList = response.body().getEmployee();
                     RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
                     textView = (TextView) lytProduitList.findViewById(R.id.tvListTitle);
-                    tvListAll = (TextView) lytProduitList.findViewById(R.id.tvSeeAll);
+                    tvListAll = (TextView) v.findViewById(R.id.tvSeeAll);
                     popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
                     mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.homeRecyclerView);
                     mAdapter = new ProduitAdapter(getActivity(), productsList);
