@@ -4,14 +4,16 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:layout_marginTop="@dimen/height_width_15dp"
+    android:layout_marginTop="@dimen/pad_margin_10dp"
     android:layout_marginLeft="@dimen/height_width_15dp"
     android:layout_marginRight="@dimen/height_width_15dp"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@android:color/white"
-    app:cardCornerRadius="@dimen/card_corner_radius"
+
     app:cardElevation="@dimen/card_elevation"
     app:cardUseCompatPadding="true">
+
+    <!--    app:cardCornerRadius="@dimen/pad_margin_5dp"-->
 
     <RelativeLayout
         android:layout_width="match_parent"

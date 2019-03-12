@@ -30,7 +30,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
     Context mContext;
     private Product product = null;
     private Activity mActivity;
-    Product produit;
+    public Product produit;
     String viewType;
 
     @Override
@@ -54,9 +54,12 @@ public class DetailsProduitActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //produit = (Product) getIntent().getSerializableExtra("id");
+       // produit = (Product) getIntent().getStringExtra("id");
 
         ImageView ImgProduit = (ImageView) findViewById(R.id.vpImageSlider);
+        //product.getImage();
+
+
         ImgProduit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,8 +69,7 @@ public class DetailsProduitActivity extends AppCompatActivity {
             }
         });
 
-
-      /*
+       /*
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
         NameProduit.setText(produit.getName_product().toString());
 
@@ -78,7 +80,8 @@ public class DetailsProduitActivity extends AppCompatActivity {
         tvTextDescription.setText(produit.getDetails_product().toString());
 
         TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
-        tvSalesPrice.setText(produit.getPrix().toString());*/
+        tvSalesPrice.setText(produit.getPrix().toString());
+       */
 
 
         //Call a differents contenu,not the same in details page

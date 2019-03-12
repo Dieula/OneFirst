@@ -5,7 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".activity.PaiementConfirmationActivity">
+
+
+    <ImageView
+        android:id="@+id/tvCheck"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="190dp"
+        android:src="@drawable/confirm" />
+
+    <TextView
+        android:id="@+id/tvPAIEMENTREUSSI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCheck"
+        android:layout_marginTop="@dimen/pad_margin_10dp"
+        android:text="PAIEMENT REUSSI"
+        android:gravity="center"
+        android:textSize="@dimen/height_width_25dp"
+        android:textColor="@color/white"/>
+
+
 
 
 

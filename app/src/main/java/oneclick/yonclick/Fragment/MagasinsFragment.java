@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -131,7 +132,7 @@ public class MagasinsFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                    List<Categorie> categories = response.body().getEmployee();
+                    final List<Categorie> categories = response.body().getEmployee();
                     RelativeLayout lytCategoryList = (RelativeLayout) v.findViewById(R.id.lytCategoryList);
                     recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
                     TextView tvSampleCategoryTitle = (TextView) lytCategoryList.findViewById(R.id.tvListTitle);
@@ -146,6 +147,17 @@ public class MagasinsFragment extends Fragment {
 
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
+
+                  /*  eAdapter.setOnItemClickListener(new CategorieAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View itemView, int position) {
+                            Categorie categorie = categories.get(position);
+                            Intent go = new Intent(getActivity(), DetailsProduitActivity.class);
+                            go.putExtra("categorie", (Parcelable) categorie);
+                            startActivity(go);
+                            //Toast.makeText(getApplicationContext(), plat.getTitle() + " was clicked!", Toast.LENGTH_SHORT).show();
+                        }
+                    });*/
 
                 }
             }

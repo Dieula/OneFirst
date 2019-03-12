@@ -35,6 +35,18 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
         this.mContext = mContext;
     }
 
+    // Define listener member variable
+    private OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    // Define the listener interface
+    public interface OnItemClickListener {
+        void onItemClick(View itemView, int position);
+    }
+
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -73,6 +85,21 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
             image = (ImageView) view.findViewById(R.id.ivProductImage);
             categoryName = (TextView) view.findViewById(R.id.tvProductName);
             cardView=(CardView) view.findViewById(R.id.cardView);
+
+            // Setup the click listener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Triggers click upwards to the adapter on click
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(itemView, position);
+                        }
+                    }
+                }
+            });
+
 
         }
     }

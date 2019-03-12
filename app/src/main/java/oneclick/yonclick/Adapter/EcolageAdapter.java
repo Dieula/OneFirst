@@ -32,6 +32,7 @@ public class EcolageAdapter extends RecyclerView.Adapter<EcolageAdapter.CustomVi
     }
 
 
+
     @Override
     public EcolageAdapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())

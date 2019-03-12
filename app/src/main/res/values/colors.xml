@@ -22,7 +22,7 @@
     <color name="list_background_color">#F5F2F4</color>
 
     <!--Common colors with specific name-->
-    <color name="badge_color">#43C34D</color>
+    <color name="badge_color">#212861</color>
     <color name="cart_color">#7182B7</color>
     <color name="search_list_item_back">#f7f5f5</color>
     <color name="product_name_color">#556eaf</color>
