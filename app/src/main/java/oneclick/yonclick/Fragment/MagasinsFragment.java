@@ -56,7 +56,7 @@ public class MagasinsFragment extends Fragment {
     private RecyclerView recyclerView;
     private CategorieAdapter eAdapter;
 
-    private TextView tvCateorie, tvNouveau, tvProduit, tvListAll,
+    private TextView tvCateorie, tvNouveau, tvRecentListAll, tvListAllNouveau,
             tvCartCounter, tvNotificationCounter, textView;
     private ImageView imgToolbarCart, imgNotification, ivSearchIcon;
 
@@ -92,6 +92,24 @@ public class MagasinsFragment extends Fragment {
         tvCartCounter = (TextView) v.findViewById(R.id.tvCartCounter);
         edtSearchProduct = (EditText) v.findViewById(R.id.edtSearchProduct);
 
+
+
+        //Nouveaute view
+        final RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
+        tvNouveau = (TextView) lytProduitList.findViewById(R.id.tvListTitle);
+        tvListAllNouveau = (TextView) lytProduitList.findViewById(R.id.tvSeeALL);
+        popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
+
+
+
+        //Meilleures view
+        final RelativeLayout lytProduitRecent = (RelativeLayout) v.findViewById(R.id.lytNouveauList);
+        textView = (TextView) lytProduitRecent.findViewById(R.id.tvListTitle);
+        tvRecentListAll = (TextView) lytProduitRecent.findViewById(R.id.tvSeeALL);
+        popularParent = (RelativeLayout) lytProduitRecent.findViewById(R.id.parentPanel);
+
+
+
         //Tcheck the internet
         loadingView = (LinearLayout) v.findViewById(R.id.loadingView);
         noDataView = (LinearLayout) v.findViewById(R.id.noDataView);
@@ -102,6 +120,8 @@ public class MagasinsFragment extends Fragment {
         }
 
 
+
+        //Categorie View
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading Data.. Please wait...");
         pDialog.setIndeterminate(false);
@@ -135,11 +155,7 @@ public class MagasinsFragment extends Fragment {
                     final List<Categorie> categories = response.body().getEmployee();
                     RelativeLayout lytCategoryList = (RelativeLayout) v.findViewById(R.id.lytCategoryList);
                     recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
-                    TextView tvSampleCategoryTitle = (TextView) lytCategoryList.findViewById(R.id.tvListTitle);
-                    tvCateorie = (TextView) lytCategoryList.findViewById(R.id.tvSeeAll);
-                    RelativeLayout sampleCatParent = (RelativeLayout) lytCategoryList.findViewById(R.id.parentPanel);
                     eAdapter = new CategorieAdapter(getActivity(), categories);
-
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -170,10 +186,9 @@ public class MagasinsFragment extends Fragment {
         });
 
 
-        ///
 
+        //Nouveaute View
 
-        //Creating an object of our api interface
         ApiService prod = RetroClient.getApiService();
 
         /**
@@ -197,11 +212,9 @@ public class MagasinsFragment extends Fragment {
                      * Got Successfully
                      */
                     List<Product> productsList = response.body().getEmployee();
-                    RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
-                    textView = (TextView) lytProduitList.findViewById(R.id.tvListTitle);
-                    tvListAll = (TextView) v.findViewById(R.id.tvSeeAll);
-                    popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
+
                     mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.homeRecyclerView);
+                    tvNouveau.setText("Nouveautés (" + productsList.size() + ")");
                     mAdapter = new ProduitAdapter(getActivity(), productsList);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
@@ -222,16 +235,11 @@ public class MagasinsFragment extends Fragment {
             }
         });
 
-        //listener
-    /*    tvListAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.featured_items), AppConstants.TYPE_FEATURED, AppConstants.NO_CATEGORY);
-            }
-        });*/
 
 
-        //Creating an object of our api interface
+
+
+        //Meilleures View
         ApiService nouveau = RetroClient.getApiService();
 
         /**
@@ -255,10 +263,9 @@ public class MagasinsFragment extends Fragment {
                      * Got Successfully
                      */
                     List<Product> productsList = response.body().getEmployee();
-                    RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytNouveauList);
-                    mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.homeRecyclerView);
+                    mRecyclerview = (RecyclerView) lytProduitRecent.findViewById(R.id.homeRecyclerView);
+                    textView.setText("Meilleures ventes (" + productsList.size() + ")");
                     mAdapter = new ProduitAdapter(getActivity(), productsList);
-
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
                     mRecyclerview.setLayoutManager(secondManager);
@@ -278,21 +285,28 @@ public class MagasinsFragment extends Fragment {
         });
 
 
-    /*// See all listener
-        tvListAll.setOnClickListener(new View.OnClickListener() {
+
+
+
+      // See all listener
+        tvListAllNouveau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.featured_items),
+                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.nouveau),
                         AppConstants.TYPE_FEATURED, AppConstants.NO_CATEGORY);
             }
-        });*/
+        });
 
-       /* tvRecentListAll.setOnClickListener(new View.OnClickListener() {
+
+      tvRecentListAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityUtils.getInstance().invokeProducts(mActivity, getString(R.string.recent_items), AppConstants.TYPE_RECENT, AppConstants.NO_CATEGORY);
+                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.meilleure), AppConstants.TYPE_RECENT, AppConstants.NO_CATEGORY);
             }
-        });*/
+        });
+
+
+
 
         // search icon at home action listener
         ivSearchIcon.setOnClickListener(new View.OnClickListener() {

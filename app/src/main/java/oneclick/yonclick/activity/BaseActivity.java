@@ -34,6 +34,7 @@ protected void onCreate(Bundle savedInstanceState) {
     }
 
     public void enableBackButton() {
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }

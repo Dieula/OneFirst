@@ -138,8 +138,8 @@
     <string name="carte">Carte de credit</string>
     <string name="empty_result">No data!</string>
 
-    <string name="tech_discovery">Nouveaute</string>
-    <string name="featured_items">Meilleures ventes</string>
+    <string name="nouveau">Nouveautés</string>
+    <string name="meilleure">Meilleures ventes</string>
     <string name="recent_items">Produit</string>
 
 

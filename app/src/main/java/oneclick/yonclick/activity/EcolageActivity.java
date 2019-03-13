@@ -70,7 +70,7 @@ public class EcolageActivity extends AppCompatActivity {
                 case 0:
                     return "Ecolage";
                 case 1:
-                    return "Mensualite";
+                    return "Mensualités";
 
             }
             return null;
