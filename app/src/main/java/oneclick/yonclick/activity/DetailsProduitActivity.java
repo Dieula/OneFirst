@@ -42,10 +42,6 @@ public class DetailsProduitActivity extends AppCompatActivity {
         //get the current intent
         Intent intent = getIntent();
 
-        //get the attached extras from the intent
-       //we should use the same key as we used to attach the data.
-       // viewType = intent.getStringExtra("id");
-
         DatabaseHelper db = new DatabaseHelper(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -54,7 +50,8 @@ public class DetailsProduitActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       // produit = (Product) getIntent().getStringExtra("id");
+
+     //   produit = (Product) getIntent().getSerializableExtra("id");
 
         ImageView ImgProduit = (ImageView) findViewById(R.id.vpImageSlider);
         //product.getImage();
@@ -101,8 +98,6 @@ public class DetailsProduitActivity extends AppCompatActivity {
 
                // startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
                 // Add to cart list
-                // Add to cart list
-
                         CartDBController cartController = new CartDBController(mActivity);
                        // cartController.createDB();
 

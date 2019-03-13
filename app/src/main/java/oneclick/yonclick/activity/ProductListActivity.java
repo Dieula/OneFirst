@@ -52,11 +52,6 @@ public class ProductListActivity extends BaseActivity {
     private ArrayList<Product> productList;
     private ProductListAdapter mProductListAdapter;
 
- /*   private ArrayList<Product> productsList;
-    private ProgressDialog dialog;
-    private RecyclerView mRecyclerview;
-    private ProduitAdapter mAdapter;*/
-
 
     private Toolbar mToolbar;
     protected LayoutManagerType mCurrentLayoutManagerType;
@@ -96,7 +91,6 @@ public class ProductListActivity extends BaseActivity {
     private void initVariable() {
         mActivity = ProductListActivity.this;
         mContext = mActivity.getApplicationContext();
-
         productList = new ArrayList<>();
 
         Intent intent = getIntent();
@@ -113,10 +107,6 @@ public class ProductListActivity extends BaseActivity {
         enableBackButton();
         setToolbarTitle(title);
         initLoader();
-
-        rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
-        viewToggle = (ImageView) findViewById(R.id.viewToggle);
-        loadMoreView = (ProgressBar) findViewById(R.id.loadMore);
 
         rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
         viewToggle = (ImageView) findViewById(R.id.viewToggle);
