@@ -35,7 +35,8 @@
                     android:id="@+id/edNom"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="55dp"
+                    android:layout_below="@+id/IdEtudiant"
+                    android:layout_marginTop="@dimen/pad_margin_10dp"
                     android:background="@drawable/bg_card_cvc_edit_text"
                     android:hint="Nom etudiant"
                     android:inputType="textPersonName"
@@ -47,7 +48,8 @@
                     android:id="@+id/lay"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="110dp"
+                    android:layout_below="@+id/edNom"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_card_cvc_edit_text">
 
                     <Spinner
@@ -61,9 +63,11 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/layout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="165dp"
+                    android:layout_below="@+id/lay"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_card_cvc_edit_text">
 
                     <Spinner
@@ -79,8 +83,9 @@
                     android:id="@+id/etVersement"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_below="@+id/layout"
                     android:layout_marginBottom="-0.25dp"
-                    android:layout_marginTop="220dp"
+                    android:layout_marginTop="@dimen/pad_margin_10dp"
                     android:background="@drawable/bg_card_cvc_edit_text"
                     android:hint="Versement"
                     android:inputType="phone"
@@ -93,8 +98,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_below="@+id/etVersement"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="@dimen/height_width_100dp"
+                    android:layout_marginBottom="@dimen/height_width_50dp"
+                    android:layout_marginTop="@dimen/height_width_50dp"
                     android:background="@drawable/button"
                     android:hint="Payer"
                     android:textColorHint="#FFF"

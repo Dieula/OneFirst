@@ -26,9 +26,7 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
     private List<Categorie> categories;
 
 
-    public String[] mColors = {
-            "00f260","FF9800","009688","673AB7"
-    };
+
 
     public CategorieAdapter( Context mContext,List<Categorie> employees){
         this.categories = employees;

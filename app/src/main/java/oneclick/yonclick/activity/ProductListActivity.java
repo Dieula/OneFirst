@@ -280,16 +280,17 @@ public class ProductListActivity extends BaseActivity {
             viewToggle.setImageResource(R.mipmap.ic_list);
             setRecyclerViewLayoutManager(rvProductList, LayoutManagerType.GRID_LAYOUT_MANAGER);
 
-           // mProductListAdapter = new ProductListAdapter(getApplicationContext(), productsList,ListTypeShow.GRID);
+            mProductListAdapter = new ProductListAdapter(getApplicationContext(), productsList,ListTypeShow.GRID);
 
-            mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.GRID);
+           // mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.GRID);
             rvProductList.setAdapter(mProductListAdapter);
 
         } else {
             viewToggle.setImageResource(R.mipmap.ic_grid);
             setRecyclerViewLayoutManager(rvProductList, LayoutManagerType.LINEAR_LAYOUT_MANAGER);
+            mProductListAdapter = new ProductListAdapter(getApplicationContext(), productsList,ListTypeShow.LINEAR);
 
-            mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.LINEAR);
+            //mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.LINEAR);
             rvProductList.setAdapter(mProductListAdapter);
         }
     }

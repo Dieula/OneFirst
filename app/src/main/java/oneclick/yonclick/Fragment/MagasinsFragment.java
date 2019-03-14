@@ -81,7 +81,7 @@ public class MagasinsFragment extends Fragment {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_magasins, container, false);
 
-        sharedPreferences = getActivity().getSharedPreferences("Register", Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences("Produit", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
 
@@ -93,13 +93,11 @@ public class MagasinsFragment extends Fragment {
         edtSearchProduct = (EditText) v.findViewById(R.id.edtSearchProduct);
 
 
-
         //Nouveaute view
         final RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
         tvNouveau = (TextView) lytProduitList.findViewById(R.id.tvListTitle);
         tvListAllNouveau = (TextView) lytProduitList.findViewById(R.id.tvSeeALL);
         popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
-
 
 
         //Meilleures view
@@ -109,16 +107,15 @@ public class MagasinsFragment extends Fragment {
         popularParent = (RelativeLayout) lytProduitRecent.findViewById(R.id.parentPanel);
 
 
-
         //Tcheck the internet
         loadingView = (LinearLayout) v.findViewById(R.id.loadingView);
         noDataView = (LinearLayout) v.findViewById(R.id.noDataView);
+
 
         AppUtility.noInternetWarning(v.findViewById(R.id.loadingView), getActivity());
         if (!AppUtility.isNetworkAvailable(getActivity())) {
             showEmptyView();
         }
-
 
 
         //Categorie View
@@ -164,16 +161,24 @@ public class MagasinsFragment extends Fragment {
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
 
-                  /*  eAdapter.setOnItemClickListener(new CategorieAdapter.OnItemClickListener() {
+                    eAdapter.setOnItemClickListener(new CategorieAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View itemView, int position) {
-                            Categorie categorie = categories.get(position);
-                            Intent go = new Intent(getActivity(), DetailsProduitActivity.class);
-                            go.putExtra("categorie", (Parcelable) categorie);
-                            startActivity(go);
-                            //Toast.makeText(getApplicationContext(), plat.getTitle() + " was clicked!", Toast.LENGTH_SHORT).show();
+                            Categorie product = categories.get(position);
+                            Intent i = new Intent(getActivity(), DetailsProduitActivity.class);
+                            i.putExtra("username", "foobar");
+                            i.putExtra("Produit", "Produit");
+                            i.putExtra("in_reply_to", "george");
+                            i.putExtra("code", 400);
+                          /*  editor.putString("id", String.valueOf(getId()));
+                            editor.putString("image",eAdapter.toString());
+                            editor.commit();
+                            go.putExtra("categorie", categorie);*/
+                            startActivity(i);
+
                         }
-                    });*/
+                    });
+
 
                 }
             }
@@ -189,7 +194,7 @@ public class MagasinsFragment extends Fragment {
 
         //Nouveaute View
 
-        ApiService prod = RetroClient.getApiService();
+        final ApiService prod = RetroClient.getApiService();
 
         /**
          * Calling JSON
@@ -211,7 +216,7 @@ public class MagasinsFragment extends Fragment {
                     /**
                      * Got Successfully
                      */
-                    List<Product> productsList = response.body().getEmployee();
+                    final List<Product> productsList = response.body().getEmployee();
 
                     mRecyclerview = (RecyclerView) lytProduitList.findViewById(R.id.homeRecyclerView);
                     tvNouveau.setText("Nouveautés (" + productsList.size() + ")");
@@ -223,6 +228,8 @@ public class MagasinsFragment extends Fragment {
 
                     mRecyclerview.setItemAnimator(new DefaultItemAnimator());
                     mRecyclerview.setAdapter(mAdapter);
+
+
 
                     Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
