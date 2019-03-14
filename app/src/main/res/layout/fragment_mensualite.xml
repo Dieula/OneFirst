@@ -123,6 +123,14 @@
                     tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
 
 
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total :"
+                    android:textColor="@color/black"
+                    android:layout_below="@+id/btnValider"/>
+
 
             </RelativeLayout>
 
