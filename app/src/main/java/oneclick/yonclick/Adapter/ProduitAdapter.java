@@ -17,6 +17,9 @@ import java.util.List;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.DetailsProduitActivity;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 
 public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomViewHolder> {
@@ -57,6 +60,14 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
     @Override
     public void onBindViewHolder(ProduitAdapter.CustomViewHolder holder, final int position) {
         final Product produit = products.get(position);
+
+        /*if (position <= 3) {
+            holder.itemView.setVisibility(GONE);
+        }
+        else {
+            holder.itemView.setVisibility(VISIBLE);
+
+        }*/
         holder.categoryName.setText(produit.getName_product());
 
         holder.price.setText(produit.getPrix());
@@ -97,7 +108,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
                     .placeholder(R.drawable.souli)
                     .into(holder.image);
         }
-       else if(Integer.valueOf(produit.getImage())==2)
+       else if(Integer.valueOf(produit.getImage())==2)+
        {
            Glide.with(mContext)
                    .load(imgUrl)
