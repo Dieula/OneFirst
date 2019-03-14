@@ -141,7 +141,8 @@
     <string name="nouveau">Nouveautés</string>
     <string name="meilleure">Meilleures ventes</string>
     <string name="recent_items">Produit</string>
-
+    <string name="brand">Marques</string>
+    <string name="magasin">Magasins</string>
 
     <!-- Support link url -->
     <string name="support">Support</string>

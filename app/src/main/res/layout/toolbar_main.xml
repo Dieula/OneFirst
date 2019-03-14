@@ -89,7 +89,7 @@
                             android:background="@drawable/badge_circle"
                             android:gravity="center"
                             android:layout_marginTop="5dp"
-
+                            android:visibility="gone"
                             android:text="1"
                             android:textColor="@color/white"
                             android:textSize="6sp"

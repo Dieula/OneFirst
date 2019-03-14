@@ -34,14 +34,26 @@
             android:background="@color/toolbar_boarder" />
 
 
-
         <include
             android:id="@+id/lytProduitList"
             layout="@layout/content_produit" />
 
         <include
+            android:id="@+id/lytBrandList"
+            layout="@layout/content_category" />
+
+
+
+        <include
             android:id="@+id/lytNouveauList"
             layout="@layout/content_produit" />
+
+
+
+        <include
+            android:id="@+id/lytNMagasinList"
+            layout="@layout/content_produit" />
+
 
 
 
