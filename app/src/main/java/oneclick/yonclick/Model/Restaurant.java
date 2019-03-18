@@ -10,6 +10,48 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+public class Restaurant
+{
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("name_busness")
+    @Expose
+    private String name_busness;
+
+    @SerializedName("image_compagnie")
+    @Expose
+    private String image_compagnie;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName_busness() {
+        return name_busness;
+    }
+
+    public void setName_busness(String name_busness) {
+        this.name_busness = name_busness;
+    }
+
+    public String getImage_compagnie() {
+        return image_compagnie;
+    }
+
+    public void setImage_compagnie(String image_compagnie) {
+        this.image_compagnie = image_compagnie;
+    }
+}
+
+
+/*
+
 public class Restaurant implements Serializable {
 
     String name_categorie ;
@@ -74,6 +116,7 @@ public class Restaurant implements Serializable {
         }
         return results;
     }
+*/
 
 
     /*  @SerializedName("id")
@@ -110,4 +153,4 @@ public class Restaurant implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }*/
-}
+

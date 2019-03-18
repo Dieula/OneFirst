@@ -2,6 +2,7 @@ package oneclick.yonclick.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import oneclick.yonclick.Model.Magasin;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.DetailsProduitActivity;
@@ -23,15 +26,16 @@ import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 public class MagasinsAdapter extends RecyclerView.Adapter<MagasinsAdapter.CustomViewHolder> {
 
     private Context mContext;
-    private List<Product> products;
+    private List<Magasin> products;
 
 
 
 
-    public MagasinsAdapter( Context mContext,List<Product> employees){
-        this.products = employees;
+    public MagasinsAdapter( Context mContext,List<Magasin> magasins){
+        this.products = magasins;
         this.mContext = mContext;
     }
+
 
 
     @Override
@@ -57,14 +61,11 @@ public class MagasinsAdapter extends RecyclerView.Adapter<MagasinsAdapter.Custom
 
     @Override
     public void onBindViewHolder(MagasinsAdapter.CustomViewHolder holder, final int position) {
-        final Product produit = products.get(position);
-        holder.categoryName.setText(produit.getName_product());
+        final Magasin produit = products.get(position);
+        holder.categoryName.setText(produit.getName_busness());
 
-        holder.price.setText(produit.getPrix());
 
-        // String imgUrl = produit.getImage();
-
-        String imgUrl = BASE_URL_Image+produit.getImage();
+        String imgUrl = BASE_URL_Image+produit.getImage_compagnie();
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +73,7 @@ public class MagasinsAdapter extends RecyclerView.Adapter<MagasinsAdapter.Custom
                 acheterDetails.putExtra("id",produit.getId());
                 mContext.startActivity(acheterDetails);
 
-                Toast.makeText(mContext,"Good"+produit.getName_product(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"Good"+produit.getName_busness(), Toast.LENGTH_SHORT).show();
             }
         });
 

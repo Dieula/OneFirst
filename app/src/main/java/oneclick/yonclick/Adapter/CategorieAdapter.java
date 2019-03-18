@@ -57,7 +57,7 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Categorie categorie = categories.get(position);
-        holder.categoryName.setText(categorie.getName_departements());
+        holder.categoryName.setText(categorie.getNameDepartements());
         String imgUrl = BASE_URL_Image+categorie.getImage();
         Glide.with(mContext)
                 .load(imgUrl)

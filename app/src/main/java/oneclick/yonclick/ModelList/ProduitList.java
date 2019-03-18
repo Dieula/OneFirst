@@ -13,6 +13,7 @@ public class ProduitList {
     @Expose
     private ArrayList<Product> employee = null;
 
+
     public ArrayList<Product> getEmployee() {
         return employee;
     }

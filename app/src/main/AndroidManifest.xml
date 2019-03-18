@@ -40,15 +40,13 @@
             android:name=".activity.EcolageActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.DetailsProduitActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -80,9 +78,7 @@
         <activity
             android:name=".activity.DetailsCreditCardActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activity.SplashActivity">
-
-        </activity>
+        <activity android:name=".activity.SplashActivity" />
         <activity android:name=".activity.ProductListActivity" />
         <activity android:name=".activity.CartListActivity" />
         <activity
@@ -90,8 +86,10 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".NewAuthentification.RegisterUserActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".activity.LargeImageViewActivity"></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activity.LargeImageViewActivity" />
+        <activity android:name=".activity.LIstMarqueActivity" />
+        <activity android:name=".activity.ListCategorieActivity"></activity>
     </application>
 
 </manifest>

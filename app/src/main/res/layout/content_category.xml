@@ -30,7 +30,6 @@
                 android:layout_marginBottom="@dimen/pad_margin_5dp"
                 android:layout_marginTop="@dimen/pad_margin_5dp"
                 android:layout_weight=".80"
-                android:text="Catégories"
                 android:textColor="#000"
                 android:textStyle="bold" />
 

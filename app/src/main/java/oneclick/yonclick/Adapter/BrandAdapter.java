@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import oneclick.yonclick.Model.Categorie;
+import oneclick.yonclick.Model.Brand;
 import oneclick.yonclick.R;
 
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
@@ -21,12 +21,12 @@ import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.CustomViewHolder> {
 
     private Context mContext;
-    private List<Categorie> categories;
+    private List<Brand> categories;
 
 
 
 
-    public BrandAdapter( Context mContext,List<Categorie> employees){
+    public BrandAdapter( Context mContext,List<Brand> employees){
         this.categories = employees;
         this.mContext = mContext;
     }
@@ -54,8 +54,8 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.CustomViewHo
 
     @Override
     public void onBindViewHolder(BrandAdapter.CustomViewHolder holder, int position) {
-        Categorie categorie = categories.get(position);
-        holder.categoryName.setText(categorie.getName_departements());
+        Brand categorie = categories.get(position);
+        holder.categoryName.setText(categorie.getNameBrand());
         String imgUrl = BASE_URL_Image+categorie.getImage();
         Glide.with(mContext)
                 .load(imgUrl)
