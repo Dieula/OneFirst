@@ -42,6 +42,9 @@ public class ListCategorieActivity extends BaseActivity {
     private Context mContext;
     ListTypeShow listTypeShow;
     List<GetCategoryWithProduit> productsList;
+    Categorie categorie;
+
+    List<GetCategoryWithProduit> getCategoryWithProduits;
 
     private RecyclerView rvProductList;
     private ArrayList<GetCategoryWithProduit> productList;
@@ -109,7 +112,7 @@ public class ListCategorieActivity extends BaseActivity {
         // init RecyclerView
         rvProductList.setHasFixedSize(true);
         setRecyclerViewLayoutManager(rvProductList, ListCategorieActivity.LayoutManagerType.LINEAR_LAYOUT_MANAGER);
-        mProductListAdapter = new AdapterListCategorie(mContext, productList, ListTypeShow.LINEAR);
+        mProductListAdapter = new AdapterListCategorie(mContext, productsList, ListTypeShow.LINEAR);
         rvProductList.setAdapter(mProductListAdapter);
 
 
@@ -186,12 +189,12 @@ public class ListCategorieActivity extends BaseActivity {
 
     private void loadProductByCategory(int pageNumber) {
         //Creating an object of our api interface
-        ApiService CategorieBY = RetroClient.getApiService();
+        final ApiService CategorieBY = RetroClient.getApiService();
 
         /**
          * Calling JSON
          */
-        Call<CategorieList> prodMyJSON = CategorieBY.getMyJSONCategorie();
+        final Call<CategorieList> prodMyJSON = CategorieBY.getMyJSONCategorie();
 
         /**
          * Enqueue Callback will be call when get response...
@@ -210,11 +213,14 @@ public class ListCategorieActivity extends BaseActivity {
                      */
 
                     //productList = response.body().getData();
-                   List<Categorie> productsList = response.body().getProduitby();
-                   
+                 // List<Categorie> productsList = response.body().getData();
+
+                    getCategoryWithProduits = new ArrayList<>();
+                   getCategoryWithProduits = categorie.getGetCategoryWithProduits();
+                   getCategoryWithProduits.add((GetCategoryWithProduit) getCategoryWithProduits);
 
                     rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
-                    mProductListAdapter = new AdapterListCategorie(getApplicationContext(), productsList,listTypeShow);
+                    mProductListAdapter = new AdapterListCategorie(getApplicationContext(), getCategoryWithProduits,listTypeShow);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getApplication(), LinearLayoutManager.VERTICAL, false);
@@ -279,7 +285,6 @@ public class ListCategorieActivity extends BaseActivity {
 
             mProductListAdapter = new AdapterListCategorie(getApplicationContext(), productsList,ListTypeShow.GRID);
 
-            // mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.GRID);
             rvProductList.setAdapter(mProductListAdapter);
 
         } else {
@@ -287,7 +292,7 @@ public class ListCategorieActivity extends BaseActivity {
             setRecyclerViewLayoutManager(rvProductList, ListCategorieActivity.LayoutManagerType.LINEAR_LAYOUT_MANAGER);
             mProductListAdapter = new AdapterListCategorie(getApplicationContext(), productsList,ListTypeShow.LINEAR);
 
-            //mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.LINEAR);
+
             rvProductList.setAdapter(mProductListAdapter);
         }
     }

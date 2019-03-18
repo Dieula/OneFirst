@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.GetCategoryWithProduit;
-import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ListTypeShow;
 import oneclick.yonclick.listener.OnItemClickListener;
@@ -39,6 +39,8 @@ public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCatego
         this.dataList = dataList;
         this.listTypeShow = listTypeShow;
     }
+
+
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder
