@@ -22,15 +22,7 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" >
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-
+            android:windowSoftInputMode="stateHidden"/>
 
         <activity android:name=".activity.ScreenLoginActivity" />
         <activity
@@ -49,9 +41,7 @@
             android:name=".activity.EcolageActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".activity.DetailsProduitActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -73,7 +63,16 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.MobilePaiementActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
+
+
         <activity
             android:name=".activity.PaiementConfirmationActivity"
             android:windowSoftInputMode="stateHidden" />
@@ -94,7 +93,13 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.LargeImageViewActivity" />
         <activity android:name=".activity.LIstMarqueActivity" />
-        <activity android:name=".activity.ListCategorieActivity"></activity>
+        <activity android:name=".activity.ListCategorieActivity" />
+
+
+        <activity android:name=".activity.PinNatcomActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

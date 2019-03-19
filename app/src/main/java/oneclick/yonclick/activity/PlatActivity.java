@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlatActivity extends AppCompatActivity {
+public class PlatActivity extends BaseActivity {
     private ArrayList<Plat> restaurants;
     private ProgressDialog pDialog;
     private RecyclerView recyclerView;
@@ -37,22 +37,26 @@ public class PlatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        initView();
+        getAllPlat();
+
+
+    }
+
+    private void initView() {
         setContentView(R.layout.activity_plat);
+        initToolbar();
+        setToolbarTitle(getString(R.string.plat_list));
+        enableBackButton();
+        initLoader();
+    }
 
-/*
 
 
-        //Display the Up button home
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ActionBar actionBar = getSupportActionBar(); // or getActionBar();
-        getSupportActionBar().setTitle("5 Coins"); // set the top title
-        String title = actionBar.getTitle().toString(); // get the title
-        actionBar.hide(); // or even hide the actionbar
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.arrowleft);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-*/
+    private void getAllPlat() {
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading Data.. Please wait...");
@@ -82,15 +86,12 @@ public class PlatActivity extends AppCompatActivity {
                      * Got Successfully
                      */
                     restaurants = response.body().getPlats();
-                    recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-                    eAdapter = new PlatAdapter(getApplicationContext(), restaurants);
+                    recyclerView = findViewById(R.id.recycler_view);
+                    eAdapter = new PlatAdapter(getApplicationContext(),restaurants);
 
                     GridLayoutManager mGridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
                     recyclerView.setLayoutManager(mGridLayoutManager);
 
-/*
-                    RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getApplicationContext());
-                    recyclerView.setLayoutManager(eLayoutManager);*/
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
                 }
@@ -102,8 +103,10 @@ public class PlatActivity extends AppCompatActivity {
             }
         });
 
-
     }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

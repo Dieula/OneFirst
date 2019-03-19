@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import oneclick.yonclick.Model.Categorie;
+
 import oneclick.yonclick.Model.GetCategoryWithProduit;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ListTypeShow;
