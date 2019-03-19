@@ -40,20 +40,17 @@ import oneclick.yonclick.listener.OnItemClickListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class ProductListActivity extends AppCompatActivity {
+public class ProductListActivity extends BaseActivity {
 
     // initialize variables
     private Activity mActivity;
     private Context mContext;
+    ListTypeShow listTypeShow;
+    List<Product> productsList;
 
     private RecyclerView rvProductList;
     private ArrayList<Product> productList;
     private ProductListAdapter mProductListAdapter;
-
-    private ArrayList<Product> productsList;
-    private ProgressDialog dialog;
-    private RecyclerView mRecyclerview;
-    private ProduitAdapter mAdapter;
 
 
     private Toolbar mToolbar;
@@ -86,7 +83,7 @@ public class ProductListActivity extends AppCompatActivity {
         initVariable();
         initView();
         loadProductList();
-        //initListener();
+        initListener();
 
     }
 
@@ -94,7 +91,6 @@ public class ProductListActivity extends AppCompatActivity {
     private void initVariable() {
         mActivity = ProductListActivity.this;
         mContext = mActivity.getApplicationContext();
-
         productList = new ArrayList<>();
 
         Intent intent = getIntent();
@@ -107,7 +103,10 @@ public class ProductListActivity extends AppCompatActivity {
     private void initView() {
         setContentView(R.layout.activity_product_list);
 
-        //initLoader();
+        initToolbar();
+        enableBackButton();
+        setToolbarTitle(title);
+        initLoader();
 
         rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
         viewToggle = (ImageView) findViewById(R.id.viewToggle);
@@ -217,15 +216,15 @@ public class ProductListActivity extends AppCompatActivity {
                      */
                     List<Product> productsList = response.body().getEmployee();
 
-                    mRecyclerview = (RecyclerView) findViewById(R.id.rvProductList);
-                    mAdapter = new ProduitAdapter(getApplication(), productsList);
+                    rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
+                    mProductListAdapter = new ProductListAdapter(getApplicationContext(), productsList,listTypeShow);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getApplication(), LinearLayoutManager.VERTICAL, false);
-                    mRecyclerview.setLayoutManager(secondManager);
+                    rvProductList.setLayoutManager(secondManager);
 
-                    mRecyclerview.setItemAnimator(new DefaultItemAnimator());
-                    mRecyclerview.setAdapter(mAdapter);
+                    rvProductList.setItemAnimator(new DefaultItemAnimator());
+                    rvProductList.setAdapter(mProductListAdapter);
 
 
 
@@ -278,17 +277,20 @@ public class ProductListActivity extends AppCompatActivity {
 
     private void toggleView() {
         if (mCurrentLayoutManagerType == LayoutManagerType.LINEAR_LAYOUT_MANAGER) {
-            viewToggle.setImageResource(R.drawable.ic_list);
+            viewToggle.setImageResource(R.mipmap.ic_list);
             setRecyclerViewLayoutManager(rvProductList, LayoutManagerType.GRID_LAYOUT_MANAGER);
 
-            mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.GRID);
+            mProductListAdapter = new ProductListAdapter(getApplicationContext(), productsList,ListTypeShow.GRID);
+
+           // mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.GRID);
             rvProductList.setAdapter(mProductListAdapter);
 
         } else {
-            viewToggle.setImageResource(R.drawable.ic_grid);
+            viewToggle.setImageResource(R.mipmap.ic_grid);
             setRecyclerViewLayoutManager(rvProductList, LayoutManagerType.LINEAR_LAYOUT_MANAGER);
+            mProductListAdapter = new ProductListAdapter(getApplicationContext(), productsList,ListTypeShow.LINEAR);
 
-            mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.LINEAR);
+            //mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.LINEAR);
             rvProductList.setAdapter(mProductListAdapter);
         }
     }

@@ -25,28 +25,37 @@
         <include
             android:id="@+id/lytCategoryList"
             layout="@layout/content_category" />
-<!--
 
+<!--
         <View
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
             android:layout_marginTop="5dp"
-            android:background="@color/toolbar_boarder" />
+            android:background="@color/toolbar_boarder" />-->
 
--->
 
         <include
             android:id="@+id/lytProduitList"
             layout="@layout/content_produit" />
 
         <include
+            android:id="@+id/lytBrandList"
+            layout="@layout/content_category" />
+
+
+
+        <include
             android:id="@+id/lytNouveauList"
             layout="@layout/content_produit" />
 
-<!--
+
+
         <include
-            android:id="@+id/lytMeilleureList"
-            layout="@layout/content_produit" />-->
+            android:id="@+id/lytNMagasinList"
+            layout="@layout/content_produit" />
+
+
+
 
 
 

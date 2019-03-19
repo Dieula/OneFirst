@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
@@ -20,20 +21,30 @@ import oneclick.yonclick.Uils.ListTypeShow;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.listener.OnItemClickListener;
 
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
 
     private Context mContext;
-    private ArrayList<Product> dataList;
+    private List<Product> dataList;
     private ListTypeShow listTypeShow;
 
     // Listener
     public static OnItemClickListener mListener;
 
-    public ProductListAdapter(Context context, ArrayList<Product> dataList, ListTypeShow listTypeShow) {
+   /* public ProductListAdapter(Context context, ArrayList<Product> dataList, ListTypeShow listTypeShow) {
+        this.mContext = context;
+        this.dataList = dataList;
+        this.listTypeShow = listTypeShow;
+    }*/
+
+
+    public ProductListAdapter( Context context,List<Product> dataList, ListTypeShow listTypeShow) {
         this.mContext = context;
         this.dataList = dataList;
         this.listTypeShow = listTypeShow;
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivProductImage;
@@ -76,11 +87,13 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         final Product product = dataList.get(position);
 
+        String imgUrl = BASE_URL_Image+product.getImage();
+
         holder.tvProductName.setText(product.getName_product());
 
         if (!product.getImage().isEmpty()) {
             Glide.with(mContext)
-                    .load(product.getImage())
+                    .load(imgUrl)
                     .placeholder(R.color.imgPlaceholder)
                     .centerCrop()
                     .into(holder.ivProductImage);

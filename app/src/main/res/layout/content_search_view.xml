@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/height_width_25dp">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/backsearch"
+    android:layout_marginTop="@dimen/pad_margin_10dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardMaxElevation="@dimen/pad_margin_5dp"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_home_search_bar"
-        android:layout_marginBottom="7dp"
-        android:layout_marginLeft="@dimen/pad_margin_15dp"
-        android:layout_marginRight="@dimen/pad_margin_15dp"
-        android:layout_marginTop="@dimen/pad_margin_10dp"
-        android:background="@drawable/shape_search"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingRight="@dimen/pad_margin_5dp"
         android:weightSum="1.0">
 
         <ImageView
@@ -44,4 +46,129 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+
+</android.support.v7.widget.CardView>
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/height_width_25dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_home_search_bar"
+        android:layout_marginTop="@dimen/pad_margin_10dp"
+        android:background="@drawable/backsearch"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/pad_margin_5dp"
+        android:weightSum="1.0">
+
+
+        <ImageView
+            android:id="@+id/ivSearchIcon"
+            android:layout_width="@dimen/height_width_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".10"
+            android:src="@mipmap/ic_search"
+            android:layout_marginBottom="@dimen/pad_margin_5dp"
+            android:layout_marginLeft="@dimen/height_width_20dp"/>
+
+        <EditText
+            android:id="@+id/edtSearchProduct"
+            android:layout_width="@dimen/height_width_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".90"
+            android:background="@drawable/bg_transparent"
+            android:hint="@string/search_anything"
+            android:imeOptions="actionSearch"
+            android:layout_marginBottom="@dimen/pad_margin_5dp"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:textColor="#bcbcc4"
+            android:textColorHint="#bcbcc4"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>-->
+
+<!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/pad_margin_15dp"
+    android:layout_marginRight="@dimen/pad_margin_15dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/backsearch"
+    android:paddingRight="@dimen/pad_margin_5dp"
+    android:layout_marginTop="@dimen/pad_margin_10dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardMaxElevation="@dimen/pad_margin_5dp"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_home_search_bar"
+        android:weightSum="1.0">
+
+        <ImageView
+            android:id="@+id/ivSearchIcon"
+            android:layout_width="@dimen/height_width_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".10"
+            android:padding="@dimen/pad_margin_5dp"
+            android:src="@mipmap/ic_search" />
+
+        <EditText
+            android:id="@+id/edtSearchProduct"
+            android:layout_width="@dimen/height_width_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".90"
+            android:background="@drawable/bg_transparent"
+            android:hint="@string/search_anything"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:textColor="#bcbcc4"
+            android:textColorHint="#bcbcc4"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>-->
+
+
+
+     <!--   <ImageView
+            android:id="@+id/ivSearchIcon"
+            android:layout_width="@dimen/height_width_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".10"
+            android:padding="@dimen/pad_margin_5dp"
+            android:src="@mipmap/ic_search" />
+
+        <EditText
+            android:id="@+id/edtSearchProduct"
+            android:layout_width="@dimen/height_width_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".90"
+            android:background="@drawable/bg_transparent"
+            android:hint="@string/search_anything"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:textColor="#bcbcc4"
+            android:textColorHint="#bcbcc4"
+            android:textSize="15sp" />-->
+
+

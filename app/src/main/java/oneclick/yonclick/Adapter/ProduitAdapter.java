@@ -14,17 +14,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
-
-import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.DetailsProduitActivity;
-import oneclick.yonclick.activity.PlatDetailsActivity;
-import oneclick.yonclick.activity.ProductListActivity;
-import oneclick.yonclick.dataa.constant.AppConstants;
-import oneclick.yonclick.listener.OnItemClickListener;
 
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 
 public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomViewHolder> {
@@ -45,8 +40,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
     public ProduitAdapter.CustomViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_rectangle, parent, false);
-
-
+         /*
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,25 +48,43 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
                 Intent acheterDetails = new Intent(mContext,DetailsProduitActivity.class);
                 acheterDetails.putExtra("id",viewType);
                 mContext.startActivity(acheterDetails);
-
-                Toast.makeText(mContext, "Viewwww", Toast.LENGTH_SHORT).show();
+                Product P = products.get(viewType);
+                Toast.makeText(mContext, P.getName_product(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
 
         return new ProduitAdapter.CustomViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ProduitAdapter.CustomViewHolder holder, int position) {
-        Product produit = products.get(position);
+    public void onBindViewHolder(ProduitAdapter.CustomViewHolder holder, final int position) {
+        final Product produit = products.get(position);
+
+        /*if (position <= 3) {
+            holder.itemView.setVisibility(GONE);
+        }
+        else {
+            holder.itemView.setVisibility(VISIBLE);
+
+        }*/
         holder.categoryName.setText(produit.getName_product());
 
         holder.price.setText(produit.getPrix());
 
-       // String imgUrl = produit.getImage();
+     // String imgUrl = produit.getImage();
 
-          String imgUrl = BASE_URL_Image+produit.getImage();
+         String imgUrl = BASE_URL_Image+produit.getImage();
+         holder.image.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent acheterDetails = new Intent(mContext,DetailsProduitActivity.class);
+                 acheterDetails.putExtra("id",produit.getId());
+                 mContext.startActivity(acheterDetails);
+
+                 Toast.makeText(mContext,"Good"+produit.getName_product(), Toast.LENGTH_SHORT).show();
+             }
+         });
 
 
 
@@ -96,7 +108,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
                     .placeholder(R.drawable.souli)
                     .into(holder.image);
         }
-       else if(Integer.valueOf(produit.getImage())==2)
+       else if(Integer.valueOf(produit.getImage())==2)+
        {
            Glide.with(mContext)
                    .load(imgUrl)

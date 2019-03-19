@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URISyntaxException;
+
+import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
@@ -24,32 +28,52 @@ import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 import oneclick.yonclick.dataa.sqlite.DatabaseHelper;
 
-public class DetailsProduitActivity extends AppCompatActivity {
+public class DetailsProduitActivity extends BaseActivity {
 
     private int quantityCounter = 1;
     Context mContext;
     private Product product = null;
     private Activity mActivity;
-    Product produit;
 
+    public Product produit;
+
+    public Categorie categorie;
+    String viewType;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_produit);
 
+       /*
+        String username = getIntent().getStringExtra("username");
+
+        String Produit = getIntent().getStringExtra("Produit");
+
+        String inReplyTo = getIntent().getStringExtra("in_reply_to");
+        int code = getIntent().getIntExtra("code", 0);
+
+       */
+
+
 
         DatabaseHelper db = new DatabaseHelper(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+       /* Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //Display the Up button home
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+*/
 
-     //  produit = (Product) getIntent().getSerializableExtra("id");
+        //produit = (Product) getIntent().getSerializableExtra("categorie");
 
         ImageView ImgProduit = (ImageView) findViewById(R.id.vpImageSlider);
+        //categorie.getImage();
+
+
         ImgProduit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,25 +84,23 @@ public class DetailsProduitActivity extends AppCompatActivity {
         });
 
 
-/*
+       /*
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
-        NameProduit.setText(produit.getNom_Produits().toString());
+         NameProduit.setText(produit.getName_product());
 
         TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
-        DescProduit.setText(produit.getNom_Produits().toString());
+        DescProduit.setText(produit.getDetails_product());
 
         TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
-        tvTextDescription.setText(produit.getNom_Produits().toString());
+        tvTextDescription.setText(produit.getDetails_product());
 
         TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
-        tvSalesPrice.setText(produit.getNom_Produits().toString());*/
+        tvSalesPrice.setText(produit.getPrix());
+        */
 
-        //Call a differents contenu,not the same in details page
-        /*sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        serv = (Services) getIntent().getSerializableExtra("services");*/
+       /*
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Paiement mobile");
+        getSupportActionBar().setTitle("Paiement mobile");*/
 
 
         final Button btnAddToCart = findViewById(R.id.btnAddToCart);
@@ -90,8 +112,6 @@ public class DetailsProduitActivity extends AppCompatActivity {
 
                // startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
                 // Add to cart list
-                // Add to cart list
-
                         CartDBController cartController = new CartDBController(mActivity);
                        // cartController.createDB();
 
@@ -111,7 +131,8 @@ public class DetailsProduitActivity extends AppCompatActivity {
                             }
 
 
-                            cartController.insertCartItem(product.getId(), product.getName_product(), product.getImage(),product.getImage(), quantityCounter);
+                            cartController.insertCartItem(product.getId(), product.getName_product(),
+                                    product.getImage(),product.getImage(), quantityCounter);
                             btnAddToCart.setText(getString(R.string.added_to_cart));
                             AppUtility.showToast(mContext, getString(R.string.added_to_cart));
                         }

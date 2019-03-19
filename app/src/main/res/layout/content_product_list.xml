@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="@dimen/height_width_60dp"
     android:background="@color/page_bg_dim"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -38,6 +38,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
         android:visibility="gone" />
+
 
  <!--   <include
         layout="@layout/view_common_loader"

@@ -40,7 +40,7 @@ public class ActivityUtils {
 
     public void invokeProductDetails(Activity activity, int productId) {
         Intent intent = new Intent(activity, DetailsProduitActivity.class);
-        intent.putExtra(AppConstants.PRODUCT_ID, productId);
+       // intent.putExtra(AppConstants.PRODUCT_ID, productId);
         activity.startActivity(intent);
     }
     public void invokeSearchActivity(Activity activity, String searchKey) {

@@ -1,5 +1,6 @@
 package oneclick.yonclick.activity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,15 +8,17 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import oneclick.yonclick.Fragment.EcolageChoiceFragment;
 import oneclick.yonclick.Fragment.MensualiteFragment;
 import oneclick.yonclick.R;
 
-public class EcolageActivity extends AppCompatActivity {
+public class EcolageActivity extends BaseActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private String title;
 
 
     @Override
@@ -23,6 +26,10 @@ public class EcolageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecolage);
 
+
+        initToolbar();
+        enableBackButton();
+        setToolbarTitle(title);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -70,12 +77,25 @@ public class EcolageActivity extends AppCompatActivity {
                 case 0:
                     return "Ecolage";
                 case 1:
-                    return "Mensualite";
+                    return "Mensualités";
 
             }
             return null;
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                // Respond to the action bar's Up/Home button
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

@@ -4,16 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    android:layout_marginLeft="12dp"
-    android:layout_marginRight="12dp"
+    android:layout_marginLeft="@dimen/height_width_15dp"
+    android:layout_marginRight="@dimen/height_width_15dp"
     android:layout_marginTop="5dp">
 
 
     <RelativeLayout
         android:id="@+id/parentPanel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/lytListHeader"
@@ -34,16 +33,14 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="@dimen/pad_margin_5dp"
                 android:layout_weight=".80"
-                android:text="Nouveautes"
                 android:textColor="#000"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvSeeAll"
+                android:id="@+id/tvSeeALL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="5dp"
                 android:layout_weight=".20"
                 android:gravity="right"
                 android:text="@string/see_all"
@@ -57,6 +54,7 @@
             android:id="@+id/homeRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/pad_margin_5dp"
             android:layout_below="@+id/lytListHeader"
             android:nestedScrollingEnabled="false" />
 
@@ -64,90 +62,3 @@
 
 
 </RelativeLayout>
-
-<!--
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/height_width_20dp"
-        android:background="@color/page_bg"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/tvListTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name" />
-
-
-            <TextView
-                android:id="@+id/tvMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:paddingEnd="200dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginLeft="@dimen/height_width_100dp"
-                android:text="Name" />
-
-          &lt;!&ndash;  <TextView
-                android:id="@+id/tvSeeAll"
-                android:layout_width="146dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="@dimen/height_width_100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="0dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight=".20"
-                android:gravity="right"
-                android:text="@string/see_all"
-                android:textColor="@color/title_color_deep"
-                android:textSize="@dimen/txt_size_12sp" />&ndash;&gt;
-            &lt;!&ndash;   <TextView
-                android:id="@+id/tvListTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/pad_margin_5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="@dimen/pad_margin_5dp"
-                android:layout_weight=".80"
-                android:textColor="@color/title_color"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSeeAll"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:layout_weight=".20"
-                android:gravity="right"
-                android:text="@string/see_all"
-                android:textColor="@color/title_color_deep"
-                android:textSize="@dimen/txt_size_12sp" />&ndash;&gt;
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/HomeRecyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v7.widget.RecyclerView>
-
-    </LinearLayout>
-
-</RelativeLayout>-->

@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    android:layout_marginLeft="12dp"
-    android:layout_marginRight="12dp"
+    android:layout_marginLeft="@dimen/height_width_15dp"
+    android:layout_marginRight="@dimen/height_width_15dp"
     android:layout_marginTop="5dp">
 
 
@@ -15,8 +15,6 @@
         android:orientation="horizontal"
         android:paddingBottom="@dimen/pad_margin_5dp"
         android:paddingTop="@dimen/pad_margin_5dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
         android:weightSum="1.0">
 
         <TextView
@@ -24,7 +22,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/pad_margin_5dp"
-            android:layout_marginRight="5dp"
             android:layout_marginTop="@dimen/pad_margin_5dp"
             android:layout_weight=".80"
             android:text="Meilleures ventes"
@@ -36,7 +33,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="5dp"
             android:layout_weight=".20"
             android:gravity="right"
             android:text="@string/see_all"
@@ -56,6 +52,7 @@
             android:id="@+id/HomeRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/pad_margin_10dp"
             android:layout_below="@+id/parentPanel"
             android:nestedScrollingEnabled="false" />
 

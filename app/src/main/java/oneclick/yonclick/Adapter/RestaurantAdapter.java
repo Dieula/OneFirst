@@ -21,6 +21,8 @@ import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.PlatActivity;
 
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.CustomViewHolder> {
     private List<Restaurant> restaurants;
     private Context mContext;
@@ -43,16 +45,15 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
     @Override
     public void onBindViewHolder(RestaurantAdapter.CustomViewHolder holder, int position) {
         Restaurant restaurant = restaurants.get(position);
-        holder.restaurantName.setText(restaurant.getName_categorie());
+        holder.restaurantName.setText(restaurant.getName_busness());
 
-        String imgUrl = restaurant.getImage();
+        String imgUrl = BASE_URL_Image+restaurant.getImage_compagnie();
 
         holder.image.setImageResource(0);
 
        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
-                .placeholder(R.drawable.plat)
                 .into(holder.image);
     }
 

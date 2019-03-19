@@ -26,13 +26,23 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
     private List<Categorie> categories;
 
 
-    public String[] mColors = {
-            "00f260","FF9800","009688","673AB7"
-    };
+
 
     public CategorieAdapter( Context mContext,List<Categorie> employees){
         this.categories = employees;
         this.mContext = mContext;
+    }
+
+    // Define listener member variable
+    private OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    // Define the listener interface
+    public interface OnItemClickListener {
+        void onItemClick(View itemView, int position);
     }
 
 
@@ -47,7 +57,7 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Categorie categorie = categories.get(position);
-        holder.categoryName.setText(categorie.getName_departements());
+        holder.categoryName.setText(categorie.getNameDepartements());
         String imgUrl = BASE_URL_Image+categorie.getImage();
         Glide.with(mContext)
                 .load(imgUrl)
@@ -73,6 +83,21 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.Cust
             image = (ImageView) view.findViewById(R.id.ivProductImage);
             categoryName = (TextView) view.findViewById(R.id.tvProductName);
             cardView=(CardView) view.findViewById(R.id.cardView);
+
+            // Setup the click listener
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Triggers click upwards to the adapter on click
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(itemView, position);
+                        }
+                    }
+                }
+            });
+
 
         }
     }

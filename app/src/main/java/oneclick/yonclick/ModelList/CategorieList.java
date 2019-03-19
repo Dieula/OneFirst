@@ -3,20 +3,32 @@ package oneclick.yonclick.ModelList;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import oneclick.yonclick.Model.Categorie;
 
 public class CategorieList {
+
     @SerializedName("data")
     @Expose
-    private ArrayList<Categorie> employee = null;
+    private List<Categorie> data = null;
 
-    public ArrayList<Categorie> getEmployee() {
-        return employee;
+    private List<Categorie> produitby = null;
+
+    public List<Categorie> getProduitby() {
+        return produitby;
     }
 
-    public void setEmployee(ArrayList<Categorie> employee) {
-        this.employee = employee;
+    public void setProduitby(List<Categorie> produitby) {
+        this.produitby = produitby;
     }
+
+    public List<Categorie> getData() {
+        return data;
+    }
+
+    public void setData(List<Categorie> data) {
+        this.data = data;
+    }
+
 }
