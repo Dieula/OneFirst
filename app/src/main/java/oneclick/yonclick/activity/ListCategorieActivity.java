@@ -73,6 +73,10 @@ public class ListCategorieActivity extends BaseActivity {
     private int pageNumber = AppConstants.INITIAL_PAGE_NUMBER;
     private boolean loading = true;
 
+    String mParsedProductID;
+    String mParsedProductImageUrl;
+    String mParsedProductName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +85,12 @@ public class ListCategorieActivity extends BaseActivity {
         initView();
         loadProductList();
         initListener();
+
+        Bundle bundle = getIntent().getExtras();
+        mParsedProductName = bundle.getString("product_name");
+        mParsedProductID = bundle.getString("product_id");
+        mParsedProductImageUrl = bundle.getString("product_image");
+
 
     }
 

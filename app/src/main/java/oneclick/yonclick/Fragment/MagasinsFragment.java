@@ -54,6 +54,10 @@ import retrofit2.Response;
  */
 public class MagasinsFragment extends Fragment {
 
+    String mProductName;
+    String mProductID;
+    String mProductPrice;
+    String mProductImageUrl;
 
     private ArrayList<Categorie> categories;
     private ProgressDialog pDialog;
@@ -505,16 +509,23 @@ public class MagasinsFragment extends Fragment {
                         @Override
                         public void onItemClick(View itemView, int position) {
                             Categorie product = categories.get(position);
-                            Intent i = new Intent(getActivity(), ListCategorieActivity.class);
+                            Intent intent = new Intent(getActivity(), ListCategorieActivity.class);
+
+                            intent.putExtra("product_name", mProductName);
+                            intent.putExtra("product_id", mProductID);
+                            intent.putExtra("product_image", mProductImageUrl);
+                            intent.putExtra("product_price", mProductPrice);
+                            getActivity().startActivity(intent);
+                           /* Intent i = new Intent(getActivity(), ListCategorieActivity.class);
                             i.putExtra("username", "foobar");
                             i.putExtra("Produit", "Produit");
                             i.putExtra("in_reply_to", "george");
                             i.putExtra("code", 400);
-                          /*  editor.putString("id", String.valueOf(getId()));
+                          *//*  editor.putString("id", String.valueOf(getId()));
                             editor.putString("image",eAdapter.toString());
                             editor.commit();
-                            go.putExtra("categorie", categorie);*/
-                            startActivity(i);
+                            go.putExtra("categorie", categorie);*//*
+                            startActivity(i);*/
 
                         }
                     });
