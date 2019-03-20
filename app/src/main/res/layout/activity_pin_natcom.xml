@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PinNatcomActivity">
+
+
+    <include
+        android:id="@+id/toolbarTop"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:id="@+id/rvTextPin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbarTop">
+
+        <TextView
+            android:id="@+id/tvTextPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pinText"
+            android:layout_marginTop="@dimen/height_width_50dp"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/height_width_30dp"
+            android:layout_marginLeft="@dimen/height_width_30dp"/>
+
+
+        <EditText
+            android:id="@+id/edPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTextPin"
+            android:hint="Entrer votre pin"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/height_width_70dp"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

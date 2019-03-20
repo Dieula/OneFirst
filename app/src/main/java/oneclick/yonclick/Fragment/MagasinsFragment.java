@@ -71,11 +71,6 @@ public class MagasinsFragment extends Fragment {
     private BrandAdapter eBrandAdapter;
 
 
-    String mProductName;
-    String mProductID;
-    String mProductPrice;
-    String mProductImageUrl;
-
     private TextView tvCateorie, tvNouveau, tvRecentListAll, tvListAllNouveau,
             tvCartCounter, tvBrand, textView;
     private ImageView imgToolbarCart, imgNotification, ivSearchIcon;
@@ -83,7 +78,7 @@ public class MagasinsFragment extends Fragment {
     private EditText edtSearchProduct;
     //2
 
-    RelativeLayout popularParent;
+    RelativeLayout popularParent,lytCategoryList,lytBrandList,lytProduitList,lytProduitRecent,lytNMagasinList;
 
     private ArrayList<Product> productsList;
     private ProgressDialog dialog;
@@ -94,15 +89,92 @@ public class MagasinsFragment extends Fragment {
     SharedPreferences.Editor editor;
 
     LinearLayout loadingView, noDataView;
+    View v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View v = inflater.inflate(R.layout.fragment_magasins, container, false);
+        v = inflater.inflate(R.layout.fragment_magasins, container, false);
+
 
         sharedPreferences = getActivity().getSharedPreferences("Produit", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
+
+
+
+     //Method inside
+        GetAllCategorie();
+        GetAllProduct();
+        GetAllStore();
+        GetAllBrand();
+        GetAllNewProduct();
+        initListener();
+        initView();
+
+
+        // See all listener
+        tvListAllNouveau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.nouveau),
+                        AppConstants.TYPE_FEATURED, AppConstants.NO_CATEGORY);
+            }
+        });
+
+
+        tvRecentListAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.meilleure), AppConstants.TYPE_RECENT, AppConstants.NO_CATEGORY);
+            }
+        });
+
+
+
+
+        // search icon at home action listener
+        ivSearchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtSearchProduct.getText().toString().isEmpty()) {
+                    AppUtility.showToast(getActivity(), getString(R.string.type_something));
+                } else {
+                    ActivityUtils.getInstance().invokeSearchActivity(getActivity(), edtSearchProduct.getText().toString());
+                }
+            }
+        });
+
+
+        edtSearchProduct.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                    if (edtSearchProduct.getText().toString().isEmpty()) {
+                        AppUtility.showToast(getActivity(), getString(R.string.type_something));
+                    } else {
+                        ActivityUtils.getInstance().invokeSearchActivity(getActivity(), edtSearchProduct.getText().toString());
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+        return v;
+
+
+    }
+
+    private void initView() {
+
+        AppUtility.noInternetWarning(v.findViewById(R.id.loadingView), getActivity());
+        if (!AppUtility.isNetworkAvailable(getActivity())) {
+            showEmptyView();
+        }
 
 
         // cart counter
@@ -113,32 +185,32 @@ public class MagasinsFragment extends Fragment {
         edtSearchProduct = (EditText) v.findViewById(R.id.edtSearchProduct);
 
         //Categorie
-        final RelativeLayout lytCategoryList = (RelativeLayout) v.findViewById(R.id.lytCategoryList);
+        lytCategoryList = (RelativeLayout) v.findViewById(R.id.lytCategoryList);
         tvCateorie = (TextView) lytCategoryList.findViewById(R.id.tvListTitle);
         popularParent = (RelativeLayout) lytCategoryList.findViewById(R.id.parentPanel);
 
         //Brand
-        final RelativeLayout lytBrandList = (RelativeLayout) v.findViewById(R.id.lytBrandList);
+        lytBrandList = (RelativeLayout) v.findViewById(R.id.lytBrandList);
         tvBrand = (TextView) lytBrandList.findViewById(R.id.tvListTitle);
         popularParent = (RelativeLayout) lytBrandList.findViewById(R.id.parentPanel);
 
 
 
         //Nouveaute
-        final RelativeLayout lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
+        lytProduitList = (RelativeLayout) v.findViewById(R.id.lytProduitList);
         tvNouveau = (TextView) lytProduitList.findViewById(R.id.tvListTitle);
         tvListAllNouveau = (TextView) lytProduitList.findViewById(R.id.tvSeeALL);
         popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
 
 
         //Product
-        final RelativeLayout lytProduitRecent = (RelativeLayout) v.findViewById(R.id.lytNouveauList);
+        lytProduitRecent = (RelativeLayout) v.findViewById(R.id.lytNouveauList);
         textView = (TextView) lytProduitRecent.findViewById(R.id.tvListTitle);
         tvRecentListAll = (TextView) lytProduitRecent.findViewById(R.id.tvSeeALL);
         popularParent = (RelativeLayout) lytProduitRecent.findViewById(R.id.parentPanel);
 
         //Magasins
-        final RelativeLayout lytNMagasinList = (RelativeLayout) v.findViewById(R.id.lytNMagasinList);
+        lytNMagasinList = (RelativeLayout) v.findViewById(R.id.lytNMagasinList);
         textView = (TextView) lytNMagasinList.findViewById(R.id.tvListTitle);
         tvRecentListAll = (TextView) lytNMagasinList.findViewById(R.id.tvSeeALL);
         popularParent = (RelativeLayout) lytNMagasinList.findViewById(R.id.parentPanel);
@@ -148,96 +220,14 @@ public class MagasinsFragment extends Fragment {
         loadingView = (LinearLayout) v.findViewById(R.id.loadingView);
         noDataView = (LinearLayout) v.findViewById(R.id.noDataView);
 
+    }
 
-        AppUtility.noInternetWarning(v.findViewById(R.id.loadingView), getActivity());
-        if (!AppUtility.isNetworkAvailable(getActivity())) {
-            showEmptyView();
-        }
+    private void initListener() {
 
 
-        //Categorie View
-        pDialog = new ProgressDialog(getActivity());
-        pDialog.setMessage("Loading Data.. Please wait...");
-        pDialog.setIndeterminate(false);
-        pDialog.setCancelable(false);
-        pDialog.show();
+    }
 
-        //Creating an object of our api interface
-        ApiService api = RetroClient.getApiService();
-
-        /**
-         * Calling JSON
-         */
-        Call<CategorieList> call = api.getMyJSON();
-
-        /**
-         * Enqueue Callback will be call when get response...
-         */
-
-        call.enqueue(new Callback<CategorieList>() {
-            @Override
-            public void onResponse(Call<CategorieList> call, retrofit2.Response<CategorieList> response)
-            {
-
-                //Dismiss Dialog
-                pDialog.dismiss();
-                // hideLoader();
-
-                if (response.isSuccessful()) {
-                    /**
-                     * Got Successfully
-                     */
-                    final List<Categorie> categories = response.body().getData();
-                    recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
-                    eAdapter = new CategorieAdapter(getActivity(), categories);
-
-
-
-                    tvCateorie.setText("Categorie");
-
-                    LinearLayoutManager secondManager = new LinearLayoutManager
-                            (getActivity(), LinearLayoutManager.HORIZONTAL, false);
-                    recyclerView.setLayoutManager(secondManager);
-
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(eAdapter);
-
-                    eAdapter.setOnItemClickListener(new CategorieAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(View itemView, int position) {
-                            Categorie product = categories.get(position);
-
-                            Intent intent = new Intent(getActivity(), DetailsProduitActivity.class);
-                            intent.putExtra("product_name", mProductName);
-                            intent.putExtra("product_id", mProductID);
-                            intent.putExtra("product_image", mProductImageUrl);
-                            getActivity().startActivity(intent);
-                            /*Intent i = new Intent(getActivity(), DetailsProduitActivity.class);
-                            i.putExtra("username", "foobar");
-                            i.putExtra("Produit", "Produit");
-                            i.putExtra("in_reply_to", "george");
-                            i.putExtra("code", 400);
-                          *//*  editor.putString("id", String.valueOf(getId()));
-                            editor.putString("image",eAdapter.toString());
-                            editor.commit();
-                            go.putExtra("categorie", categorie);*//*
-                            startActivity(i);*/
-
-                        }
-                    });
-
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CategorieList> call, Throwable t) {
-                pDialog.dismiss();
-                //  hideLoader();
-            }
-        });
-
-
+    private void GetAllNewProduct() {
 
         //Nouveaute View
         final ApiService prod = RetroClient.getApiService();
@@ -288,58 +278,9 @@ public class MagasinsFragment extends Fragment {
             }
         });
 
+    }
 
-
-
-
-        //Product View
-        ApiService product = RetroClient.getApiService();
-
-        /**
-         * Calling JSON
-         */
-        Call<ProduitList> dMyJSON = product.getProduit();
-
-        /**
-         * Enqueue Callback will be call when get response...
-         */
-
-        dMyJSON.enqueue(new Callback<ProduitList>() {
-            @Override
-            public void onResponse(Call<ProduitList> call, retrofit2.Response<ProduitList> response) {
-
-                //Dismiss Dialog
-                //  pDialog.dismiss();
-
-                if (response.isSuccessful()) {
-                    /**
-                     * Got Successfully
-                     */
-                    List<Product> productsList = response.body().getEmployee();
-                    mRecyclerview = (RecyclerView) lytProduitRecent.findViewById(R.id.homeRecyclerView);
-                    textView.setText("Produits (" + productsList.size() + ")");
-                    mAdapter = new ProduitAdapter(getActivity(), productsList);
-                    LinearLayoutManager secondManager = new LinearLayoutManager
-                            (getActivity(), LinearLayoutManager.HORIZONTAL, false);
-                    mRecyclerview.setLayoutManager(secondManager);
-
-                    mRecyclerview.setItemAnimator(new DefaultItemAnimator());
-                    mRecyclerview.setAdapter(mAdapter);
-
-                    Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ProduitList> call, Throwable t) {
-                Toast.makeText(getActivity(), "Bad", Toast.LENGTH_SHORT).show();
-                ///  pDialog.dismiss();
-            }
-        });
-
-
-
-
+    private void GetAllBrand() {
 
         //Brand View
         //Creating an object of our api interface
@@ -405,7 +346,9 @@ public class MagasinsFragment extends Fragment {
         });
 
 
+    }
 
+    private void GetAllStore() {
         //Get all store
         ApiService store = RetroClient.getApiService();
 
@@ -455,58 +398,138 @@ public class MagasinsFragment extends Fragment {
             }
         });
 
+    }
 
+    private void GetAllProduct() {
 
-        // See all listener
-        tvListAllNouveau.setOnClickListener(new View.OnClickListener() {
+        //Product View
+        ApiService product = RetroClient.getApiService();
+
+        /**
+         * Calling JSON
+         */
+        Call<ProduitList> dMyJSON = product.getProduit();
+
+        /**
+         * Enqueue Callback will be call when get response...
+         */
+
+        dMyJSON.enqueue(new Callback<ProduitList>() {
             @Override
-            public void onClick(View v) {
-                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.nouveau),
-                        AppConstants.TYPE_FEATURED, AppConstants.NO_CATEGORY);
-            }
-        });
+            public void onResponse(Call<ProduitList> call, retrofit2.Response<ProduitList> response) {
 
+                //Dismiss Dialog
+                //  pDialog.dismiss();
 
-      tvRecentListAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.meilleure), AppConstants.TYPE_RECENT, AppConstants.NO_CATEGORY);
-            }
-        });
+                if (response.isSuccessful()) {
+                    /**
+                     * Got Successfully
+                     */
+                    List<Product> productsList = response.body().getEmployee();
+                    mRecyclerview = (RecyclerView) lytProduitRecent.findViewById(R.id.homeRecyclerView);
+                    textView.setText("Produits (" + productsList.size() + ")");
+                    mAdapter = new ProduitAdapter(getActivity(), productsList);
+                    LinearLayoutManager secondManager = new LinearLayoutManager
+                            (getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                    mRecyclerview.setLayoutManager(secondManager);
 
+                    mRecyclerview.setItemAnimator(new DefaultItemAnimator());
+                    mRecyclerview.setAdapter(mAdapter);
 
-
-
-        // search icon at home action listener
-        ivSearchIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edtSearchProduct.getText().toString().isEmpty()) {
-                    AppUtility.showToast(getActivity(), getString(R.string.type_something));
-                } else {
-                    ActivityUtils.getInstance().invokeSearchActivity(getActivity(), edtSearchProduct.getText().toString());
+                    Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
 
-
-        edtSearchProduct.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-                    if (edtSearchProduct.getText().toString().isEmpty()) {
-                        AppUtility.showToast(getActivity(), getString(R.string.type_something));
-                    } else {
-                        ActivityUtils.getInstance().invokeSearchActivity(getActivity(), edtSearchProduct.getText().toString());
-                    }
-                    return true;
-                }
-                return false;
+            public void onFailure(Call<ProduitList> call, Throwable t) {
+                Toast.makeText(getActivity(), "Bad", Toast.LENGTH_SHORT).show();
+                ///  pDialog.dismiss();
             }
         });
 
-        return v;
+
+
+    }
+
+    private void GetAllCategorie() {
+
+
+        //Categorie View
+        pDialog = new ProgressDialog(getActivity());
+        pDialog.setMessage("Loading Data.. Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        //Creating an object of our api interface
+        ApiService api = RetroClient.getApiService();
+
+        /**
+         * Calling JSON
+         */
+        Call<CategorieList> call = api.getMyJSON();
+
+        /**
+         * Enqueue Callback will be call when get response...
+         */
+
+        call.enqueue(new Callback<CategorieList>() {
+            @Override
+            public void onResponse(Call<CategorieList> call, retrofit2.Response<CategorieList> response)
+            {
+
+                //Dismiss Dialog
+                pDialog.dismiss();
+                // hideLoader();
+
+                if (response.isSuccessful()) {
+                    /**
+                     * Got Successfully
+                     */
+                    final List<Categorie> categories = response.body().getData();
+                    recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
+                    eAdapter = new CategorieAdapter(getActivity(), categories);
+
+
+
+                    tvCateorie.setText("Categorie");
+
+                    LinearLayoutManager secondManager = new LinearLayoutManager
+                            (getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                    recyclerView.setLayoutManager(secondManager);
+
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(eAdapter);
+
+                    eAdapter.setOnItemClickListener(new CategorieAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View itemView, int position) {
+                            Categorie product = categories.get(position);
+                            Intent i = new Intent(getActivity(), ListCategorieActivity.class);
+                            i.putExtra("username", "foobar");
+                            i.putExtra("Produit", "Produit");
+                            i.putExtra("in_reply_to", "george");
+                            i.putExtra("code", 400);
+                          /*  editor.putString("id", String.valueOf(getId()));
+                            editor.putString("image",eAdapter.toString());
+                            editor.commit();
+                            go.putExtra("categorie", categorie);*/
+                            startActivity(i);
+
+                        }
+                    });
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CategorieList> call, Throwable t) {
+                pDialog.dismiss();
+                //  hideLoader();
+            }
+        });
+
 
 
     }

@@ -44,12 +44,11 @@ public class ListCategorieActivity extends BaseActivity {
     List<GetCategoryWithProduit> productsList;
     Categorie categorie;
 
-    //List<GetCategoryWithProduit> getCategoryWithProduits;
+    List<GetCategoryWithProduit> getCategoryWithProduits;
 
     private RecyclerView rvProductList;
     private ArrayList<GetCategoryWithProduit> productList;
     private AdapterListCategorie mProductListAdapter;
-    ArrayList<GetCategoryWithProduit> getCategoryWithProduits = new ArrayList<>();
 
 
     private Toolbar mToolbar;
@@ -106,6 +105,7 @@ public class ListCategorieActivity extends BaseActivity {
         setToolbarTitle(title);
         initLoader();
 
+
         rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
         viewToggle = (ImageView) findViewById(R.id.viewToggle);
         loadMoreView = (ProgressBar) findViewById(R.id.loadMore);
@@ -113,7 +113,7 @@ public class ListCategorieActivity extends BaseActivity {
         // init RecyclerView
         rvProductList.setHasFixedSize(true);
         setRecyclerViewLayoutManager(rvProductList, ListCategorieActivity.LayoutManagerType.LINEAR_LAYOUT_MANAGER);
-        mProductListAdapter = new AdapterListCategorie(mContext, productsList, ListTypeShow.LINEAR);
+        mProductListAdapter = new AdapterListCategorie(mContext, getCategoryWithProduits, ListTypeShow.LINEAR);
         rvProductList.setAdapter(mProductListAdapter);
 
 
@@ -213,13 +213,11 @@ public class ListCategorieActivity extends BaseActivity {
                      * Got Successfully
                      */
 
-                    //productList = response.body().getData();
-                 // List<Categorie> productsList = response.body().getData();
+                    //List<Categorie> productsList = response.body().getData();
 
-                   // getCategoryWithProduits = new ArrayList<>();
-                   //getCategoryWithProduits = categorie.getGetCategoryWithProduits();
-                    List<GetCategoryWithProduit> getCategoryWithProduits = categorie.getGetCategoryWithProduits();
-                    getCategoryWithProduits.addAll(getCategoryWithProduits);
+                     getCategoryWithProduits = new ArrayList<>();
+                     getCategoryWithProduits = categorie.getGetCategoryWithProduits();
+                     getCategoryWithProduits.addAll(getCategoryWithProduits);
 
 
                     rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
@@ -286,14 +284,14 @@ public class ListCategorieActivity extends BaseActivity {
             viewToggle.setImageResource(R.mipmap.ic_list);
             setRecyclerViewLayoutManager(rvProductList, ListCategorieActivity.LayoutManagerType.GRID_LAYOUT_MANAGER);
 
-            mProductListAdapter = new AdapterListCategorie(getApplicationContext(), productsList,ListTypeShow.GRID);
+            mProductListAdapter = new AdapterListCategorie(getApplicationContext(), getCategoryWithProduits,ListTypeShow.GRID);
 
             rvProductList.setAdapter(mProductListAdapter);
 
         } else {
             viewToggle.setImageResource(R.mipmap.ic_grid);
             setRecyclerViewLayoutManager(rvProductList, ListCategorieActivity.LayoutManagerType.LINEAR_LAYOUT_MANAGER);
-            mProductListAdapter = new AdapterListCategorie(getApplicationContext(), productsList,ListTypeShow.LINEAR);
+            mProductListAdapter = new AdapterListCategorie(getApplicationContext(), getCategoryWithProduits,ListTypeShow.LINEAR);
 
 
             rvProductList.setAdapter(mProductListAdapter);
