@@ -3,9 +3,7 @@ package oneclick.yonclick.Uils;
 import android.app.Activity;
 import android.content.Intent;
 
-import java.util.ArrayList;
-
-import oneclick.yonclick.activity.DetailsProduitActivity;
+import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.activity.LargeImageViewActivity;
 import oneclick.yonclick.activity.ProductListActivity;
 import oneclick.yonclick.activity.SearchActivity;

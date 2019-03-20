@@ -10,15 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 import oneclick.yonclick.Model.Abonnement;
-import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.AbonnementFormActivity;
-import oneclick.yonclick.activity.DetailsProduitActivity;
 
 public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.CustomViewHolder> {
 

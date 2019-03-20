@@ -28,6 +28,19 @@ public class Plat {
     @Expose
     private String image;
 
+    public Plat() {
+    }
+
+    public Plat(Integer ID_Plats, String nom_Plats, Integer id_Restaurant, String details_Plats, String prix, String image) {
+        this.ID_Plats = ID_Plats;
+        Nom_Plats = nom_Plats;
+        Id_Restaurant = id_Restaurant;
+        Details_Plats = details_Plats;
+        this.prix = prix;
+        this.image = image;
+    }
+
+
     public Integer getID_Plats() {
         return ID_Plats;
     }

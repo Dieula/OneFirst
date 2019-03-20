@@ -143,8 +143,8 @@
     <string name="empty_result">No data!</string>
 
     <string name="nouveau">Nouveautés</string>
-    <string name="meilleure">Meilleures ventes</string>
-    <string name="recent_items">Produit</string>
+    <string name="meilleure">Magasins</string>
+    <string name="produit">Produits</string>
     <string name="brand">Marques</string>
     <string name="magasin">Magasins</string>
 

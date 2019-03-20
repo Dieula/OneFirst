@@ -32,6 +32,7 @@ import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.ListTypeShow;
 import oneclick.yonclick.dataa.constant.AppConstants;
+import oneclick.yonclick.dataa.preference.AppPreference;
 import oneclick.yonclick.listener.OnItemClickListener;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +43,6 @@ public class ListCategorieActivity extends BaseActivity {
     private Context mContext;
     ListTypeShow listTypeShow;
     List<GetCategoryWithProduit> productsList;
-    Categorie categorie;
 
     List<GetCategoryWithProduit> getCategoryWithProduits;
 
@@ -73,9 +73,9 @@ public class ListCategorieActivity extends BaseActivity {
     private int pageNumber = AppConstants.INITIAL_PAGE_NUMBER;
     private boolean loading = true;
 
-    String mParsedProductID;
-    String mParsedProductImageUrl;
-    String mParsedProductName;
+
+
+    int id_cat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +84,16 @@ public class ListCategorieActivity extends BaseActivity {
         initVariable();
         initView();
         loadProductList();
-        initListener();
+        //initListener();
 
-        Bundle bundle = getIntent().getExtras();
-        mParsedProductName = bundle.getString("product_name");
-        mParsedProductID = bundle.getString("product_id");
-        mParsedProductImageUrl = bundle.getString("product_image");
+        //Bundle bundle = getIntent().getExtras();
+        //mParsedProductName = bundle.getString("product_name");
+        //mParsedProductID = bundle.getString("categorieID");
+        //mParsedProductImageUrl = bundle.getString("product_image");
 
+
+        AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
+        id_cat= appPreference.getInteger("categorieID");
 
     }
 
@@ -120,11 +123,11 @@ public class ListCategorieActivity extends BaseActivity {
         viewToggle = (ImageView) findViewById(R.id.viewToggle);
         loadMoreView = (ProgressBar) findViewById(R.id.loadMore);
 
-        // init RecyclerView
+       /* // init RecyclerView
         rvProductList.setHasFixedSize(true);
         setRecyclerViewLayoutManager(rvProductList, ListCategorieActivity.LayoutManagerType.LINEAR_LAYOUT_MANAGER);
         mProductListAdapter = new AdapterListCategorie(mContext, getCategoryWithProduits, ListTypeShow.LINEAR);
-        rvProductList.setAdapter(mProductListAdapter);
+        rvProductList.setAdapter(mProductListAdapter);*/
 
 
 
@@ -150,7 +153,7 @@ public class ListCategorieActivity extends BaseActivity {
         viewToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleView();
+                //toggleView();
             }
         });
 
@@ -177,17 +180,19 @@ public class ListCategorieActivity extends BaseActivity {
         }
 
         switch (layoutManagerType) {
+
             case GRID_LAYOUT_MANAGER:
                 gridLayoutManager = new GridLayoutManager(mActivity, COLUMN_SPAN_COUNT);
                 mLayoutManager = gridLayoutManager;
                 mCurrentLayoutManagerType = ListCategorieActivity.LayoutManagerType.GRID_LAYOUT_MANAGER;
                 break;
+
             case LINEAR_LAYOUT_MANAGER:
                 linearLayoutManager = new LinearLayoutManager(mActivity);
                 mLayoutManager = linearLayoutManager;
                 mCurrentLayoutManagerType = ListCategorieActivity.LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-
                 break;
+
             default:
                 linearLayoutManager = new LinearLayoutManager(mActivity);
                 mLayoutManager = linearLayoutManager;
@@ -219,18 +224,32 @@ public class ListCategorieActivity extends BaseActivity {
                 //  pDialog.dismiss();
 
                 if (response.isSuccessful()) {
-                    /**
-                     * Got Successfully
-                     */
 
-                    //List<Categorie> productsList = response.body().getData();
 
-                     getCategoryWithProduits = new ArrayList<>();
-                     getCategoryWithProduits = categorie.getGetCategoryWithProduits();
-                     getCategoryWithProduits.addAll(getCategoryWithProduits);
+                    CategorieList productsList = response.body();
+
+                    Categorie Cat = new Categorie();
+
+                    for (Categorie categorie : productsList.getData())
+                    {
+
+                        if (categorie.getId() == id_cat) {
+                            Cat = categorie;
+                            break;
+                        }
+
+                    }
+
+
+
+                    getCategoryWithProduits = new ArrayList<>();
+
+                    getCategoryWithProduits = Cat.getGetCategoryWithProduits();
 
 
                     rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
+
+
                     mProductListAdapter = new AdapterListCategorie(getApplicationContext(), getCategoryWithProduits,listTypeShow);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager

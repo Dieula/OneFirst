@@ -76,7 +76,6 @@ public class PlatActivity extends BaseActivity {
          * Enqueue Callback will be call when get response...
          */
         call.enqueue(new Callback<PlatList>() {
-            @Override
             public void onResponse(Call<PlatList> call, Response<PlatList> response) {
                 //Dismiss Dialog
                 pDialog.dismiss();
@@ -94,6 +93,7 @@ public class PlatActivity extends BaseActivity {
 
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
+
                 }
             }
 

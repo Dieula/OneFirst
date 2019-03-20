@@ -42,9 +42,10 @@ import oneclick.yonclick.R;
 import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
-import oneclick.yonclick.activity.DetailsProduitActivity;
+import oneclick.yonclick.activity.LIstMarqueActivity;
 import oneclick.yonclick.activity.ListCategorieActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
+import oneclick.yonclick.dataa.preference.AppPreference;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,6 +59,8 @@ public class MagasinsFragment extends Fragment {
     String mProductID;
     String mProductPrice;
     String mProductImageUrl;
+
+
 
     private ArrayList<Categorie> categories;
     private ProgressDialog pDialog;
@@ -75,8 +78,8 @@ public class MagasinsFragment extends Fragment {
     private BrandAdapter eBrandAdapter;
 
 
-    private TextView tvCateorie, tvNouveau, tvRecentListAll, tvListAllNouveau,
-            tvCartCounter, tvBrand, textView;
+    private TextView tvCateorie, tvNouveau, tvRecentListAll, tvListAllNouveau,tvProduitListAll, tvStoreAllNouveau,
+            tvCartCounter, tvBrand, textView,tvProduit;
     private ImageView imgToolbarCart, imgNotification, ivSearchIcon;
 
     private EditText edtSearchProduct;
@@ -134,6 +137,17 @@ public class MagasinsFragment extends Fragment {
                 ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.meilleure), AppConstants.TYPE_RECENT, AppConstants.NO_CATEGORY);
             }
         });
+
+        // See all listener
+        tvProduitListAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.produit),
+                        AppConstants.TYPE_FEATURED, AppConstants.NO_CATEGORY);
+            }
+        });
+
+
 
 
 
@@ -209,8 +223,8 @@ public class MagasinsFragment extends Fragment {
 
         //Product
         lytProduitRecent = (RelativeLayout) v.findViewById(R.id.lytNouveauList);
-        textView = (TextView) lytProduitRecent.findViewById(R.id.tvListTitle);
-        tvRecentListAll = (TextView) lytProduitRecent.findViewById(R.id.tvSeeALL);
+        tvProduit = (TextView) lytProduitRecent.findViewById(R.id.tvListTitle);
+        tvProduitListAll = (TextView) lytProduitRecent.findViewById(R.id.tvSeeALL);
         popularParent = (RelativeLayout) lytProduitRecent.findViewById(R.id.parentPanel);
 
         //Magasins
@@ -322,23 +336,23 @@ public class MagasinsFragment extends Fragment {
 
                     Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
 
-                   /* eAdapter.setOnItemClickListener(new CategorieAdapter.OnItemClickListener() {
+
+                    eBrandAdapter.setOnItemClickListener(new BrandAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View itemView, int position) {
+
                             Brand product = categories.get(position);
-                            Intent i = new Intent(getActivity(), DetailsProduitActivity.class);
-                            i.putExtra("username", "foobar");
-                            i.putExtra("Produit", "Produit");
-                            i.putExtra("in_reply_to", "george");
-                            i.putExtra("code", 400);
-                          *//*  editor.putString("id", String.valueOf(getId()));
-                            editor.putString("image",eAdapter.toString());
-                            editor.commit();
-                            go.putExtra("categorie", categorie);*//*
+                            Intent i = new Intent(getActivity(), LIstMarqueActivity.class);
+
+                            AppPreference appPreference =
+                                    AppPreference.getInstance(getActivity());
+
+                            appPreference.setInteger("BrandID",product.getId());
+
                             startActivity(i);
 
                         }
-                    });*/
+                    });
 
 
                 }
@@ -391,7 +405,7 @@ public class MagasinsFragment extends Fragment {
                     mMagasinRecyclerView.setItemAnimator(new DefaultItemAnimator());
                     mMagasinRecyclerView.setAdapter(mAdapter);
 
-                    Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Good"+MagasinsList.size(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -431,7 +445,7 @@ public class MagasinsFragment extends Fragment {
                      */
                     List<Product> productsList = response.body().getEmployee();
                     mRecyclerview = (RecyclerView) lytProduitRecent.findViewById(R.id.homeRecyclerView);
-                    textView.setText("Produits (" + productsList.size() + ")");
+                    tvProduit.setText("Produits (" + productsList.size() + ")");
                     mAdapter = new ProduitAdapter(getActivity(), productsList);
                     LinearLayoutManager secondManager = new LinearLayoutManager
                             (getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -511,22 +525,11 @@ public class MagasinsFragment extends Fragment {
                             Categorie product = categories.get(position);
                             Intent intent = new Intent(getActivity(), ListCategorieActivity.class);
 
-                            intent.putExtra("product_name", mProductName);
-                            intent.putExtra("product_id", mProductID);
-                            intent.putExtra("product_image", mProductImageUrl);
-                            intent.putExtra("product_price", mProductPrice);
-                            getActivity().startActivity(intent);
-                           /* Intent i = new Intent(getActivity(), ListCategorieActivity.class);
-                            i.putExtra("username", "foobar");
-                            i.putExtra("Produit", "Produit");
-                            i.putExtra("in_reply_to", "george");
-                            i.putExtra("code", 400);
-                          *//*  editor.putString("id", String.valueOf(getId()));
-                            editor.putString("image",eAdapter.toString());
-                            editor.commit();
-                            go.putExtra("categorie", categorie);*//*
-                            startActivity(i);*/
+                            AppPreference appPreference =
+                            AppPreference.getInstance(getActivity());
+                            appPreference.setInteger("categorieID",product.getId());
 
+                            getActivity().startActivity(intent);
                         }
                     });
 

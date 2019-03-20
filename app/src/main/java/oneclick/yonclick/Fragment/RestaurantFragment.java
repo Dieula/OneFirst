@@ -1,14 +1,10 @@
 package oneclick.yonclick.Fragment;
 
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -17,40 +13,24 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.marcoscg.dialogsheet.DialogSheet;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cz.msebera.android.httpclient.Header;
-import oneclick.yonclick.Adapter.CategorieAdapter;
 import oneclick.yonclick.Adapter.RestaurantAdapter;
 import oneclick.yonclick.ApiService.ApiService;
 import oneclick.yonclick.Authentification.StaticUser;
 import oneclick.yonclick.BaseUrl.RetroClient;
-import oneclick.yonclick.Helper.HttpParams;
-import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Restaurant;
-import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.ModelList.RestaurantList;
 import oneclick.yonclick.R;
-import oneclick.yonclick.activity.MainActivity;
-import oneclick.yonclick.activity.PlatDetailsActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

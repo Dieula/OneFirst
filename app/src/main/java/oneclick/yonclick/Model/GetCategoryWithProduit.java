@@ -40,7 +40,11 @@ public class GetCategoryWithProduit {
     private String createdAt;
     @SerializedName("updated_at")
     @Expose
-    private Object updatedAt;
+    private String updatedAt;
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public Integer getId() {
         return id;
@@ -134,7 +138,4 @@ public class GetCategoryWithProduit {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }

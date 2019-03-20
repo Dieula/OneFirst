@@ -13,15 +13,8 @@ public class CategorieList {
     @Expose
     private List<Categorie> data = null;
 
-    private List<Categorie> produitby = null;
+    //private List<Categorie> produitby = null;
 
-    public List<Categorie> getProduitby() {
-        return produitby;
-    }
-
-    public void setProduitby(List<Categorie> produitby) {
-        this.produitby = produitby;
-    }
 
     public List<Categorie> getData() {
         return data;

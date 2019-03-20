@@ -40,7 +40,7 @@ public class GetMarqueWithProduit {
     private String createdAt;
     @SerializedName("updated_at")
     @Expose
-    private Object updatedAt;
+    private String updatedAt;
 
     public Integer getId() {
         return id;
@@ -134,7 +134,7 @@ public class GetMarqueWithProduit {
         this.createdAt = createdAt;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

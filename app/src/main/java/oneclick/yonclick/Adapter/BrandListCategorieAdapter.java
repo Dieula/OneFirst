@@ -1,7 +1,6 @@
 package oneclick.yonclick.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +14,18 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import oneclick.yonclick.Model.GetCategoryWithProduit;
+import oneclick.yonclick.Model.GetMarqueWithProduit;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ListTypeShow;
-import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.listener.OnItemClickListener;
 
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 
-public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCategorie.ViewHolder> {
+public class BrandListCategorieAdapter extends RecyclerView.Adapter<BrandListCategorieAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<GetCategoryWithProduit> dataList;
+    private List<GetMarqueWithProduit> dataList;
     private ListTypeShow listTypeShow;
 
     // Listener
@@ -35,7 +33,7 @@ public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCatego
 
 
 
-    public AdapterListCategorie(Context context, List<GetCategoryWithProduit> dataList, ListTypeShow listTypeShow)
+    public BrandListCategorieAdapter(Context context, List<GetMarqueWithProduit> dataList, ListTypeShow listTypeShow)
     {
         this.mContext = context;
         this.dataList = dataList;
@@ -64,45 +62,31 @@ public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCatego
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                  //  Intent intent = new Intent(mC)
-
-                 //   mListener.onItemListener(view, getLayoutPosition());
+                    mListener.onItemListener(view, getLayoutPosition());
                 }
             });
         }
     }
 
     @Override
-    public AdapterListCategorie.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public BrandListCategorieAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
 
         if (listTypeShow == ListTypeShow.GRID) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_grid, parent, false);
-            return new AdapterListCategorie.ViewHolder(view, viewType);
+            return new BrandListCategorieAdapter.ViewHolder(view, viewType);
         } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_linear, parent, false);
-            return new AdapterListCategorie.ViewHolder(view, viewType);
+            return new BrandListCategorieAdapter.ViewHolder(view, viewType);
         }
     }
 
     @Override
-    public void onBindViewHolder(AdapterListCategorie.ViewHolder holder, final int position) {
+    public void onBindViewHolder(BrandListCategorieAdapter.ViewHolder holder, final int position) {
 
-        final GetCategoryWithProduit product = dataList.get(position);
+        final GetMarqueWithProduit product = dataList.get(position);
 
         String imgUrl = BASE_URL_Image+product.getImage();
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(mContext,DetailsProduitActivity.class);
-
-
-                mContext.startActivity(intent);
-            }
-        });
 
         holder.tvProductName.setText(product.getNameProduct());
 
@@ -131,7 +115,7 @@ public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCatego
         }
     }
 
-    public void setFilter(ArrayList<GetCategoryWithProduit> productList) {
+    public void setFilter(ArrayList<GetMarqueWithProduit> productList) {
         dataList = new ArrayList<>();
         dataList.addAll(productList);
         notifyDataSetChanged();

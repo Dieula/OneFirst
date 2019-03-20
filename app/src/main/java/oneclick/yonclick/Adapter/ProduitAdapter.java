@@ -2,24 +2,22 @@ package oneclick.yonclick.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
-import oneclick.yonclick.activity.DetailsProduitActivity;
+import oneclick.yonclick.Detail.DetailsProduitActivity;
+import oneclick.yonclick.dataa.preference.AppPreference;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 
 public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomViewHolder> {
@@ -40,18 +38,6 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
     public ProduitAdapter.CustomViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_rectangle, parent, false);
-         /*
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent acheterDetails = new Intent(mContext,DetailsProduitActivity.class);
-                acheterDetails.putExtra("id",viewType);
-                mContext.startActivity(acheterDetails);
-                Product P = products.get(viewType);
-                Toast.makeText(mContext, P.getName_product(), Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
 
         return new ProduitAdapter.CustomViewHolder(itemView);
@@ -72,63 +58,29 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
 
         holder.price.setText(produit.getPrix());
 
-     // String imgUrl = produit.getImage();
 
-         String imgUrl = BASE_URL_Image+produit.getImage();
-         holder.image.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Intent acheterDetails = new Intent(mContext,DetailsProduitActivity.class);
-                 acheterDetails.putExtra("id",produit.getId());
-                 mContext.startActivity(acheterDetails);
-
-                 Toast.makeText(mContext,"Good"+produit.getName_product(), Toast.LENGTH_SHORT).show();
-             }
-         });
+        String imgUrl = BASE_URL_Image+produit.getImage();
 
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-       // holder.image.setImageResource(0);
-      /*
+                Intent i = new Intent(mContext, DetailsProduitActivity.class);
 
-     if(Integer.valueOf(produit.getImage())==1)
-        {
-            Glide.with(mContext)
-                    .load(imgUrl)
-                    .thumbnail(0.5f)
-                    .placeholder(R.drawable.soulier)
-                    .into(holder.image);
+                Bundle bundle = new Bundle();
+               // bundle.putString("Product","productID");
+                i.putExtra("productID",bundle);
+             /*
+               AppPreference appPreference =
+                        AppPreference.getInstance(mContext);
 
-        }
-        else if(Integer.valueOf(produit.getImage())==1)
-        {
-            Glide.with(mContext)
-                    .load(imgUrl)
-                    .thumbnail(0.5f)
-                    .placeholder(R.drawable.souli)
-                    .into(holder.image);
-        }
-       else if(Integer.valueOf(produit.getImage())==2)+
-       {
-           Glide.with(mContext)
-                   .load(imgUrl)
-                   .thumbnail(0.5f)
-                   .placeholder(R.drawable.valise)
-                   .into(holder.image);
-       }
+                appPreference.setInteger("ProduitID",produit.getId());*/
+                mContext.startActivity(i);
 
-       else if(Integer.valueOf(produit.getImage())==3)
-       {
-           Glide.with(mContext)
-                   .load(imgUrl)
-                   .thumbnail(0.5f)
-                   .placeholder(R.drawable.soulier)
-                   .into(holder.image);
-       }
+            }
+        });
 
-
-        String imageUri = ""+produit.getImage();
-*/
 
        Glide.with(mContext)
                 .load(imgUrl)

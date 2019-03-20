@@ -27,7 +27,7 @@ public class Categorie implements Serializable{
     private Object updatedAt;
     @SerializedName("get_category_with_produits")
     @Expose
-    private List<GetCategoryWithProduit> getCategoryWithProduits = null;
+    private List<GetCategoryWithProduit> getCategoryWithProduits;
 
     public Integer getId() {
         return id;

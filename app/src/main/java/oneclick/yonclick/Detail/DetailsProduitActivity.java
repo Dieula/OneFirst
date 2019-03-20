@@ -1,13 +1,11 @@
-package oneclick.yonclick.activity;
+package oneclick.yonclick.Detail;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,14 +15,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.URISyntaxException;
-
-import oneclick.yonclick.Model.Categorie;
+import oneclick.yonclick.Model.Brand;
 import oneclick.yonclick.Model.Product;
+import oneclick.yonclick.ModelList.BrandList;
 import oneclick.yonclick.R;
-import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
+import oneclick.yonclick.activity.BaseActivity;
+import oneclick.yonclick.activity.DetailsCreditCardActivity;
+import oneclick.yonclick.activity.LargeImageViewActivity;
+import oneclick.yonclick.activity.MainActivity;
+import oneclick.yonclick.activity.MobilePaiementActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
+import oneclick.yonclick.dataa.preference.AppPreference;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 import oneclick.yonclick.dataa.sqlite.DatabaseHelper;
 
@@ -37,7 +39,6 @@ public class DetailsProduitActivity extends BaseActivity {
 
     public Product produit;
 
-    public Categorie categorie;
     String viewType;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -46,37 +47,30 @@ public class DetailsProduitActivity extends BaseActivity {
     String mParsedProductID;
     String mParsedProductImageUrl;
     String mParsedProductName;
+    int produitID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_produit);
 
-       /*
-        String username = getIntent().getStringExtra("username");
+/*
 
-        String Produit = getIntent().getStringExtra("Produit");
+        //preferences
+        AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
+        produitID = appPreference.getInteger("ProduitID");
 
-        String inReplyTo = getIntent().getStringExtra("in_reply_to");
-        int code = getIntent().getIntExtra("code", 0);
-
-       */
-
-
+*/
 
         DatabaseHelper db = new DatabaseHelper(this);
 
-       /* Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        //Display the Up button home
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-*/
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("productID");
 
-        //produit = (Product) getIntent().getSerializableExtra("categorie");
+
 
         ImageView ImgProduit = (ImageView) findViewById(R.id.vpImageSlider);
-        //categorie.getImage();
+
 
 
         ImgProduit.setOnClickListener(new View.OnClickListener() {
@@ -88,15 +82,19 @@ public class DetailsProduitActivity extends BaseActivity {
             }
         });
 
-        Bundle bundle = getIntent().getExtras();
+
+
+
+        /*Bundle bundle = getIntent().getExtras();
         mParsedProductName = bundle.getString("product_name");
         mParsedProductID = bundle.getString("product_id");
         mParsedProductImageUrl = bundle.getString("product_image");
 
+        */
+         /*
 
-       /*
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
-         NameProduit.setText(produit.getName_product());
+         NameProduit.setText(mParsedProductName);
 
         TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
         DescProduit.setText(produit.getDetails_product());
@@ -106,6 +104,7 @@ public class DetailsProduitActivity extends BaseActivity {
 
         TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
         tvSalesPrice.setText(produit.getPrix());
+
         */
 
        /*
@@ -145,6 +144,8 @@ public class DetailsProduitActivity extends BaseActivity {
                                     product.getImage(),product.getImage(), quantityCounter);
                             btnAddToCart.setText(getString(R.string.added_to_cart));
                             AppUtility.showToast(mContext, getString(R.string.added_to_cart));
+
+
                         }
                         cartController.close();
 

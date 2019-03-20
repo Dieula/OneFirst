@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.R;
 
 public class AbonnementFormActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{

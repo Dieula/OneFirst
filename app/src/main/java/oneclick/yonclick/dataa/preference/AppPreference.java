@@ -14,7 +14,6 @@ public class AppPreference {
     // common
     private SharedPreferences sharedPreferences, settingsPreferences;
     private SharedPreferences.Editor editor;
-
     public static AppPreference getInstance(Context context) {
         if(appPreference == null) {
             mContext = context;

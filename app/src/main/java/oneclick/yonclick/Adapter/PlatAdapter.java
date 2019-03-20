@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -16,9 +15,7 @@ import java.util.List;
 
 import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.R;
-import oneclick.yonclick.activity.EcolageActivity;
-import oneclick.yonclick.activity.PlatActivity;
-import oneclick.yonclick.activity.PlatDetailsActivity;
+import oneclick.yonclick.Detail.PlatDetailsActivity;
 
 public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHolder> {
 
@@ -41,8 +38,8 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHold
     }
 
     @Override
-    public void onBindViewHolder(PlatAdapter.CustomViewHolder holder, int position) {
-        Plat categorie = categories.get(position);
+    public void onBindViewHolder(PlatAdapter.CustomViewHolder holder,  final int position) {
+        final Plat categorie = categories.get(position);
         holder.categoryName.setText(categorie.getNom_Plats());
         holder.tvProductPrice.setText(categorie.getPrix());
         String imgUrl = categorie.getImage();
@@ -50,6 +47,18 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHold
         holder.image.setImageResource(0);
 
 
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Plat plat = categories.get(position);
+                Intent acheterDetails = new Intent(mContext,PlatDetailsActivity.class);
+                acheterDetails.putExtra("acheterID",plat.getID_Plats());
+                acheterDetails.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(acheterDetails);
+            }
+        });
        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
