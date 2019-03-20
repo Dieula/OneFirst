@@ -166,6 +166,7 @@ public class RestaurantFragment extends Fragment {
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
 
+
                     Toast.makeText(getActivity(), "Good" + response, Toast.LENGTH_SHORT).show();
                 }
             }

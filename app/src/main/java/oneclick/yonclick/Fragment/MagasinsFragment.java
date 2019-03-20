@@ -71,6 +71,11 @@ public class MagasinsFragment extends Fragment {
     private BrandAdapter eBrandAdapter;
 
 
+    String mProductName;
+    String mProductID;
+    String mProductPrice;
+    String mProductImageUrl;
+
     private TextView tvCateorie, tvNouveau, tvRecentListAll, tvListAllNouveau,
             tvCartCounter, tvBrand, textView;
     private ImageView imgToolbarCart, imgNotification, ivSearchIcon;
@@ -201,16 +206,22 @@ public class MagasinsFragment extends Fragment {
                         @Override
                         public void onItemClick(View itemView, int position) {
                             Categorie product = categories.get(position);
-                            Intent i = new Intent(getActivity(), DetailsProduitActivity.class);
+
+                            Intent intent = new Intent(getActivity(), DetailsProduitActivity.class);
+                            intent.putExtra("product_name", mProductName);
+                            intent.putExtra("product_id", mProductID);
+                            intent.putExtra("product_image", mProductImageUrl);
+                            getActivity().startActivity(intent);
+                            /*Intent i = new Intent(getActivity(), DetailsProduitActivity.class);
                             i.putExtra("username", "foobar");
                             i.putExtra("Produit", "Produit");
                             i.putExtra("in_reply_to", "george");
                             i.putExtra("code", 400);
-                          /*  editor.putString("id", String.valueOf(getId()));
+                          *//*  editor.putString("id", String.valueOf(getId()));
                             editor.putString("image",eAdapter.toString());
                             editor.commit();
-                            go.putExtra("categorie", categorie);*/
-                            startActivity(i);
+                            go.putExtra("categorie", categorie);*//*
+                            startActivity(i);*/
 
                         }
                     });

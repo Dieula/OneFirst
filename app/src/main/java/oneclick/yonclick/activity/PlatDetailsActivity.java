@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,9 +14,23 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import oneclick.yonclick.Model.CartList;
 import oneclick.yonclick.R;
+import oneclick.yonclick.dataa.sqlite.DbManager;
 
 public class PlatDetailsActivity extends AppCompatActivity {
+
+    String mParsedProductID,mParsedProductName;
+    String mParsedProductImageUrl;
+    String mParsedProductPrice;
+
+    List<CartList> dbList;
+    DbManager helper;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +56,7 @@ public class PlatDetailsActivity extends AppCompatActivity {
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InsertCartList();
                 Toast.makeText(PlatDetailsActivity.this, "Ajout reussi", Toast.LENGTH_SHORT).show();
             }
         });
@@ -53,6 +69,25 @@ public class PlatDetailsActivity extends AppCompatActivity {
         });
     }
 
+    private void InsertCartList() {
+        // insert into cart list
+        dbList = new ArrayList<>();
+        helper = DbManager.getInstance(PlatDetailsActivity.this);
+        helper.insertIntoDB(mParsedProductID, mParsedProductName, mParsedProductPrice, mParsedProductImageUrl);
+
+    }
+    public void getCartList(){
+        helper = DbManager.getInstance(PlatDetailsActivity.this);
+        dbList= new ArrayList<CartList>();
+        dbList = helper.getDataFromDB();
+        Log.i("DemoCart", "DemoCartList: " + dbList.toString());
+    }
+
+    public void DeleteFromCartList(){
+        dbList= new ArrayList<CartList>();
+        helper = DbManager.getInstance(PlatDetailsActivity.this);
+        helper.deleteARow(mParsedProductID);
+    }
 
     private void ShowDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);

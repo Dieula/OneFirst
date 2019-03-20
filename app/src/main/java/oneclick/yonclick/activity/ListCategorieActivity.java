@@ -44,11 +44,12 @@ public class ListCategorieActivity extends BaseActivity {
     List<GetCategoryWithProduit> productsList;
     Categorie categorie;
 
-    List<GetCategoryWithProduit> getCategoryWithProduits;
+    //List<GetCategoryWithProduit> getCategoryWithProduits;
 
     private RecyclerView rvProductList;
     private ArrayList<GetCategoryWithProduit> productList;
     private AdapterListCategorie mProductListAdapter;
+    ArrayList<GetCategoryWithProduit> getCategoryWithProduits = new ArrayList<>();
 
 
     private Toolbar mToolbar;
@@ -215,9 +216,11 @@ public class ListCategorieActivity extends BaseActivity {
                     //productList = response.body().getData();
                  // List<Categorie> productsList = response.body().getData();
 
-                    getCategoryWithProduits = new ArrayList<>();
-                   getCategoryWithProduits = categorie.getGetCategoryWithProduits();
-                   getCategoryWithProduits.add((GetCategoryWithProduit) getCategoryWithProduits);
+                   // getCategoryWithProduits = new ArrayList<>();
+                   //getCategoryWithProduits = categorie.getGetCategoryWithProduits();
+                    List<GetCategoryWithProduit> getCategoryWithProduits = categorie.getGetCategoryWithProduits();
+                    getCategoryWithProduits.addAll(getCategoryWithProduits);
+
 
                     rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
                     mProductListAdapter = new AdapterListCategorie(getApplicationContext(), getCategoryWithProduits,listTypeShow);

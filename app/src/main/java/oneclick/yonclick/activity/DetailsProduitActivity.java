@@ -42,6 +42,11 @@ public class DetailsProduitActivity extends BaseActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
+
+    String mParsedProductID;
+    String mParsedProductImageUrl;
+    String mParsedProductName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +87,11 @@ public class DetailsProduitActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        Bundle bundle = getIntent().getExtras();
+        mParsedProductName = bundle.getString("product_name");
+        mParsedProductID = bundle.getString("product_id");
+        mParsedProductImageUrl = bundle.getString("product_image");
 
 
        /*
