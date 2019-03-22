@@ -8,7 +8,7 @@
     app:cardBackgroundColor="@android:color/white"
     android:layout_marginRight="@dimen/height_width_15dp"
     android:layout_marginLeft="@dimen/height_width_15dp"
-    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardCornerRadius="@dimen/pad_margin_5dp"
     app:cardElevation="@dimen/card_elevation"
     app:cardUseCompatPadding="true">
 
@@ -41,10 +41,9 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:paddingLeft="5dp"
                 android:paddingRight="3dp"
                 android:text="Product name"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
 <!--

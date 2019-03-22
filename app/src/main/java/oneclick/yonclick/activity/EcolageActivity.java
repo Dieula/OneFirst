@@ -5,12 +5,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import oneclick.yonclick.Fragment.EcolageChoiceFragment;
+import oneclick.yonclick.Fragment.EcolageFragment;
 import oneclick.yonclick.Fragment.MensualiteFragment;
 import oneclick.yonclick.R;
 
@@ -88,7 +90,11 @@ public class EcolageActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                EcolageFragment fragment = new EcolageFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
+                transaction.commit();
+                //startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 // Respond to the action bar's Up/Home button
                 finish();
                 return true;

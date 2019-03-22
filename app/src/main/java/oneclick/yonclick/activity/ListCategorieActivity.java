@@ -210,7 +210,7 @@ public class ListCategorieActivity extends BaseActivity {
         /**
          * Calling JSON
          */
-        final Call<CategorieList> prodMyJSON = CategorieBY.getMyJSONCategorie();
+        final Call<CategorieList> prodMyJSON = CategorieBY.getMyJSON();
 
         /**
          * Enqueue Callback will be call when get response...
@@ -240,16 +240,9 @@ public class ListCategorieActivity extends BaseActivity {
 
                     }
 
-
-
                     getCategoryWithProduits = new ArrayList<>();
-
                     getCategoryWithProduits = Cat.getGetCategoryWithProduits();
-
-
                     rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
-
-
                     mProductListAdapter = new AdapterListCategorie(getApplicationContext(), getCategoryWithProduits,listTypeShow);
 
                     LinearLayoutManager secondManager = new LinearLayoutManager

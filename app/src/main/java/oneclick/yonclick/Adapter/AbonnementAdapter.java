@@ -10,11 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.AbonnementFormActivity;
+
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 
 public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.CustomViewHolder> {
 
@@ -42,17 +46,14 @@ public class AbonnementAdapter extends RecyclerView.Adapter<AbonnementAdapter.Cu
         Abonnement abonnement = abonnements.get(position);
         holder.categoryName.setText(abonnement.getNom());
 
-        String imgUrl = abonnement.getImage();
+        String imgUrl = BASE_URL_Image+abonnement.getImage();
 
-       /* String imgUrl = employee.getImage();
 
-        holder.image.setImageResource(0);*/
-
-     /*  Glide.with(mContext)
+        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
                 .placeholder(R.drawable.iconlogo)
-                .into(holder.image);*/
+                .into(holder.image);
     }
 
 

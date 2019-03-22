@@ -17,8 +17,8 @@ public class CartDBController {
 
     private DatabaseHelper dbHelper;
     private Context mContext;
+    private Activity mActivity;
     private SQLiteDatabase database;
-
 
 
     public CartDBController(Context context) {

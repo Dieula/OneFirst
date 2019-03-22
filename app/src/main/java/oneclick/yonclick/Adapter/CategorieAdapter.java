@@ -16,6 +16,7 @@ import java.util.List;
 
 import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.Categorie;
+import oneclick.yonclick.Model.Category;
 import oneclick.yonclick.R;
 
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;

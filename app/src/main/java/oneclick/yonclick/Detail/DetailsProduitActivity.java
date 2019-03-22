@@ -16,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import oneclick.yonclick.Model.Brand;
+import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.ModelList.BrandList;
+import oneclick.yonclick.ModelList.CategorieList;
+import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.BaseActivity;
@@ -34,43 +37,35 @@ public class DetailsProduitActivity extends BaseActivity {
 
     private int quantityCounter = 1;
     Context mContext;
-    private Product product = null;
+    private Product product;
     private Activity mActivity;
 
     public Product produit;
-
+    ProduitList productsList;
     String viewType;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-
-    String mParsedProductID;
-    String mParsedProductImageUrl;
-    String mParsedProductName;
-    int produitID;
-
+    String NameProduit ,PRODUIT_ID, DescProduit,images, tvSalesPrice;
+     int id_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_produit);
 
-/*
-
-        //preferences
-        AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
-        produitID = appPreference.getInteger("ProduitID");
-
-*/
 
         DatabaseHelper db = new DatabaseHelper(this);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("productID");
+
+        AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
+        id_cat= appPreference.getInteger("categorieID");
+
+
+       // ProduitList productsList = produit.getId();
 
 
 
         ImageView ImgProduit = (ImageView) findViewById(R.id.vpImageSlider);
-
 
 
         ImgProduit.setOnClickListener(new View.OnClickListener() {
@@ -84,17 +79,10 @@ public class DetailsProduitActivity extends BaseActivity {
 
 
 
-
-        /*Bundle bundle = getIntent().getExtras();
-        mParsedProductName = bundle.getString("product_name");
-        mParsedProductID = bundle.getString("product_id");
-        mParsedProductImageUrl = bundle.getString("product_image");
-
-        */
-         /*
+/*
 
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
-         NameProduit.setText(mParsedProductName);
+         NameProduit.setText(produit.getName_product());
 
         TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
         DescProduit.setText(produit.getDetails_product());
@@ -105,11 +93,10 @@ public class DetailsProduitActivity extends BaseActivity {
         TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
         tvSalesPrice.setText(produit.getPrix());
 
-        */
 
-       /*
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Paiement mobile");*/
+*/
+
+
 
 
         final Button btnAddToCart = findViewById(R.id.btnAddToCart);
@@ -121,10 +108,10 @@ public class DetailsProduitActivity extends BaseActivity {
 
                // startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
                 // Add to cart list
-                        CartDBController cartController = new CartDBController(mActivity);
+                        CartDBController cartController = new CartDBController(mContext);
                        // cartController.createDB();
 
-                        if (cartController.isAlreadyAddedToCart(product.getId())) {
+                    if (cartController.isAlreadyAddedToCart(product.getId())) {
                             AppUtility.showToast(mContext, getString(R.string.already_in_cart));
                         }
                          else
@@ -159,6 +146,10 @@ public class DetailsProduitActivity extends BaseActivity {
                 ShowDialog();
             }
         });
+    }
+
+    private void passRateData(Integer id, String produit_id) {
+
     }
 
 

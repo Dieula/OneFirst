@@ -5,14 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.PinNatcomActivity">
 
-
-    <include
-        android:id="@+id/toolbarTop"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 
     <RelativeLayout
@@ -26,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/pinText"
-            android:layout_marginTop="@dimen/height_width_50dp"
+            android:layout_marginTop="@dimen/height_width_30dp"
             android:gravity="center"
             android:layout_marginRight="@dimen/height_width_30dp"
             android:layout_marginLeft="@dimen/height_width_30dp"/>
@@ -38,8 +33,29 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvTextPin"
             android:hint="Entrer votre pin"
+            android:maxLength="4"
+            android:inputType="phone"
             android:gravity="center"
-            android:layout_marginTop="@dimen/height_width_70dp"/>
+            android:layout_marginTop="@dimen/height_width_70dp"
+           />
+
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_width_40dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="@dimen/pad_margin_5dp"
+            android:layout_marginTop="@dimen/height_width_30dp"
+            android:layout_below="@+id/edPin"
+            android:hint="Submit"
+            android:textSize="@dimen/height_width_20dp"
+            android:textColorHint="@color/white"
+            android:background="@drawable/back"
+            android:layout_marginBottom="@dimen/height_width_30dp"/>
+
+
+
 
 
 
