@@ -3,6 +3,7 @@ package oneclick.yonclick.activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -58,6 +59,8 @@ public class MobilePaiementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mobile_paiement);
 
         progressDialog = new ProgressDialog(MobilePaiementActivity.this);
+
+
         sharedPreferences = getSharedPreferences("Phone", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -69,6 +72,7 @@ public class MobilePaiementActivity extends AppCompatActivity {
         //Display the Up button home
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         TextView button = (TextView) findViewById(R.id.IdEtudiant);
         Iv_Payer = (Button) findViewById(R.id.Iv_Payer);
@@ -103,7 +107,7 @@ public class MobilePaiementActivity extends AppCompatActivity {
         if (number.startsWith("40") || number.startsWith("41") || number.startsWith("42") || number.startsWith("32") || number.startsWith("33") || number.startsWith("22")) {
 
 
-            PostData();
+            ShowDialog();
 
 
         } else {
@@ -111,38 +115,66 @@ public class MobilePaiementActivity extends AppCompatActivity {
         }
     }
 
+
     private void PostData() {
 
         MobileAsyncTask mobileAsyncTask = new MobileAsyncTask();
         mobileAsyncTask.execute();
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+      //  startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
-        Toast.makeText(this, "Transaction reussie", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Transaction reussie", Toast.LENGTH_SHORT).show();
         //notify the user after register
         NotifiUser(tvPayer.getText().toString());
 
-        ShowDialog();
     }
+
 
 
         private void ShowDialog() {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-             alertDialog.setTitle(getString(R.string.pinText));
+            // alertDialog.setTitle(getString(R.string.pinText));
 
             LayoutInflater inflater = this.getLayoutInflater();
             View addLayout = inflater.inflate(R.layout.activity_pin_natcom,null);
 
-            RelativeLayout btnMensualite = addLayout.findViewById(R.id.rvTextPin);
-            EditText editText = addLayout.findViewById(R.id.edPin);
+           // RelativeLayout btnMensualite = addLayout.findViewById(R.id.rvTextPin);
+            tvPin = addLayout.findViewById(R.id.edPin);
+           Button btnSubmit = addLayout.findViewById(R.id.btnSubmit);
+
+            btnSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if ( tvPin.getText().toString().equals("") ) {
+
+                        Toast.makeText(MobilePaiementActivity.this, "Verifier vos champs!", Toast.LENGTH_SHORT).show();
+                    } else
+
+                    {
+                        PostData();
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    }
+                }
+            });
 
 
             alertDialog.setView(addLayout);
 
-            btnMensualite.setOnClickListener(new View.OnClickListener() {
+           /* alertDialog.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(getApplicationContext(),DetailsCreditCardActivity.class));
+                public void onClick(DialogInterface dialog, int which) {
+
+
+
+                   // startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 }
+            });*/
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(getApplicationContext(),MobilePaiementActivity.class));
+
+                }
+
             });
 
 
@@ -201,6 +233,7 @@ public class MobilePaiementActivity extends AppCompatActivity {
                 apiComptePayem = RestApi.getApi();
                 RequestComptepayem requestComptepayem = new RequestComptepayem();
                 requestComptepayem.setNumero_tel(tvPayer.getText().toString());
+                requestComptepayem.setNumero_tel(tvPin.getText().toString());
                 requestComptepayem.getPin();
                 requestComptepayem.getNif();
                 requestComptepayem.getStatus();
@@ -208,7 +241,7 @@ public class MobilePaiementActivity extends AppCompatActivity {
 
                 //save the user info in prference
                 editor.putString("Phone", tvPayer.getText().toString());
-                editor.putString("pin",requestComptepayem.getPin());
+                editor.putString("pin",tvPin.getText().toString());
                 editor.putString("nif",requestComptepayem.getNif());
                 editor.putString("status",requestComptepayem.getStatus());
                 editor.putString("User_id",requestComptepayem.getUser_id());

@@ -9,6 +9,13 @@
 
 
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/height_width_70dp"
+        android:layout_marginBottom="56dp"
+        android:text="@string/title_home" />
     <include
         android:id="@+id/toolbarTop"
         layout="@layout/toolbar"

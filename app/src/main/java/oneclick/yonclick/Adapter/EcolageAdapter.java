@@ -18,6 +18,8 @@ import oneclick.yonclick.Model.Ecolage;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.EcolageActivity;
 
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+
 public class EcolageAdapter extends RecyclerView.Adapter<EcolageAdapter.CustomViewHolder> {
 
     private Context mContext;
@@ -44,7 +46,7 @@ public class EcolageAdapter extends RecyclerView.Adapter<EcolageAdapter.CustomVi
         Ecolage ecolage = ecolages.get(position);
         holder.ecolageName.setText(ecolage.getNom_etablissements());
 
-        String imgUrl = ecolage.getImage();
+        String imgUrl = BASE_URL_Image+ecolage.getImage();
 
         holder.image.setImageResource(0);
 

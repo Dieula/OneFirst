@@ -33,7 +33,7 @@
 
                 <include layout="@layout/content_advance_search" />
 
-                <android.support.v7.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvProductList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

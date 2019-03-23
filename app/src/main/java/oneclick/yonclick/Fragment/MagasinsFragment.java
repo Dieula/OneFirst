@@ -1,6 +1,7 @@
 package oneclick.yonclick.Fragment;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +24,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HeaderElement;
+import cz.msebera.android.httpclient.ParseException;
 import oneclick.yonclick.Adapter.BrandAdapter;
 import oneclick.yonclick.Adapter.CategorieAdapter;
 import oneclick.yonclick.Adapter.MagasinsAdapter;
 import oneclick.yonclick.Adapter.ProduitAdapter;
 import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.Detail.DetailsProduitActivity;
+import oneclick.yonclick.Helper.HttpParams;
+import oneclick.yonclick.Model.Category;
+import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.ModelList.BrandList;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Brand;
@@ -50,6 +67,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -60,12 +79,21 @@ public class MagasinsFragment extends Fragment {
     String mProductPrice;
     String mProductImageUrl;
 
+    private ArrayList<Category> categories;
+    private ProgressDialog pDialog;
+    private RecyclerView recyclerView;
+    private CategorieAdapter eAdapter;
 
 
+
+    JSONArray serviceJsonResults;
+    SharedPreferences sharedPreferences ;
+   /*
     private ArrayList<Categorie> categories;
     private ProgressDialog pDialog;
     private RecyclerView recyclerView;
     private CategorieAdapter eAdapter;
+   */
 
     //Store
     private ArrayList<Magasin> magasins;
@@ -92,7 +120,6 @@ public class MagasinsFragment extends Fragment {
     private RecyclerView mRecyclerview;
     private ProduitAdapter mAdapter;
 
-    SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
     LinearLayout loadingView, noDataView;
@@ -195,6 +222,7 @@ public class MagasinsFragment extends Fragment {
         }
 
 
+
         // cart counter
         imgToolbarCart = (ImageView) v.findViewById(R.id.imgToolbarCart);
         imgNotification = (ImageView) v.findViewById(R.id.imgNotification);
@@ -234,6 +262,36 @@ public class MagasinsFragment extends Fragment {
         popularParent = (RelativeLayout) lytNMagasinList.findViewById(R.id.parentPanel);
 
 
+        // search icon at home action listener
+        ivSearchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtSearchProduct.getText().toString().isEmpty()) {
+                    AppUtility.showToast(getActivity(), getString(R.string.type_something));
+                } else {
+                    ActivityUtils.getInstance().invokeSearchActivity(getActivity(), edtSearchProduct.getText().toString());
+                }
+            }
+        });
+
+
+        edtSearchProduct.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                    if (edtSearchProduct.getText().toString().isEmpty()) {
+                        AppUtility.showToast(getActivity(), getString(R.string.type_something));
+                    } else {
+                        ActivityUtils.getInstance().invokeSearchActivity(getActivity(), edtSearchProduct.getText().toString());
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
         //Tcheck the internet
         loadingView = (LinearLayout) v.findViewById(R.id.loadingView);
         noDataView = (LinearLayout) v.findViewById(R.id.noDataView);
@@ -241,7 +299,6 @@ public class MagasinsFragment extends Fragment {
     }
 
     private void initListener() {
-
 
     }
 
@@ -403,7 +460,7 @@ public class MagasinsFragment extends Fragment {
                     mMagasinRecyclerView.setLayoutManager(secondManager);
 
                     mMagasinRecyclerView.setItemAnimator(new DefaultItemAnimator());
-                    mMagasinRecyclerView.setAdapter(mAdapter);
+                    mMagasinRecyclerView.setAdapter(eMagasinAdapter);
 
                     Toast.makeText(getActivity(), "Good"+MagasinsList.size(), Toast.LENGTH_SHORT).show();
                 }
@@ -472,6 +529,7 @@ public class MagasinsFragment extends Fragment {
     private void GetAllCategorie() {
 
 
+
         //Categorie View
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading Data.. Please wait...");
@@ -482,14 +540,12 @@ public class MagasinsFragment extends Fragment {
         //Creating an object of our api interface
         ApiService api = RetroClient.getApiService();
 
-        /**
-         * Calling JSON
-         */
+
+
         Call<CategorieList> call = api.getMyJSON();
 
-        /**
-         * Enqueue Callback will be call when get response...
-         */
+
+
 
         call.enqueue(new Callback<CategorieList>() {
             @Override
@@ -501,9 +557,9 @@ public class MagasinsFragment extends Fragment {
                 // hideLoader();
 
                 if (response.isSuccessful()) {
-                    /**
-                     * Got Successfully
-                     */
+
+
+
                     final List<Categorie> categories = response.body().getData();
                     recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
                     eAdapter = new CategorieAdapter(getActivity(), categories);
@@ -544,9 +600,73 @@ public class MagasinsFragment extends Fragment {
             }
         });
 
+       /* String url = BASE_URL+"categoryproduct";
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.addHeader("Content-Type", "application/json");
+        client.addHeader("apiKey", "8484884774837498");
+
+        client.get(url, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                Log.d("DEBUG", response.toString());
+
+                {
+
+                    serviceJsonResults = null;
+                    try {
+                        serviceJsonResults = response.getJSONArray("data");
+                        categories = Category.fromJSONArray(serviceJsonResults);
+
+                        recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
+                        eAdapter = new CategorieAdapter(getActivity(), categories);
+                        // Attach the adapter to the recyclerview to populate items
+                        recyclerView.setAdapter(eAdapter);
+                        // swipeContainer.setRefreshing(false);
+
+                        LinearLayoutManager secondManager = new LinearLayoutManager
+                                (getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                        recyclerView.setLayoutManager(secondManager);
+
+                        // Attach the layout manager to the recycler view
+                        recyclerView.setLayoutManager(secondManager);
+                        //recyclerView.setItemAnimator(new SlideInUpAnimator());
+
+                        Toast.makeText(getActivity(), response + "Goodddrrrrrrr!", Toast.LENGTH_SHORT).show();
+                        // idProgress.setVisibility(View.GONE);
+                        eAdapter.setOnItemClickListener(new CategorieAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Category plat = categories.get(position);
+                                Intent go = new Intent(getActivity(), DetailsProduitActivity.class);
+                                go.putExtra("plat", plat);
+                                startActivity(go);
+                                Toast.makeText(getActivity(), categories + " was clicked!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+           //Toast.makeText(getContext(), "Baddddddd"+errorResponse.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+*/
+
+
 
 
     }
+
 
     private void showEmptyView() {
         if (loadingView != null) {

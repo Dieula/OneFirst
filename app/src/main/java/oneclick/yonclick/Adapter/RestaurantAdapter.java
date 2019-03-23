@@ -24,12 +24,15 @@ import oneclick.yonclick.activity.PlatActivity;
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.CustomViewHolder> {
-    private List<Restaurant> restaurants;
+    private List<Restaurant> restaurants,filterList;
     private Context mContext;
+
+    CustomFilter filter;
 
     public RestaurantAdapter(Context mContext, List<Restaurant> restaurant){
         this.restaurants = restaurant;
         this.mContext = mContext;
+        this.filterList=restaurant;
     }
 
 
@@ -71,16 +74,26 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
             super(view);
             image = (ImageView) view.findViewById(R.id.ivProductResto);
             restaurantName = (TextView) view.findViewById(R.id.tvName);
-            
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                 //   Intent intent=new Intent(mContext, PlatActivity.class);
-                    mContext.startActivity(new Intent(mContext,PlatActivity.class));
+                    //   Intent intent=new Intent(mContext, PlatActivity.class);
+                    mContext.startActivity(new Intent(mContext, PlatActivity.class));
                     Toast.makeText(mContext, "Viewwww", Toast.LENGTH_SHORT).show();
                 }
             });
 
         }
+
+    /*    //RETURN FILTER OBJ
+
+        public LayoutInflater.Filter getFilter() {
+            if (filter == null) {
+                filter = new CustomFilter(filterList, this);
+            }
+
+            return filter;
+        }*/
     }
 }

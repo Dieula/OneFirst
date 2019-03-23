@@ -5,7 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+  android:background="@color/white"
     tools:context=".activity.MobilePaiementActivity">
+
+    <!--android:ems="8"-->
 
     <include
         android:id="@+id/toolbarTop"
@@ -37,7 +40,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="8"
             android:layout_marginTop="@dimen/height_width_50dp">
 
             <EditText
@@ -46,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:ems="8"
+                android:maxLength="8"
+                android:inputType="phone"
                 android:hint="Numero de telephone"/>
 
         </android.support.design.widget.TextInputLayout>

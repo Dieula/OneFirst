@@ -20,21 +20,27 @@ public class AppUtility {
         return mAppUtility;
     }
 
-    public static void showToast(Context context, String msg) {
+    public static void showToast(Context context, String msg)
+    {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 
-    public static boolean isNetworkAvailable(Context context) {
+    public static boolean isNetworkAvailable(Context context)
+    {
         ConnectivityManager connectivityManager = ((ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE));
         return connectivityManager.getActiveNetworkInfo() !=
                 null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
-    public static void noInternetWarning(View view, final Context context) {
-       /* if (!isNetworkAvailable(context)) {
+    public static void noInternetWarning(View view, final Context context)
+    {
+
+    if (!isNetworkAvailable(context))
+    {
             Snackbar snackbar = Snackbar.make(view, context.getString(R.string.no_internet), Snackbar.LENGTH_INDEFINITE);
-            snackbar.setAction(context.getString(R.string.connect), new View.OnClickListener() {
+            snackbar.setAction(context.getString(R.string.connect), new View.OnClickListener()
+            {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(android.provider.Settings.ACTION_SETTINGS);
@@ -43,7 +49,9 @@ public class AppUtility {
                 }
             });
             snackbar.show();
-        }*/
+        }
     }
+
+
 
 }

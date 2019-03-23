@@ -17,6 +17,8 @@ import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Detail.PlatDetailsActivity;
 
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+
 public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHolder> {
 
     private Context mContext;
@@ -42,7 +44,9 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHold
         final Plat categorie = categories.get(position);
         holder.categoryName.setText(categorie.getNom_Plats());
         holder.tvProductPrice.setText(categorie.getPrix());
-        String imgUrl = categorie.getImage();
+
+
+        String imgUrl = BASE_URL_Image +categorie.getImage();
 
         holder.image.setImageResource(0);
 

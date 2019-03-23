@@ -29,7 +29,7 @@ import oneclick.yonclick.activity.MainActivity;
 import oneclick.yonclick.dataa.sessionManager.SessionManager;
 import oneclick.yonclick.dataa.sqlite.SQLiteHandler;
 
-public class LoginUserActivity extends AppCompatActivity {
+public class    LoginUserActivity extends AppCompatActivity {
 
 
     private static final String TAG = RegisterUserActivity.class.getSimpleName();
