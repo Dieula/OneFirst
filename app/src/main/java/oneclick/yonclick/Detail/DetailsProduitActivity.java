@@ -47,25 +47,30 @@ public class DetailsProduitActivity extends BaseActivity {
     String mParsedProductID;
     String mParsedProductImageUrl;
     String mParsedProductName;
-    int produitID;
+    String setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_produit);
 
-/*
 
-        //preferences
+        SharedPreferences sharedPreferences = getSharedPreferences("Produit", Context.MODE_PRIVATE);
+         setting = sharedPreferences.getString("keyName", "defaultValue");
+
+          mParsedProductID = sharedPreferences.getString("keyName","newValue");
+
+        TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
+        NameProduit.setText(mParsedProductName);
+
+        /*//preferences
         AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
         produitID = appPreference.getInteger("ProduitID");
-
-*/
 
         DatabaseHelper db = new DatabaseHelper(this);
 
         Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("productID");
+        Bundle bundle = intent.getBundleExtra("productID");*/
 
 
 

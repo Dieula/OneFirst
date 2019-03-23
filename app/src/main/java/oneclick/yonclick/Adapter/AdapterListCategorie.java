@@ -2,6 +2,7 @@ package oneclick.yonclick.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,6 +101,14 @@ public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCatego
                 Intent intent = new Intent(mContext,DetailsProduitActivity.class);
 
 
+                SharedPreferences sharedPreferences = mContext.getSharedPreferences("Produit", Context.MODE_PRIVATE);
+                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                int id = 1;
+                editor.putString("keyName", "newValue");
+                editor.putInt("id", id);
+                editor.apply();
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
             }
         });

@@ -2,6 +2,7 @@ package oneclick.yonclick.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -71,6 +72,8 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
                 Bundle bundle = new Bundle();
                // bundle.putString("Product","productID");
                 i.putExtra("productID",bundle);
+
+
              /*
                AppPreference appPreference =
                         AppPreference.getInstance(mContext);

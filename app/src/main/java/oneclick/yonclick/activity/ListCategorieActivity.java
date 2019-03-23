@@ -260,7 +260,6 @@ public class ListCategorieActivity extends BaseActivity {
                     rvProductList.setAdapter(mProductListAdapter);
 
 
-
                     Toast.makeText(getApplication(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }
