@@ -68,16 +68,16 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
             public void onClick(View v) {
 
                 Intent i = new Intent(mContext, DetailsProduitActivity.class);
+                i.putExtra("prod", produit);
 
-                SharedPreferences sharedPreferences = mContext.getSharedPreferences("Produit", Context.MODE_PRIVATE);
-                String  produit_id =  sharedPreferences.getString("PRODUIT_ID","");
+                mContext.startActivity(i);
 
 /*
                AppPreference appPreference =
                         AppPreference.getInstance(mContext);
 
                 appPreference.setInteger("ProduitID",produit.getId());*/
-                mContext.startActivity(i);
+
 
             }
         });

@@ -37,7 +37,6 @@ public class DetailsProduitActivity extends BaseActivity {
 
     private int quantityCounter = 1;
     Context mContext;
-    private Product product;
     private Activity mActivity;
 
     public Product produit;
@@ -54,12 +53,20 @@ public class DetailsProduitActivity extends BaseActivity {
         setContentView(R.layout.activity_details_produit);
 
 
+        if(getIntent().getSerializableExtra("prod") != null){
+            produit = (Product) getIntent().getSerializableExtra("prod");
+        }else{
+            System.out.println("PROD : NO DETAILS");
+        }
+        System.out.println("PROD INFO : "+produit.getName_product());
+
         DatabaseHelper db = new DatabaseHelper(this);
+        mContext = getApplicationContext();
 
 
-        AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
+       /* AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
         id_cat= appPreference.getInteger("categorieID");
-
+*/
 
        // ProduitList productsList = produit.getId();
 
@@ -70,16 +77,13 @@ public class DetailsProduitActivity extends BaseActivity {
 
         ImgProduit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Intent intent = new Intent(getApplicationContext(), LargeImageViewActivity.class);
                 intent.putExtra(AppConstants.KEY_IMAGE_URL,"id");
                 startActivity(intent);
             }
         });
-
-
-
-/*
 
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
          NameProduit.setText(produit.getName_product());
@@ -93,12 +97,6 @@ public class DetailsProduitActivity extends BaseActivity {
         TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
         tvSalesPrice.setText(produit.getPrix());
 
-
-*/
-
-
-
-
         final Button btnAddToCart = findViewById(R.id.btnAddToCart);
         Button btnBuyNow = findViewById(R.id.btnBuyNow);
 
@@ -108,27 +106,30 @@ public class DetailsProduitActivity extends BaseActivity {
 
                // startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
                 // Add to cart list
+
                         CartDBController cartController = new CartDBController(mContext);
                        // cartController.createDB();
 
-                    if (cartController.isAlreadyAddedToCart(product.getId())) {
+              //  Toast.makeText(mContext, "PR "+produit.getId().toString(), Toast.LENGTH_SHORT).show();
+                    if (cartController.isAlreadyAddedToCart(produit.getBrand_id()))
+                    {
                             AppUtility.showToast(mContext, getString(R.string.already_in_cart));
-                        }
+                    }
                          else
-                            {
+                             {
                            // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
 
                             String price;
-                            //price = Integer.valueOf(product.getPrix().toString());
-                            if (product!=null) {
-                                price = product.getPrix();
+                            //price = Integer.valueOf(produit.getPrix().toString());
+                            if (produit!=null) {
+                                price = produit.getPrix();
                             } else {
-                                price = product.getPrix();
+                                price = produit.getPrix();
                             }
 
 
-                            cartController.insertCartItem(product.getId(), product.getName_product(),
-                                    product.getImage(),product.getImage(), quantityCounter);
+                            cartController.insertCartItem(produit.getBrand_id(), produit.getName_product(),
+                                    produit.getImage(),produit.getImage(), quantityCounter);
                             btnAddToCart.setText(getString(R.string.added_to_cart));
                             AppUtility.showToast(mContext, getString(R.string.added_to_cart));
 

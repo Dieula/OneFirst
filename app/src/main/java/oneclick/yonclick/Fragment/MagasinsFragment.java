@@ -462,7 +462,7 @@ public class MagasinsFragment extends Fragment {
                     mMagasinRecyclerView.setItemAnimator(new DefaultItemAnimator());
                     mMagasinRecyclerView.setAdapter(eMagasinAdapter);
 
-                    Toast.makeText(getActivity(), "Good"+MagasinsList.size(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "Good"+MagasinsList.size(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -511,6 +511,7 @@ public class MagasinsFragment extends Fragment {
                     mRecyclerview.setItemAnimator(new DefaultItemAnimator());
                     mRecyclerview.setAdapter(mAdapter);
 
+                    System.out.println("DATA : "+response.toString());
                     Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }
