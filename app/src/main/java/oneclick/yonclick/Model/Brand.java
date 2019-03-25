@@ -3,9 +3,10 @@ package oneclick.yonclick.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Brand {
+public class Brand implements Serializable {
 
     @SerializedName("id")
     @Expose

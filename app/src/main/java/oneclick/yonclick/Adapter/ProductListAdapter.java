@@ -1,6 +1,7 @@
 package oneclick.yonclick.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,10 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.ListTypeShow;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.listener.OnItemClickListener;
@@ -28,6 +31,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     private Context mContext;
     private List<Product> dataList;
     private ListTypeShow listTypeShow;
+
+    Product productId;
 
     // Listener
     public static OnItemClickListener mListener;
@@ -64,6 +69,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+
                     mListener.onItemListener(view, getLayoutPosition());
                 }
             });
@@ -90,6 +97,20 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         String imgUrl = BASE_URL_Image+product.getImage();
 
         holder.tvProductName.setText(product.getName_product());
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ActivityUtils.getInstance().invokeProductDetailsGood(mContext,  dataList.get(position));
+               /* Intent i = new Intent(mContext, DetailsProduitActivity.class);
+
+
+                mContext.startActivity(i);*/
+
+            }
+        });
 
         if (!product.getImage().isEmpty()) {
             Glide.with(mContext)

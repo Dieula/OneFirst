@@ -1,15 +1,24 @@
 package oneclick.yonclick.Uils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import oneclick.yonclick.Detail.DetailsProduitActivity;
+import oneclick.yonclick.Detail.PlatDetailsActivity;
+import oneclick.yonclick.Model.GetCategoryWithProduit;
+import oneclick.yonclick.Model.GetMarqueWithProduit;
+import oneclick.yonclick.Model.Magasin;
+import oneclick.yonclick.Model.Plat;
+import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.activity.LargeImageViewActivity;
 import oneclick.yonclick.activity.ProductListActivity;
 import oneclick.yonclick.activity.SearchActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
 
 public class ActivityUtils {
+
+    private Context mContext;
 
     private static ActivityUtils sActivityUtils = null;
 
@@ -37,10 +46,58 @@ public class ActivityUtils {
     }
 
     public void invokeProductDetails(Activity activity, int productId) {
-        Intent intent = new Intent(activity, DetailsProduitActivity.class);
-       // intent.putExtra(AppConstants.PRODUCT_ID, productId);
-        activity.startActivity(intent);
+
+        Intent i = new Intent(activity, DetailsProduitActivity.class);
+        i.putExtra(AppConstants.PRODUCT_ID, productId);
+        activity.startActivity(i);
+
     }
+
+    public void invokeProductDetailsGood(Context mContext, Product productId) {
+
+        Intent i = new Intent(mContext, DetailsProduitActivity.class);
+        i.putExtra(AppConstants.produit, productId);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);
+
+    }
+
+    public void invokeProductDetailsCategorie(Context mContext, GetCategoryWithProduit categorieId) {
+
+        Intent i = new Intent(mContext, DetailsProduitActivity.class);
+        i.putExtra(AppConstants.categorie, categorieId);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);
+
+    }
+
+    public void invokeProductDetailsBrand(Context mContext, GetMarqueWithProduit brandId) {
+
+        Intent i = new Intent(mContext, DetailsProduitActivity.class);
+        i.putExtra(AppConstants.brand, brandId);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);
+
+    }
+
+    public void invokeProductDetailsMagasin(Context mContext, Magasin magasinId) {
+
+        Intent i = new Intent(mContext, DetailsProduitActivity.class);
+        i.putExtra(AppConstants.magasin, magasinId);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);
+
+    }
+
+    public void invokeProductDetailsPlat(Context mContext, Plat platId) {
+
+        Intent i = new Intent(mContext, PlatDetailsActivity.class);
+        i.putExtra(AppConstants.plat, platId);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);
+
+    }
+
     public void invokeSearchActivity(Activity activity, String searchKey) {
         Intent intent = new Intent(activity, SearchActivity.class);
         intent.putExtra(AppConstants.SEARCH_KEY, searchKey);

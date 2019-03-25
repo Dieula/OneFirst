@@ -3,7 +3,9 @@ package oneclick.yonclick.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Payem {
+import java.io.Serializable;
+
+public class Payem implements Serializable {
 
     @SerializedName("user_id")
     @Expose

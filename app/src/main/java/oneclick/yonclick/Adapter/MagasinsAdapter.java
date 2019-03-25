@@ -16,6 +16,7 @@ import java.util.List;
 import oneclick.yonclick.Model.Magasin;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Detail.DetailsProduitActivity;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.dataa.preference.AppPreference;
 
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
@@ -56,15 +57,8 @@ public class MagasinsAdapter extends RecyclerView.Adapter<MagasinsAdapter.Custom
             @Override
             public void onClick(View v) {
 
-              /*  Intent intent = new Intent(mContext, DetailsProduitActivity.class);
+                ActivityUtils.getInstance().invokeProductDetailsMagasin(mContext,  products.get(position));
 
-                mContext.startActivity(intent);
-*/
-              /*  AppPreference appPreference =
-                        AppPreference.getInstance(mContext);
-
-                appPreference.setInteger("MagasinID",produit.getId());
-*/
             }
         });
 

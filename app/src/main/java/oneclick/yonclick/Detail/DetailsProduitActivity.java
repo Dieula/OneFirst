@@ -10,13 +10,19 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import oneclick.yonclick.Model.Brand;
 import oneclick.yonclick.Model.Categorie;
+import oneclick.yonclick.Model.GetCategoryWithProduit;
+import oneclick.yonclick.Model.GetMarqueWithProduit;
+import oneclick.yonclick.Model.Magasin;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.ModelList.BrandList;
 import oneclick.yonclick.ModelList.CategorieList;
@@ -40,12 +46,24 @@ public class DetailsProduitActivity extends BaseActivity {
     private Activity mActivity;
 
     public Product produit;
-    ProduitList productsList;
-    String viewType;
+    public Magasin magasin;
+    public GetMarqueWithProduit getMarqueWithProduit;
+    public GetCategoryWithProduit getCategoryWithProduit;
+
+
+    String ImgProduit,imgCategorie,imgMarque;
+    Integer prod,cat,brand;
+    ImageView imageView,imgToolbarCart,imgProfil;
+
+
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-    String NameProduit ,PRODUIT_ID, DescProduit,images, tvSalesPrice;
+
+
+
+
+
      int id_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,29 +71,97 @@ public class DetailsProduitActivity extends BaseActivity {
         setContentView(R.layout.activity_details_produit);
 
 
-        if(getIntent().getSerializableExtra("prod") != null){
+        mContext = getApplicationContext();
+
+        // cart counter
+        imgToolbarCart = (ImageView) findViewById(R.id.cartList);
+        imgProfil = (ImageView) findViewById(R.id.imgProfil);
+
+
+
+        //Variable
+        TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
+        TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
+        TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
+        TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
+        imageView = (ImageView) findViewById(R.id.vpImageSlider);
+
+        final Button btnAddToCart = findViewById(R.id.btnAddToCart);
+        Button btnBuyNow = findViewById(R.id.btnBuyNow);
+
+
+
+        if (getIntent().getSerializableExtra("prod") != null)
+        {
+            produit = (Product) getIntent().getSerializableExtra("prod");
+
+        }
+        else if (getIntent().getSerializableExtra("brand") != null)
+        {
+            getMarqueWithProduit = (GetMarqueWithProduit) getIntent().getSerializableExtra("brand");
+
+        }
+        else if (getIntent().getSerializableExtra("categ") != null)
+        {
+            getCategoryWithProduit = (GetCategoryWithProduit) getIntent().getSerializableExtra("categ");
+
+        }
+        else{
+            System.out.println("PROD : NO DETAILS");
+        }
+      //  System.out.println("PROD INFO : "+produit.getName_product());
+
+
+
+       /* if(getIntent().getSerializableExtra("prod") != null){
             produit = (Product) getIntent().getSerializableExtra("prod");
         }else{
             System.out.println("PROD : NO DETAILS");
         }
         System.out.println("PROD INFO : "+produit.getName_product());
-
-        DatabaseHelper db = new DatabaseHelper(this);
-        mContext = getApplicationContext();
-
-
-       /* AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
-        id_cat= appPreference.getInteger("categorieID");
 */
-
-       // ProduitList productsList = produit.getId();
-
+        //DatabaseHelper db = new DatabaseHelper(this);
 
 
-        ImageView ImgProduit = (ImageView) findViewById(R.id.vpImageSlider);
+        if (getCategoryWithProduit != null){
+            NameProduit.setText(getCategoryWithProduit.getNameProduct());
+            DescProduit.setText(getCategoryWithProduit.getDetailsProduct());
+            tvTextDescription.setText(getCategoryWithProduit.getDetailsProduct());
+            tvSalesPrice.setText(getCategoryWithProduit.getPrix());
+            imgCategorie = getCategoryWithProduit.getImage();
+
+            Glide.with(getApplicationContext()).load(getCategoryWithProduit.getImage()).into(imageView);
+        }
+        else if (getMarqueWithProduit != null)
+        {
+            NameProduit.setText(getMarqueWithProduit.getNameProduct());
+            DescProduit.setText(getMarqueWithProduit.getDetailsProduct());
+            tvTextDescription.setText(getMarqueWithProduit.getDetailsProduct());
+            tvSalesPrice.setText(getMarqueWithProduit.getPrix());
+            imgMarque = getMarqueWithProduit.getImage();
+
+            Glide.with(getApplicationContext()).load(getMarqueWithProduit.getImage()).into(imageView);
+        }
+        else if(produit != null)
+        {
+
+            NameProduit.setText(produit.getName_product());
+            DescProduit.setText(produit.getDetails_product());
+            tvTextDescription.setText(produit.getDetails_product());
+            tvSalesPrice.setText(produit.getPrix());
+            ImgProduit = produit.getImage();
+
+            Glide.with(getApplicationContext()).load(produit.getImage()).into(imageView);
+
+        }
+
+       /*  imageView = (ImageView) findViewById(R.id.vpImageSlider);
+         ImgProduit = produit.getImage();
+
+         Glide.with(getApplicationContext()).load(produit.getImage()).into(imageView);*/
 
 
-        ImgProduit.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -85,59 +171,83 @@ public class DetailsProduitActivity extends BaseActivity {
             }
         });
 
-        TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
-         NameProduit.setText(produit.getName_product());
 
-        TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
-        DescProduit.setText(produit.getDetails_product());
 
-        TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
-        tvTextDescription.setText(produit.getDetails_product());
-
-        TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
-        tvSalesPrice.setText(produit.getPrix());
-
-        final Button btnAddToCart = findViewById(R.id.btnAddToCart);
-        Button btnBuyNow = findViewById(R.id.btnBuyNow);
 
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               // startActivity(new Intent(getApplicationContext(),ProductListActivity.class));
-                // Add to cart list
+                if ( produit!= null)
+                {
+                    // Add to cart list
+                    CartDBController cartController = new CartDBController(mContext);
 
-                        CartDBController cartController = new CartDBController(mContext);
-                       // cartController.createDB();
-
-              //  Toast.makeText(mContext, "PR "+produit.getId().toString(), Toast.LENGTH_SHORT).show();
                     if (cartController.isAlreadyAddedToCart(produit.getBrand_id()))
                     {
-                            AppUtility.showToast(mContext, getString(R.string.already_in_cart));
+                        AppUtility.showToast(mContext, getString(R.string.already_in_cart));
                     }
-                         else
-                             {
-                           // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+                    else
+                    {
+                       // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
 
-                            String price;
-                            //price = Integer.valueOf(produit.getPrix().toString());
-                            if (produit!=null) {
-                                price = produit.getPrix();
-                            } else {
-                                price = produit.getPrix();
-                            }
+                        cartController.insertCartItem(produit.getBrand_id(), produit.getPrix(),produit.getName_product(), produit.getImage(), quantityCounter);
+                       // btnAddToCart.setText(getString(R.string.added_to_cart));
+                        AppUtility.showToast(mContext, getString(R.string.added_to_cart));
 
 
-                            cartController.insertCartItem(produit.getBrand_id(), produit.getName_product(),
-                                    produit.getImage(),produit.getImage(), quantityCounter);
-                            btnAddToCart.setText(getString(R.string.added_to_cart));
-                            AppUtility.showToast(mContext, getString(R.string.added_to_cart));
+                    }
+                    cartController.close();
+
+                }
+                else if (getMarqueWithProduit != null)
+                {
+                    // Add to cart list
+                    CartDBController cartController = new CartDBController(mContext);
+
+                    if (cartController.isAlreadyAddedToCart(getMarqueWithProduit.getId()))
+                    {
+                        AppUtility.showToast(mContext, getString(R.string.already_in_cart));
+                    }
+                    else
+                    {
+                        // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+
+                        cartController.insertCartItem(getMarqueWithProduit.getBrandId(), getMarqueWithProduit.getNameProduct(),
+                                getMarqueWithProduit.getImage(),getMarqueWithProduit.getPrix(), quantityCounter);
+                       // btnAddToCart.setText(getString(R.string.added_to_cart));
+                        AppUtility.showToast(mContext, getString(R.string.added_to_cart));
 
 
-                        }
-                        cartController.close();
+                    }
+                    cartController.close();
 
-                Toast.makeText(DetailsProduitActivity.this, "Ajout reussi", Toast.LENGTH_SHORT).show();
+                }
+              else if (getCategoryWithProduit != null)
+                {
+                    // Add to cart list
+                    CartDBController cartController = new CartDBController(mContext);
+
+                    if (cartController.isAlreadyAddedToCart(getCategoryWithProduit.getId()))
+                    {
+                        AppUtility.showToast(mContext, getString(R.string.already_in_cart));
+                    }
+                    else
+                    {
+                        // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+
+                        cartController.insertCartItem(getCategoryWithProduit.getId(), getCategoryWithProduit.getNameProduct(),
+                                getCategoryWithProduit.getImage(),getCategoryWithProduit.getPrix(), quantityCounter);
+                        //btnAddToCart.setText(getString(R.string.added_to_cart));
+                        AppUtility.showToast(mContext, getString(R.string.added_to_cart));
+
+
+                    }
+                    cartController.close();
+
+                }
+
+              //  Toast.makeText(DetailsProduitActivity.this, "Ajout reussi", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -17,6 +17,7 @@ import java.util.List;
 import oneclick.yonclick.Model.GetCategoryWithProduit;
 import oneclick.yonclick.Model.GetMarqueWithProduit;
 import oneclick.yonclick.R;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.ListTypeShow;
 import oneclick.yonclick.listener.OnItemClickListener;
 
@@ -89,6 +90,16 @@ public class BrandListCategorieAdapter extends RecyclerView.Adapter<BrandListCat
         String imgUrl = BASE_URL_Image+product.getImage();
 
         holder.tvProductName.setText(product.getNameProduct());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.getInstance().invokeProductDetailsBrand(mContext,  dataList.get(position));
+
+                //ActivityUtils.getInstance().invokeProductDetailsGood(mContext,  dataList.get(position));
+
+            }
+        });
 
         if (!product.getImage().isEmpty()) {
             Glide.with(mContext)

@@ -468,7 +468,7 @@ public class MagasinsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<MagasinsList> call, Throwable t) {
-                Toast.makeText(getActivity(), "Bad", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), "Bad", Toast.LENGTH_SHORT).show();
                 ///  pDialog.dismiss();
             }
         });
@@ -600,71 +600,6 @@ public class MagasinsFragment extends Fragment {
                 //  hideLoader();
             }
         });
-
-       /* String url = BASE_URL+"categoryproduct";
-
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.addHeader("Content-Type", "application/json");
-        client.addHeader("apiKey", "8484884774837498");
-
-        client.get(url, new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                Log.d("DEBUG", response.toString());
-
-                {
-
-                    serviceJsonResults = null;
-                    try {
-                        serviceJsonResults = response.getJSONArray("data");
-                        categories = Category.fromJSONArray(serviceJsonResults);
-
-                        recyclerView = (RecyclerView) lytCategoryList.findViewById(R.id.homeRecyclerView);
-                        eAdapter = new CategorieAdapter(getActivity(), categories);
-                        // Attach the adapter to the recyclerview to populate items
-                        recyclerView.setAdapter(eAdapter);
-                        // swipeContainer.setRefreshing(false);
-
-                        LinearLayoutManager secondManager = new LinearLayoutManager
-                                (getActivity(), LinearLayoutManager.HORIZONTAL, false);
-                        recyclerView.setLayoutManager(secondManager);
-
-                        // Attach the layout manager to the recycler view
-                        recyclerView.setLayoutManager(secondManager);
-                        //recyclerView.setItemAnimator(new SlideInUpAnimator());
-
-                        Toast.makeText(getActivity(), response + "Goodddrrrrrrr!", Toast.LENGTH_SHORT).show();
-                        // idProgress.setVisibility(View.GONE);
-                        eAdapter.setOnItemClickListener(new CategorieAdapter.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                Category plat = categories.get(position);
-                                Intent go = new Intent(getActivity(), DetailsProduitActivity.class);
-                                go.putExtra("plat", plat);
-                                startActivity(go);
-                                Toast.makeText(getActivity(), categories + " was clicked!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-           //Toast.makeText(getContext(), "Baddddddd"+errorResponse.toString(), Toast.LENGTH_SHORT).show();
-            }
-
-        });
-*/
-
-
-
 
     }
 

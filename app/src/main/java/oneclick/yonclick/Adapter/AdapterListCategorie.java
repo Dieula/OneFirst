@@ -19,6 +19,7 @@ import java.util.List;
 
 import oneclick.yonclick.Model.GetCategoryWithProduit;
 import oneclick.yonclick.R;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.ListTypeShow;
 import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.listener.OnItemClickListener;
@@ -98,6 +99,9 @@ public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCatego
             @Override
             public void onClick(View v) {
 
+                ActivityUtils.getInstance().invokeProductDetailsCategorie(mContext,  dataList.get(position));
+
+/*
                 Intent intent = new Intent(mContext,DetailsProduitActivity.class);
 
 
@@ -109,7 +113,7 @@ public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCatego
                 editor.putInt("id", id);
                 editor.apply();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
+                mContext.startActivity(intent);*/
             }
         });
 

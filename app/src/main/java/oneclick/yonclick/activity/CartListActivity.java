@@ -212,7 +212,7 @@ public class CartListActivity extends BaseActivity {
 
         if(cartList.isEmpty()) {
             showEmptyView();
-          //  Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
+         //  Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
           info_text.setText(getString(R.string.empty_cart));
         } else {
             hideLoader();
@@ -261,16 +261,6 @@ public class CartListActivity extends BaseActivity {
         }
     }
 
-    private ArrayList<LineItem> buildLineItems() {
-        ArrayList<LineItem> lineItemList = new ArrayList<>();
-        for (int i = 0; i < cartList.size(); i++) {
-            if (cartList.get(i).isSelected == AppConstants.VALUE_SELECTED) {
-                lineItemList.add(new LineItem(cartList.get(i).name, cartList.get(i).attribute,
-                        cartList.get(i).productId, cartList.get(i).quantity));
-            }
-        }
-        return lineItemList;
-    }
 
     private void deleteCartItemDialog(final int productId) {
 
@@ -284,12 +274,19 @@ public class CartListActivity extends BaseActivity {
                   //  cartController.createDB();
                     cartController.deleteCartItemById(productId);
                     cartController.close();
+
+
+                    cartListAdapter.notifyDataSetChanged();
+                    if (cartList.isEmpty()) {
+                        footerView.setVisibility(View.GONE);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 loadCartData();
             }
         });
+
 
     }
 
@@ -299,12 +296,9 @@ public class CartListActivity extends BaseActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                // Respond to the action bar's Up/Home button
                 finish();
                 return true;
-        /*    case R.id.miShare:
-                shareInfo();
-                return true;*/
+
         }
         return super.onOptionsItemSelected(item);
     }

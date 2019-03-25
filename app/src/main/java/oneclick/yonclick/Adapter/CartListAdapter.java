@@ -92,7 +92,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         final CartItem cartItem = dataList.get(position);
 
         holder.tvProductName.setText(cartItem.name);
-        holder.tvProductPrice.setText(AppConstants.CURRENCY + String.valueOf(cartItem.price));
+        holder.tvProductPrice.setText(cartItem.price + AppConstants.CURRENCY);
         holder.tvCount.setText(mContext.getResources().getString(R.string.quantity) + String.valueOf(cartItem.quantity));
 
         if (cartItem.isSelected == AppConstants.VALUE_SELECTED) {

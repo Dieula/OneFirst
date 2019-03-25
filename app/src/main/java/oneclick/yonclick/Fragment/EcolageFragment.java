@@ -97,12 +97,6 @@ public class EcolageFragment extends Fragment {
 
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(eAdapter);
-                    recyclerView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Toast.makeText(getActivity(), "New Ativityyyyyyyyyy", Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
                     Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
@@ -119,7 +113,7 @@ public class EcolageFragment extends Fragment {
         return view;
         }
 
-    private void ShowDialog() {
+    /*private void ShowDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
      //   alertDialog.setTitle("    ------ Choix paiement ------");
 
@@ -148,7 +142,7 @@ public class EcolageFragment extends Fragment {
 
 
         alertDialog.show();
-    }
+    }*/
 
 
 }

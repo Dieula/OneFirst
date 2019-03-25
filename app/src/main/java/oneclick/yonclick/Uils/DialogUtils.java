@@ -3,57 +3,35 @@ package oneclick.yonclick.Uils;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import oneclick.yonclick.R;
+import oneclick.yonclick.activity.DetailsCreditCardActivity;
+import oneclick.yonclick.activity.MobilePaiementActivity;
 
 public class DialogUtils {
-    /**
-     * Use this method if you want to show (YES/NO)/(OK/CANCEL) prompt dialog
-     * @param activity
-     * @param title
-     * @param message
-     * @param positiveButtonText
-     * @param negativeButtonText
-     * @param dialogActionListener
-     */
+
+    Context mContext;
     public static void showDialogPrompt(Activity activity, String title, String message, String positiveButtonText, String negativeButtonText, boolean isCancellable, final DialogActionListener dialogActionListener) {
         showDialog(activity, title, message, positiveButtonText, negativeButtonText, isCancellable, dialogActionListener);
     }
 
-    /**
-     * Use this method if you want to show any message in dialog, message dialog is automatically cancellable
-     * @param activity
-     * @param title
-     * @param message
-     * @param negativeButtonText
-     */
+
     public static void showMessageDialog(Activity activity, String title, String message, String negativeButtonText) {
         showDialog(activity, title, message, null, negativeButtonText, true, null);
     }
 
-    /**
-     * Use this method if you want to show a message dialog with user action callback, you can do any action on user event
-     * @param activity
-     * @param title
-     * @param message
-     * @param positiveButtonText
-     * @param dialogActionListener
-     */
+
     public static void showActionDialog(Activity activity, String title, String message, String positiveButtonText, DialogActionListener dialogActionListener) {
         showDialog(activity, title, message, positiveButtonText, null, false, dialogActionListener);
     }
 
-    /**
-     * Base dialog builder method, not accessable publicly
-     * @param activity
-     * @param title
-     * @param message
-     * @param positiveButtonText
-     * @param negativeButtonText
-     * @param isCancellable
-     * @param dialogActionListener
-     */
+
     private static void showDialog(Activity activity, String title, String message, String positiveButtonText, String negativeButtonText, boolean isCancellable, final DialogActionListener dialogActionListener) {
         if(activity != null) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity, R.style.DialogTheme);
@@ -84,14 +62,6 @@ public class DialogUtils {
         }
     }
 
-
-    /**
-     * Call ths method if you want to show progress dialog, preserve returned ProgressDialog instance to close progress dialog
-     * @param activity
-     * @param message
-     * @param isCancellable
-     * @return ProgressDialog
-     */
     public static ProgressDialog showProgressDialog(Activity activity, String message, boolean isCancellable) {
         ProgressDialog progressDialog = new ProgressDialog(activity, R.style.DialogTheme);
         progressDialog.setCancelable(isCancellable);
@@ -102,10 +72,7 @@ public class DialogUtils {
         return progressDialog;
     }
 
-    /**
-     * Use this method to close previewed progress dialog
-     * @param progressDialog
-     */
+
     public static void dismissProgressDialog(ProgressDialog progressDialog) {
         if(progressDialog != null) {
             progressDialog.dismiss();

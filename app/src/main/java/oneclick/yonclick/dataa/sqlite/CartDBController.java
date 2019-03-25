@@ -27,15 +27,7 @@ public class CartDBController {
         dbHelper = new DatabaseHelper(mContext);
         database = dbHelper.getWritableDatabase();
     }
-   /* public void createDB(){
 
-
-    }*/
-   /* public CartDBController open() throws SQLException {
-        dbHelper = new DatabaseHelper(mContext);
-        database = dbHelper.getWritableDatabase();
-        return this;
-    }*/
     public void close() {
         dbHelper.close();
     }

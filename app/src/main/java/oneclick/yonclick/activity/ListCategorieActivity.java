@@ -84,13 +84,6 @@ public class ListCategorieActivity extends BaseActivity {
         initVariable();
         initView();
         loadProductList();
-        //initListener();
-
-        //Bundle bundle = getIntent().getExtras();
-        //mParsedProductName = bundle.getString("product_name");
-        //mParsedProductID = bundle.getString("categorieID");
-        //mParsedProductImageUrl = bundle.getString("product_image");
-
 
         AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
         id_cat= appPreference.getInteger("categorieID");

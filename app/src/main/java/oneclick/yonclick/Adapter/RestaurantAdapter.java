@@ -27,7 +27,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
     private List<Restaurant> restaurants,filterList;
     private Context mContext;
 
-    CustomFilter filter;
 
     public RestaurantAdapter(Context mContext, List<Restaurant> restaurant){
         this.restaurants = restaurant;
@@ -86,14 +85,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
 
         }
 
-    /*    //RETURN FILTER OBJ
 
-        public LayoutInflater.Filter getFilter() {
-            if (filter == null) {
-                filter = new CustomFilter(filterList, this);
-            }
-
-            return filter;
-        }*/
     }
 }

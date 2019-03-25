@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Restaurant
+public class Restaurant implements Serializable
 {
     @SerializedName("id")
     @Expose

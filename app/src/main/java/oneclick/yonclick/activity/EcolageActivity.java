@@ -90,10 +90,10 @@ public class EcolageActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                EcolageFragment fragment = new EcolageFragment();
+              /*  EcolageFragment fragment = new EcolageFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, fragment);
-                transaction.commit();
+                transaction.commit();*/
                 //startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 // Respond to the action bar's Up/Home button
                 finish();

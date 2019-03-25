@@ -49,6 +49,12 @@ public class EcolageAdapter extends RecyclerView.Adapter<EcolageAdapter.CustomVi
         String imgUrl = BASE_URL_Image+ecolage.getImage();
 
         holder.image.setImageResource(0);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext,EcolageActivity.class));
+            }
+        });
 
 
        Glide.with(mContext)

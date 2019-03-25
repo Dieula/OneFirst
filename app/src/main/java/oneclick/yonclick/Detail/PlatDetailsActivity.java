@@ -1,6 +1,7 @@
 package oneclick.yonclick.Detail;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,35 +11,43 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import oneclick.yonclick.Model.CartList;
+import oneclick.yonclick.Model.GetCategoryWithProduit;
+import oneclick.yonclick.Model.GetMarqueWithProduit;
 import oneclick.yonclick.Model.Plat;
+import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.DetailsCreditCardActivity;
 import oneclick.yonclick.activity.MainActivity;
 import oneclick.yonclick.activity.MobilePaiementActivity;
+import oneclick.yonclick.dataa.sqlite.CartDBController;
 import oneclick.yonclick.dataa.sqlite.DbManager;
 
 public class PlatDetailsActivity extends AppCompatActivity {
 
-    String mParsedProductID,mParsedProductName;
-    String mParsedProductImageUrl;
-    String mParsedProductPrice;
-
+    private int quantityCounter = 1;
     List<CartList> dbList;
     DbManager helper;
 
+    Context mContext;
+    ImageView imageView;
+    Button btnAddToCart,btnBuyNow;
 
     Plat plat;
-    String AcheterID = "";
+    String ImgProduit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,42 +57,44 @@ public class PlatDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (getIntent() !=null && !AcheterID.isEmpty()) {
-            AcheterID = getIntent().getStringExtra("acheterID");
-            getDetailPlat(AcheterID);
 
-            if (!AcheterID.isEmpty()) {
-                if (AppUtility.isNetworkAvailable(getBaseContext()))
-                    getDetailPlat(AcheterID);
-                else
-                    {
-                    Toast.makeText(this, "PLease check your Connection", Toast.LENGTH_SHORT).show();
-                    return;
-                   }
+        mContext = getApplicationContext();
 
 
-            }
+
+        //Variable
+        TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
+        TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
+        TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
+        TextView tvSalesPrice = (TextView) findViewById(R.id.tvPrice);
+        imageView = (ImageView) findViewById(R.id.vpImageSlider);
+
+        btnAddToCart = findViewById(R.id.btnAddToCart);
+        btnBuyNow = findViewById(R.id.btnBuyNow);
+
+
+        if (getIntent().getSerializableExtra("plat") != null)
+        {
+            plat = (Plat) getIntent().getSerializableExtra("plat");
 
         }
+        else
+            {
+            System.out.println("PROD : NO DETAILS");
+        }
+        System.out.println("PROD INFO : "+plat.getNom_Plats());
 
 
 
 
-        /*TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
         NameProduit.setText(plat.getNom_Plats());
-
-        TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
         DescProduit.setText(plat.getDetails_Plats());
-
-        TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
         tvTextDescription.setText(plat.getDetails_Plats());
-
-        TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
         tvSalesPrice.setText(plat.getPrix());
-        */
+        ImgProduit = plat.getImage();
 
-        //Display the Up button home
-       // getSupportActionBar().setIcon(R.drawable.arrowleft);
+        Glide.with(getApplicationContext()).load(plat.getImage()).into(imageView);
+
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -116,47 +127,37 @@ public class PlatDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void getDetailPlat(String acheterID) {
-
-        TextView textView = findViewById(R.id.tvProductName);
-        textView.setText("Nom"+plat.getNom_Plats());
-        TextView prix = findViewById(R.id.tvPrice);
-        prix.setText("Prix"+plat.getPrix());
-
-        TextView details = findViewById(R.id.tvProductName);
-        details.setText("Descripttion"+plat.getDetails_Plats());
-
-
-    }
 
 
     private void InsertCartList() {
-        // insert into cart list
-        dbList = new ArrayList<>();
-        helper = DbManager.getInstance(PlatDetailsActivity.this);
-        helper.insertIntoDB(mParsedProductID, mParsedProductName, mParsedProductPrice, mParsedProductImageUrl);
+        if ( plat!= null)
+        {
+            // Add to cart list
+            CartDBController cartController = new CartDBController(mContext);
+
+            if (cartController.isAlreadyAddedToCart(plat.getID_Plats()))
+            {
+                AppUtility.showToast(mContext, getString(R.string.already_in_cart));
+            }
+            else
+            {
+                // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+
+                cartController.insertCartItem(plat.getID_Plats(), plat.getPrix(),plat.getNom_Plats(), plat.getImage(), quantityCounter);
+                // btnAddToCart.setText(getString(R.string.added_to_cart));
+                AppUtility.showToast(mContext, getString(R.string.added_to_cart));
 
 
-    }
-    public void getCartList(){
-        helper = DbManager.getInstance(PlatDetailsActivity.this);
-        dbList= new ArrayList<CartList>();
-        dbList = helper.getDataFromDB();
-        Log.i("DemoCart", "DemoCartList: " + dbList.toString());
-    }
+            }
+            cartController.close();
 
-    public void DeleteFromCartList(){
-        dbList= new ArrayList<CartList>();
-        helper = DbManager.getInstance(PlatDetailsActivity.this);
-        helper.deleteARow(mParsedProductID);
+        }
+
     }
 
     private void ShowDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        // alertDialog.setTitle("    ------ Choix paiement ------");
 
-
-        //  alertDialog.setMessage("Selectionnez un de ces methodes de paiement!");
         LayoutInflater inflater = this.getLayoutInflater();
         View addLayout = inflater.inflate(R.layout.dialog_paiement,null);
 

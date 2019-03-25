@@ -71,7 +71,7 @@
                         android:padding="5dp"
                         android:scaleType="centerInside"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/imgNotification"
+                        android:layout_toLeftOf="@+id/imgProfil"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/cartt" />
 
@@ -79,7 +79,7 @@
 
 
                     <ImageView
-                        android:id="@+id/imgNotification"
+                        android:id="@+id/imgProfil"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:padding="5dp"

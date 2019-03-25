@@ -59,6 +59,7 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.CustomViewHo
         String imgUrl = BASE_URL_Image+categorie.getImage();
 
 
+
         Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)

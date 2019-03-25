@@ -3,7 +3,9 @@ package oneclick.yonclick.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetMarqueWithProduit {
+import java.io.Serializable;
+
+public class GetMarqueWithProduit implements Serializable {
 
     @SerializedName("id")
     @Expose

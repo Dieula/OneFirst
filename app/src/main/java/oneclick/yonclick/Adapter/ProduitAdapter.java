@@ -17,6 +17,7 @@ import java.util.List;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Detail.DetailsProduitActivity;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.dataa.preference.AppPreference;
 
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
@@ -67,16 +68,12 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(mContext, DetailsProduitActivity.class);
+                ActivityUtils.getInstance().invokeProductDetailsGood(mContext,  products.get(position));
+
+                /*Intent i = new Intent(mContext, DetailsProduitActivity.class);
                 i.putExtra("prod", produit);
 
-                mContext.startActivity(i);
-
-/*
-               AppPreference appPreference =
-                        AppPreference.getInstance(mContext);
-
-                appPreference.setInteger("ProduitID",produit.getId());*/
+                mContext.startActivity(i);*/
 
 
             }

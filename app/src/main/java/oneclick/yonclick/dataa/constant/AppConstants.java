@@ -4,13 +4,11 @@ public class AppConstants {
 
     // Integer constants
     public static final int VALUE_ZERO = 0;
-    public static final int INDEX_ZERO = 0;
     public static final String EMPTY_STRING = "";
-    public static final String COMMA = ",";
     public static final int VALUE_SELECTED = 1;
     public static final int VALUE_NOT_SELECTED = 0;
     public static final int PASSWORD_MIN_CHAR_LIMIT = 6;
-    public static final String CURRENCY = "US $";
+    public static final String CURRENCY = "HT";
     public static final String ORDER_STATUS_PENDING = "pending";
     public static final String ORDER_STATUS_COMPLETED = "completed";
 
@@ -39,6 +37,11 @@ public class AppConstants {
     public static final int CATEGORY_TEC_PRODUCTS_ID = 21;
 
     // String constants
+    public static final String produit = "prod";
+    public static final String magasin = "mag";
+    public static final String brand = "brand";
+    public static final String plat = "plat";
+    public static final String categorie = "categ";
     public static final String PRODUCT_ID = "id";
     public static final String CATEGORY_ID = "categoryId";
     public static final String PAGE_TITLE = "pageTitle";
