@@ -28,8 +28,10 @@ import oneclick.yonclick.ModelList.BrandList;
 import oneclick.yonclick.ModelList.CategorieList;
 import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.R;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.BaseActivity;
+import oneclick.yonclick.activity.CartListActivity;
 import oneclick.yonclick.activity.DetailsCreditCardActivity;
 import oneclick.yonclick.activity.LargeImageViewActivity;
 import oneclick.yonclick.activity.MainActivity;
@@ -38,6 +40,8 @@ import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.dataa.preference.AppPreference;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 import oneclick.yonclick.dataa.sqlite.DatabaseHelper;
+
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 
 public class DetailsProduitActivity extends BaseActivity {
 
@@ -54,6 +58,7 @@ public class DetailsProduitActivity extends BaseActivity {
     String ImgProduit,imgCategorie,imgMarque;
     Integer prod,cat,brand;
     ImageView imageView,imgToolbarCart,imgProfil;
+    TextView tvCartCounter;
 
 
     SharedPreferences sharedPreferences;
@@ -63,7 +68,7 @@ public class DetailsProduitActivity extends BaseActivity {
 
 
 
-
+    private String title;
      int id_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +82,15 @@ public class DetailsProduitActivity extends BaseActivity {
         imgToolbarCart = (ImageView) findViewById(R.id.cartList);
         imgProfil = (ImageView) findViewById(R.id.imgProfil);
 
-
+        initToolbar();
+        enableBackButton();
+        setToolbarTitle(title);
 
         //Variable
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
         TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
         TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
+        TextView tvNomMagasin = (TextView) findViewById(R.id.tvNomMagasin);
         TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
         imageView = (ImageView) findViewById(R.id.vpImageSlider);
 
@@ -90,20 +98,39 @@ public class DetailsProduitActivity extends BaseActivity {
         Button btnBuyNow = findViewById(R.id.btnBuyNow);
 
 
+        // cart counter
 
-        if (getIntent().getSerializableExtra("prod") != null)
+     //  tvCartCounter = (TextView) findViewById(R.id.tvCartCounter);
+
+        // toolbar cart action listener
+        imgToolbarCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                 startActivity(new Intent(getApplicationContext(),CartListActivity.class));
+
+                /**
+                 * if you don't want to show notification then disable
+                 * disable previous line and use line given bellow
+                 */
+               // ActivityUtils.getInstance().invokeActivity(mActivity, CartListActivity.class, false);
+
+            }
+        });
+
+        if (getIntent().getSerializableExtra(AppConstants.produit) != null)
         {
-            produit = (Product) getIntent().getSerializableExtra("prod");
+            produit = (Product) getIntent().getSerializableExtra(AppConstants.produit);
 
         }
-        else if (getIntent().getSerializableExtra("brand") != null)
+        else if (getIntent().getSerializableExtra(AppConstants.brand) != null)
         {
-            getMarqueWithProduit = (GetMarqueWithProduit) getIntent().getSerializableExtra("brand");
+            getMarqueWithProduit = (GetMarqueWithProduit) getIntent().getSerializableExtra(AppConstants.brand);
 
         }
-        else if (getIntent().getSerializableExtra("categ") != null)
+        else if (getIntent().getSerializableExtra(AppConstants.categorie) != null)
         {
-            getCategoryWithProduit = (GetCategoryWithProduit) getIntent().getSerializableExtra("categ");
+            getCategoryWithProduit = (GetCategoryWithProduit) getIntent().getSerializableExtra(AppConstants.categorie);
 
         }
         else{
@@ -127,6 +154,7 @@ public class DetailsProduitActivity extends BaseActivity {
             NameProduit.setText(getCategoryWithProduit.getNameProduct());
             DescProduit.setText(getCategoryWithProduit.getDetailsProduct());
             tvTextDescription.setText(getCategoryWithProduit.getDetailsProduct());
+           // tvNomMagasin.setText(getCategoryWithProduit.getNameProduct());
             tvSalesPrice.setText(getCategoryWithProduit.getPrix());
             imgCategorie = getCategoryWithProduit.getImage();
 
@@ -138,9 +166,10 @@ public class DetailsProduitActivity extends BaseActivity {
             DescProduit.setText(getMarqueWithProduit.getDetailsProduct());
             tvTextDescription.setText(getMarqueWithProduit.getDetailsProduct());
             tvSalesPrice.setText(getMarqueWithProduit.getPrix());
-            imgMarque = getMarqueWithProduit.getImage();
-
-            Glide.with(getApplicationContext()).load(getMarqueWithProduit.getImage()).into(imageView);
+            imgMarque = BASE_URL_Image+getMarqueWithProduit.getImage();
+            Glide.with(getApplicationContext()).
+                    load(getMarqueWithProduit.getImage())
+                    .into(imageView);
         }
         else if(produit != null)
         {
@@ -155,19 +184,16 @@ public class DetailsProduitActivity extends BaseActivity {
 
         }
 
-       /*  imageView = (ImageView) findViewById(R.id.vpImageSlider);
-         ImgProduit = produit.getImage();
-
-         Glide.with(getApplicationContext()).load(produit.getImage()).into(imageView);*/
-
-
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
+                Toast.makeText(getApplicationContext(), "Image", Toast.LENGTH_SHORT).show();
+                ActivityUtils.getInstance().invokeProductDetailsImage(mContext);
+                /*
                 Intent intent = new Intent(getApplicationContext(), LargeImageViewActivity.class);
                 intent.putExtra(AppConstants.KEY_IMAGE_URL,"id");
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
 

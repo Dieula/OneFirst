@@ -62,6 +62,21 @@ public class ActivityUtils {
 
     }
 
+    public void invokeProductDetailsImage(Context mContext) {
+
+        Intent intent = new Intent(mContext, LargeImageViewActivity.class);
+        intent.putExtra(AppConstants.KEY_IMAGE_URL,"id");
+        mContext.startActivity(intent);
+
+       /* Intent i = new Intent(mContext, DetailsProduitActivity.class);
+        i.putExtra(AppConstants.produit, productId);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);*/
+
+    }
+
+
+
     public void invokeProductDetailsCategorie(Context mContext, GetCategoryWithProduit categorieId) {
 
         Intent i = new Intent(mContext, DetailsProduitActivity.class);

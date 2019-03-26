@@ -32,6 +32,13 @@ public class LargeImageViewActivity extends AppCompatActivity {
     }
 
     private void initFunctionality() {
+      /*  if(getIntent().getStringArrayExtra("large_image_url") != null){
+            produit = (Product) getIntent().getSerializableExtra("large_image_url");
+        }else{
+            System.out.println("PROD : NO DETAILS");
+        }
+        System.out.println("PROD INFO : "+produit.getName_product());
+        */
         Intent intent = getIntent();
         String imageUrl = intent.getStringExtra(AppConstants.KEY_IMAGE_URL);
 

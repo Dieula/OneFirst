@@ -74,7 +74,7 @@ public class RestaurantFragment extends Fragment {
                 .setIcon(R.drawable.ic_notifications_black_24dp)
                 .show();
 
-
+/*
             new DialogSheet(getContext())
                     .setTitle("Infos")
                     .setMessage("Verifier votre internet")
@@ -93,7 +93,7 @@ public class RestaurantFragment extends Fragment {
                     })
                     .setBackgroundColor(Color.BLACK) // Your custom background color
                     .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
-                    .show();
+                    .show();*/
         }
 
 

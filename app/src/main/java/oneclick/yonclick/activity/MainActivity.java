@@ -52,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getApplicationContext(),CartListActivity.class));
+               startActivity(new Intent(getApplicationContext(),CartListActivity.class));
 
                 /**
                  * if you don't want to show notification then disable
                  * disable previous line and use line given bellow
                  */
-                //ActivityUtils.getInstance().invokeActivity(mActivity, CartListActivity.class, false);
+             // ActivityUtils.getInstance().invokeActivity(mActivity, CartListActivity.class, false);
 
             }
         });

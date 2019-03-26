@@ -29,13 +29,15 @@ import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
+import oneclick.yonclick.activity.BaseActivity;
+import oneclick.yonclick.activity.CartListActivity;
 import oneclick.yonclick.activity.DetailsCreditCardActivity;
 import oneclick.yonclick.activity.MainActivity;
 import oneclick.yonclick.activity.MobilePaiementActivity;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 import oneclick.yonclick.dataa.sqlite.DbManager;
 
-public class PlatDetailsActivity extends AppCompatActivity {
+public class PlatDetailsActivity extends BaseActivity {
 
     private int quantityCounter = 1;
     List<CartList> dbList;
@@ -47,6 +49,9 @@ public class PlatDetailsActivity extends AppCompatActivity {
 
     Plat plat;
     String ImgProduit;
+    private String title;
+    ImageView imgToolbarCart,imgProfil;
+    TextView tvCartCounter;
 
 
     @Override
@@ -57,6 +62,9 @@ public class PlatDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        initToolbar();
+        enableBackButton();
+        setToolbarTitle(title);
 
         mContext = getApplicationContext();
 
@@ -72,6 +80,29 @@ public class PlatDetailsActivity extends AppCompatActivity {
         btnAddToCart = findViewById(R.id.btnAddToCart);
         btnBuyNow = findViewById(R.id.btnBuyNow);
 
+
+
+        // cart counter
+        imgToolbarCart = (ImageView) findViewById(R.id.cartList);
+        imgProfil = (ImageView) findViewById(R.id.imgProfil);
+
+        //tvCartCounter = (TextView) findViewById(R.id.tvCartCounter);
+
+        // toolbar cart action listener
+        imgToolbarCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(),CartListActivity.class));
+
+                /**
+                 * if you don't want to show notification then disable
+                 * disable previous line and use line given bellow
+                 */
+                // ActivityUtils.getInstance().invokeActivity(mActivity, CartListActivity.class, false);
+
+            }
+        });
 
         if (getIntent().getSerializableExtra("plat") != null)
         {
