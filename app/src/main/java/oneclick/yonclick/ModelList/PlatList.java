@@ -4,21 +4,24 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import oneclick.yonclick.Model.Ecolage;
 import oneclick.yonclick.Model.Plat;
 
 public class PlatList {
 
+
     @SerializedName("data")
     @Expose
-    private ArrayList<Plat> Plats = null;
+    private List<Plat> data = null;
 
-    public ArrayList<Plat> getPlats() {
-        return Plats;
+    public List<Plat> getData() {
+        return data;
     }
 
-    public void setPlats(ArrayList<Plat> plats) {
-        Plats = plats;
+    public void setData(List<Plat> data) {
+        this.data = data;
     }
+
 }

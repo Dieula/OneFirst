@@ -66,6 +66,7 @@ public class ActivityUtils {
 
         Intent intent = new Intent(mContext, LargeImageViewActivity.class);
         intent.putExtra(AppConstants.KEY_IMAGE_URL,"id");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
 
        /* Intent i = new Intent(mContext, DetailsProduitActivity.class);

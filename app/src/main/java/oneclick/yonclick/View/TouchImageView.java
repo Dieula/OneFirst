@@ -182,6 +182,7 @@ public class TouchImageView extends AppCompatImageView {
                 setZoom(this);
             }
         }
+
     }
 
     @Override

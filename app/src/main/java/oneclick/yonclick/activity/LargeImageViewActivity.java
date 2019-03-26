@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
 
+import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.View.TouchImageView;
 import oneclick.yonclick.dataa.constant.AppConstants;
@@ -15,6 +16,7 @@ public class LargeImageViewActivity extends AppCompatActivity {
 
     private Context mContext;
     private TouchImageView touchImageView;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +34,15 @@ public class LargeImageViewActivity extends AppCompatActivity {
     }
 
     private void initFunctionality() {
-      /*  if(getIntent().getStringArrayExtra("large_image_url") != null){
-            produit = (Product) getIntent().getSerializableExtra("large_image_url");
+
+      /* if(getIntent().getStringArrayExtra(AppConstants.KEY_IMAGE_URL) != null){
+            product = (Product) getIntent().getSerializableExtra("large_image_url");
         }else{
             System.out.println("PROD : NO DETAILS");
         }
-        System.out.println("PROD INFO : "+produit.getName_product());
-        */
+       // System.out.println("PROD INFO : "+product.getName_product());
+      */
+
         Intent intent = getIntent();
         String imageUrl = intent.getStringExtra(AppConstants.KEY_IMAGE_URL);
 

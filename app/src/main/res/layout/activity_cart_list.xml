@@ -118,8 +118,8 @@
 
 
     </RelativeLayout>
-     <include
+ <!--    <include
         layout="@layout/view_common_loader"
         android:background="@color/page_bg_dim" />
-
+-->
 </RelativeLayout>

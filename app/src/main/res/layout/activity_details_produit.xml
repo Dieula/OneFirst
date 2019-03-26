@@ -36,6 +36,7 @@
                     android:layout_marginTop="@dimen/height_width_50dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:scaleType="center"
                     android:src="@drawable/bot"
                     />
               <!--  <android.support.v4.view.ViewPager

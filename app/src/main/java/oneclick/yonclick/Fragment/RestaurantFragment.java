@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -18,14 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.marcoscg.dialogsheet.DialogSheet;
-
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import oneclick.yonclick.Adapter.RestaurantAdapter;
-import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import oneclick.yonclick.Authentification.StaticUser;
 import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Model.Restaurant;
@@ -45,7 +43,7 @@ public class RestaurantFragment extends Fragment {
     JSONArray serviceJsonResults;
     StaticUser staticUser;
 
-    private ArrayList<Restaurant> restaurants;
+    private List<Restaurant> restaurants;
     private RestaurantAdapter eAdapter;
     private RecyclerView recyclerView;
 

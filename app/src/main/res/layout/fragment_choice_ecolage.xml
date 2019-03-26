@@ -62,32 +62,15 @@
                 </RelativeLayout>
 
 
-                <RelativeLayout
-                    android:id="@+id/layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/lay"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_card_cvc_edit_text">
-
-                    <Spinner
-                        android:id="@+id/SpiVersement"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="5dp">
-
-                    </Spinner>
-                </RelativeLayout>
-
-                <EditText
+                <TextView
                     android:id="@+id/etVersement"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/layout"
+                    android:layout_below="@+id/lay"
                     android:layout_marginBottom="-0.25dp"
                     android:layout_marginTop="@dimen/pad_margin_10dp"
                     android:background="@drawable/bg_card_cvc_edit_text"
-                    android:hint="Versement"
+                    android:hint="Montant a payer"
                     android:inputType="phone"
                     android:padding="10dp"
                     tools:ignore="LabelFor,NegativeMargin" />

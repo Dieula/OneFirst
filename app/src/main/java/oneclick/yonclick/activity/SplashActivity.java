@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import oneclick.yonclick.Authentification.LoginActivity;
+import oneclick.yonclick.Authentification.ScreenLoginActivity;
 import oneclick.yonclick.NewAuthentification.RegisterUserActivity;
 import oneclick.yonclick.R;
 
@@ -21,7 +22,7 @@ public class  SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                Intent i = new Intent(SplashActivity.this, ScreenLoginActivity.class);
                 startActivity(i);
                 finish();
             }

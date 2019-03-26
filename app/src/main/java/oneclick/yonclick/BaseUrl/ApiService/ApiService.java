@@ -1,4 +1,4 @@
-package oneclick.yonclick.ApiService;
+package oneclick.yonclick.BaseUrl.ApiService;
 
 import oneclick.yonclick.ModelList.BrandList;
 import oneclick.yonclick.ModelList.AbonnementList;
@@ -44,7 +44,7 @@ public interface ApiService {
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<RestaurantList> getRestoJSON();
 
-    @GET("food/get")
+    @GET("food")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<PlatList> getPlatJSON();
 

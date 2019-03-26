@@ -2,24 +2,19 @@ package oneclick.yonclick.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import oneclick.yonclick.Adapter.PlatAdapter;
-import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.ModelList.PlatList;
@@ -29,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PlatActivity extends BaseActivity {
-    private ArrayList<Plat> restaurants;
+    private List<Plat> restaurants;
     private ProgressDialog pDialog;
     private RecyclerView recyclerView;
     private PlatAdapter eAdapter;
@@ -84,7 +79,7 @@ public class PlatActivity extends BaseActivity {
                     /**
                      * Got Successfully
                      */
-                    restaurants = response.body().getPlats();
+                    restaurants = response.body().getData();
                     recyclerView = findViewById(R.id.recycler_view);
                     eAdapter = new PlatAdapter(getApplicationContext(),restaurants);
 
@@ -121,6 +116,11 @@ public class PlatActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                // Respond to the action bar's Up/Home button
+                finish();
+                return true;
             case R.id.miCompose:
                // composeMessage();
                 return true;

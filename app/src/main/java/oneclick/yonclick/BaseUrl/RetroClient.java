@@ -1,6 +1,6 @@
 package oneclick.yonclick.BaseUrl;
 
-import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

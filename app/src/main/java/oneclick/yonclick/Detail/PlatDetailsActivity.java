@@ -37,6 +37,8 @@ import oneclick.yonclick.activity.MobilePaiementActivity;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 import oneclick.yonclick.dataa.sqlite.DbManager;
 
+import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+
 public class PlatDetailsActivity extends BaseActivity {
 
     private int quantityCounter = 1;
@@ -95,12 +97,6 @@ public class PlatDetailsActivity extends BaseActivity {
 
                 startActivity(new Intent(getApplicationContext(),CartListActivity.class));
 
-                /**
-                 * if you don't want to show notification then disable
-                 * disable previous line and use line given bellow
-                 */
-                // ActivityUtils.getInstance().invokeActivity(mActivity, CartListActivity.class, false);
-
             }
         });
 
@@ -113,27 +109,24 @@ public class PlatDetailsActivity extends BaseActivity {
             {
             System.out.println("PROD : NO DETAILS");
         }
-        System.out.println("PROD INFO : "+plat.getNom_Plats());
+        System.out.println("PROD INFO : "+plat.getNamePlats());
 
 
 
 
-        NameProduit.setText(plat.getNom_Plats());
-        DescProduit.setText(plat.getDetails_Plats());
-        tvTextDescription.setText(plat.getDetails_Plats());
+        NameProduit.setText(plat.getNamePlats());
+        DescProduit.setText(plat.getDetailsPlats());
+        tvTextDescription.setText(plat.getDetailsPlats());
         tvSalesPrice.setText(plat.getPrix());
-        ImgProduit = plat.getImage();
+        ImgProduit = BASE_URL_Image+plat.getImage();
 
-        Glide.with(getApplicationContext()).load(plat.getImage()).into(imageView);
+        Glide.with(getApplicationContext()).load(ImgProduit).into(imageView);
 
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.arrowleft);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Call a differents contenu,not the same in details page
-        /*sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        serv = (Services) getIntent().getSerializableExtra("services");*/
+
         getSupportActionBar().setTitle("Details Plat");
 
 
@@ -166,7 +159,7 @@ public class PlatDetailsActivity extends BaseActivity {
             // Add to cart list
             CartDBController cartController = new CartDBController(mContext);
 
-            if (cartController.isAlreadyAddedToCart(plat.getID_Plats()))
+            if (cartController.isAlreadyAddedToCart(plat.getId()))
             {
                 AppUtility.showToast(mContext, getString(R.string.already_in_cart));
             }
@@ -174,7 +167,7 @@ public class PlatDetailsActivity extends BaseActivity {
             {
                 // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
 
-                cartController.insertCartItem(plat.getID_Plats(), plat.getPrix(),plat.getNom_Plats(), plat.getImage(), quantityCounter);
+                cartController.insertCartItem(plat.getId(), plat.getPrix(),plat.getNamePlats(), plat.getImage(), quantityCounter);
                 // btnAddToCart.setText(getString(R.string.added_to_cart));
                 AppUtility.showToast(mContext, getString(R.string.added_to_cart));
 

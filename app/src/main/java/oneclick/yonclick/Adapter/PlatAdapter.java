@@ -43,7 +43,7 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.CustomViewHold
     @Override
     public void onBindViewHolder(PlatAdapter.CustomViewHolder holder,  final int position) {
         final Plat categorie = categories.get(position);
-        holder.categoryName.setText(categorie.getNom_Plats());
+        holder.categoryName.setText(categorie.getNamePlats());
         holder.tvProductPrice.setText(categorie.getPrix());
 
 

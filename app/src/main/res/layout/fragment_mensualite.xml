@@ -62,22 +62,19 @@
                 </RelativeLayout>
 
 
-                <RelativeLayout
-                    android:id="@+id/layNomMois"
+                <EditText
+                    android:id="@+id/NomMois"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:background="@drawable/bg_card_cvc_edit_text"
+                    android:hint="Nombre de mois"
+                    android:layout_marginTop="10dp"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    tools:ignore="LabelFor,NegativeMargin,UnknownId"
                     android:layout_below="@+id/lay"
-                    android:layout_marginTop="@dimen/pad_margin_10dp"
-                    android:background="@drawable/bg_card_cvc_edit_text">
+                    android:layout_alignParentStart="true" />
 
-                    <Spinner
-                        android:id="@+id/NomMois"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="5dp">
-
-                    </Spinner>
-                </RelativeLayout>
 
 
                 <EditText
@@ -90,27 +87,26 @@
                     android:inputType="phone"
                     android:padding="10dp"
                     tools:ignore="LabelFor,NegativeMargin,UnknownId"
-                    android:layout_below="@+id/layNomMois"
+                    android:layout_below="@+id/NomMois"
                     android:layout_alignParentStart="true" />
 
+
                 <TextView
-                    android:id="@+id/cardNumberEditText"
+                    android:id="@+id/tvTotalPrice"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_card_cvc_edit_text"
-                    android:hint="Montant total"
-                    android:inputType="phone"
-                    android:padding="10dp"
-                    tools:ignore="LabelFor,NegativeMargin"
+                    android:layout_height="wrap_content"
+                    android:text="Total :"
+                    android:textColor="#000"
+                    android:layout_marginTop="@dimen/height_width_30dp"
                     android:layout_below="@+id/etVersement"
-                    android:layout_alignParentStart="true" />
+                    android:textSize="@dimen/height_width_15dp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnValider"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_below="@+id/cardNumberEditText"
+                    android:layout_below="@+id/tvTotalPrice"
                     android:layout_marginBottom="@dimen/height_width_50dp"
                     android:layout_marginTop="50dp"
                     android:background="@drawable/button"

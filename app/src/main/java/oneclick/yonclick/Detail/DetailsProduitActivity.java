@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -57,7 +59,7 @@ public class DetailsProduitActivity extends BaseActivity {
 
     String ImgProduit,imgCategorie,imgMarque;
     Integer prod,cat,brand;
-    ImageView imageView,imgToolbarCart,imgProfil;
+    ImageView imageView,imgToolbarCart,imgProfil,image;
     TextView tvCartCounter;
 
 
@@ -92,7 +94,8 @@ public class DetailsProduitActivity extends BaseActivity {
         TextView tvTextDescription = (TextView) findViewById(R.id.tvTextDescription);
         TextView tvNomMagasin = (TextView) findViewById(R.id.tvNomMagasin);
         TextView tvSalesPrice = (TextView) findViewById(R.id.tvSalesPrice);
-        imageView = (ImageView) findViewById(R.id.vpImageSlider);
+        image = (ImageView) findViewById(R.id.vpImageSlider);
+      //  imageView = (ImageView) findViewById(R.id.vpImageSlider);
 
         final Button btnAddToCart = findViewById(R.id.btnAddToCart);
         Button btnBuyNow = findViewById(R.id.btnBuyNow);
@@ -136,18 +139,16 @@ public class DetailsProduitActivity extends BaseActivity {
         else{
             System.out.println("PROD : NO DETAILS");
         }
-      //  System.out.println("PROD INFO : "+produit.getName_product());
+       // System.out.println("PROD INFO : "+produit.getName_product());
 
 
+        //image
+        if (getIntent().getSerializableExtra(AppConstants.KEY_IMAGE_URL) != null)
+        {
+            produit = (Product) getIntent().getSerializableExtra(AppConstants.KEY_IMAGE_URL);
 
-       /* if(getIntent().getSerializableExtra("prod") != null){
-            produit = (Product) getIntent().getSerializableExtra("prod");
-        }else{
-            System.out.println("PROD : NO DETAILS");
         }
-        System.out.println("PROD INFO : "+produit.getName_product());
-*/
-        //DatabaseHelper db = new DatabaseHelper(this);
+
 
 
         if (getCategoryWithProduit != null){
@@ -156,9 +157,9 @@ public class DetailsProduitActivity extends BaseActivity {
             tvTextDescription.setText(getCategoryWithProduit.getDetailsProduct());
            // tvNomMagasin.setText(getCategoryWithProduit.getNameProduct());
             tvSalesPrice.setText(getCategoryWithProduit.getPrix());
-            imgCategorie = getCategoryWithProduit.getImage();
+            imgCategorie = BASE_URL_Image+getCategoryWithProduit.getImage();
 
-            Glide.with(getApplicationContext()).load(getCategoryWithProduit.getImage()).into(imageView);
+            Glide.with(getApplicationContext()).load(imgCategorie).into(image);
         }
         else if (getMarqueWithProduit != null)
         {
@@ -167,9 +168,9 @@ public class DetailsProduitActivity extends BaseActivity {
             tvTextDescription.setText(getMarqueWithProduit.getDetailsProduct());
             tvSalesPrice.setText(getMarqueWithProduit.getPrix());
             imgMarque = BASE_URL_Image+getMarqueWithProduit.getImage();
-            Glide.with(getApplicationContext()).
-                    load(getMarqueWithProduit.getImage())
-                    .into(imageView);
+            Glide.with(getApplicationContext())
+                    .load(imgMarque)
+                    .into(image);
         }
         else if(produit != null)
         {
@@ -178,13 +179,13 @@ public class DetailsProduitActivity extends BaseActivity {
             DescProduit.setText(produit.getDetails_product());
             tvTextDescription.setText(produit.getDetails_product());
             tvSalesPrice.setText(produit.getPrix());
-            ImgProduit = produit.getImage();
+            ImgProduit = BASE_URL_Image+produit.getImage();
 
-            Glide.with(getApplicationContext()).load(produit.getImage()).into(imageView);
+            Glide.with(getApplicationContext()).load(ImgProduit).into(image);
 
         }
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {

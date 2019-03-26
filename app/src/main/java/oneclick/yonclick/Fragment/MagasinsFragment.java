@@ -1,7 +1,6 @@
 package oneclick.yonclick.Fragment;
 
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,30 +22,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.HeaderElement;
-import cz.msebera.android.httpclient.ParseException;
 import oneclick.yonclick.Adapter.BrandAdapter;
 import oneclick.yonclick.Adapter.CategorieAdapter;
 import oneclick.yonclick.Adapter.MagasinsAdapter;
 import oneclick.yonclick.Adapter.ProduitAdapter;
-import oneclick.yonclick.ApiService.ApiService;
-import oneclick.yonclick.Detail.DetailsProduitActivity;
-import oneclick.yonclick.Helper.HttpParams;
+import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import oneclick.yonclick.Model.CartItem;
 import oneclick.yonclick.Model.Category;
-import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.ModelList.BrandList;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Brand;
@@ -68,8 +54,6 @@ import oneclick.yonclick.dataa.sqlite.CartDBController;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -6,73 +6,79 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Plat implements Serializable {
-    @SerializedName("ID_Plats")
-    @Expose
-    private Integer ID_Plats;
 
-    @SerializedName("Nom_Plats")
+    @SerializedName("id")
     @Expose
-    private String Nom_Plats;
-
-    @SerializedName("Id_Restaurant")
+    private Integer id;
+    @SerializedName("name_plats")
     @Expose
-    private Integer Id_Restaurant;
-
-    @SerializedName("Details_Plats")
+    private String namePlats;
+    @SerializedName("details_plats")
     @Expose
-    private String Details_Plats;
-
-    @SerializedName("prix")
-    @Expose
-    private String prix;
-
+    private String detailsPlats;
     @SerializedName("image")
     @Expose
     private String image;
+    @SerializedName("foodcategory_id")
+    @Expose
+    private Integer foodcategoryId;
+    @SerializedName("prix")
+    @Expose
+    private String prix;
+    @SerializedName("posted_by")
+    @Expose
+    private Integer postedBy;
+    @SerializedName("cms_users_id")
+    @Expose
+    private Integer cmsUsersId;
+    @SerializedName("en_vedette")
+    @Expose
+    private Integer enVedette;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
+    @SerializedName("updated_at")
+    @Expose
+    private Object updatedAt;
 
-    public Plat() {
+    public Integer getId() {
+        return id;
     }
 
-    public Plat(Integer ID_Plats, String nom_Plats, Integer id_Restaurant, String details_Plats, String prix, String image) {
-        this.ID_Plats = ID_Plats;
-        Nom_Plats = nom_Plats;
-        Id_Restaurant = id_Restaurant;
-        Details_Plats = details_Plats;
-        this.prix = prix;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNamePlats() {
+        return namePlats;
+    }
+
+    public void setNamePlats(String namePlats) {
+        this.namePlats = namePlats;
+    }
+
+    public String getDetailsPlats() {
+        return detailsPlats;
+    }
+
+    public void setDetailsPlats(String detailsPlats) {
+        this.detailsPlats = detailsPlats;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
         this.image = image;
     }
 
-
-    public Integer getID_Plats() {
-        return ID_Plats;
+    public Integer getFoodcategoryId() {
+        return foodcategoryId;
     }
 
-    public void setID_Plats(Integer ID_Plats) {
-        this.ID_Plats = ID_Plats;
-    }
-
-    public String getNom_Plats() {
-        return Nom_Plats;
-    }
-
-    public void setNom_Plats(String nom_Plats) {
-        Nom_Plats = nom_Plats;
-    }
-
-    public Integer getId_Restaurant() {
-        return Id_Restaurant;
-    }
-
-    public void setId_Restaurant(Integer id_Restaurant) {
-        Id_Restaurant = id_Restaurant;
-    }
-
-    public String getDetails_Plats() {
-        return Details_Plats;
-    }
-
-    public void setDetails_Plats(String details_Plats) {
-        Details_Plats = details_Plats;
+    public void setFoodcategoryId(Integer foodcategoryId) {
+        this.foodcategoryId = foodcategoryId;
     }
 
     public String getPrix() {
@@ -83,11 +89,44 @@ public class Plat implements Serializable {
         this.prix = prix;
     }
 
-    public String getImage() {
-        return image;
+    public Integer getPostedBy() {
+        return postedBy;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPostedBy(Integer postedBy) {
+        this.postedBy = postedBy;
     }
+
+    public Integer getCmsUsersId() {
+        return cmsUsersId;
+    }
+
+    public void setCmsUsersId(Integer cmsUsersId) {
+        this.cmsUsersId = cmsUsersId;
+    }
+
+    public Integer getEnVedette() {
+        return enVedette;
+    }
+
+    public void setEnVedette(Integer enVedette) {
+        this.enVedette = enVedette;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Object getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Object updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
 }

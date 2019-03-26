@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/backnew">
+    android:background="@drawable/backneww"
+    android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/backnew"/>
+        android:layout_height="wrap_content"
+        android:src="@drawable/backneww" />
 
     <Button
         android:id="@+id/btnConnexion"
@@ -18,12 +18,12 @@
         android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="109dp"
-        android:layout_marginRight="32dp"
         android:layout_marginLeft="32dp"
-        android:gravity="center"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="109dp"
         android:background="@drawable/connexion"
         android:fontFamily="SFProDisplay-Medium"
+        android:gravity="center"
         android:text="@string/connexion"
         android:textColor="#76c156"
         android:textSize="14sp"
@@ -34,16 +34,16 @@
         android:id="@+id/btnInscription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/inscription"
-        android:gravity="center"
-        android:textSize="14sp"
-        android:layout_marginRight="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/register"
         android:fontFamily="SFProDisplay-Medium"
+        android:gravity="center"
+        android:text="@string/inscription"
         android:textColor="#fff"
-        android:background="@drawable/register"/>
+        android:textSize="14sp" />
 
 
 </RelativeLayout>

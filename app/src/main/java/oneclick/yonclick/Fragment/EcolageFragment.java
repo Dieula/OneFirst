@@ -1,9 +1,7 @@
 package oneclick.yonclick.Fragment;
 
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,25 +10,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import oneclick.yonclick.Adapter.AbonnementAdapter;
-import oneclick.yonclick.Adapter.CategorieAdapter;
 import oneclick.yonclick.Adapter.EcolageAdapter;
-import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import oneclick.yonclick.BaseUrl.RetroClient;
-import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.Ecolage;
-import oneclick.yonclick.ModelList.AbonnementList;
 import oneclick.yonclick.ModelList.EcolageList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
-import oneclick.yonclick.activity.EcolageActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -41,7 +33,7 @@ public class EcolageFragment extends Fragment {
 
      View view;
 
-    private ArrayList<Ecolage> ecolages;
+    private List<Ecolage> ecolages;
     private ProgressDialog pDialog;
     private RecyclerView recyclerView;
     private EcolageAdapter eAdapter;

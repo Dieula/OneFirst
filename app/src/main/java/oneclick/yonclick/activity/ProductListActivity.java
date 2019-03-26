@@ -1,10 +1,8 @@
 package oneclick.yonclick.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,27 +11,20 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.apache.http.params.HttpParams;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import oneclick.yonclick.Adapter.ProductListAdapter;
-import oneclick.yonclick.Adapter.ProduitAdapter;
-import oneclick.yonclick.ApiService.ApiService;
+import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import oneclick.yonclick.BaseUrl.RetroClient;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
-import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.Uils.ListTypeShow;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.listener.OnItemClickListener;

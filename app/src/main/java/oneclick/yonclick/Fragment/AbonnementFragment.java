@@ -18,8 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import oneclick.yonclick.Adapter.AbonnementAdapter;
-import oneclick.yonclick.ApiService.ApiService;
-import oneclick.yonclick.Authentification.LoginActivity;
+import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.CartItem;
 import oneclick.yonclick.ModelList.AbonnementList;
@@ -38,7 +37,7 @@ public class AbonnementFragment extends Fragment {
     SharedPreferences.Editor editor;
     // List<Abonnement>
 
-    private ArrayList<Abonnement> abonnements;
+    private List<Abonnement> abonnements;
     private ProgressDialog pDialog;
     private RecyclerView recyclerView;
     private AbonnementAdapter eAdapter;
