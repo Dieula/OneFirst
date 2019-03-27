@@ -95,25 +95,16 @@ public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCatego
 
         String imgUrl = BASE_URL_Image+product.getImage();
 
+
+        holder.tvProductName.setText(product.getNameProduct());
+        holder.tvProductPrice.setText(product.getPrix());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 ActivityUtils.getInstance().invokeProductDetailsCategorie(mContext,  dataList.get(position));
 
-/*
-                Intent intent = new Intent(mContext,DetailsProduitActivity.class);
-
-
-                SharedPreferences sharedPreferences = mContext.getSharedPreferences("Produit", Context.MODE_PRIVATE);
-                 SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                int id = 1;
-                editor.putString("keyName", "newValue");
-                editor.putInt("id", id);
-                editor.apply();
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);*/
             }
         });
 

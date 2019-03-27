@@ -97,6 +97,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         String imgUrl = BASE_URL_Image+product.getImage();
 
         holder.tvProductName.setText(product.getName_product());
+        holder.tvProductPrice.setText(product.getPrix());
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

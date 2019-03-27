@@ -60,11 +60,6 @@ import retrofit2.Response;
  */
 public class MagasinsFragment extends Fragment {
 
-    String mProductName;
-    String mProductID;
-    String mProductPrice;
-    String mProductImageUrl;
-
     private ArrayList<Category> categories;
     private ProgressDialog pDialog;
     private RecyclerView recyclerView;
@@ -100,7 +95,7 @@ public class MagasinsFragment extends Fragment {
     //2
 
     RelativeLayout popularParent,lytCategoryList,lytBrandList,
-            lytProduitList,lytProduitNew,lytNMagasinList;
+            lytProduitList,lytProduitNew,lytMagasinList;
 
     private ArrayList<Product> productsList;
     private ProgressDialog dialog;
@@ -135,7 +130,7 @@ public class MagasinsFragment extends Fragment {
         initView();
 
 
-        // See all listener
+     // See all listener
         tvListAllNouveau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,11 +225,13 @@ public class MagasinsFragment extends Fragment {
 
 
 
+
         //Nouveaute
         lytProduitNew= (RelativeLayout) v.findViewById(R.id.lytNouveauList);
         tvNouveau = (TextView) lytProduitNew.findViewById(R.id.tvListTitle);
         tvListAllNouveau = (TextView) lytProduitNew.findViewById(R.id.tvSeeALL);
         popularParent = (RelativeLayout) lytProduitNew.findViewById(R.id.parentPanel);
+
 
 
         //Product
@@ -244,10 +241,10 @@ public class MagasinsFragment extends Fragment {
         popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
 
         //Magasins
-        lytNMagasinList = (RelativeLayout) v.findViewById(R.id.lytNMagasinList);
-        tvStore= (TextView) lytNMagasinList.findViewById(R.id.tvListTitle);
-        tvStoreAllNouveau = (TextView) lytNMagasinList.findViewById(R.id.tvSeeALL);
-        popularParent = (RelativeLayout) lytNMagasinList.findViewById(R.id.parentPanel);
+        lytMagasinList = (RelativeLayout) v.findViewById(R.id.lytMagasinList);
+        tvStore= (TextView) lytMagasinList.findViewById(R.id.tvListTitle);
+        tvStoreAllNouveau = (TextView) lytMagasinList.findViewById(R.id.tvSeeALL);
+        popularParent = (RelativeLayout) lytMagasinList.findViewById(R.id.parentPanel);
 
         AppUtility.noInternetWarning(v.findViewById(R.id.parentPanel), getActivity());
         if (!AppUtility.isNetworkAvailable(getActivity())) {
@@ -334,7 +331,7 @@ public class MagasinsFragment extends Fragment {
 
 
 
-                    Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -383,7 +380,7 @@ public class MagasinsFragment extends Fragment {
                     BrandRecyclerView.setItemAnimator(new DefaultItemAnimator());
                     BrandRecyclerView.setAdapter(eBrandAdapter);
 
-                    Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
 
 
                     eBrandAdapter.setOnItemClickListener(new BrandAdapter.OnItemClickListener() {
@@ -441,7 +438,7 @@ public class MagasinsFragment extends Fragment {
                      */
 
                     List<Magasin> MagasinsList = response.body().getData();
-                    mMagasinRecyclerView = (RecyclerView) lytNMagasinList.findViewById(R.id.homeRecyclerView);
+                    mMagasinRecyclerView = (RecyclerView) lytMagasinList.findViewById(R.id.homeRecyclerView);
                     tvStoreAllNouveau.setText("Magasins (" + MagasinsList.size() + ")");
 
 
@@ -454,8 +451,9 @@ public class MagasinsFragment extends Fragment {
 
                     mMagasinRecyclerView.setItemAnimator(new DefaultItemAnimator());
                     mMagasinRecyclerView.setAdapter(eMagasinAdapter);
+                    eBrandAdapter.notifyDataSetChanged();
 
-//                    Toast.makeText(getActivity(), "Good"+MagasinsList.size(), Toast.LENGTH_SHORT).show();
+                 Toast.makeText(getActivity(), "magasin"+MagasinsList.size(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -505,7 +503,7 @@ public class MagasinsFragment extends Fragment {
                     mRecyclerview.setAdapter(mAdapter);
 
                     System.out.println("DATA : "+response.toString());
-                    Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
                 }
             }
 

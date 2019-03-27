@@ -102,6 +102,7 @@
 
     <!--Cart List-->
     <string name="buy">Buy</string>
+    <string name="profil">Profil</string>
     <string name="cart_list">Cart List</string>
     <string name="plat_list">Liste plat</string>
     <string name="price_cart">Price :\u0020</string>

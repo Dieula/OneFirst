@@ -104,7 +104,7 @@
                         android:layout_marginBottom="@dimen/pad_margin_10dp"
                         android:layout_marginRight="15dp">
 
-                        <ImageView
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/imgProfil"
                             android:layout_width="50dp"
                             android:layout_height="50dp"

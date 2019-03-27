@@ -53,6 +53,10 @@ public class Profil implements Serializable {
         Equipe.setImage(R.drawable.ic_edit);
         Equipe.setName("Modifier votre nom");
 
+        Profil historic = new Profil();
+        historic.setImage(R.drawable.ic_historic);
+        historic.setName("Historique d'achats");
+
         Profil apropos = new Profil();
         apropos.setImage(R.drawable.ic_help);
         apropos.setName("Apropos");
@@ -60,10 +64,11 @@ public class Profil implements Serializable {
 
         Profil share = new Profil();
         share.setImage(R.drawable.ic_share);
-        share.setName("Partager un(e) ami(e)");
+        share.setName("Partager avec un(e) ami(e)");
 
 
         results.add(Equipe);
+        results.add(historic);
         results.add(share);
         results.add(apropos);
 

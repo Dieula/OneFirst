@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import oneclick.yonclick.Authentification.ProfilActivity;
 import oneclick.yonclick.Fragment.AbonnementFragment;
 import oneclick.yonclick.Fragment.EcolageFragment;
@@ -34,9 +35,9 @@ import oneclick.yonclick.dataa.sqlite.CartDBController;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imgToolbarCart,imgProfil;
+    ImageView imgToolbarCart;
     TextView tvCartCounter;
-
+    CircleImageView imgProfil;
     Context mContext;
     Activity mActivity;
     @Override
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //profil
-        imgProfil = (ImageView) findViewById(R.id.imgProfil);
+        imgProfil = (CircleImageView) findViewById(R.id.imgProfil);
         imgProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 tvCartCounter.setVisibility(View.GONE);
             } else {
                 tvCartCounter.setVisibility(View.VISIBLE);
-                tvCartCounter.setText(String.valueOf(cartList.size()));
+                tvCartCounter.setText(cartList.size());
             }
         } catch (Exception e) {
             e.printStackTrace();

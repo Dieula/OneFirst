@@ -47,6 +47,7 @@ public class MagasinsAdapter extends RecyclerView.Adapter<MagasinsAdapter.Custom
     @Override
     public void onBindViewHolder(MagasinsAdapter.CustomViewHolder holder, final int position) {
          final Magasin produit = products.get(position);
+
         holder.categoryName.setText(produit.getName_busness());
 
 

@@ -18,10 +18,6 @@ public interface ApiService {
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<CategorieList> getMyJSON();
 
-    @GET("categoryproduct")
-    @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
-    Call<CategorieList> getMyJSONCategorie();
-
 
     @GET("marque")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
@@ -30,7 +26,6 @@ public interface ApiService {
     @GET("busness")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<MagasinsList> getMyStoreJSON();
-
 
     @GET("product")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})

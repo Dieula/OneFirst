@@ -24,10 +24,14 @@ public class HistoricActivity extends AppCompatActivity {
     ProgressBar progress;
     private SwipeRefreshLayout swiperefresh;
     TextView tvError;
-    // call the adapter,the listview and the model
+
+
+
     HistoricArrayAdapter serviceAdapter;
     ArrayList<Historic> aServices;
     ListView lvServices;
+
+
     JSONArray serviceJsonResults;
     SharedPreferences sharedPreferences ;
     SharedPreferences.Editor editor ;
@@ -38,13 +42,18 @@ public class HistoricActivity extends AppCompatActivity {
         setContentView(R.layout.activity_historic);
 
 
-       progress = (ProgressBar) findViewById(R.id.progress);
+
+
+        progress = (ProgressBar) findViewById(R.id.progress);
         swiperefresh = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         tvError = findViewById(R.id.tvError);
         tvError.setVisibility(View.GONE);
 
         // call the listview
         lvServices = (ListView) findViewById(R.id.lvServices);
+
+
+
         swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -62,6 +71,8 @@ public class HistoricActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
+
 
       /*  if(sharedPreferences.getString("nom_client", null).length()>5){
             getSupportActionBar().setTitle("Historique : "+sharedPreferences.getString("nom_client", null).substring(0,6)+"...");

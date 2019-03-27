@@ -54,7 +54,7 @@
             android:id="@+id/homeRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/pad_margin_5dp"
+            android:layout_marginBottom="@dimen/pad_margin_10dp"
             android:layout_below="@+id/lytListHeader"
             android:nestedScrollingEnabled="false" />
 

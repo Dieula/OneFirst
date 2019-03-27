@@ -1,5 +1,6 @@
 package oneclick.yonclick.Authentification;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +9,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,6 +21,7 @@ import oneclick.yonclick.Adapter.AdapterProfil;
 import oneclick.yonclick.Model.Profil;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.BaseActivity;
+import oneclick.yonclick.activity.HistoricActivity;
 import oneclick.yonclick.activity.MainActivity;
 
 public class ProfilActivity extends BaseActivity {
@@ -25,19 +31,27 @@ public class ProfilActivity extends BaseActivity {
     ListView lvProfil;
     SharedPreferences sharedPreferences;
 
+     TextView tvName;
+     ImageView imageView;
+
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
 
+        tvName = (TextView) findViewById(R.id.tvName);
+        imageView = (ImageView) findViewById(R.id.vpImageSlider);
+
+
 
         initToolbar();
         enableBackButton();
-        setToolbarTitle(getString(R.string.cart_list));
+        setToolbarTitle(getString(R.string.profil));
 
 
-         sharedPreferences = getSharedPreferences("Register", Context.MODE_PRIVATE);
-
+        sharedPreferences = getSharedPreferences("Register", Context.MODE_PRIVATE);
         sharedPreferences.getString("SESSION_ID", "SESSION_ID");
         sharedPreferences.getString("nom_client", "");
         sharedPreferences.getString("email_client", "");
@@ -50,11 +64,28 @@ public class ProfilActivity extends BaseActivity {
         lvProfil.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Profil equipe = (Profil) lvProfil.getItemAtPosition(position);
+                Profil profil = (Profil) lvProfil.getItemAtPosition(position);
+
+                if (position == 0)
+                {
+                    Toast.makeText(ProfilActivity.this, "Modifier", Toast.LENGTH_SHORT).show();
+                    //startActivity(new Intent(getApplicationContext(),));
+                }
+                else if (position == 1)
+                {
+                    startActivity(new Intent(getApplicationContext(),HistoricActivity.class));
+                }
+                else if (position == 2)
+                {
+                    shareInfo();
+                }
+/*
+
 
                 Intent i = new Intent(ProfilActivity.this, MainActivity.class);
-                i.putExtra("Equipe", equipe);
+                i.putExtra("ProfilUser", profil);
                    startActivity(i);
+*/
 
             }
         });
@@ -65,6 +96,21 @@ public class ProfilActivity extends BaseActivity {
 
         profilAdapter.addAll(Profil.fromFakeData());
         profilAdapter.notifyDataSetChanged();
+    }
+
+    private void shareInfo() {
+        //add the message for sharing
+        String messageToShare="Pour plus de detail et de contenu, visitez notre siteWeb- http://oneclick.ht/";
+
+        messageToShare = "visitez notre site Web:- http://oneclick.ht/";
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "YonClick");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Pour plus de detail et de contenu vous pouvez télécharger l'application");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+
     }
 
 

@@ -2,6 +2,7 @@
     <RelativeLayout
         android:layout_width="110dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/pad_margin_10dp"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -10,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="@drawable/shape_rounded_rect"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/bot" />
 
         <LinearLayout

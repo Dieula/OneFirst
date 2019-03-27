@@ -26,7 +26,7 @@
             android:id="@+id/lytCategoryList"
             layout="@layout/content_category" />
 
-<!--
+        <!--
         <View
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
@@ -51,7 +51,7 @@
 
 
         <include
-            android:id="@+id/lytNMagasinList"
+            android:id="@+id/lytMagasinList"
             layout="@layout/content_produit" />
 
 

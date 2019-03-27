@@ -234,7 +234,6 @@ public class MobilePaiementActivity extends AppCompatActivity {
                 RequestComptepayem requestComptepayem = new RequestComptepayem();
                 requestComptepayem.setNumero_tel(tvPayer.getText().toString());
                 requestComptepayem.setNumero_tel(tvPin.getText().toString());
-                requestComptepayem.getPin();
                 requestComptepayem.getNif();
                 requestComptepayem.getStatus();
                 requestComptepayem.getUser_id();

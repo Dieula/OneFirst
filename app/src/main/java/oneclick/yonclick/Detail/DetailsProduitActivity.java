@@ -107,11 +107,6 @@ public class DetailsProduitActivity extends BaseActivity {
 
                  startActivity(new Intent(getApplicationContext(),CartListActivity.class));
 
-                /**
-                 * if you don't want to show notification then disable
-                 * disable previous line and use line given bellow
-                 */
-               // ActivityUtils.getInstance().invokeActivity(mActivity, CartListActivity.class, false);
 
             }
         });

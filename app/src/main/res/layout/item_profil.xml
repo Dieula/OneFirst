@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/ivNameImage"
-            android:layout_width="@dimen/height_width_30dp"
-            android:layout_height="@dimen/height_width_20dp"
+            android:layout_width="@dimen/height_width_40dp"
+            android:layout_height="@dimen/height_width_30dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"

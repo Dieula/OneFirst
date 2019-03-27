@@ -106,6 +106,8 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
         // Creating adapter for the spinner
         ArrayAdapter<String> ClasseAdater = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Classe);
 
+
+
         // Drop down layout style - list view with radio button
         ClasseAdater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

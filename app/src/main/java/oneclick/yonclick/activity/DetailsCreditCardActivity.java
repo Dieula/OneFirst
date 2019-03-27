@@ -1,6 +1,9 @@
 package oneclick.yonclick.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,10 +16,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import oneclick.yonclick.Authentification.StaticCommande;
+import oneclick.yonclick.Authentification.StaticPhone;
+import oneclick.yonclick.Commande.RequestCommandes;
+import oneclick.yonclick.Commande.ResponseCommandes;
+import oneclick.yonclick.InterfaceAPI.ApiEndPointInterface;
+import oneclick.yonclick.InterfaceAPI.RestApi;
+import oneclick.yonclick.Natcom.RequestComptepayem;
+import oneclick.yonclick.Natcom.ResponseComptepayem;
 import oneclick.yonclick.R;
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class DetailsCreditCardActivity extends AppCompatActivity {
 
@@ -35,6 +49,22 @@ public class DetailsCreditCardActivity extends AppCompatActivity {
     private static final String EXP_DATE_REGAX = "(0[1-9]|1[0-2])[0-9]{2}";
 
     private static final int CARD_CVC_TOTAL_SYMBOLS = 3;
+
+
+    EditText tvPayer, tvPin;
+    Button Iv_Payer;
+
+
+    private Call<ResponseCommandes> call;
+    private ApiEndPointInterface apiCommandePayem;
+
+    private int status;
+    private Response<ResponseCommandes> reponse;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +238,68 @@ public class DetailsCreditCardActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         serv = (Services) getIntent().getSerializableExtra("services");*/
         getSupportActionBar().setTitle("Carte de Credit");
+    }
+
+
+    public class MobileAsyncTask extends AsyncTask {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            if (status == 200) {
+                Toast.makeText(getApplicationContext(), "Good", Toast.LENGTH_SHORT).show();
+                StaticCommande.setCommande(reponse.body().getCompteCarte());
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Not good", Toast.LENGTH_SHORT).show();
+
+            }
+            super.onPostExecute(o);
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            try {
+                apiCommandePayem = RestApi.getApi();
+                RequestCommandes requestCommandes = new RequestCommandes();
+                requestCommandes.getAdresse_order();
+                requestCommandes.getCity_departement_id();
+                requestCommandes.getDelivery_date();
+                requestCommandes.getDetails_product();
+                requestCommandes.getUser_id();
+                requestCommandes.getId_achats();
+                requestCommandes.getId_posted_by();
+                requestCommandes.getLatitude();
+                requestCommandes.getLongitude();
+                requestCommandes.getOrder_number();
+                requestCommandes.getPayement_id();
+                requestCommandes.getStatut_commandes();
+                requestCommandes.getTypes_livraison();
+                requestCommandes.getType_order();
+                requestCommandes.getTotal_tax();
+                requestCommandes.getTotal();
+                requestCommandes.getTotal_discount();
+
+
+                //save the user info in prference
+                editor.putString("Phone", "");
+                editor.putString("pin", "");
+
+                editor.apply();
+
+                call = apiCommandePayem.Commande(requestCommandes);
+                reponse = call.execute();
+                status = reponse.code();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 
     @Override

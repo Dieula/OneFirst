@@ -117,6 +117,15 @@ public class LoginActivity extends AppCompatActivity {
         //Verify the email
         if (mPhone.isEmpty() || mPhone.isEmpty())
             password.setError("at least 8 characters ");
+
+
+
+
+
+
+
+
+
         return valid;
 
     }

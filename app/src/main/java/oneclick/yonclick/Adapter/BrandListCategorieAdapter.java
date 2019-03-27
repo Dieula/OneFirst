@@ -74,10 +74,12 @@ public class BrandListCategorieAdapter extends RecyclerView.Adapter<BrandListCat
     {
 
         if (listTypeShow == ListTypeShow.GRID) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_grid, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate
+                    (R.layout.item_product_grid, parent, false);
             return new BrandListCategorieAdapter.ViewHolder(view, viewType);
         } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_linear, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate
+                    (R.layout.item_product_linear, parent, false);
             return new BrandListCategorieAdapter.ViewHolder(view, viewType);
         }
     }
@@ -89,7 +91,10 @@ public class BrandListCategorieAdapter extends RecyclerView.Adapter<BrandListCat
 
         String imgUrl = BASE_URL_Image+product.getImage();
 
+
+
         holder.tvProductName.setText(product.getNameProduct());
+        holder.tvProductPrice.setText(product.getPrix());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
