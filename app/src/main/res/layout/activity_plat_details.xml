@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/plat"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="center"/>
 <!--
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vpImageSlider"

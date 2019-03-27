@@ -105,7 +105,7 @@
                         android:layout_marginRight="15dp">
 
                         <ImageView
-                            android:id="@+id/imgNotification"
+                            android:id="@+id/imgProfil"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:padding="12dp"

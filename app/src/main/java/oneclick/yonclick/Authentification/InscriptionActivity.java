@@ -71,7 +71,8 @@ public class InscriptionActivity extends AppCompatActivity {
                // startActivity(new Intent(getApplicationContext(),CompletezInscriptionActivity.class));
 
                 //register();
-              if (etNomUser.getText().toString() != null )
+              if (etNomUser.getText().toString() != null && etEmailUser.getText().toString() != null &&
+                      password.getText().toString() != null && confirmPass.getText().toString() != null)
                 {
                     if(validate())
                     {
@@ -164,6 +165,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 userRequest.setDeviceType("2");
 
                 //save the userinfo
+                editor.putString("SESSION_ID","SESSION_ID");
                 editor.putString("nom_client", etNomUser.getText().toString());
                 editor.putString("email_client", etEmailUser.getText().toString());
                 editor.putString("imei", imei);

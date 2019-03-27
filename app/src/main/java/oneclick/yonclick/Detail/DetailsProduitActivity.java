@@ -100,11 +100,6 @@ public class DetailsProduitActivity extends BaseActivity {
         final Button btnAddToCart = findViewById(R.id.btnAddToCart);
         Button btnBuyNow = findViewById(R.id.btnBuyNow);
 
-
-        // cart counter
-
-     //  tvCartCounter = (TextView) findViewById(R.id.tvCartCounter);
-
         // toolbar cart action listener
         imgToolbarCart.setOnClickListener(new View.OnClickListener() {
             @Override

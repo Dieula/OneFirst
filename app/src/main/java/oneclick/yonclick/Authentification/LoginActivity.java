@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (email.getText().toString() != null) {
+                if (email.getText().toString() != null && password.getText().toString() != null) {
                     if (validate())
                     {
                         register();
