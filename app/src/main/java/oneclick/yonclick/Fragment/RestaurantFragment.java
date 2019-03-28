@@ -19,13 +19,12 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import oneclick.yonclick.Adapter.RestaurantAdapter;
 import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import oneclick.yonclick.Authentification.StaticUser;
-import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
 import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.ModelList.RestaurantList;
 import oneclick.yonclick.R;
@@ -72,7 +71,7 @@ public class RestaurantFragment extends Fragment {
                 .setIcon(R.drawable.ic_notifications_black_24dp)
                 .show();
 
-/*
+        /*
             new DialogSheet(getContext())
                     .setTitle("Infos")
                     .setMessage("Verifier votre internet")

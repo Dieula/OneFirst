@@ -20,7 +20,7 @@ import java.util.List;
 
 import oneclick.yonclick.Adapter.AdapterListCategorie;
 import oneclick.yonclick.BaseUrl.ApiService.ApiService;
-import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
 import oneclick.yonclick.Model.Categorie;
 import oneclick.yonclick.Model.GetCategoryWithProduit;
 import oneclick.yonclick.ModelList.CategorieList;

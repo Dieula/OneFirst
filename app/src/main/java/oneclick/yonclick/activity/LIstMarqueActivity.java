@@ -20,7 +20,7 @@ import java.util.List;
 
 import oneclick.yonclick.Adapter.BrandListCategorieAdapter;
 import oneclick.yonclick.BaseUrl.ApiService.ApiService;
-import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
 import oneclick.yonclick.Model.Brand;
 import oneclick.yonclick.Model.GetMarqueWithProduit;
 import oneclick.yonclick.ModelList.BrandList;

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         progressDialog = new ProgressDialog(LoginActivity.this);
-        sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("Register", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         ivCon.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +91,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void register(){
+
+
         LoginAsyncTask registerAsyncTask = new LoginAsyncTask();
+
         registerAsyncTask.execute();
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
@@ -99,14 +103,15 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validate()
     {
         boolean valid = true;
-        String mName = email.getText().toString();
+        String mEmail = email.getText().toString();
         String mPhone = password.getText().toString();
 
 
-        //Verify the name
-        if (mName.isEmpty() || mName.length() < 3){
 
-            email.setError("at least 6 characters");
+        //Verify the name
+        if (mEmail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()){
+
+            email.setError("Enter a valid email");
             valid = false;
         }
         else
@@ -116,14 +121,14 @@ public class LoginActivity extends AppCompatActivity {
 
         //Verify the email
         if (mPhone.isEmpty() || mPhone.isEmpty())
+        {
             password.setError("at least 8 characters ");
-
-
-
-
-
-
-
+        valid = false;
+         }
+        else
+        {
+        password.setError(null);
+       }
 
 
         return valid;

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--<include layout="@layout/content_advance_search" />-->
+     <!--   <include layout="@layout/content_advance_search" />-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvProductList"

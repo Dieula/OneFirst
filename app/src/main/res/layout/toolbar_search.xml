@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:elevation="0dp"
     app:elevation="0dp">
 
@@ -10,18 +11,31 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:elevation="0dp"
         android:minHeight="?attr/actionBarSize"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
+        android:background="@color/white"
         app:contentInsetStartWithNavigation="0dp"
         app:elevation="0dp">
 
-        <android.support.v7.widget.SearchView
+       <!-- <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_width_60dp"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_search_black_24dp"
+            android:drawablePadding="16dp"
+            android:hint="Type here to search"
+            android:background="@color/white"
+            android:maxLines="1"
+            android:padding="16dp" />-->
+
+      <android.support.v7.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:gravity="right"
             android:iconifiedByDefault="false"
             android:queryHint="@string/search_hint_product" />
@@ -31,7 +45,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.7dp"
-        android:background="@color/toolbar_boarder" />
+        android:background="@color/white" />
 
 </android.support.design.widget.AppBarLayout>
 
