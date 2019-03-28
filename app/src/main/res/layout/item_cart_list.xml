@@ -68,6 +68,7 @@
                 android:id="@+id/bottomPanel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pad_margin_5dp"
                 android:layout_below="@+id/lytProductName"
                 android:layout_toRightOf="@+id/ivProductImage"
                 android:orientation="horizontal"
@@ -87,7 +88,139 @@
                     android:textStyle="bold" />
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/Panel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bottomPanel"
+                android:layout_toRightOf="@+id/ivProductImage"
+                android:orientation="horizontal"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/btn_inc_dec"
+                android:paddingBottom="5dp"
+                android:weightSum="1.0">
+
+                <ImageButton
+                    android:id="@+id/btnQuantityMinus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="@dimen/pad_margin_5dp"
+                    android:adjustViewBounds="true"
+                    android:padding="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_decrement" />
+
+                <TextView
+                    android:id="@+id/tvProductQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/title_color"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnQuantityPlus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="2dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="20dp"
+                    android:padding="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_increment" />
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bottomPanel"
+                android:layout_toRightOf="@+id/Panel"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/height_width_30dp"
+                android:paddingBottom="5dp"
+                android:weightSum="1.0">
+
+                <ImageButton
+                    android:id="@+id/remove"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/height_width_25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".5"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="right"
+                    android:padding="2dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_delete" />
+
+            </LinearLayout>
+
+            <!--<RelativeLayout
+                android:id="@+id/lytCounter"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="3.5"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/btn_inc_dec">
+
+                <ImageButton
+                    android:id="@+id/btnQuantityMinus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_decrement" />
+
+                <TextView
+                    android:id="@+id/tvProductQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/title_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnQuantityPlus"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:maxWidth="20dp"
+                    android:padding="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_increment" />
+
+            </RelativeLayout>
+            -->
+           <!-- <LinearLayout
                 android:id="@+id/bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,19 +252,9 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_delete" />
 
-                <!--  <com.oneclick.yonclick.view.RobotoTextView
-                      android:id="@+id/tvProductPrice"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center_vertical"
-                      android:layout_weight=".5"
-                      android:gravity="right"
-                      android:text="80"
-                      android:textColor="@color/product_name_color"
-                      android:textStyle="bold" />-->
 
             </LinearLayout>
-
+-->
         </RelativeLayout>
 
         <View

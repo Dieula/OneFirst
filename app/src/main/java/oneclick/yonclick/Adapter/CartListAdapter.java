@@ -23,6 +23,7 @@ import oneclick.yonclick.listener.OnItemClickListener;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHolder> {
 
+    private int quantityCounter = 1;
     private Context mContext;
     private ArrayList<CartItem> dataList;
 
@@ -37,21 +38,49 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivProductImage;
-        private TextView tvProductName, tvCount, tvProductPrice;
+        private TextView tvProductName, tvCount,tvProductQuantity, tvProductPrice;
         private CheckBox chkCart;
-        private ImageButton remove;
+        private ImageButton remove,btnQuantityMinus,btnQuantityPlus;
 
         public ViewHolder(final View itemView, int viewType) {
             super(itemView);
 
             ivProductImage = (ImageView) itemView.findViewById(R.id.ivProductImage);
             tvProductName = (TextView) itemView.findViewById(R.id.tvProductName);
-            tvCount = (TextView) itemView.findViewById(R.id.tvCount);
+           // tvCount = (TextView) itemView.findViewById(R.id.tvCount);
             tvProductPrice = (TextView) itemView.findViewById(R.id.tvProductPrice);
             chkCart = (CheckBox) itemView.findViewById(R.id.chkCart);
             remove = (ImageButton) itemView.findViewById(R.id.remove);
 
+
+            tvProductQuantity = (TextView) itemView.findViewById(R.id.tvProductQuantity);
+            btnQuantityPlus = (ImageButton)  itemView.findViewById(R.id.btnQuantityPlus);
+            btnQuantityMinus = (ImageButton)  itemView.findViewById(R.id.btnQuantityMinus);
+
+
             // listener
+
+            btnQuantityPlus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int quantityCounter = 1;
+                    quantityCounter++;
+                    tvProductQuantity.setText(String.valueOf(quantityCounter));
+                }
+            });
+
+            btnQuantityMinus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                     int quantityCounter = 1;
+                    if (quantityCounter > 1) {
+                        quantityCounter--;
+                        tvProductQuantity.setText(String.valueOf(quantityCounter));
+                    }
+                }
+            });
+
+
             chkCart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -93,7 +122,8 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
         holder.tvProductName.setText(cartItem.name);
         holder.tvProductPrice.setText(cartItem.price + AppConstants.CURRENCY);
-        holder.tvCount.setText(mContext.getResources().getString(R.string.quantity) + String.valueOf(cartItem.quantity));
+        holder.tvProductQuantity.setText(String.valueOf(quantityCounter + cartItem.quantity));
+        //holder.tvProductQuantity.setText(String.valueOf(cartItem.quantity));
 
         if (cartItem.isSelected == AppConstants.VALUE_SELECTED) {
             holder.chkCart.setChecked(true);

@@ -25,16 +25,20 @@ import java.util.ArrayList;
 
 import oneclick.yonclick.Adapter.ProductListAdapter;
 import oneclick.yonclick.Model.Categorie;
+import oneclick.yonclick.Model.Category;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.Uils.ListTypeShow;
+import oneclick.yonclick.Uils.RVEmptyObserver;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.listener.EndlessRecyclerViewScrollListener;
+import oneclick.yonclick.listener.ListDialogActionListener;
 import oneclick.yonclick.listener.OnItemClickListener;
 
 public class SearchActivity extends BaseActivity {
+
 
     // initialize variables
     private Context mContext;
@@ -59,7 +63,7 @@ public class SearchActivity extends BaseActivity {
 
     // initialize View
     private Toolbar mToolbar;
-    private SearchView mSearchView;
+    private android.support.v7.widget.SearchView mSearchView;
     private ImageView ivListTypeIcon;
     private ToggleButton btnToggleExpand;
     private RelativeLayout lytSearchAttribute;
@@ -80,33 +84,16 @@ public class SearchActivity extends BaseActivity {
 
     private boolean loading = true;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
-        lytSearchAttribute = (RelativeLayout) findViewById(R.id.lytSearchAttribute);
-        lytSearchHeader = (LinearLayout) findViewById(R.id.lytSearchHeader);
-        lytSortingData = (LinearLayout) findViewById(R.id.lytSortingData);
-        categoryChooser = (LinearLayout) findViewById(R.id.categoryChooser);
-        noDataView = (LinearLayout) findViewById(R.id.noDataView);
-        mSearchView = (SearchView) findViewById(R.id.searchView);
-        mSearchView.setIconified(false);
-
-        edtMinPrice = (EditText) findViewById(R.id.edtMinPrice);
-        edtMaxPrice = (EditText) findViewById(R.id.edtMaxPrice);
-        tvSortingName = (TextView) findViewById(R.id.tvSortingName);
-        selectedCat = (TextView) findViewById(R.id.selectedCat);
-        loadMoreView = (ProgressBar) findViewById(R.id.loadMore);
-
-      /*  initVariable();
+        initVariable();
         initView();
-
+        initSearchToolbar();
         loadData();
-
-        initListener();*/
+        //loadCategories();
+        initListener();
     }
 
     private void initVariable() {
@@ -123,85 +110,37 @@ public class SearchActivity extends BaseActivity {
         // from base class
         initLoader();
 
+        rvProductList = (RecyclerView) findViewById(R.id.rvProductList);
+        ivListTypeIcon = (ImageView) findViewById(R.id.ivListTypeIcon);
+        btnToggleExpand = (ToggleButton) findViewById(R.id.btnToggleExpand);
+        lytSearchAttribute = (RelativeLayout) findViewById(R.id.lytSearchAttribute);
+        lytSearchHeader = (LinearLayout) findViewById(R.id.lytSearchHeader);
+        lytSortingData = (LinearLayout) findViewById(R.id.lytSortingData);
+        categoryChooser = (LinearLayout) findViewById(R.id.categoryChooser);
+        noDataView = (LinearLayout) findViewById(R.id.noDataView);
+        mSearchView = (android.support.v7.widget.SearchView) findViewById(R.id.searchView);
+        mSearchView.setIconified(false);
 
+        edtMinPrice = (EditText) findViewById(R.id.edtMinPrice);
+        edtMaxPrice = (EditText) findViewById(R.id.edtMaxPrice);
+        tvSortingName = (TextView) findViewById(R.id.tvSortingName);
+        selectedCat = (TextView) findViewById(R.id.selectedCat);
+        loadMoreView = (ProgressBar) findViewById(R.id.loadMore);
 
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
+        // init RecyclerView
+        rvProductList.setHasFixedSize(true);
+        setRecyclerViewLayoutManager(rvProductList, LayoutManagerType.LINEAR_LAYOUT_MANAGER);
+        mProductListAdapter = new ProductListAdapter(mContext, productList, ListTypeShow.LINEAR);
+        mProductListAdapter.registerAdapterDataObserver(new RVEmptyObserver(rvProductList, noDataView));
+        rvProductList.setAdapter(mProductListAdapter);
 
-             loadSearchProducts(false, false);
+    }
 
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String key) {
-                return false;
-            }
-        });
-
-
-        btnToggleExpand.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    lytSearchAttribute.setVisibility(View.VISIBLE);
-                    // rotate
-                    btnToggleExpand.animate().rotation(180).start();
-                } else {
-                    lytSearchAttribute.setVisibility(View.GONE);
-                    // return rotate
-                    btnToggleExpand.animate().rotation(0).start();
-                }
-            }
-        });
-
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                loadSearchProducts(false, false);
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String key) {
-                return false;
-            }
-        });
-
-        edtMaxPrice.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-                if (!productList.isEmpty()) {
-                    productList.clear();
-                }
-                loadSearchProducts(false, false);
-                return false;
-            }
-        });
-
-        rvProductList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0) {
-                    onScrolledMore();
-                }
-            }
-        });
-
-
+    private void initSearchToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     private void loadData() {
@@ -211,7 +150,7 @@ public class SearchActivity extends BaseActivity {
 
         mSearchView.setQuery(searchKey, false);
 
-        // loadSearchProducts(false, false);
+       // loadSearchProducts(false, false);
     }
 
     private void initListener() {
@@ -219,112 +158,24 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onItemListener(View view, int position) {
                 // invoke product details activity by product id
-                ActivityUtils.getInstance().invokeProductDetails(mActivity, productList.get(position).getId());
+                ActivityUtils.getInstance().invokeProductDetails(mActivity, productList.get(position).getBrand_id());
             }
         });
-    }
 
-
-    // Generate list and grid layout manager
-    public void setRecyclerViewLayoutManager(RecyclerView mRecyclerView, LayoutManagerType layoutManagerType) {
-        int scrollPosition = 0;
-
-        // If a layout manager has already been set, get current scroll position.
-        if (mRecyclerView.getLayoutManager() != null) {
-            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
-                    .findFirstCompletelyVisibleItemPosition();
-        }
-
-        switch (layoutManagerType) {
-            case GRID_LAYOUT_MANAGER:
-                gridLayoutManager = new GridLayoutManager(mActivity, COLUMN_SPAN_COUNT);
-                mLayoutManager = gridLayoutManager;
-                mCurrentLayoutManagerType = LayoutManagerType.GRID_LAYOUT_MANAGER;
-                break;
-            case LINEAR_LAYOUT_MANAGER:
-                linearLayoutManager = new LinearLayoutManager(mActivity);
-                mLayoutManager = linearLayoutManager;
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-
-                break;
-            default:
-                linearLayoutManager = new LinearLayoutManager(mActivity);
-                mLayoutManager = linearLayoutManager;
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-        }
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.scrollToPosition(scrollPosition);
-        //lazyLoaderListener(mLayoutManager);
-    }
-
-
-    private void loadCategories() {
-
-    }
-
-    private void loadSearchProducts(final boolean loadMore, boolean withCategory) {
-
-        if (!loadMore) {
-            showLoader();
-        } else {
-            loadMoreView.setVisibility(View.VISIBLE);
-        }
-
-        //set value
-        searchKey = mSearchView.getQuery().toString();
-        String minPrice = edtMinPrice.getText().toString();
-        String maxPrice = edtMaxPrice.getText().toString();
-
-        RequestSearchProducts searchProduct;
-        if (withCategory) {
-            searchProduct = new RequestSearchProducts(mActivity, pageNumber, searchKey, categoryId, minPrice, maxPrice, order, orderBy);
-        } else {
-            searchProduct = new RequestSearchProducts(mActivity, pageNumber, searchKey, minPrice, maxPrice, order, orderBy);
-        }
-
-    }
-
-
-    private void onScrolledMore() {
-        int visibleItemCount, totalItemCount, pastVisiblesItems;
-        if (mCurrentLayoutManagerType == LayoutManagerType.GRID_LAYOUT_MANAGER) {
-            visibleItemCount = gridLayoutManager.getChildCount();
-            totalItemCount = gridLayoutManager.getItemCount();
-            pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
-        } else {
-            visibleItemCount = linearLayoutManager.getChildCount();
-            totalItemCount = linearLayoutManager.getItemCount();
-            pastVisiblesItems = linearLayoutManager.findFirstVisibleItemPosition();
-        }
-        if (loading) {
-            if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
-                loading = false;
-                loadMoreView.setVisibility(View.VISIBLE);
-                pageNumber = pageNumber + 1;
-                if (categoryId.isEmpty()) {
-                    loadSearchProducts(true, false);
-                } else {
-                    loadSearchProducts(true, true);
-                }
-            }
-        }
-
-    }
-}
-
-      /*  lytSortingData.setOnClickListener(new View.OnClickListener() {
+        lytSortingData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AppUtility.showSortingAttributesDialog(mActivity, getResources().getString(R.string.select_order) {
+                AppUtility.showSortingAttributesDialog(mActivity,
+                        getResources().getString(R.string.select_order), AppConstants.orderTitles,
+                        new ListDialogActionListener() {
                     @Override
                     public void onItemSelected(int position) {
                         tvSortingName.setText(AppConstants.orderTitles[position]);
                         order = AppConstants.KEY_ASC;
+                        orderBy = AppConstants.orderValues[position];
 
-
-                        loadSearchProducts(false, false);
+                       // loadSearchProducts(false, false);
                     }
                 });
             }
@@ -335,19 +186,21 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                AppUtility.showSortingAttributesDialog(mActivity, getResources().getString(R.string.select_category), categoryArray {
-
+                AppUtility.showSortingAttributesDialog(mActivity,
+                        getResources().getString(R.string.select_category),
+                        categoryArray, new ListDialogActionListener() {
+                    @Override
                     public void onItemSelected(int position) {
 
                         if (!categoryList.isEmpty()) {
                             int id = categoryList.get(position).getId();
                             if (id > 0) {
                                 categoryId = String.valueOf(id);
-                                loadSearchProducts(false, true);
+                               // loadSearchProducts(false, true);
                             } else {
-                                loadSearchProducts(false, false);
+                              //  loadSearchProducts(false, false);
                             }
-                           // selectedCat.setText(AppUtility.showHtml(categoryList.get(position).name));
+                            selectedCat.setText(AppUtility.showHtml(categoryList.get(position).getNameDepartements()));
 
                         }
                     }
@@ -398,11 +251,11 @@ public class SearchActivity extends BaseActivity {
         });
 
 
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        mSearchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                loadSearchProducts(false, false);
+                //loadSearchProducts(false, false);
 
                 return false;
             }
@@ -420,7 +273,7 @@ public class SearchActivity extends BaseActivity {
                 if (!productList.isEmpty()) {
                     productList.clear();
                 }
-                loadSearchProducts(false, false);
+               //loadSearchProducts(false, false);
                 return false;
             }
         });
@@ -472,6 +325,7 @@ public class SearchActivity extends BaseActivity {
     }
 
 
+/*
     private void loadCategories() {
         // Load category list
         RequestCategory requestCategory = new RequestCategory(this);
@@ -489,7 +343,7 @@ public class SearchActivity extends BaseActivity {
                     categoryArray = new String[categoryList.size()];
 
                     for (int i = 0; i < categoryList.size(); i++) {
-                        categoryArray[i] = categoryList.get(i).name;
+                        categoryArray[i] = categoryList.get(i).name_departements;
                     }
 
                 }
@@ -511,11 +365,11 @@ public class SearchActivity extends BaseActivity {
         String minPrice = edtMinPrice.getText().toString();
         String maxPrice = edtMaxPrice.getText().toString();
 
-        RequestSearchProducts searchProduct;
+        RequestSearchProducts searchProduct = null;
         if (withCategory) {
-            searchProduct = new RequestSearchProducts(mActivity, pageNumber, searchKey, categoryId, minPrice, maxPrice, order, orderBy);
+            //  searchProduct = new RequestSearchProducts(mActivity, pageNumber, searchKey, categoryId, minPrice, maxPrice, order, orderBy);
         } else {
-            searchProduct = new RequestSearchProducts(mActivity, pageNumber, searchKey, minPrice, maxPrice, order, orderBy);
+            //  searchProduct = new RequestSearchProducts(mActivity, pageNumber, searchKey, minPrice, maxPrice, order, orderBy);
         }
         searchProduct.setResponseListener(new ResponseListener() {
             @Override
@@ -542,6 +396,7 @@ public class SearchActivity extends BaseActivity {
         });
         searchProduct.execute();
     }
+*/
 
     private void onScrolledMore() {
         int visibleItemCount, totalItemCount, pastVisiblesItems;
@@ -559,13 +414,13 @@ public class SearchActivity extends BaseActivity {
                 loading = false;
                 loadMoreView.setVisibility(View.VISIBLE);
                 pageNumber = pageNumber + 1;
-                if (categoryId.isEmpty()) {
+               /* if (categoryId.isEmpty()) {
                     loadSearchProducts(true, false);
                 } else {
                     loadSearchProducts(true, true);
-                }
+                }*/
             }
         }
-    }*/
-
+    }
+}
 

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,8 +50,10 @@ public class CartListActivity extends BaseActivity {
     private Button btnBuy;
     private LinearLayout lytSelectionAll, footerView;
 
-    private TextView info_text;
+    private TextView info_text,tvProductQuantity;
+    private ImageButton btnQuantityPlus, btnQuantityMinus, searchButton;
 
+    private int quantityCounter = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +97,8 @@ public class CartListActivity extends BaseActivity {
         cartListAdapter = new CartListAdapter(mContext, cartList);
 
         rvCartList.setAdapter(cartListAdapter);
+
+//        quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
 
     }
     private void initLister() {
@@ -141,6 +146,8 @@ public class CartListActivity extends BaseActivity {
 
             }
         });
+
+
 
         checkBoxAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

@@ -56,6 +56,11 @@ public class AppConstants {
 
     public static final int NO_CATEGORY = -1;
 
+    // order list
+    public static final String[] orderTitles = {"Order by", "Order by title", "Order by date"};
+    public static final String[] orderValues = {"title", "title", "date"};
+
+
     // Large image view
     public static final String KEY_IMAGE_URL = "large_image_url";
     public static final String KEY_PERMISSION = "perm";

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lytAdvanceSearchRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/lytSearchHeader"
@@ -34,19 +34,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="@string/search_anything"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/order_by"
+                    android:textColor="@color/title_color"
                     android:textSize="15sp" />
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/pad_margin_10dp"/>
-                    <!--android:src="@drawable/ic_drop_down_blue"-->
+                    android:padding="@dimen/pad_margin_10dp"
+                    android:src="@drawable/ic_drop_down_blue" />
 
             </LinearLayout>
 
-        <!--    <ImageView
+            <ImageView
                 android:id="@+id/ivListTypeIcon"
                 android:layout_width="@dimen/height_width_0dp"
                 android:layout_height="20dp"
@@ -66,7 +66,7 @@
                 android:text=""
                 android:textOff=""
                 android:textOn="" />
--->
+
         </LinearLayout>
 
     </LinearLayout>
@@ -216,3 +216,4 @@
         android:background="@color/toolbar_boarder" />
 
 </RelativeLayout>
+
