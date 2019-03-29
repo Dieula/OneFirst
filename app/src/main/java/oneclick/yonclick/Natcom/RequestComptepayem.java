@@ -2,13 +2,13 @@ package oneclick.yonclick.Natcom;
 
 public class RequestComptepayem {
 
-    private String user_id;
+    private Integer user_id;
     private String numero_tel;
-    private String pin;
+    private Integer pin;
     private String nif;
     private String status;
 
-    public RequestComptepayem(String user_id, String numero_tel, String pin, String nif, String status) {
+    public RequestComptepayem(Integer user_id, String numero_tel, Integer pin, String nif, String status) {
         this.user_id = user_id;
         this.numero_tel = numero_tel;
         this.pin = pin;
@@ -16,14 +16,15 @@ public class RequestComptepayem {
         this.status = status;
     }
 
+
     public RequestComptepayem() {
     }
 
-    public String getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
@@ -35,11 +36,11 @@ public class RequestComptepayem {
         this.numero_tel = numero_tel;
     }
 
-    public String getPin() {
+    public Integer getPin() {
         return pin;
     }
 
-    public void setPin(String pin) {
+    public void setPin(Integer pin) {
         this.pin = pin;
     }
 

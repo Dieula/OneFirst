@@ -90,6 +90,9 @@ public class CartListActivity extends BaseActivity {
        // btnBuy = (Button) findViewById(R.id.btnBuy);
         info_text = (TextView) findViewById(R.id.info_text);
 
+
+        btnBuy = findViewById(R.id.btnBuy);
+
         // init RecyclerView
         rvCartList.setHasFixedSize(true);
 
@@ -175,11 +178,13 @@ public class CartListActivity extends BaseActivity {
                 cartListAdapter.notifyDataSetChanged();
             }
         });
-      /*  btnBuy.setOnClickListener(new View.OnClickListener() {
+
+
+
+        btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
 
-            } *//*{
                 if (selectedCounter > 0) {
 
                     // store price into preference
@@ -187,16 +192,15 @@ public class CartListActivity extends BaseActivity {
 
                     boolean isRegistered = AppPreference.getInstance(mContext).getBoolean(PrefKey.REGISTERED);
                     if(isRegistered) {
-                        ActivityUtils.getInstance().invokeAddressActivity(mActivity, buildLineItems(), false, true);
-                    } else {
-                        ActivityUtils.getInstance().invokeLoginAndOrder(mActivity, buildLineItems());
-                    }
 
+                    }
                 } else {
                     Toast.makeText(mContext, "Select product", Toast.LENGTH_SHORT).show();
                 }
-            }*//*
-        });*/
+            }
+        });
+
+
     }
 
     private void loadCartData() {

@@ -16,8 +16,10 @@ import oneclick.yonclick.Adapter.PlatAdapter;
 import oneclick.yonclick.BaseUrl.ApiService.ApiService;
 import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
 import oneclick.yonclick.Model.Plat;
+import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.ModelList.PlatList;
 import oneclick.yonclick.R;
+import oneclick.yonclick.dataa.constant.AppConstants;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +30,8 @@ public class PlatActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private PlatAdapter eAdapter;
 
+    Restaurant restaurant;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,20 @@ public class PlatActivity extends BaseActivity {
 
         initView();
         getAllPlat();
+
+
+
+        if (getIntent().getSerializableExtra(AppConstants.restaurant) != null)
+        {
+            restaurant = (Restaurant) getIntent().getSerializableExtra(AppConstants.restaurant);
+
+        }
+        else
+        {
+            System.out.println("PROD : NO DETAILS");
+        }
+        System.out.println("PROD INFO : "+restaurant.getName_busness());
+
 
 
     }

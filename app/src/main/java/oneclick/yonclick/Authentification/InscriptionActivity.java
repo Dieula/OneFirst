@@ -157,14 +157,14 @@ public class InscriptionActivity extends AppCompatActivity {
             valid = false;
         }*/
         //checking if password matches
-        if (password.toString() != mConfPassword) {
+      /*  if (password.toString() != mConfPassword) {
             password.setError("Password Does not Match");
             valid = false;
         }
         else
         {
             password.setError(null);
-        }
+        }*/
 
 
 
@@ -190,7 +190,7 @@ public class InscriptionActivity extends AppCompatActivity {
                 Toast.makeText(InscriptionActivity.this, "Good"+reponse.message(), Toast.LENGTH_SHORT).show();
 
             } else {
-                Toast.makeText(InscriptionActivity.this, ""+reponse.message(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(InscriptionActivity.this, "verifiez vos info"+reponse.message(), Toast.LENGTH_SHORT).show();
 
             }
             super.onPostExecute(o);

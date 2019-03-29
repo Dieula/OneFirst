@@ -12,8 +12,10 @@ import oneclick.yonclick.Model.GetMarqueWithProduit;
 import oneclick.yonclick.Model.Magasin;
 import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.Model.Product;
+import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.activity.AbonnementFormActivity;
 import oneclick.yonclick.activity.LargeImageViewActivity;
+import oneclick.yonclick.activity.PlatActivity;
 import oneclick.yonclick.activity.ProductListActivity;
 import oneclick.yonclick.activity.SearchActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
@@ -71,7 +73,18 @@ public class ActivityUtils {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(i);
 
+
+
     }
+    public void invokeProductDetailsfood(Context mContext, Restaurant restaurantId) {
+
+        Intent i = new Intent(mContext, PlatActivity.class);
+        i.putExtra(AppConstants.restaurant, restaurantId);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);
+
+    }
+
 
     public void invokeProductDetailsImage(Context mContext) {
 
@@ -80,10 +93,6 @@ public class ActivityUtils {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
 
-       /* Intent i = new Intent(mContext, DetailsProduitActivity.class);
-        i.putExtra(AppConstants.produit, productId);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(i);*/
 
     }
 

@@ -62,25 +62,6 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
                 .thumbnail(0.5f)
                 .placeholder(R.drawable.nutv)
                 .into(holder.image);
-       /*
-        for (int j = 0; j <= 2; j++)
-        {
-            holder.categoryName.setText(produit.getName_product() + j);
-
-            holder.price.setText(produit.getPrix() +j);
-
-
-            String imgUrl = BASE_URL_Image+produit.getImage() + j;
-
-            Glide.with(mContext)
-                    .load(imgUrl)
-                    .thumbnail(0.5f)
-                    .error(R.drawable.bot)
-                    .placeholder(R.drawable.nutv)
-                    .into(holder.image);
-
-        }*/
-
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

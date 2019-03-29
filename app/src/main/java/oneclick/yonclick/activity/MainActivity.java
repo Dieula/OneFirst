@@ -30,6 +30,7 @@ import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.BaseActivity;
+import oneclick.yonclick.dataa.preference.SharedPref;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 
 
@@ -45,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //if user is already logged in openeing the profile activity
+        if (SharedPref.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
 
         //profil
         imgProfil = (CircleImageView) findViewById(R.id.imgProfil);

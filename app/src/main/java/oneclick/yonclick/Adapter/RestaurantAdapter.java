@@ -19,6 +19,7 @@ import oneclick.yonclick.Model.Employe;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.Model.Restaurant;
 import oneclick.yonclick.R;
+import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.activity.PlatActivity;
 
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
@@ -45,18 +46,30 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
 
 
     @Override
-    public void onBindViewHolder(RestaurantAdapter.CustomViewHolder holder, int position) {
+    public void onBindViewHolder(RestaurantAdapter.CustomViewHolder holder, final int position) {
         Restaurant restaurant = restaurants.get(position);
         holder.restaurantName.setText(restaurant.getName_busness());
 
-        String imgUrl = BASE_URL_Image+restaurant.getImage_compagnie();
+        String imgUrl = BASE_URL_Image + restaurant.getImage_compagnie();
 
         holder.image.setImageResource(0);
 
-       Glide.with(mContext)
+        Glide.with(mContext)
                 .load(imgUrl)
                 .thumbnail(0.5f)
                 .into(holder.image);
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ActivityUtils.getInstance().invokeProductDetailsfood(mContext, restaurants.get(position));
+
+
+            }
+        });
+
     }
 
 

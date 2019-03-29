@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,19 +18,35 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import oneclick.yonclick.Authentification.InscriptionActivity;
+import oneclick.yonclick.Authentification.LoginActivity;
+import oneclick.yonclick.Authentification.StaticAbonnement;
+import oneclick.yonclick.Authentification.StaticUser;
 import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.Fragment.AbonnementFragment;
+import oneclick.yonclick.InterfaceAPI.ApiEndPointInterface;
+import oneclick.yonclick.InterfaceAPI.RestApi;
 import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.GetCategoryWithProduit;
 import oneclick.yonclick.Model.GetMarqueWithProduit;
 import oneclick.yonclick.Model.Product;
+import oneclick.yonclick.ModelAuth.RequestLogin;
+import oneclick.yonclick.ModelAuth.ResponseLogin;
+import oneclick.yonclick.ModelAuth.UserRequest;
 import oneclick.yonclick.R;
+import oneclick.yonclick.activity.FormAbonnementEcolage.RequestAbonnement;
+import oneclick.yonclick.activity.FormAbonnementEcolage.ResponseAbonnement;
 import oneclick.yonclick.dataa.constant.AppConstants;
+import oneclick.yonclick.dataa.preference.SharedPref;
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class AbonnementFormActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -42,6 +59,16 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
     ProgressDialog progressDialog;
 
     Abonnement abonnement;
+
+
+    private Call<ResponseAbonnement> call;
+    private ApiEndPointInterface apiRegister;
+
+
+
+    private int status;
+    private Response<ResponseAbonnement> reponse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +87,8 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
             System.out.println("PROD : NO DETAILS");
         }
 
+
+
         sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         progressDialog = new ProgressDialog(AbonnementFormActivity.this);
@@ -68,7 +97,27 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
         edNoCarte = (EditText) findViewById(R.id.edNoCarte);
         edNin = (EditText) findViewById(R.id.edNin);
         cardNumberEditText = (EditText) findViewById(R.id.cardNumberEditText);
-        TotalPayer = (EditText) findViewById(R.id.TotalPayer);
+
+       /* SpiMOis = (Spinner) findViewById(R.id.SpiMOis);
+
+        if (SpiMOis.getSelectedItem().equals("") && (cardNumberEditText.getText().toString().equals("")))
+        {
+            TotalPayer.setVisibility(View.GONE);
+        }
+        else
+        {
+
+
+            TextView TotalPayer = (TextView) findViewById(R.id.TotalPayer);
+            int s1 = Integer.parseInt(SpiMOis.getSelectedItem().toString());
+            int s2 = Integer.parseInt(cardNumberEditText.getText().toString());
+            int sum = s1 * s2 ;
+            TotalPayer.setText(Integer.toString(sum));
+            TotalPayer.setVisibility(View.VISIBLE);
+        }
+
+        Spinner CompagnieName = findViewById(R.id.CompagnieName);
+*/
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -101,7 +150,7 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
 
         Button button = (Button) findViewById(R.id.btnValider);
 
-        SpiMOis = (Spinner) findViewById(R.id.SpiMOis);
+
 
         SpiMOis.setOnItemSelectedListener(this);
         // Spinner Drop down elements
@@ -132,6 +181,33 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
         // attaching data adapter to spinner
         SpiMOis.setAdapter(ClasseAdater);
 
+
+
+
+        CompagnieName.setOnItemSelectedListener(this);
+        // Spinner Drop down elements
+        List<String> Compagnie = new ArrayList<String>();
+        Compagnie.add("Nom de la Compagnie");
+        Compagnie.add("");
+        Compagnie.add("2");
+        Compagnie.add("3");
+        Compagnie.add("4");
+        Compagnie.add("5");
+        Compagnie.add("6");
+
+
+        // Creating adapter for the spinner
+        ArrayAdapter<String> CompagnieAdater = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Compagnie);
+
+
+
+        // Drop down layout style - list view with radio button
+        CompagnieAdater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        CompagnieName.setAdapter(CompagnieAdater);
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,6 +221,7 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
 
                     }
                 } else {
+                    Register();
 
                     Toast.makeText(getApplicationContext(), "Mois", Toast.LENGTH_SHORT).show();
                 }
@@ -152,6 +229,11 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
 
         });
 
+    }
+
+    private void Register() {
+        AbonnementAsyncTask registerAsyncTask = new AbonnementAsyncTask();
+        registerAsyncTask.execute();
     }
 
     public void View() {
@@ -163,10 +245,7 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
 
     private void ShowDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-       // alertDialog.setTitle("    ------ Choix paiement ------");
 
-
-      //  alertDialog.setMessage("Selectionnez un de ces methodes de paiement!");
         LayoutInflater inflater = this.getLayoutInflater();
         View addLayout = inflater.inflate(R.layout.dialog_paiement,null);
 
@@ -191,6 +270,64 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
 
 
         alertDialog.show();
+    }
+
+    public class AbonnementAsyncTask extends AsyncTask {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+            if (status == 200) {
+                //get username
+               StaticAbonnement.setAbonnement(reponse.body().getAbonnement());
+
+                //error fixer
+               startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                Toast.makeText(getApplicationContext(), "Paiment ok", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Verifiez vos informations", Toast.LENGTH_SHORT).show();
+
+            }
+
+            super.onPostExecute(o);
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            try {
+                apiRegister = RestApi.getApi();
+
+                int Mois = 7;
+                int compagnie = 1;
+                int plan = 1;
+
+
+                RequestAbonnement requestAbonnement = new RequestAbonnement();
+                requestAbonnement.setNumero_account(edNoCarte.getText().toString());
+                requestAbonnement.setTitulaire_account(NomCarte.getText().toString());
+                requestAbonnement.setTitulaire_account(TotalPayer.getText().toString());
+                requestAbonnement.setNombre_mois(Integer.valueOf(SpiMOis.getSelectedItem().toString()));
+                requestAbonnement.setCompagnie_sub_id(compagnie);
+                requestAbonnement.setPlan_id(plan);
+
+
+
+                call = apiRegister.abonnment(requestAbonnement);
+                reponse = call.execute();
+                status = reponse.code();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 
     @Override

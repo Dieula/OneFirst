@@ -25,6 +25,7 @@ import oneclick.yonclick.activity.BaseActivity;
 import oneclick.yonclick.activity.HistoricActivity;
 import oneclick.yonclick.activity.MainActivity;
 import oneclick.yonclick.dataa.preference.AppPreference;
+import oneclick.yonclick.dataa.preference.SharedPref;
 
 public class ProfilActivity extends BaseActivity {
 
@@ -54,24 +55,25 @@ public class ProfilActivity extends BaseActivity {
         enableBackButton();
         setToolbarTitle(getString(R.string.profil));
 
+/*
+        if (!SharedPref.getInstance(this).isLoggedIn()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }*/
 
-        sharedPreferences = getSharedPreferences("Register", Context.MODE_PRIVATE);
-        sharedPreferences.getString("SESSION_ID", "SESSION_ID");
-        sharedPreferences.getString("nom_client", "");
-        sharedPreferences.getString("email_client", "");
-        sharedPreferences.getString("imei", "");
-
-        tvName.setText(sharedPreferences.getString("nom_client",""));
-
+       //getting logged in user name
+        String loggedUsename = SharedPref.getInstance(this).LoggedInUser();
+        tvName.setText(""+loggedUsename);
 
         //logging out
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-                AppPreference.getInstance(getApplicationContext()).logout();
+                SharedPref.getInstance(getApplicationContext()).logout();
             }
         });
+
 
 
 

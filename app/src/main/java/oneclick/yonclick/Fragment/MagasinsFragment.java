@@ -123,7 +123,7 @@ public class MagasinsFragment extends Fragment {
      //Method inside
         GetAllCategorie();
         GetAllProduct();
-        GetAllStore();
+     //   GetAllStore();
         GetAllBrand();
         GetAllNewProduct();
         initListener();
@@ -140,13 +140,13 @@ public class MagasinsFragment extends Fragment {
         });
 
 
-        tvStoreAllNouveau.setOnClickListener(new View.OnClickListener() {
+       /* tvStoreAllNouveau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ActivityUtils.getInstance().invokeProducts(getActivity(), getString(R.string.magasin),
                         AppConstants.TYPE_RECENT, AppConstants.NO_CATEGORY);
             }
-        });
+        });*/
 
         // See all listener
         tvProduitListAll.setOnClickListener(new View.OnClickListener() {
@@ -240,11 +240,11 @@ public class MagasinsFragment extends Fragment {
         tvProduitListAll = (TextView) lytProduitList.findViewById(R.id.tvSeeALL);
         popularParent = (RelativeLayout) lytProduitList.findViewById(R.id.parentPanel);
 
-        //Magasins
+      /*  //Magasins
         lytMagasinList = (RelativeLayout) v.findViewById(R.id.lytMagasinList);
         tvStore= (TextView) lytMagasinList.findViewById(R.id.tvListTitle);
         tvStoreAllNouveau = (TextView) lytMagasinList.findViewById(R.id.tvSeeALL);
-        popularParent = (RelativeLayout) lytMagasinList.findViewById(R.id.parentPanel);
+        popularParent = (RelativeLayout) lytMagasinList.findViewById(R.id.parentPanel);*/
 
         AppUtility.noInternetWarning(v.findViewById(R.id.parentPanel), getActivity());
         if (!AppUtility.isNetworkAvailable(getActivity())) {

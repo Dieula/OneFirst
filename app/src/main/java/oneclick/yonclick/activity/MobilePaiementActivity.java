@@ -1,5 +1,6 @@
 package oneclick.yonclick.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,7 @@ import java.io.IOException;
 import oneclick.yonclick.Authentification.LoginActivity;
 import oneclick.yonclick.Authentification.StaticPhone;
 import oneclick.yonclick.Authentification.StaticUser;
+import oneclick.yonclick.Commande.RequestCommandes;
 import oneclick.yonclick.InterfaceAPI.ApiEndPointInterface;
 import oneclick.yonclick.InterfaceAPI.RestApi;
 import oneclick.yonclick.ModelAuth.RequestLogin;
@@ -31,6 +34,8 @@ import oneclick.yonclick.ModelAuth.ResponseLogin;
 import oneclick.yonclick.Natcom.RequestComptepayem;
 import oneclick.yonclick.Natcom.ResponseComptepayem;
 import oneclick.yonclick.R;
+import oneclick.yonclick.dataa.preference.AppPreference;
+import oneclick.yonclick.dataa.preference.SharedPref;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -53,6 +58,9 @@ public class MobilePaiementActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     ProgressDialog progressDialog;
 
+
+
+    String login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +71,13 @@ public class MobilePaiementActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("Phone", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
+        AppPreference appPreference = AppPreference.getInstance(getApplicationContext());
+        login = appPreference.getString("user");
+
+
+
+
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -120,9 +135,6 @@ public class MobilePaiementActivity extends AppCompatActivity {
 
         MobileAsyncTask mobileAsyncTask = new MobileAsyncTask();
         mobileAsyncTask.execute();
-      //  startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
-       // Toast.makeText(this, "Transaction reussie", Toast.LENGTH_SHORT).show();
         //notify the user after register
         NotifiUser(tvPayer.getText().toString());
 
@@ -151,7 +163,7 @@ public class MobilePaiementActivity extends AppCompatActivity {
 
                     {
                         PostData();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
                     }
                 }
             });
@@ -182,6 +194,7 @@ public class MobilePaiementActivity extends AppCompatActivity {
         }
 
     private void NotifiUser(String s) {
+
     }
 
     private boolean validate() {
@@ -217,6 +230,7 @@ public class MobilePaiementActivity extends AppCompatActivity {
         protected void onPostExecute(Object o) {
             if (status == 200) {
                 Toast.makeText(getApplicationContext(), "Good", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 StaticPhone.setPhoneNatcom(reponse.body().getComptePayem());
 
             } else {
@@ -231,19 +245,24 @@ public class MobilePaiementActivity extends AppCompatActivity {
         protected Object doInBackground(Object[] objects) {
             try {
                 apiComptePayem = RestApi.getApi();
+
+                String nif = "6080";
+                String statut = "1";
+
                 RequestComptepayem requestComptepayem = new RequestComptepayem();
                 requestComptepayem.setNumero_tel(tvPayer.getText().toString());
-                requestComptepayem.setNumero_tel(tvPin.getText().toString());
-                requestComptepayem.getNif();
-                requestComptepayem.getStatus();
-                requestComptepayem.getUser_id();
+                requestComptepayem.setPin(Integer.valueOf(tvPin.getText().toString()));
+                requestComptepayem.setStatus(statut);
+                requestComptepayem.setNif(nif);
+                requestComptepayem.setUser_id(Integer.valueOf(login));
+
 
                 //save the user info in prference
                 editor.putString("Phone", tvPayer.getText().toString());
                 editor.putString("pin",tvPin.getText().toString());
-                editor.putString("nif",requestComptepayem.getNif());
+                editor.putString("nif",nif);
                 editor.putString("status",requestComptepayem.getStatus());
-                editor.putString("User_id",requestComptepayem.getUser_id());
+                editor.putString("User_id",login);
                 editor.apply();
 
                 call = apiComptePayem.Comptepayem(requestComptepayem);

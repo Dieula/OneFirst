@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +41,7 @@ import oneclick.yonclick.activity.MainActivity;
 import oneclick.yonclick.activity.MobilePaiementActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.dataa.preference.AppPreference;
+import oneclick.yonclick.dataa.preference.PrefKey;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 import oneclick.yonclick.dataa.sqlite.DatabaseHelper;
 
@@ -60,17 +62,17 @@ public class DetailsProduitActivity extends BaseActivity {
     String ImgProduit,imgCategorie,imgMarque;
     Integer prod,cat,brand;
     ImageView imageView,imgToolbarCart,imgProfil,image;
-    TextView tvCartCounter;
+    TextView tvCartCounter,tvProductQuantity;
 
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    ImageButton btnQuantityPlus,btnQuantityMinus;
 
 
 
 
-
-    private String title;
+    private String title,price;
      int id_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +89,9 @@ public class DetailsProduitActivity extends BaseActivity {
         initToolbar();
         enableBackButton();
         setToolbarTitle(title);
-
+        tvProductQuantity = (TextView) findViewById(R.id.tvProductQuantity);
+        btnQuantityPlus = (ImageButton) findViewById(R.id.btnQuantityPlus);
+        btnQuantityMinus = (ImageButton) findViewById(R.id.btnQuantityMinus);
         //Variable
         TextView NameProduit = (TextView) findViewById(R.id.tvProductName);
         TextView DescProduit = (TextView) findViewById(R.id.tvDescription);
@@ -195,24 +199,24 @@ public class DetailsProduitActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+
+
+
                 if ( produit!= null)
                 {
-                    // Add to cart list
+
                     CartDBController cartController = new CartDBController(mContext);
 
-                    if (cartController.isAlreadyAddedToCart(produit.getBrand_id()))
-                    {
+
+                    if (cartController.isAlreadyAddedToCart(produit.getId())) {
                         AppUtility.showToast(mContext, getString(R.string.already_in_cart));
-                    }
-                    else
-                    {
-                       // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+                    } else {
+                        quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
 
-                        cartController.insertCartItem(produit.getBrand_id(), produit.getPrix(),produit.getName_product(), produit.getImage(), quantityCounter);
-                       // btnAddToCart.setText(getString(R.string.added_to_cart));
+
+                        cartController.insertCartItem(produit.getId(), produit.getPrix(),produit.getName_product(), produit.getImage(), quantityCounter);
+                        // btnAddToCart.setText(getString(R.string.added_to_cart));
                         AppUtility.showToast(mContext, getString(R.string.added_to_cart));
-
-
                     }
                     cartController.close();
 
@@ -228,7 +232,7 @@ public class DetailsProduitActivity extends BaseActivity {
                     }
                     else
                     {
-                        // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+                         quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
 
                         cartController.insertCartItem(getMarqueWithProduit.getBrandId(), getMarqueWithProduit.getNameProduct(),
                                 getMarqueWithProduit.getImage(),getMarqueWithProduit.getPrix(), quantityCounter);
@@ -251,11 +255,10 @@ public class DetailsProduitActivity extends BaseActivity {
                     }
                     else
                     {
-                        // quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+                        quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
 
                         cartController.insertCartItem(getCategoryWithProduit.getId(), getCategoryWithProduit.getNameProduct(),
                                 getCategoryWithProduit.getImage(),getCategoryWithProduit.getPrix(), quantityCounter);
-                        //btnAddToCart.setText(getString(R.string.added_to_cart));
                         AppUtility.showToast(mContext, getString(R.string.added_to_cart));
 
 
@@ -271,14 +274,41 @@ public class DetailsProduitActivity extends BaseActivity {
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                /*quantityCounter = Integer.valueOf(tvProductQuantity.getText().toString());
+
+                price = produit.getPrix() * quantityCounter;*/
+
+                AppPreference.getInstance(mContext).setString(PrefKey.PAYMENT_TOTAL_PRICE, String.valueOf(price));
+
                 ShowDialog();
+            }
+        });
+
+
+
+
+        btnQuantityPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantityCounter++;
+                tvProductQuantity.setText(String.valueOf(quantityCounter));
+            }
+        });
+
+        btnQuantityMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (quantityCounter > 1) {
+                    quantityCounter--;
+                    tvProductQuantity.setText(String.valueOf(quantityCounter));
+                }
             }
         });
     }
 
-    private void passRateData(Integer id, String produit_id) {
 
-    }
 
 
     private void ShowDialog() {

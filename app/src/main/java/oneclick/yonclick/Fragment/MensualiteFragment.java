@@ -31,7 +31,7 @@ public class MensualiteFragment extends Fragment {
 
 
 
-      Spinner  SpiClasse = (Spinner) v.findViewById(R.id.SpiClasse);
+        Spinner  SpiClasse = (Spinner) v.findViewById(R.id.SpiClasse);
 
 
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import oneclick.yonclick.Authentification.LoginActivity;
 import oneclick.yonclick.activity.MainActivity;
 
 public class SharedPref {
@@ -32,16 +33,10 @@ public class SharedPref {
 
 
     //method to store user data
-    public void storeUserName(String names,String email,String imei) {
+    public void storeUserName(String user) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(USER_NAME, names);
-        editor.putString("SESSION_ID","SESSION_ID");
-        editor.putString("nom_client",names);
-        editor.putString("email_client", email);
-        editor.putString("imei", imei);
-        editor.putString("imei", imei);
-        editor.commit();
+        editor.putString(USER_NAME, user);
     }
 
     //check if user is logged in
@@ -65,8 +60,11 @@ public class SharedPref {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.commit();
-        mCtx.startActivity(new Intent(mCtx, MainActivity.class));
+        Intent intent = new Intent(mCtx,LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      //  mCtx.startActivity(new Intent(mCtx, MainActivity.class));
     }
+
 
 
 }

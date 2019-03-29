@@ -23,6 +23,8 @@ import oneclick.yonclick.ModelAuth.ResponseLogin;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.Common.Common;
 import oneclick.yonclick.activity.MainActivity;
+import oneclick.yonclick.dataa.constant.AppConstants;
+import oneclick.yonclick.dataa.preference.AppPreference;
 import oneclick.yonclick.dataa.preference.SharedPref;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -64,9 +66,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //
+        AppPreference appPreference =
+                AppPreference.getInstance(getApplicationContext());
+
+        appPreference.setString("user",AppConstants.user);
+
 
 
         progressDialog = new ProgressDialog(LoginActivity.this);
+
         sharedPreferences = getSharedPreferences("Register", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -95,6 +104,9 @@ public class LoginActivity extends AppCompatActivity {
     public void register(){
         LoginAsyncTask registerAsyncTask = new LoginAsyncTask();
         registerAsyncTask.execute();
+
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
 
 
     }
@@ -143,18 +155,22 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
 
-            if (Common.isConnect(getBaseContext())) {
                 if (status == 200) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    //storing the user in shared preferences
+                    //get username
+                    String user = reponse.body().getLogin();
+                   //storing the user in shared preferences
+                    SharedPref.getInstance(LoginActivity.this).storeUserName(user);
+                    //error fixer
+                   //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
                     Toast.makeText(getApplicationContext(), "Bienvenue sur YONCLICK", Toast.LENGTH_SHORT).show();
                     StaticUser.setRegister(reponse.body().getLogin());
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Verifiez vos informations", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Verifiez vos informations", Toast.LENGTH_SHORT).show();
 
                 }
-            }
+
             super.onPostExecute(o);
             super.onPostExecute(o);
         }

@@ -71,26 +71,7 @@ public class RestaurantFragment extends Fragment {
                 .setIcon(R.drawable.ic_notifications_black_24dp)
                 .show();
 
-        /*
-            new DialogSheet(getContext())
-                    .setTitle("Infos")
-                    .setMessage("Verifier votre internet")
-                    .setCancelable(false)
-                    .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            // Your action
-                        }
-                    })
-                    .setNegativeButton(android.R.string.cancel, new DialogSheet.OnNegativeClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            // Your action
-                        }
-                    })
-                    .setBackgroundColor(Color.BLACK) // Your custom background color
-                    .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
-                    .show();*/
+
         }
 
 

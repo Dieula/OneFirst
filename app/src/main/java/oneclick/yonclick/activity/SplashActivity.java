@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import oneclick.yonclick.Authentification.LoginActivity;
 import oneclick.yonclick.Authentification.ScreenLoginActivity;
-import oneclick.yonclick.NewAuthentification.RegisterUserActivity;
+
 import oneclick.yonclick.R;
 
 public class  SplashActivity extends AppCompatActivity {

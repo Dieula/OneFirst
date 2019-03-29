@@ -3,10 +3,8 @@ package oneclick.yonclick.Detail;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,19 +12,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import oneclick.yonclick.Model.CartList;
-import oneclick.yonclick.Model.GetCategoryWithProduit;
-import oneclick.yonclick.Model.GetMarqueWithProduit;
 import oneclick.yonclick.Model.Plat;
-import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.BaseActivity;
@@ -35,7 +28,6 @@ import oneclick.yonclick.activity.DetailsCreditCardActivity;
 import oneclick.yonclick.activity.MainActivity;
 import oneclick.yonclick.activity.MobilePaiementActivity;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
-import oneclick.yonclick.dataa.sqlite.DbManager;
 
 import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
 
@@ -43,7 +35,7 @@ public class PlatDetailsActivity extends BaseActivity {
 
     private int quantityCounter = 1;
     List<CartList> dbList;
-    DbManager helper;
+
 
     Context mContext;
     ImageView imageView;
