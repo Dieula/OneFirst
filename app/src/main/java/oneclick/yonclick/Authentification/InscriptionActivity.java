@@ -15,6 +15,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -25,13 +26,15 @@ import oneclick.yonclick.ModelAuth.UserRequest;
 import oneclick.yonclick.ModelAuth.UserResponse;
 import oneclick.yonclick.R;
 import oneclick.yonclick.activity.MainActivity;
+import oneclick.yonclick.dataa.preference.SharedPref;
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class InscriptionActivity extends AppCompatActivity {
 
 
-    private Button buttonS;
+    private Button btnInscription;
+    TextView DejaCompte;
 
     private EditText etNomUser,password,confirmPass,etEmailUser;
 
@@ -59,14 +62,22 @@ public class InscriptionActivity extends AppCompatActivity {
 
 
         //widget
-        buttonS = findViewById(R.id.btnInscription);
+        btnInscription = findViewById(R.id.btnInscription);
+        DejaCompte = (TextView) findViewById(R.id.DejaCompte);
+
+        DejaCompte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            }
+        });
 
         etNomUser = (EditText) findViewById(R.id.etNomUser);
         password = (EditText) findViewById(R.id.etPass);
         confirmPass = (EditText) findViewById(R.id.etConfirmPass);
         etEmailUser = (EditText) findViewById(R.id.etEmailUser);
 
-        buttonS.setOnClickListener(new View.OnClickListener() {
+        btnInscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // startActivity(new Intent(getApplicationContext(),CompletezInscriptionActivity.class));
@@ -93,8 +104,8 @@ public class InscriptionActivity extends AppCompatActivity {
 
 
     private void register() {
-
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask();
+        registerAsyncTask.execute();
 
     }
 
@@ -107,7 +118,7 @@ public class InscriptionActivity extends AppCompatActivity {
         String mEmail = etEmailUser.getText().toString();
 
         //Verify the name
-        if (mName.isEmpty() || mName.length() < 3){
+        if (mName.isEmpty() || mName.length() < 6){
 
             etNomUser.setError("at least 6 characters");
             valid = false;
@@ -131,7 +142,7 @@ public class InscriptionActivity extends AppCompatActivity {
         }
 
         //Verify the email
-        if (mPassword.isEmpty() || mPassword.isEmpty())
+        if (mPassword.isEmpty() || mPassword.length() < 8)
         {
             password.setError("at least 8 characters ");
             valid = false;
@@ -141,16 +152,20 @@ public class InscriptionActivity extends AppCompatActivity {
             password.setError(null);
         }
 
-        //Verify the email
-        if (mConfPassword.isEmpty() || mConfPassword.isEmpty() && mConfPassword.isEmpty() != mConfPassword.isEmpty()   )
-        {
-            confirmPass.setError("Password not match");
+        /*if (!password.equals(mConfPassword)) {
+            password.setError("Password Does not Match");
+            valid = false;
+        }*/
+        //checking if password matches
+        if (password.toString() != mConfPassword) {
+            password.setError("Password Does not Match");
             valid = false;
         }
         else
         {
-            confirmPass.setError(null);
+            password.setError(null);
         }
+
 
 
         return valid;
@@ -167,13 +182,11 @@ public class InscriptionActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
 
-
-
             if (status == 200) {
 
                 StaticUser.setRegister(reponse.body().getRegister());
-                RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask();
-                registerAsyncTask.execute();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                //storing the user in shared preferences
                 Toast.makeText(InscriptionActivity.this, "Good"+reponse.message(), Toast.LENGTH_SHORT).show();
 
             } else {
@@ -208,7 +221,6 @@ public class InscriptionActivity extends AppCompatActivity {
                 editor.putString("nom_client", etNomUser.getText().toString());
                 editor.putString("email_client", etEmailUser.getText().toString());
                 editor.putString("imei", imei);
-                editor.putString("imei", imei);
                 editor.apply();
 
                 call = apiRegister.utilisateur(userRequest);
@@ -222,7 +234,5 @@ public class InscriptionActivity extends AppCompatActivity {
         }
     }
 
-    public void LogButton(View v){
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-    }
+
 }

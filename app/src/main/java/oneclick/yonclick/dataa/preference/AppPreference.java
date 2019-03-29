@@ -1,8 +1,11 @@
 package oneclick.yonclick.dataa.preference;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import oneclick.yonclick.activity.MainActivity;
 
 public class AppPreference {
     // declare context
@@ -57,5 +60,14 @@ public class AppPreference {
 
     public boolean isNotificationOn() {
         return settingsPreferences.getBoolean("perf_notification", true);
+    }
+
+    //Logout user
+    public void logout() {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("logout", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+        mContext.startActivity(new Intent(mContext, MainActivity.class));
     }
 }

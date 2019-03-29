@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -23,6 +24,7 @@ import oneclick.yonclick.R;
 import oneclick.yonclick.activity.BaseActivity;
 import oneclick.yonclick.activity.HistoricActivity;
 import oneclick.yonclick.activity.MainActivity;
+import oneclick.yonclick.dataa.preference.AppPreference;
 
 public class ProfilActivity extends BaseActivity {
 
@@ -34,6 +36,8 @@ public class ProfilActivity extends BaseActivity {
      TextView tvName;
      ImageView imageView;
 
+     Button btnLogout;
+
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -43,7 +47,7 @@ public class ProfilActivity extends BaseActivity {
 
         tvName = (TextView) findViewById(R.id.tvName);
         imageView = (ImageView) findViewById(R.id.vpImageSlider);
-
+        btnLogout =  findViewById(R.id.btnLogout);
 
 
         initToolbar();
@@ -58,6 +62,17 @@ public class ProfilActivity extends BaseActivity {
         sharedPreferences.getString("imei", "");
 
         tvName.setText(sharedPreferences.getString("nom_client",""));
+
+
+        //logging out
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                AppPreference.getInstance(getApplicationContext()).logout();
+            }
+        });
+
 
 
         // call the listview

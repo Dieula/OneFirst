@@ -109,7 +109,6 @@
                     android:id="@+id/btnInscription"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:onClick="LogButton"
                     android:layout_below="@+id/etConfirmPass"
                     android:text="@string/s_inscrire"
                     android:textColor="#fff"
@@ -133,47 +132,9 @@
                     android:text="vous avez deja un compte ? Se cconnecter"
                     android:gravity="center"
                     android:textColor="#000"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:fontFamily="SFProDisplay-Medium" tools:targetApi="lollipop"/>
 
-
-             <!--   <LinearLayout
-                    android:id="@+id/loginPanel"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_below="@+id/DejaCompte"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginTop="@dimen/pad_margin_20dp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    &lt;!&ndash; <com.facebook.login.widget.LoginButton
-                         android:id="@+id/btnLoginFacebook"
-                         android:layout_width="0dp"
-                         android:layout_height="match_parent"
-                         android:paddingLeft="-20dp"
-                         android:layout_gravity="center_vertical"
-                         android:layout_marginRight="10dp"
-                         android:layout_weight=".5"
-                         android:paddingBottom="12dp"
-                         android:paddingTop="12dp"
-                         app:com_facebook_login_text="@string/facebook_cap"
-                         app:com_facebook_logout_text="@string/sign_out" />
- &ndash;&gt;
-
-                    <com.google.android.gms.common.SignInButton
-                        android:id="@+id/btnLoginGPlus"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight=".5"
-                        android:background="?attr/selectableItemBackground"
-                        app:buttonSize="wide" />
-
-                </LinearLayout>
--->
 
             </RelativeLayout>
 

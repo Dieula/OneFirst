@@ -21,7 +21,9 @@ import oneclick.yonclick.InterfaceAPI.RestApi;
 import oneclick.yonclick.ModelAuth.RequestLogin;
 import oneclick.yonclick.ModelAuth.ResponseLogin;
 import oneclick.yonclick.R;
+import oneclick.yonclick.activity.Common.Common;
 import oneclick.yonclick.activity.MainActivity;
+import oneclick.yonclick.dataa.preference.SharedPref;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -91,12 +93,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void register(){
-
-
         LoginAsyncTask registerAsyncTask = new LoginAsyncTask();
-
         registerAsyncTask.execute();
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
 
     }
 
@@ -143,16 +142,18 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (reponse.toString().equals("fail")){
-                Toast.makeText(getApplicationContext(), "Please verify your imfo", Toast.LENGTH_SHORT).show();
-            }
-            else if (status == 200) {
-                Toast.makeText(getApplicationContext(), "Bienvenue sur YONCLICK", Toast.LENGTH_SHORT).show();
-                StaticUser.setRegister(reponse.body().getLogin());
 
-            } else {
-                Toast.makeText(getApplicationContext(), "Not good", Toast.LENGTH_SHORT).show();
+            if (Common.isConnect(getBaseContext())) {
+                if (status == 200) {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    //storing the user in shared preferences
+                    Toast.makeText(getApplicationContext(), "Bienvenue sur YONCLICK", Toast.LENGTH_SHORT).show();
+                    StaticUser.setRegister(reponse.body().getLogin());
 
+                } else {
+                    Toast.makeText(getApplicationContext(), "Verifiez vos informations", Toast.LENGTH_SHORT).show();
+
+                }
             }
             super.onPostExecute(o);
             super.onPostExecute(o);
