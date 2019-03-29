@@ -116,9 +116,9 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
             TotalPayer.setVisibility(View.VISIBLE);
         }
 
-        Spinner CompagnieName = findViewById(R.id.CompagnieName);
-*/
 
+*/
+        Spinner CompagnieName = findViewById(R.id.CompagnieName);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
