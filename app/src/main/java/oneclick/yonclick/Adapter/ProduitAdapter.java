@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
@@ -61,7 +62,7 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
                 .thumbnail(0.5f)
                 .placeholder(R.drawable.nutv)
                 .into(holder.image);
-/*
+       /*
         for (int j = 0; j <= 2; j++)
         {
             holder.categoryName.setText(produit.getName_product() + j);
@@ -106,6 +107,11 @@ public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomVi
     public int getItemCount() {
 
         return products.size();
+    }
+
+    public void filterArrayList(ArrayList<Product> filteredList) {
+        products = filteredList;
+        notifyDataSetChanged();
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {

@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/pad_margin_10dp"
     tools:context=".Fragment.AbonnementFragment">
 
-    <include layout="@layout/content_restaurant"/>
+    <include layout="@layout/content_abonnement"/>
 
 </RelativeLayout>

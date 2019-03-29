@@ -127,6 +127,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         return dataList.size();
     }
 
+    public void filterArrayList(ArrayList<Product> filteredList) {
+        dataList = filteredList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
         return 0;

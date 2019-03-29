@@ -43,7 +43,7 @@ import oneclick.yonclick.ModelList.CategorieList;
 import oneclick.yonclick.ModelList.MagasinsList;
 import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.R;
-import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.AppUtility;
 import oneclick.yonclick.activity.LIstMarqueActivity;
@@ -439,7 +439,7 @@ public class MagasinsFragment extends Fragment {
 
                     List<Magasin> MagasinsList = response.body().getData();
                     mMagasinRecyclerView = (RecyclerView) lytMagasinList.findViewById(R.id.homeRecyclerView);
-                    tvStoreAllNouveau.setText("Magasins (" + MagasinsList.size() + ")");
+                    tvStore.setText("Magasins (" + MagasinsList.size() + ")");
 
 
                     eMagasinAdapter = new MagasinsAdapter(getActivity(), MagasinsList);
@@ -451,7 +451,7 @@ public class MagasinsFragment extends Fragment {
 
                     mMagasinRecyclerView.setItemAnimator(new DefaultItemAnimator());
                     mMagasinRecyclerView.setAdapter(eMagasinAdapter);
-                    eBrandAdapter.notifyDataSetChanged();
+                    eMagasinAdapter.notifyDataSetChanged();
 
                  Toast.makeText(getActivity(), "magasin"+MagasinsList.size(), Toast.LENGTH_SHORT).show();
                 }

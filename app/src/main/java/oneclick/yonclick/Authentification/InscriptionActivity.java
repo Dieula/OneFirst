@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -92,8 +93,7 @@ public class InscriptionActivity extends AppCompatActivity {
 
 
     private void register() {
-        RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask();
-        registerAsyncTask.execute();
+
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
     }
@@ -117,9 +117,42 @@ public class InscriptionActivity extends AppCompatActivity {
             etNomUser.setError(null);
         }
 
+
+        //Verify the name
+        if (mEmail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()){
+
+            etEmailUser.setError("Enter a valid email");
+
+            valid = false;
+        }
+        else
+        {
+            etEmailUser.setError(null);
+        }
+
         //Verify the email
-        if (mEmail.isEmpty() || mEmail.isEmpty())
-            etEmailUser.setError("at least 8 characters ");
+        if (mPassword.isEmpty() || mPassword.isEmpty())
+        {
+            password.setError("at least 8 characters ");
+            valid = false;
+        }
+        else
+        {
+            password.setError(null);
+        }
+
+        //Verify the email
+        if (mConfPassword.isEmpty() || mConfPassword.isEmpty() && mConfPassword.isEmpty() != mConfPassword.isEmpty()   )
+        {
+            confirmPass.setError("Password not match");
+            valid = false;
+        }
+        else
+        {
+            confirmPass.setError(null);
+        }
+
+
         return valid;
     }
 
@@ -133,8 +166,14 @@ public class InscriptionActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
+
+
+
             if (status == 200) {
+
                 StaticUser.setRegister(reponse.body().getRegister());
+                RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask();
+                registerAsyncTask.execute();
                 Toast.makeText(InscriptionActivity.this, "Good"+reponse.message(), Toast.LENGTH_SHORT).show();
 
             } else {

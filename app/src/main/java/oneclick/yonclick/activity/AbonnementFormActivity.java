@@ -23,7 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import oneclick.yonclick.Detail.DetailsProduitActivity;
+import oneclick.yonclick.Fragment.AbonnementFragment;
+import oneclick.yonclick.Model.Abonnement;
+import oneclick.yonclick.Model.GetCategoryWithProduit;
+import oneclick.yonclick.Model.GetMarqueWithProduit;
+import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.R;
+import oneclick.yonclick.dataa.constant.AppConstants;
 
 public class AbonnementFormActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -35,12 +41,24 @@ public class AbonnementFormActivity extends AppCompatActivity implements Adapter
     SharedPreferences.Editor editor;
     ProgressDialog progressDialog;
 
+    Abonnement abonnement;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abonnement_form);
 
 
+
+        if (getIntent().getSerializableExtra(AppConstants.abonnement) != null)
+        {
+            abonnement = (Abonnement) getIntent().getSerializableExtra(AppConstants.abonnement);
+
+        }
+
+        else{
+            System.out.println("PROD : NO DETAILS");
+        }
 
         sharedPreferences = getSharedPreferences("PreferencesTAG", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();

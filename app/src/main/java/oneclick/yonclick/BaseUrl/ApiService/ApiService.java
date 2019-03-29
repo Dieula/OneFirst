@@ -31,7 +31,7 @@ public interface ApiService {
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<ProduitList> getProduit();
 
-    @GET("abonnement/get")
+    @GET("abonnement")
     @Headers({"Content-Type: application/json","apiKey: 8484884774837498"})
     Call<AbonnementList> getAbonnementJSON();
 

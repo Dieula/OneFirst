@@ -20,7 +20,7 @@ import java.util.List;
 
 import oneclick.yonclick.Adapter.ProductListAdapter;
 import oneclick.yonclick.BaseUrl.ApiService.ApiService;
-import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
 import oneclick.yonclick.Model.Product;
 import oneclick.yonclick.ModelList.ProduitList;
 import oneclick.yonclick.R;

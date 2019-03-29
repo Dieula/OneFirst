@@ -13,12 +13,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import oneclick.yonclick.Adapter.EcolageAdapter;
 import oneclick.yonclick.BaseUrl.ApiService.ApiService;
-import oneclick.yonclick.BaseUrl.RetroClient;
+import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
 import oneclick.yonclick.Model.Ecolage;
 import oneclick.yonclick.ModelList.EcolageList;
 import oneclick.yonclick.R;

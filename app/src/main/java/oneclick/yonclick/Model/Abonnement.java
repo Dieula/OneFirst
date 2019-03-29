@@ -9,12 +9,13 @@ public class Abonnement implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("nom")
+    @SerializedName("name_subscription")
     @Expose
-    private String nom;
+    private String name_subscription;
     @SerializedName("image")
     @Expose
     private String image;
+
 
     public Integer getId() {
         return id;
@@ -24,12 +25,12 @@ public class Abonnement implements Serializable {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName_subscription() {
+        return name_subscription;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName_subscription(String name_subscription) {
+        this.name_subscription = name_subscription;
     }
 
     public String getImage() {

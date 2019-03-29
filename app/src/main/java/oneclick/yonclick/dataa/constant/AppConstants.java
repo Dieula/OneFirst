@@ -37,6 +37,7 @@ public class AppConstants {
     public static final int CATEGORY_TEC_PRODUCTS_ID = 21;
 
     // String constants
+    public static final String abonnement = "abon";
     public static final String produit = "prod";
     public static final String magasin = "mag";
     public static final String brand = "brand";

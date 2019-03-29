@@ -23,13 +23,15 @@ import oneclick.yonclick.listener.OnItemClickListener;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHolder> {
 
-    private int quantityCounter = 1;
+
     private Context mContext;
     private ArrayList<CartItem> dataList;
 
     // Listener
     private static OnItemClickListener mListener;
     private static OnItemCheckedListener itemCheckedListener;
+
+
 
     public CartListAdapter(Context context, ArrayList<CartItem> dataList) {
         this.mContext = context;
@@ -64,7 +66,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
                 @Override
                 public void onClick(View v) {
                     int quantityCounter = 1;
-                    quantityCounter++;
+                    quantityCounter ++;
                     tvProductQuantity.setText(String.valueOf(quantityCounter));
                 }
             });
@@ -122,8 +124,8 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
         holder.tvProductName.setText(cartItem.name);
         holder.tvProductPrice.setText(cartItem.price + AppConstants.CURRENCY);
-        holder.tvProductQuantity.setText(String.valueOf(quantityCounter + cartItem.quantity));
-        //holder.tvProductQuantity.setText(String.valueOf(cartItem.quantity));
+       // holder.tvProductQuantity.setText(String.valueOf(quantityCounter));
+        holder.tvProductQuantity.setText(String.valueOf(cartItem.quantity));
 
         if (cartItem.isSelected == AppConstants.VALUE_SELECTED) {
             holder.chkCart.setChecked(true);

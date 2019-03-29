@@ -231,6 +231,7 @@ public class CartListActivity extends BaseActivity {
             cartList.clear();
         }
         totalPrice = 0;
+
         selectedCounter = 0;
         try {
             CartDBController cartController = new CartDBController(mContext);

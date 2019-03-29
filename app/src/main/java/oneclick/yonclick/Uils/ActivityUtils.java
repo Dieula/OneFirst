@@ -6,11 +6,13 @@ import android.content.Intent;
 
 import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.Detail.PlatDetailsActivity;
+import oneclick.yonclick.Model.Abonnement;
 import oneclick.yonclick.Model.GetCategoryWithProduit;
 import oneclick.yonclick.Model.GetMarqueWithProduit;
 import oneclick.yonclick.Model.Magasin;
 import oneclick.yonclick.Model.Plat;
 import oneclick.yonclick.Model.Product;
+import oneclick.yonclick.activity.AbonnementFormActivity;
 import oneclick.yonclick.activity.LargeImageViewActivity;
 import oneclick.yonclick.activity.ProductListActivity;
 import oneclick.yonclick.activity.SearchActivity;
@@ -57,6 +59,15 @@ public class ActivityUtils {
 
         Intent i = new Intent(mContext, DetailsProduitActivity.class);
         i.putExtra(AppConstants.produit, productId);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);
+
+    }
+
+    public void invokeProductDetailsAbonnement(Context mContext, Abonnement abonnementId) {
+
+        Intent i = new Intent(mContext, AbonnementFormActivity.class);
+        i.putExtra(AppConstants.abonnement, abonnementId);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(i);
 
@@ -124,55 +135,5 @@ public class ActivityUtils {
         intent.putExtra(AppConstants.KEY_IMAGE_URL, imageUrl);
         activity.startActivity(intent);
     }
-/*
-    public void invokeAddressActivity(Activity activity, ArrayList<LineItem> arrayList, boolean editOnly, boolean shouldFinish) {
-        Intent intent = new Intent(activity, MyAddressActivity.class);
-        intent.putParcelableArrayListExtra(AppConstants.KEY_LINE_ITEM_LIST, arrayList);
-        intent.putExtra(AppConstants.KEY_EDIT_ONLY, editOnly);
-        activity.startActivity(intent);
-        if (shouldFinish) {
-            activity.finish();
-        }
-    }
-
-    public void invokeLoginAndOrder(Activity activity, ArrayList<LineItem> arrayList) {
-        Intent intent = new Intent(activity, LoginActivity.class);
-        intent.putParcelableArrayListExtra(AppConstants.KEY_LINE_ITEM_LIST, arrayList);
-        intent.putExtra(AppConstants.KEY_LOGIN_ORDER, true);
-        activity.startActivity(intent);
-        activity.finish();
-    }
-
-    public void invokeWebPageActivity(Activity activity, String pageTitle, String url) {
-        Intent intent = new Intent(activity, WebPageActivity.class);
-        intent.putExtra(AppConstants.BUNDLE_KEY_TITLE, pageTitle);
-        intent.putExtra(AppConstants.BUNDLE_KEY_URL, url);
-        activity.startActivity(intent);
-    }
-
-    public void invokeNotifyContentActivity(Activity activity, String title, String message) {
-        Intent intent = new Intent(activity, NotificationContentActivity.class);
-        intent.putExtra(AppConstants.BUNDLE_KEY_TITLE, title);
-        intent.putExtra(AppConstants.BUNDLE_KEY_MESSAGE, message);
-        activity.startActivity(intent);
-    }
-
-
-
-    public void invokeOrder(Activity activity, String orderId) {
-        Intent intent = new Intent(activity, OrderConfirmationPage.class);
-        intent.putExtra(AppConstants.ORDER_ID, orderId);
-        activity.startActivity(intent);
-        activity.finish();
-    }
-
-
-    public void invokePlaceOrder(Activity activity, ArrayList<LineItem> arrayList) {
-        Intent intentOrder = new Intent(activity, PlaceOrderActivity.class);
-        intentOrder.putParcelableArrayListExtra(AppConstants.KEY_LINE_ITEM_LIST, arrayList);
-        activity.startActivity(intentOrder);
-        activity.finish();
-    }
-*/
 
 }
