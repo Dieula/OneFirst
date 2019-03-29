@@ -57,6 +57,8 @@ public class ProfilActivity extends BaseActivity {
         sharedPreferences.getString("email_client", "");
         sharedPreferences.getString("imei", "");
 
+        tvName.setText(sharedPreferences.getString("nom_client",""));
+
 
         // call the listview
         lvProfil = (ListView) findViewById(R.id.rvProfilList);
@@ -79,13 +81,6 @@ public class ProfilActivity extends BaseActivity {
                 {
                     shareInfo();
                 }
-/*
-
-
-                Intent i = new Intent(ProfilActivity.this, MainActivity.class);
-                i.putExtra("ProfilUser", profil);
-                   startActivity(i);
-*/
 
             }
         });

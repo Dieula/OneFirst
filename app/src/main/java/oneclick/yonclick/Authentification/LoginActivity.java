@@ -138,7 +138,10 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (status == 200) {
+            if (reponse.toString().equals("fail")){
+                Toast.makeText(getApplicationContext(), "Please verify your imfo", Toast.LENGTH_SHORT).show();
+            }
+            else if (status == 200) {
                 Toast.makeText(getApplicationContext(), "Bienvenue sur YONCLICK", Toast.LENGTH_SHORT).show();
                 StaticUser.setRegister(reponse.body().getLogin());
 
