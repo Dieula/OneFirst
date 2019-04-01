@@ -5,14 +5,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.RelativeLayout;
 
 import oneclick.yonclick.R;
-import oneclick.yonclick.activity.DetailsCreditCardActivity;
-import oneclick.yonclick.activity.MobilePaiementActivity;
 
 public class DialogUtils {
 

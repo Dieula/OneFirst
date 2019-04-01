@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import oneclick.yonclick.activity.MainActivity;
+import oneclick.yonclick.activity.activity.MainActivity;
 
 public class AppPreference {
     // declare context

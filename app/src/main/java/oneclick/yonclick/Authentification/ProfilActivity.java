@@ -1,16 +1,13 @@
 package oneclick.yonclick.Authentification;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,12 +16,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import oneclick.yonclick.Adapter.AdapterProfil;
-import oneclick.yonclick.Model.Profil;
+import oneclick.yonclick.Model.Model.Profil;
 import oneclick.yonclick.R;
-import oneclick.yonclick.activity.BaseActivity;
-import oneclick.yonclick.activity.HistoricActivity;
-import oneclick.yonclick.activity.MainActivity;
-import oneclick.yonclick.dataa.preference.AppPreference;
+import oneclick.yonclick.activity.activity.BaseActivity;
+import oneclick.yonclick.activity.activity.HistoricActivity;
+import oneclick.yonclick.activity.activity.MainActivity;
 import oneclick.yonclick.dataa.preference.SharedPref;
 
 public class ProfilActivity extends BaseActivity {
@@ -54,12 +50,6 @@ public class ProfilActivity extends BaseActivity {
         initToolbar();
         enableBackButton();
         setToolbarTitle(getString(R.string.profil));
-
-/*
-        if (!SharedPref.getInstance(this).isLoggedIn()) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }*/
 
        //getting logged in user name
         String loggedUsename = SharedPref.getInstance(this).LoggedInUser();

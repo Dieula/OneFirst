@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.activity.MainActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -47,34 +47,34 @@
             android:name=".Authentification.CompletezInscriptionActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.AbonnementFormActivity"
+            android:name=".activity.activity.AbonnementFormActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.EcolageActivity"
+            android:name=".activity.activity.EcolageActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".Detail.DetailsProduitActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:hardwareAccelerated="false"
-            android:largeHeap="true"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".Detail.PlatDetailsActivity"
+            android:name=".activity.Detail.DetailsProduitActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:hardwareAccelerated="false"
             android:largeHeap="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.PlatActivity"
+            android:name=".activity.Detail.PlatDetailsActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:hardwareAccelerated="false"
+            android:largeHeap="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.activity.PlatActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.MobilePaiementActivity"
+            android:name=".activity.activity.MobilePaiementActivity"
             android:windowSoftInputMode="stateHidden" />
         <!--
             <intent-filter>
@@ -86,15 +86,15 @@
         -->
 
         <activity
-            android:name=".activity.PaiementConfirmationActivity"
+            android:name=".activity.activity.PaiementConfirmationActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.SearchActivity"
+            android:name=".activity.activity.SearchActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.DetailsCreditCardActivity"
+            android:name=".activity.activity.DetailsCreditCardActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activity.SplashActivity" >
+        <activity android:name=".activity.activity.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -105,17 +105,17 @@
 
 
 
-    <activity android:name=".activity.ProductListActivity" />
-        <activity android:name=".activity.CartListActivity" />
+    <activity android:name=".activity.activity.ProductListActivity" />
+        <activity android:name=".activity.activity.CartListActivity" />
 
-        <activity android:name=".activity.LargeImageViewActivity" />
-        <activity android:name=".activity.LIstMarqueActivity" />
-        <activity android:name=".activity.ListCategorieActivity" />
-        <activity android:name=".activity.PinNatcomActivity" />
-        <activity android:name=".Detail.MagasinDetailsActivity" />
+        <activity android:name=".activity.activity.LargeImageViewActivity" />
+        <activity android:name=".activity.activity.LIstMarqueActivity" />
+        <activity android:name=".activity.activity.ListCategorieActivity" />
+        <activity android:name=".activity.activity.PinNatcomActivity" />
+        <activity android:name=".activity.Detail.MagasinDetailsActivity" />
         <activity android:name=".Authentification.ProfilActivity" />
-        <activity android:name=".activity.HistoricActivity" />
-        <activity android:name=".activity.ListMagasinActivity"></activity>
+        <activity android:name=".activity.activity.HistoricActivity" />
+        <activity android:name=".activity.activity.ListMagasinActivity"></activity>
     </application>
 
 </manifest>

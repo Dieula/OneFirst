@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ListCategorieActivity">
+    tools:context=".activity.activity.ListCategorieActivity">
 
     <include layout="@layout/toolbar_product_list" />
 

@@ -14,15 +14,12 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import oneclick.yonclick.Model.Ecolage;
-import oneclick.yonclick.Model.Employe;
-import oneclick.yonclick.Model.Product;
-import oneclick.yonclick.Model.Restaurant;
+import oneclick.yonclick.Model.Model.Restaurant;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
-import oneclick.yonclick.activity.PlatActivity;
+import oneclick.yonclick.activity.activity.PlatActivity;
 
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+import static oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi.BASE_URL_Image;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.CustomViewHolder> {
     private List<Restaurant> restaurants,filterList;

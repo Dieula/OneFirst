@@ -18,12 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import oneclick.yonclick.Adapter.AbonnementAdapter;
-import oneclick.yonclick.BaseUrl.ApiService.ApiService;
-import oneclick.yonclick.Model.Abonnement;
-import oneclick.yonclick.Model.CartItem;
-import oneclick.yonclick.ModelList.AbonnementList;
+import oneclick.yonclick.BaseUrl.ApiServiceGetRequest.ApiService;
+import oneclick.yonclick.Model.Model.Abonnement;
+import oneclick.yonclick.Model.Model.CartItem;
+import oneclick.yonclick.Model.ModelList.AbonnementList;
 import oneclick.yonclick.R;
-import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
+import oneclick.yonclick.BaseUrl.ApiServiceGetRequest.RetroClient;
 import oneclick.yonclick.dataa.sqlite.CartDBController;
 import retrofit2.Call;
 import retrofit2.Callback;

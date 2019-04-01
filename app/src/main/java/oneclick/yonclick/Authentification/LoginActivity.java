@@ -16,13 +16,12 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import oneclick.yonclick.InterfaceAPI.ApiEndPointInterface;
-import oneclick.yonclick.InterfaceAPI.RestApi;
-import oneclick.yonclick.ModelAuth.RequestLogin;
-import oneclick.yonclick.ModelAuth.ResponseLogin;
+import oneclick.yonclick.BaseUrl.InterfaceAPIPost.ApiEndPointInterface;
+import oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi;
+import oneclick.yonclick.Model.ModelAuth.RequestLogin;
+import oneclick.yonclick.Model.ModelAuth.ResponseLogin;
 import oneclick.yonclick.R;
-import oneclick.yonclick.activity.Common.Common;
-import oneclick.yonclick.activity.MainActivity;
+import oneclick.yonclick.activity.activity.MainActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.dataa.preference.AppPreference;
 import oneclick.yonclick.dataa.preference.SharedPref;
@@ -160,7 +159,6 @@ public class LoginActivity extends AppCompatActivity {
                     String user = reponse.body().getLogin();
                    //storing the user in shared preferences
                     SharedPref.getInstance(LoginActivity.this).storeUserName(user);
-                    //error fixer
                    //startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
                     Toast.makeText(getApplicationContext(), "Bienvenue sur YONCLICK", Toast.LENGTH_SHORT).show();

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import oneclick.yonclick.Authentification.LoginActivity;
-import oneclick.yonclick.activity.MainActivity;
 
 public class SharedPref {
     //Storage File

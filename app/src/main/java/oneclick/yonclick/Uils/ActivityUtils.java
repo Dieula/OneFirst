@@ -4,20 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import oneclick.yonclick.Detail.DetailsProduitActivity;
-import oneclick.yonclick.Detail.PlatDetailsActivity;
-import oneclick.yonclick.Model.Abonnement;
-import oneclick.yonclick.Model.GetCategoryWithProduit;
-import oneclick.yonclick.Model.GetMarqueWithProduit;
-import oneclick.yonclick.Model.Magasin;
-import oneclick.yonclick.Model.Plat;
-import oneclick.yonclick.Model.Product;
-import oneclick.yonclick.Model.Restaurant;
-import oneclick.yonclick.activity.AbonnementFormActivity;
-import oneclick.yonclick.activity.LargeImageViewActivity;
-import oneclick.yonclick.activity.PlatActivity;
-import oneclick.yonclick.activity.ProductListActivity;
-import oneclick.yonclick.activity.SearchActivity;
+import oneclick.yonclick.activity.Detail.DetailsProduitActivity;
+import oneclick.yonclick.activity.Detail.PlatDetailsActivity;
+import oneclick.yonclick.Model.Model.Abonnement;
+import oneclick.yonclick.Model.Model.GetCategoryWithProduit;
+import oneclick.yonclick.Model.Model.GetMarqueWithProduit;
+import oneclick.yonclick.Model.Model.Magasin;
+import oneclick.yonclick.Model.Model.Plat;
+import oneclick.yonclick.Model.Model.Product;
+import oneclick.yonclick.Model.Model.Restaurant;
+import oneclick.yonclick.activity.activity.AbonnementFormActivity;
+import oneclick.yonclick.activity.activity.LargeImageViewActivity;
+import oneclick.yonclick.activity.activity.PlatActivity;
+import oneclick.yonclick.activity.activity.ProductListActivity;
+import oneclick.yonclick.activity.activity.SearchActivity;
 import oneclick.yonclick.dataa.constant.AppConstants;
 
 public class ActivityUtils {

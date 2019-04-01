@@ -1,13 +1,18 @@
 package oneclick.yonclick.Fragment;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +23,13 @@ import oneclick.yonclick.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MensualiteFragment extends Fragment {
+public class MensualiteFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+    EditText IdEtudiant,edNom,NomMois;
+    Spinner SpiClasse,SpiVersement;
+    Button btnPayer;
+    TextView etVersement,tvTotalPrice;
+
+    private ProgressDialog pDialog;
 
 
     View v;
@@ -31,10 +42,17 @@ public class MensualiteFragment extends Fragment {
 
 
 
+        IdEtudiant = (EditText) v.findViewById(R.id.IdEtudiant);
+        edNom = (EditText) v.findViewById(R.id.edNom);
+        etVersement = (TextView) v.findViewById(R.id.etVersement);
+        tvTotalPrice = (TextView) v.findViewById(R.id.tvTotalPrice);
+        NomMois = (EditText) v.findViewById(R.id.NomMois);
+
+
+        btnPayer = v.findViewById(R.id.btnValider);
         Spinner  SpiClasse = (Spinner) v.findViewById(R.id.SpiClasse);
 
-
-
+        SpiClasse.setOnItemSelectedListener(this);
 
 
         // Spinner Drop down elements
@@ -67,4 +85,13 @@ public class MensualiteFragment extends Fragment {
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

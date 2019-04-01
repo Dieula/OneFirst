@@ -13,10 +13,10 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import oneclick.yonclick.Model.Brand;
+import oneclick.yonclick.Model.Model.Brand;
 import oneclick.yonclick.R;
 
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+import static oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi.BASE_URL_Image;
 
 public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.CustomViewHolder> {
 

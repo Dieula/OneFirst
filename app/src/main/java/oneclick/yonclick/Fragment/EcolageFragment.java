@@ -16,10 +16,10 @@ import android.widget.Toast;
 import java.util.List;
 
 import oneclick.yonclick.Adapter.EcolageAdapter;
-import oneclick.yonclick.BaseUrl.ApiService.ApiService;
-import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
-import oneclick.yonclick.Model.Ecolage;
-import oneclick.yonclick.ModelList.EcolageList;
+import oneclick.yonclick.BaseUrl.ApiServiceGetRequest.ApiService;
+import oneclick.yonclick.BaseUrl.ApiServiceGetRequest.RetroClient;
+import oneclick.yonclick.Model.Model.Ecolage;
+import oneclick.yonclick.Model.ModelList.EcolageList;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.AppUtility;
 import retrofit2.Call;

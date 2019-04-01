@@ -1,13 +1,11 @@
 package oneclick.yonclick.Authentification;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -20,13 +18,12 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import oneclick.yonclick.InterfaceAPI.ApiEndPointInterface;
-import oneclick.yonclick.InterfaceAPI.RestApi;
-import oneclick.yonclick.ModelAuth.UserRequest;
-import oneclick.yonclick.ModelAuth.UserResponse;
+import oneclick.yonclick.BaseUrl.InterfaceAPIPost.ApiEndPointInterface;
+import oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi;
+import oneclick.yonclick.Model.ModelAuth.UserRequest;
+import oneclick.yonclick.Model.ModelAuth.UserResponse;
 import oneclick.yonclick.R;
-import oneclick.yonclick.activity.MainActivity;
-import oneclick.yonclick.dataa.preference.SharedPref;
+import oneclick.yonclick.activity.activity.MainActivity;
 import retrofit2.Call;
 import retrofit2.Response;
 

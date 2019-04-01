@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import oneclick.yonclick.Model.CartItem;
+import oneclick.yonclick.Model.Model.CartItem;
 import oneclick.yonclick.R;
 import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.listener.OnItemCheckedListener;

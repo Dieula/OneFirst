@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import oneclick.yonclick.Model.Historic;
-import oneclick.yonclick.Model.Profil;
+import oneclick.yonclick.Model.Model.Profil;
 import oneclick.yonclick.R;
 
 public class AdapterProfil  extends ArrayAdapter<Profil> {

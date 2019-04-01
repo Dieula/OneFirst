@@ -14,11 +14,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import oneclick.yonclick.Model.Ecolage;
+import oneclick.yonclick.Model.Model.Ecolage;
 import oneclick.yonclick.R;
-import oneclick.yonclick.activity.EcolageActivity;
+import oneclick.yonclick.activity.activity.EcolageActivity;
 
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+import static oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi.BASE_URL_Image;
 
 public class EcolageAdapter extends RecyclerView.Adapter<EcolageAdapter.CustomViewHolder> {
 

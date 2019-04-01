@@ -1,9 +1,6 @@
 package oneclick.yonclick.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +12,11 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
-import oneclick.yonclick.Model.Product;
+import oneclick.yonclick.Model.Model.Product;
 import oneclick.yonclick.R;
-import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.Uils.ActivityUtils;
-import oneclick.yonclick.dataa.preference.AppPreference;
 
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+import static oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi.BASE_URL_Image;
 
 public class ProduitAdapter extends RecyclerView.Adapter<ProduitAdapter.CustomViewHolder> {
 

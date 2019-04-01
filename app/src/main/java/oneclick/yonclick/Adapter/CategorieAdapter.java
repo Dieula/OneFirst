@@ -1,7 +1,6 @@
 package oneclick.yonclick.Adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,12 +13,10 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import oneclick.yonclick.Model.Abonnement;
-import oneclick.yonclick.Model.Categorie;
-import oneclick.yonclick.Model.Category;
+import oneclick.yonclick.Model.Model.Categorie;
 import oneclick.yonclick.R;
 
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+import static oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi.BASE_URL_Image;
 
 public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.CustomViewHolder> {
 

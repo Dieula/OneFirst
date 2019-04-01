@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import oneclick.yonclick.Model.Historic;
+import oneclick.yonclick.Model.Model.Historic;
 import oneclick.yonclick.R;
 
 public class HistoricArrayAdapter extends ArrayAdapter<Historic> {

@@ -1,8 +1,6 @@
 package oneclick.yonclick.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import oneclick.yonclick.Model.GetCategoryWithProduit;
+import oneclick.yonclick.Model.Model.GetCategoryWithProduit;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.ListTypeShow;
-import oneclick.yonclick.Detail.DetailsProduitActivity;
 import oneclick.yonclick.listener.OnItemClickListener;
 
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+import static oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi.BASE_URL_Image;
 
 public class AdapterListCategorie extends RecyclerView.Adapter<AdapterListCategorie.ViewHolder> {
 

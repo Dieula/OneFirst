@@ -22,11 +22,11 @@ import org.json.JSONArray;
 import java.util.List;
 
 import oneclick.yonclick.Adapter.RestaurantAdapter;
-import oneclick.yonclick.BaseUrl.ApiService.ApiService;
+import oneclick.yonclick.BaseUrl.ApiServiceGetRequest.ApiService;
 import oneclick.yonclick.Authentification.StaticUser;
-import oneclick.yonclick.BaseUrl.ApiService.RetroClient;
-import oneclick.yonclick.Model.Restaurant;
-import oneclick.yonclick.ModelList.RestaurantList;
+import oneclick.yonclick.BaseUrl.ApiServiceGetRequest.RetroClient;
+import oneclick.yonclick.Model.Model.Restaurant;
+import oneclick.yonclick.Model.ModelList.RestaurantList;
 import oneclick.yonclick.R;
 import retrofit2.Call;
 import retrofit2.Callback;

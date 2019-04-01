@@ -1,12 +1,10 @@
 package oneclick.yonclick.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -16,15 +14,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import oneclick.yonclick.Detail.DetailsProduitActivity;
-import oneclick.yonclick.Model.Product;
+import oneclick.yonclick.Model.Model.Product;
 import oneclick.yonclick.R;
 import oneclick.yonclick.Uils.ActivityUtils;
 import oneclick.yonclick.Uils.ListTypeShow;
-import oneclick.yonclick.dataa.constant.AppConstants;
 import oneclick.yonclick.listener.OnItemClickListener;
 
-import static oneclick.yonclick.InterfaceAPI.RestApi.BASE_URL_Image;
+import static oneclick.yonclick.BaseUrl.InterfaceAPIPost.RestApi.BASE_URL_Image;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
 
